@@ -1,0 +1,73 @@
+<div>
+    <h2>Participacion Retos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="participacion-reto.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Participacion Reto
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Imagen</span></th>
+                    <th><span>Hora Publicacion</span></th>
+                    <th><span>Descripcion</span></th>
+                    <th><span>Usuario</span></th>
+                    <th><span>Reto</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="participacionReto in vm.participacionRetos track by participacionReto.id">
+                    <td><a ui-sref="participacion-reto-detail({id:participacionReto.id})">{{participacionReto.id}}</a></td>
+                    <td>
+                        <a ng-if="participacionReto.imagen" ng-click="vm.openFile(participacionReto.imagenContentType, participacionReto.imagen)">
+                            <img data-ng-src="{{'data:' + participacionReto.imagenContentType + ';base64,' + participacionReto.imagen}}" style="max-height: 30px;" alt="participacionReto image"/>
+                        </a>
+                        <span ng-if="participacionReto.imagen">{{participacionReto.imagenContentType}}, {{vm.byteSize(participacionReto.imagen)}}</span>
+                    </td>
+                    <td>{{participacionReto.horaPublicacion | date:'medium'}}</td>
+                    <td>{{participacionReto.descripcion}}</td>
+                    <td>
+                        {{participacionReto.usuario.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="reto-detail({id:participacionReto.reto.id})">{{participacionReto.reto.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="participacion-reto-detail({id:participacionReto.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="participacion-reto.edit({id:participacionReto.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="participacion-reto.delete({id:participacionReto.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

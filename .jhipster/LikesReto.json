@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "participacionReto",
+            "otherEntityName": "participacionReto",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "puntuacion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "horaLike",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170213194700",
+    "entityTableName": "likes_reto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

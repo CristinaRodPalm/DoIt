@@ -1,0 +1,81 @@
+<div>
+    <h2>Eventos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="evento.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Evento
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Nombre</span></th>
+                    <th><span>Descripcion</span></th>
+                    <th><span>Hora</span></th>
+                    <th><span>Imagen</span></th>
+                    <th><span>Url Maps</span></th>
+                    <th><span>Latitud</span></th>
+                    <th><span>Longitud</span></th>
+                    <th><span>Reto</span></th>
+                    <th><span>Admin</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="evento in vm.eventos track by evento.id">
+                    <td><a ui-sref="evento-detail({id:evento.id})">{{evento.id}}</a></td>
+                    <td>{{evento.nombre}}</td>
+                    <td>{{evento.descripcion}}</td>
+                    <td>{{evento.hora | date:'medium'}}</td>
+                    <td>
+                        <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
+                            <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                        </a>
+                        <span ng-if="evento.imagen">{{evento.imagenContentType}}, {{vm.byteSize(evento.imagen)}}</span>
+                    </td>
+                    <td>{{evento.urlMaps}}</td>
+                    <td>{{evento.latitud}}</td>
+                    <td>{{evento.longitud}}</td>
+                    <td>
+                        <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
+                    </td>
+                    <td>
+                        {{evento.admin.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="evento-detail({id:evento.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="evento.edit({id:evento.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="evento.delete({id:evento.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

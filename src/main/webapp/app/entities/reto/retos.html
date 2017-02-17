@@ -1,0 +1,67 @@
+<div>
+    <h2>Retos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="reto.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Reto
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Nombre</span></th>
+                    <th><span>Descripcion</span></th>
+                    <th><span>Hora Publicacion</span></th>
+                    <th><span>Imagen</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="reto in vm.retos track by reto.id">
+                    <td><a ui-sref="reto-detail({id:reto.id})">{{reto.id}}</a></td>
+                    <td>{{reto.nombre}}</td>
+                    <td>{{reto.descripcion}}</td>
+                    <td>{{reto.horaPublicacion | date:'medium'}}</td>
+                    <td>
+                        <a ng-if="reto.imagen" ng-click="vm.openFile(reto.imagenContentType, reto.imagen)">
+                            <img data-ng-src="{{'data:' + reto.imagenContentType + ';base64,' + reto.imagen}}" style="max-height: 30px;" alt="reto image"/>
+                        </a>
+                        <span ng-if="reto.imagen">{{reto.imagenContentType}}, {{vm.byteSize(reto.imagen)}}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="reto-detail({id:reto.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="reto.edit({id:reto.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="reto.delete({id:reto.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

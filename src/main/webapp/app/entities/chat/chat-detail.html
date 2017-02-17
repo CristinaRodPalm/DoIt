@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span>Chat</span> {{vm.chat.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.chat.nombre}}</span>
+        </dd>
+        <dt><span>Hora Creacion</span></dt>
+        <dd>
+            <span>{{vm.chat.horaCreacion | date:'medium'}}</span>
+        </dd>
+        <dt><span>Evento</span></dt>
+        <dd>
+            <a ui-sref="evento-detail({id:vm.chat.evento.id})">{{vm.chat.evento.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="chat-detail.edit({id:vm.chat.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

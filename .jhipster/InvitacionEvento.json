@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "evento",
+            "otherEntityName": "evento",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "miembroEvento",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "horaResolucion",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "horaInvitacion",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "resolucion",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170213194757",
+    "entityTableName": "invitacion_evento",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

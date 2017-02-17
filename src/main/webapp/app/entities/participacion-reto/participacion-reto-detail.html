@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span>Participacion Reto</span> {{vm.participacionReto.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Imagen</span></dt>
+        <dd>
+            <div ng-if="vm.participacionReto.imagen">
+                <a ng-click="vm.openFile(vm.participacionReto.imagenContentType, vm.participacionReto.imagen)">
+                    <img data-ng-src="{{'data:' + vm.participacionReto.imagenContentType + ';base64,' + vm.participacionReto.imagen}}" style="max-width: 100%;" alt="participacionReto image"/>
+                </a>
+                {{vm.participacionReto.imagenContentType}}, {{vm.byteSize(vm.participacionReto.imagen)}}
+            </div>
+        </dd>
+        <dt><span>Hora Publicacion</span></dt>
+        <dd>
+            <span>{{vm.participacionReto.horaPublicacion | date:'medium'}}</span>
+        </dd>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{vm.participacionReto.descripcion}}</span>
+        </dd>
+        <dt><span>Usuario</span></dt>
+        <dd>
+            {{vm.participacionReto.usuario.login}}
+        </dd>
+        <dt><span>Reto</span></dt>
+        <dd>
+            <a ui-sref="reto-detail({id:vm.participacionReto.reto.id})">{{vm.participacionReto.reto.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="participacion-reto-detail.edit({id:vm.participacionReto.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reto",
+            "otherEntityName": "reto",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "admin",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "miembroEvento",
+            "otherEntityName": "invitacionEvento",
+            "otherEntityRelationshipName": "evento"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "chat",
+            "otherEntityName": "chat",
+            "otherEntityRelationshipName": "evento"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hora",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "urlMaps",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "latitud",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "longitud",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170213194756",
+    "entityTableName": "evento",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

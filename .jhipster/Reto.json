@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "participacionReto",
+            "otherEntityName": "participacionReto",
+            "otherEntityRelationshipName": "reto"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "evento",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "reto"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "horaPublicacion",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170213194758",
+    "entityTableName": "reto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

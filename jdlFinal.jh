@@ -3,13 +3,15 @@ entity Evento{
     descripcion String,
     hora ZonedDateTime,
     imagen ImageBlob,
-    localizacion String
+    urlMaps String,
+    latitud Double,
+    longitud Double
 }
 
-entity MiembroEvento{
-    idMiembro Long,
-    idEvento Long,
-    idAdmin Long
+entity InvitacionEvento{
+	horaResolucion ZonedDateTime,
+    horaInvitacion ZonedDateTime,
+    resolucion Boolean
 }
 
 entity Reto{
@@ -19,81 +21,53 @@ entity Reto{
     imagen ImageBlob
 }
 
-entity RetoUsuario{
-	idReto Long,
-    idUsuario Long,
+entity ParticipacionReto{
     imagen ImageBlob,
     horaPublicacion ZonedDateTime,
     descripcion String
 }
 
 entity LikesReto{
-	idReto Long,
-    idUsuario Long,
     puntuacion Integer,
     horaLike ZonedDateTime
 }
 
 entity Mensaje{
-	idChat Long,
-    idEmisor Long,
-    idReceptor Long,
     mensaje String,
-    horaEnvio ZonedDateTime
+    horaEnvio ZonedDateTime,
+    foto ImageBlob
 }
 
 entity Chat{
-	idAdmin Long,
     nombre String,
     horaCreacion ZonedDateTime
 }
 
-entity MiembroChat{
-	idChat Long,
-    idMiembro Long
-}
-
-
-
-
 
 // Usuario - Reto
 relationship ManyToOne{
-	User to RetoUsuario{idUsuario}
-}
-relationship ManyToOne{
-	Reto to RetoUsuario{idReto}
+	ParticipacionReto{usuario(login)} to User,
+    ParticipacionReto{reto} to Reto{participacionReto}
 }
 // Usuario - Evento
 relationship ManyToOne{
-	User to MiembroEvento{idMiembro}
+	InvitacionEvento{evento(nombre)} to Evento{miembroEvento},
+    InvitacionEvento{miembroEvento(login)} to User
+}
+// Usuario - ParticipacionReto
+relationship ManyToOne{
+	LikesReto{usuario(login)} to User,
+    LikesReto{participacionReto} to ParticipacionReto{likesReto}
 }
 relationship ManyToOne{
-	Evento to MiembroEvento{idEvento}
-}
-// Usuario - RetoUsuario
-relationship ManyToOne{
-	User to LikesReto{idUsuario}
+	Mensaje{emisor(login)} to User,
+    Mensaje{receptor(login)} to User,
+    Mensaje{chat} to Chat{mensaje}
 }
 relationship ManyToOne{
-	RetoUsuario to LikesReto{idReto}
-}
-// Usuario - Chat
-relationship ManyToOne{
-	User to MiembroChat{idMiembro}
+	Evento{reto(nombre)} to Reto{evento},
+    Evento{admin(login)} to User
 }
 relationship ManyToOne{
-	Chat to MiembroChat{idChat}
+ 	Chat{evento(nombre)} to Evento{chat}
 }
-
-/*
-relationship ManyToOne{
-	Chat to Mensaje{idChat}
-}
-relationship ManyToOne{
-	MiembroChat{idMiembro} to Mensaje{idEmisor}
-}
-relationship ManyToOne{
-	MiembroChat{idMiembro} to Mensaje{idReceptor}
-}
-*/

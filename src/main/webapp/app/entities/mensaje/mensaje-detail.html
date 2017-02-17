@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span>Mensaje</span> {{vm.mensaje.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Mensaje</span></dt>
+        <dd>
+            <span>{{vm.mensaje.mensaje}}</span>
+        </dd>
+        <dt><span>Hora Envio</span></dt>
+        <dd>
+            <span>{{vm.mensaje.horaEnvio | date:'medium'}}</span>
+        </dd>
+        <dt><span>Foto</span></dt>
+        <dd>
+            <div ng-if="vm.mensaje.foto">
+                <a ng-click="vm.openFile(vm.mensaje.fotoContentType, vm.mensaje.foto)">
+                    <img data-ng-src="{{'data:' + vm.mensaje.fotoContentType + ';base64,' + vm.mensaje.foto}}" style="max-width: 100%;" alt="mensaje image"/>
+                </a>
+                {{vm.mensaje.fotoContentType}}, {{vm.byteSize(vm.mensaje.foto)}}
+            </div>
+        </dd>
+        <dt><span>Emisor</span></dt>
+        <dd>
+            {{vm.mensaje.emisor.login}}
+        </dd>
+        <dt><span>Receptor</span></dt>
+        <dd>
+            {{vm.mensaje.receptor.login}}
+        </dd>
+        <dt><span>Chat</span></dt>
+        <dd>
+            <a ui-sref="chat-detail({id:vm.mensaje.chat.id})">{{vm.mensaje.chat.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="mensaje-detail.edit({id:vm.mensaje.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

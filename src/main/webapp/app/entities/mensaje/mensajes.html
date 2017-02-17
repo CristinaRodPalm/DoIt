@@ -1,0 +1,77 @@
+<div>
+    <h2>Mensajes</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="mensaje.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Mensaje
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Mensaje</span></th>
+                    <th><span>Hora Envio</span></th>
+                    <th><span>Foto</span></th>
+                    <th><span>Emisor</span></th>
+                    <th><span>Receptor</span></th>
+                    <th><span>Chat</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mensaje in vm.mensajes track by mensaje.id">
+                    <td><a ui-sref="mensaje-detail({id:mensaje.id})">{{mensaje.id}}</a></td>
+                    <td>{{mensaje.mensaje}}</td>
+                    <td>{{mensaje.horaEnvio | date:'medium'}}</td>
+                    <td>
+                        <a ng-if="mensaje.foto" ng-click="vm.openFile(mensaje.fotoContentType, mensaje.foto)">
+                            <img data-ng-src="{{'data:' + mensaje.fotoContentType + ';base64,' + mensaje.foto}}" style="max-height: 30px;" alt="mensaje image"/>
+                        </a>
+                        <span ng-if="mensaje.foto">{{mensaje.fotoContentType}}, {{vm.byteSize(mensaje.foto)}}</span>
+                    </td>
+                    <td>
+                        {{mensaje.emisor.login}}
+                    </td>
+                    <td>
+                        {{mensaje.receptor.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="chat-detail({id:mensaje.chat.id})">{{mensaje.chat.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="mensaje-detail({id:mensaje.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="mensaje.edit({id:mensaje.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="mensaje.delete({id:mensaje.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
