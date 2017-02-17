@@ -3,7 +3,10 @@ package com.doitteam.doit.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.ParticipacionReto;
 
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.ParticipacionRetoRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,11 +30,15 @@ public class ParticipacionRetoResource {
     private final Logger log = LoggerFactory.getLogger(ParticipacionRetoResource.class);
 
     private static final String ENTITY_NAME = "participacionReto";
-        
-    private final ParticipacionRetoRepository participacionRetoRepository;
 
-    public ParticipacionRetoResource(ParticipacionRetoRepository participacionRetoRepository) {
+    private final ParticipacionRetoRepository participacionRetoRepository;
+    private final UserRepository userRepository;
+
+    public ParticipacionRetoResource(ParticipacionRetoRepository participacionRetoRepository,
+                                     UserRepository userRepository
+                                     ) {
         this.participacionRetoRepository = participacionRetoRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -47,6 +55,13 @@ public class ParticipacionRetoResource {
         if (participacionReto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new participacionReto cannot already have an ID")).body(null);
         }
+
+        ZonedDateTime horaSistema = ZonedDateTime.now();
+        participacionReto.setHoraPublicacion(horaSistema);
+
+        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        participacionReto.setUsuario(usuario);
+
         ParticipacionReto result = participacionRetoRepository.save(participacionReto);
         return ResponseEntity.created(new URI("/api/participacion-retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -117,3 +132,4 @@ public class ParticipacionRetoResource {
     }
 
 }
+
