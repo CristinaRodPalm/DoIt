@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
 
 import com.doitteam.doit.repository.AmistadRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,11 +30,14 @@ public class AmistadResource {
     private final Logger log = LoggerFactory.getLogger(AmistadResource.class);
 
     private static final String ENTITY_NAME = "amistad";
-        
-    private final AmistadRepository amistadRepository;
 
-    public AmistadResource(AmistadRepository amistadRepository) {
+    private final AmistadRepository amistadRepository;
+    private final UserRepository userRepository;
+
+    public AmistadResource(AmistadRepository amistadRepository, UserRepository userRepository) {
+
         this.amistadRepository = amistadRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -48,6 +54,9 @@ public class AmistadResource {
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
+        amistad.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+        amistad.setTimeStamp(ZonedDateTime.now());
+        amistad.setAceptada(false);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
