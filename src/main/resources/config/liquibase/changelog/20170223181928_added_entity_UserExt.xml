@@ -17,22 +17,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Evento.
+        Added the entity UserExt.
     -->
-    <changeSet id="20170213194756-1" author="jhipster">
-        <createTable tableName="evento">
+    <changeSet id="20170223181928-1" author="jhipster">
+        <createTable tableName="user_ext">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="nombre" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="descripcion" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="hora" type="timestamp">
+            <column name="fecha_nacimiento" type="timestamp">
                 <constraints nullable="true" />
             </column>
 
@@ -43,34 +35,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="url_maps" type="varchar(255)">
-                <constraints nullable="true" />
+            <column name="telefono" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
-
-            <column name="latitud" type="double">
-                <constraints nullable="true" />
+            <column name="user_id" type="bigint">
+                <constraints unique="true" nullable="false" />
             </column>
-
-            <column name="longitud" type="double">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="fecha_evento" type="timestamp">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="reto_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="admin_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="evento" columnName="hora" columnDataType="datetime"/>
-        <dropDefaultValue tableName="evento" columnName="fecha_evento" columnDataType="datetime"/>
+        <dropDefaultValue tableName="user_ext" columnName="fecha_nacimiento" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

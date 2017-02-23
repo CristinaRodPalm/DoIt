@@ -26,6 +26,7 @@
                     <th><span>Url Maps</span></th>
                     <th><span>Latitud</span></th>
                     <th><span>Longitud</span></th>
+                    <th><span>Fecha Evento</span></th>
                     <th><span>Reto</span></th>
                     <th><span>Admin</span></th>
                     <th></th>
@@ -46,6 +47,7 @@
                     <td>{{evento.urlMaps}}</td>
                     <td>{{evento.latitud}}</td>
                     <td>{{evento.longitud}}</td>
+                    <td>{{evento.fechaEvento | date:'medium'}}</td>
                     <td>
                         <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
                     </td>

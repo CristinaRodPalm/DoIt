@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('doitApp')
-        .factory('Evento', Evento);
+        .factory('Amistad', Amistad);
 
-    Evento.$inject = ['$resource', 'DateUtils'];
+    Amistad.$inject = ['$resource', 'DateUtils'];
 
-    function Evento ($resource, DateUtils) {
-        var resourceUrl =  'api/eventos/:id';
+    function Amistad ($resource, DateUtils) {
+        var resourceUrl =  'api/amistads/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -16,8 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.hora = DateUtils.convertDateTimeFromServer(data.hora);
-                        data.fechaEvento = DateUtils.convertDateTimeFromServer(data.fechaEvento);
+                        data.timeStamp = DateUtils.convertDateTimeFromServer(data.timeStamp);
                     }
                     return data;
                 }

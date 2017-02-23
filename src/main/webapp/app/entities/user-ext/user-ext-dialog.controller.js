@@ -3,24 +3,21 @@
 
     angular
         .module('doitApp')
-        .controller('EventoDialogController', EventoDialogController);
+        .controller('UserExtDialogController', UserExtDialogController);
 
-    EventoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
+    UserExtDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'DataUtils', 'entity', 'UserExt', 'User'];
 
-    function EventoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
+    function UserExtDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, DataUtils, entity, UserExt, User) {
         var vm = this;
 
-        vm.evento = entity;
+        vm.userExt = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.retos = Reto.query();
         vm.users = User.query();
-        vm.invitacioneventos = InvitacionEvento.query();
-        vm.chats = Chat.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -32,15 +29,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.evento.id !== null) {
-                Evento.update(vm.evento, onSaveSuccess, onSaveError);
+            if (vm.userExt.id !== null) {
+                UserExt.update(vm.userExt, onSaveSuccess, onSaveError);
             } else {
-                Evento.save(vm.evento, onSaveSuccess, onSaveError);
+                UserExt.save(vm.userExt, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('doitApp:eventoUpdate', result);
+            $scope.$emit('doitApp:userExtUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -49,22 +46,21 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.hora = false;
+        vm.datePickerOpenStatus.fechaNacimiento = false;
 
-        vm.setImagen = function ($file, evento) {
+        vm.setImagen = function ($file, userExt) {
             if ($file && $file.$error === 'pattern') {
                 return;
             }
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        evento.imagen = base64Data;
-                        evento.imagenContentType = $file.type;
+                        userExt.imagen = base64Data;
+                        userExt.imagenContentType = $file.type;
                     });
                 });
             }
         };
-        vm.datePickerOpenStatus.fechaEvento = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

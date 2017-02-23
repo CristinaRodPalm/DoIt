@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span>User Ext</span> {{vm.userExt.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Fecha Nacimiento</span></dt>
+        <dd>
+            <span>{{vm.userExt.fechaNacimiento | date:'medium'}}</span>
+        </dd>
+        <dt><span>Imagen</span></dt>
+        <dd>
+            <div ng-if="vm.userExt.imagen">
+                <a ng-click="vm.openFile(vm.userExt.imagenContentType, vm.userExt.imagen)">
+                    <img data-ng-src="{{'data:' + vm.userExt.imagenContentType + ';base64,' + vm.userExt.imagen}}" style="max-width: 100%;" alt="userExt image"/>
+                </a>
+                {{vm.userExt.imagenContentType}}, {{vm.byteSize(vm.userExt.imagen)}}
+            </div>
+        </dd>
+        <dt><span>Telefono</span></dt>
+        <dd>
+            <span>{{vm.userExt.telefono}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.userExt.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-ext-detail.edit({id:vm.userExt.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

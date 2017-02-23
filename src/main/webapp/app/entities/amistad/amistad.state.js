@@ -9,44 +9,44 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('evento', {
+        .state('amistad', {
             parent: 'entity',
-            url: '/evento',
+            url: '/amistad',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Eventos'
+                pageTitle: 'Amistads'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/evento/eventos.html',
-                    controller: 'EventoController',
+                    templateUrl: 'app/entities/amistad/amistads.html',
+                    controller: 'AmistadController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
             }
         })
-        .state('evento-detail', {
-            parent: 'evento',
-            url: '/evento/{id}',
+        .state('amistad-detail', {
+            parent: 'amistad',
+            url: '/amistad/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Evento'
+                pageTitle: 'Amistad'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/evento/evento-detail.html',
-                    controller: 'EventoDetailController',
+                    templateUrl: 'app/entities/amistad/amistad-detail.html',
+                    controller: 'AmistadDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
-                entity: ['$stateParams', 'Evento', function($stateParams, Evento) {
-                    return Evento.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Amistad', function($stateParams, Amistad) {
+                    return Amistad.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'evento',
+                        name: $state.current.name || 'amistad',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -54,22 +54,22 @@
                 }]
             }
         })
-        .state('evento-detail.edit', {
-            parent: 'evento-detail',
+        .state('amistad-detail.edit', {
+            parent: 'amistad-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/amistad/amistad-dialog.html',
+                    controller: 'AmistadDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['Amistad', function(Amistad) {
+                            return Amistad.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -79,86 +79,79 @@
                 });
             }]
         })
-        .state('evento.new', {
-            parent: 'evento',
+        .state('amistad.new', {
+            parent: 'amistad',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/amistad/amistad-dialog.html',
+                    controller: 'AmistadDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                nombre: null,
-                                descripcion: null,
-                                hora: null,
-                                imagen: null,
-                                imagenContentType: null,
-                                urlMaps: null,
-                                latitud: null,
-                                longitud: null,
-                                fechaEvento: null,
+                                timeStamp: null,
+                                aceptada: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('amistad', null, { reload: 'amistad' });
                 }, function() {
-                    $state.go('evento');
+                    $state.go('amistad');
                 });
             }]
         })
-        .state('evento.edit', {
-            parent: 'evento',
+        .state('amistad.edit', {
+            parent: 'amistad',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/amistad/amistad-dialog.html',
+                    controller: 'AmistadDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['Amistad', function(Amistad) {
+                            return Amistad.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('amistad', null, { reload: 'amistad' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('evento.delete', {
-            parent: 'evento',
+        .state('amistad.delete', {
+            parent: 'amistad',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-delete-dialog.html',
-                    controller: 'EventoDeleteController',
+                    templateUrl: 'app/entities/amistad/amistad-delete-dialog.html',
+                    controller: 'AmistadDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['Amistad', function(Amistad) {
+                            return Amistad.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('amistad', null, { reload: 'amistad' });
                 }, function() {
                     $state.go('^');
                 });

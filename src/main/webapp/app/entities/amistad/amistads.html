@@ -1,13 +1,13 @@
 <div>
-    <h2>Invitacion Eventos</h2>
+    <h2>Amistads</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="invitacion-evento.new" >
+                <button class="btn btn-primary" ui-sref="amistad.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Invitacion Evento
+                        Create new Amistad
                     </span>
                 </button>
             </div>
@@ -19,46 +19,40 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>Hora Resolucion</span></th>
-                    <th><span>Hora Invitacion</span></th>
-                    <th><span>Resolucion</span></th>
-                    <th><span>Evento</span></th>
-                    <th><span>Miembro Evento</span></th>
-                    <th><span>Invitado</span></th>
+                    <th><span>Time Stamp</span></th>
+                    <th><span>Aceptada</span></th>
+                    <th><span>Emisor</span></th>
+                    <th><span>Receptor</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="invitacionEvento in vm.invitacionEventos track by invitacionEvento.id">
-                    <td><a ui-sref="invitacion-evento-detail({id:invitacionEvento.id})">{{invitacionEvento.id}}</a></td>
-                    <td>{{invitacionEvento.horaResolucion | date:'medium'}}</td>
-                    <td>{{invitacionEvento.horaInvitacion | date:'medium'}}</td>
-                    <td>{{invitacionEvento.resolucion}}</td>
+                <tr ng-repeat="amistad in vm.amistads track by amistad.id">
+                    <td><a ui-sref="amistad-detail({id:amistad.id})">{{amistad.id}}</a></td>
+                    <td>{{amistad.timeStamp | date:'medium'}}</td>
+                    <td>{{amistad.aceptada}}</td>
                     <td>
-                        <a ui-sref="evento-detail({id:invitacionEvento.evento.id})">{{invitacionEvento.evento.nombre}}</a>
+                        {{amistad.emisor.login}}
                     </td>
                     <td>
-                        {{invitacionEvento.miembroEvento.login}}
-                    </td>
-                    <td>
-                        {{invitacionEvento.invitado.login}}
+                        {{amistad.receptor.login}}
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="invitacion-evento-detail({id:invitacionEvento.id})"
+                                    ui-sref="amistad-detail({id:amistad.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="invitacion-evento.edit({id:invitacionEvento.id})"
+                                    ui-sref="amistad.edit({id:amistad.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="invitacion-evento.delete({id:invitacionEvento.id})"
+                                    ui-sref="amistad.delete({id:amistad.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down"></span>

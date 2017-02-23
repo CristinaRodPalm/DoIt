@@ -12,6 +12,17 @@
             "relationshipName": "miembroEvento",
             "otherEntityName": "user",
             "otherEntityField": "login"
+        },
+        {
+            "relationshipName": "invitado",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "invitacionEvento"
         }
     ],
     "fields": [
@@ -29,8 +40,8 @@
         }
     ],
     "changelogDate": "20170213194757",
-    "entityTableName": "invitacion_evento",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "invitacion_evento",
+    "pagination": "no"
 }

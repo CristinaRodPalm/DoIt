@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "emisor",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "amistad"
+        },
+        {
+            "relationshipName": "receptor",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "amistad"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "timeStamp",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "aceptada",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170223181630",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "amistad",
+    "pagination": "no"
+}

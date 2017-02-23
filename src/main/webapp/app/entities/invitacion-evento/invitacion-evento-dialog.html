@@ -1,5 +1,5 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -51,6 +51,18 @@
             <select class="form-control" id="field_miembroEvento" name="miembroEvento" ng-model="vm.invitacionEvento.miembroEvento" ng-options="user as user.login for user in vm.users track by user.id">
                 <option value=""></option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="field_invitado">Invitado</label>
+            <select class="form-control" id="field_invitado" name="invitado" ng-model="vm.invitacionEvento.invitado" ng-options="user as user.login for user in vm.users track by user.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.invitado.$invalid">
+            <p class="help-block"
+                ng-show="editForm.invitado.$error.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

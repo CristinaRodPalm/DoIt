@@ -9,44 +9,44 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('evento', {
+        .state('user-ext', {
             parent: 'entity',
-            url: '/evento',
+            url: '/user-ext',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Eventos'
+                pageTitle: 'UserExts'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/evento/eventos.html',
-                    controller: 'EventoController',
+                    templateUrl: 'app/entities/user-ext/user-exts.html',
+                    controller: 'UserExtController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
             }
         })
-        .state('evento-detail', {
-            parent: 'evento',
-            url: '/evento/{id}',
+        .state('user-ext-detail', {
+            parent: 'user-ext',
+            url: '/user-ext/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Evento'
+                pageTitle: 'UserExt'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/evento/evento-detail.html',
-                    controller: 'EventoDetailController',
+                    templateUrl: 'app/entities/user-ext/user-ext-detail.html',
+                    controller: 'UserExtDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
-                entity: ['$stateParams', 'Evento', function($stateParams, Evento) {
-                    return Evento.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'UserExt', function($stateParams, UserExt) {
+                    return UserExt.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'evento',
+                        name: $state.current.name || 'user-ext',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -54,22 +54,22 @@
                 }]
             }
         })
-        .state('evento-detail.edit', {
-            parent: 'evento-detail',
+        .state('user-ext-detail.edit', {
+            parent: 'user-ext-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/user-ext/user-ext-dialog.html',
+                    controller: 'UserExtDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['UserExt', function(UserExt) {
+                            return UserExt.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -79,86 +79,81 @@
                 });
             }]
         })
-        .state('evento.new', {
-            parent: 'evento',
+        .state('user-ext.new', {
+            parent: 'user-ext',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/user-ext/user-ext-dialog.html',
+                    controller: 'UserExtDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                nombre: null,
-                                descripcion: null,
-                                hora: null,
+                                fechaNacimiento: null,
                                 imagen: null,
                                 imagenContentType: null,
-                                urlMaps: null,
-                                latitud: null,
-                                longitud: null,
-                                fechaEvento: null,
+                                telefono: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('user-ext', null, { reload: 'user-ext' });
                 }, function() {
-                    $state.go('evento');
+                    $state.go('user-ext');
                 });
             }]
         })
-        .state('evento.edit', {
-            parent: 'evento',
+        .state('user-ext.edit', {
+            parent: 'user-ext',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-dialog.html',
-                    controller: 'EventoDialogController',
+                    templateUrl: 'app/entities/user-ext/user-ext-dialog.html',
+                    controller: 'UserExtDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['UserExt', function(UserExt) {
+                            return UserExt.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('user-ext', null, { reload: 'user-ext' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('evento.delete', {
-            parent: 'evento',
+        .state('user-ext.delete', {
+            parent: 'user-ext',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/evento/evento-delete-dialog.html',
-                    controller: 'EventoDeleteController',
+                    templateUrl: 'app/entities/user-ext/user-ext-delete-dialog.html',
+                    controller: 'UserExtDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Evento', function(Evento) {
-                            return Evento.get({id : $stateParams.id}).$promise;
+                        entity: ['UserExt', function(UserExt) {
+                            return UserExt.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('evento', null, { reload: 'evento' });
+                    $state.go('user-ext', null, { reload: 'user-ext' });
                 }, function() {
                     $state.go('^');
                 });

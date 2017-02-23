@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Amistad</span> {{vm.amistad.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Time Stamp</span></dt>
+        <dd>
+            <span>{{vm.amistad.timeStamp | date:'medium'}}</span>
+        </dd>
+        <dt><span>Aceptada</span></dt>
+        <dd>
+            <span>{{vm.amistad.aceptada}}</span>
+        </dd>
+        <dt><span>Emisor</span></dt>
+        <dd>
+            {{vm.amistad.emisor.login}}
+        </dd>
+        <dt><span>Receptor</span></dt>
+        <dd>
+            {{vm.amistad.receptor.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="amistad-detail.edit({id:vm.amistad.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

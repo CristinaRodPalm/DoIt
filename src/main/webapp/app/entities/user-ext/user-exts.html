@@ -1,13 +1,13 @@
 <div>
-    <h2>Invitacion Eventos</h2>
+    <h2>User Exts</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="invitacion-evento.new" >
+                <button class="btn btn-primary" ui-sref="user-ext.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Invitacion Evento
+                        Create new User Ext
                     </span>
                 </button>
             </div>
@@ -19,46 +19,43 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>Hora Resolucion</span></th>
-                    <th><span>Hora Invitacion</span></th>
-                    <th><span>Resolucion</span></th>
-                    <th><span>Evento</span></th>
-                    <th><span>Miembro Evento</span></th>
-                    <th><span>Invitado</span></th>
+                    <th><span>Fecha Nacimiento</span></th>
+                    <th><span>Imagen</span></th>
+                    <th><span>Telefono</span></th>
+                    <th><span>User</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="invitacionEvento in vm.invitacionEventos track by invitacionEvento.id">
-                    <td><a ui-sref="invitacion-evento-detail({id:invitacionEvento.id})">{{invitacionEvento.id}}</a></td>
-                    <td>{{invitacionEvento.horaResolucion | date:'medium'}}</td>
-                    <td>{{invitacionEvento.horaInvitacion | date:'medium'}}</td>
-                    <td>{{invitacionEvento.resolucion}}</td>
+                <tr ng-repeat="userExt in vm.userExts track by userExt.id">
+                    <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
+                    <td>{{userExt.fechaNacimiento | date:'medium'}}</td>
                     <td>
-                        <a ui-sref="evento-detail({id:invitacionEvento.evento.id})">{{invitacionEvento.evento.nombre}}</a>
+                        <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
+                            <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>
+                        </a>
+                        <span ng-if="userExt.imagen">{{userExt.imagenContentType}}, {{vm.byteSize(userExt.imagen)}}</span>
                     </td>
+                    <td>{{userExt.telefono}}</td>
                     <td>
-                        {{invitacionEvento.miembroEvento.login}}
-                    </td>
-                    <td>
-                        {{invitacionEvento.invitado.login}}
+                        {{userExt.user.login}}
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="invitacion-evento-detail({id:invitacionEvento.id})"
+                                    ui-sref="user-ext-detail({id:userExt.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="invitacion-evento.edit({id:invitacionEvento.id})"
+                                    ui-sref="user-ext.edit({id:userExt.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="invitacion-evento.delete({id:invitacionEvento.id})"
+                                    ui-sref="user-ext.delete({id:userExt.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down"></span>

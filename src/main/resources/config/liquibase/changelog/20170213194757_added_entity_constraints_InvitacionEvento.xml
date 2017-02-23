@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="invitado_id"
+                                 baseTableName="invitacion_evento"
+                                 constraintName="fk_invitacion_evento_invitado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

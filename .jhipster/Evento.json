@@ -55,11 +55,15 @@
         {
             "fieldName": "longitud",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaEvento",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20170213194756",
-    "entityTableName": "evento",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "evento",
+    "pagination": "no"
 }

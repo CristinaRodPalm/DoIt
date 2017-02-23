@@ -2,6 +2,7 @@ package com.doitteam.doit.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -33,6 +34,10 @@ public class InvitacionEvento implements Serializable {
 
     @ManyToOne
     private User miembroEvento;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private User invitado;
 
     public Long getId() {
         return id;
@@ -105,6 +110,19 @@ public class InvitacionEvento implements Serializable {
 
     public void setMiembroEvento(User user) {
         this.miembroEvento = user;
+    }
+
+    public User getInvitado() {
+        return invitado;
+    }
+
+    public InvitacionEvento invitado(User user) {
+        this.invitado = user;
+        return this;
+    }
+
+    public void setInvitado(User user) {
+        this.invitado = user;
     }
 
     @Override

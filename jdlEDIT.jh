@@ -1,0 +1,73 @@
+entity Evento{
+	nombre String required,
+    descripcion String,
+    fechaEvento ZonedDateTime required,
+    horaCreacion ZonedDateTime required,
+    imagen ImageBlob,
+    urlMaps String,
+    latitud Double,
+    longitud Double
+}
+entity InvitacionEvento{
+	horaResolucion ZonedDateTime required,
+    horaInvitacion ZonedDateTime required,
+    resolucion Boolean required
+}
+entity Reto{
+	nombre String required,
+    descripcion String required,
+    horaPublicacion ZonedDateTime required,
+    imagen ImageBlob required
+}
+entity ParticipacionReto{
+    imagen ImageBlob required,
+    horaPublicacion ZonedDateTime required,
+    descripcion String
+}
+entity LikesReto{
+    puntuacion Integer required,
+    horaLike ZonedDateTime required
+}
+entity Mensaje{
+    mensaje String required,
+    horaEnvio ZonedDateTime required,
+    foto ImageBlob
+}
+entity Chat{
+    nombre String required,
+    horaCreacion ZonedDateTime required
+}
+
+// RELACIONES
+
+// USUARIO PARTICIPA EN UN RETO
+relationship ManyToOne{
+	ParticipacionReto{usuario(login)} to User,
+    ParticipacionReto{reto} to Reto{participacionReto}
+}
+// USUARIO INVITA A OTRO A UN EVENTO
+relationship ManyToOne{
+	InvitacionEvento{evento(nombre)} to Evento{miembroEvento},
+    InvitacionEvento{miembroEvento(login)} to User,
+    InvitacionEvento{invitado(login)} to User
+}
+// USUARIO VOTA UNA PARTICIPACION
+relationship ManyToOne{
+	LikesReto{usuario(login)} to User,
+    LikesReto{participacionReto} to ParticipacionReto{likesReto}
+}
+// MENSAJES DE LOS CHATS
+relationship ManyToOne{
+	Mensaje{emisor(login)} to User,
+    Mensaje{receptor(login)} to User,
+    Mensaje{chat} to Chat{mensaje}
+}
+// EVENTO RELACIONADO A UN RETO
+relationship ManyToOne{
+	Evento{reto(nombre)} to Reto{evento},
+    Evento{admin(login)} to User
+}
+// CHAT DE EVENTO 
+relationship ManyToOne{
+ 	Chat{evento(nombre)} to Evento{chat}
+}

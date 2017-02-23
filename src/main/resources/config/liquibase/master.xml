@@ -12,6 +12,8 @@
     <include file="classpath:config/liquibase/changelog/20170213194757_added_entity_InvitacionEvento.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170213194758_added_entity_Reto.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170213194759_added_entity_ParticipacionReto.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170223181630_added_entity_Amistad.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170223181928_added_entity_UserExt.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170213194700_added_entity_constraints_LikesReto.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170213194701_added_entity_constraints_Mensaje.xml" relativeToChangelogFile="false"/>
@@ -19,5 +21,7 @@
     <include file="classpath:config/liquibase/changelog/20170213194756_added_entity_constraints_Evento.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170213194757_added_entity_constraints_InvitacionEvento.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170213194759_added_entity_constraints_ParticipacionReto.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170223181630_added_entity_constraints_Amistad.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170223181928_added_entity_constraints_UserExt.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

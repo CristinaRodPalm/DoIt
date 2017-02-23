@@ -47,6 +47,9 @@ public class Evento implements Serializable {
     @Column(name = "longitud")
     private Double longitud;
 
+    @Column(name = "fecha_evento")
+    private ZonedDateTime fechaEvento;
+
     @ManyToOne
     private Reto reto;
 
@@ -173,6 +176,19 @@ public class Evento implements Serializable {
         this.longitud = longitud;
     }
 
+    public ZonedDateTime getFechaEvento() {
+        return fechaEvento;
+    }
+
+    public Evento fechaEvento(ZonedDateTime fechaEvento) {
+        this.fechaEvento = fechaEvento;
+        return this;
+    }
+
+    public void setFechaEvento(ZonedDateTime fechaEvento) {
+        this.fechaEvento = fechaEvento;
+    }
+
     public Reto getReto() {
         return reto;
     }
@@ -281,6 +297,7 @@ public class Evento implements Serializable {
             ", urlMaps='" + urlMaps + "'" +
             ", latitud='" + latitud + "'" +
             ", longitud='" + longitud + "'" +
+            ", fechaEvento='" + fechaEvento + "'" +
             '}';
     }
 }

@@ -15,4 +15,7 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
     @Query("select invitacionEvento from InvitacionEvento invitacionEvento where invitacionEvento.miembroEvento.login = ?#{principal.username}")
     List<InvitacionEvento> findByMiembroEventoIsCurrentUser();
 
+    @Query("select invitacionEvento from InvitacionEvento invitacionEvento where invitacionEvento.invitado.login = ?#{principal.username}")
+    List<InvitacionEvento> findByInvitadoIsCurrentUser();
+
 }
