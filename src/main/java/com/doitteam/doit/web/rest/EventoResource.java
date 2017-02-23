@@ -3,7 +3,10 @@ package com.doitteam.doit.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Evento;
 
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.EventoRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,11 +30,13 @@ public class EventoResource {
     private final Logger log = LoggerFactory.getLogger(EventoResource.class);
 
     private static final String ENTITY_NAME = "evento";
-        
-    private final EventoRepository eventoRepository;
 
-    public EventoResource(EventoRepository eventoRepository) {
+    private final EventoRepository eventoRepository;
+    private final UserRepository userRepository;
+
+    public EventoResource(EventoRepository eventoRepository, UserRepository userRepository) {
         this.eventoRepository = eventoRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -47,6 +53,14 @@ public class EventoResource {
         if (evento.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new evento cannot already have an ID")).body(null);
         }
+
+        ZonedDateTime horaSistema = ZonedDateTime.now();
+        evento.setHora(horaSistema);
+
+        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        //setAdmin es el usuario administrador de ese evento.
+        evento.setAdmin(usuario);
+
         Evento result = eventoRepository.save(evento);
         return ResponseEntity.created(new URI("/api/eventos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
