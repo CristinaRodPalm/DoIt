@@ -43,6 +43,6 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="amistad" columnName="time_stamp" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>
