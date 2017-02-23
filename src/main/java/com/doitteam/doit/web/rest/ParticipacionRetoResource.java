@@ -84,6 +84,7 @@ public class ParticipacionRetoResource {
         if (participacionReto.getId() == null) {
             return createParticipacionReto(participacionReto);
         }
+
         ParticipacionReto result = participacionRetoRepository.save(participacionReto);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, participacionReto.getId().toString()))

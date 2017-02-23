@@ -83,10 +83,22 @@ public class EventoResource {
         if (evento.getId() == null) {
             return createEvento(evento);
         }
-        Evento result = eventoRepository.save(evento);
+
+        if(eventoRepository.findOne(evento.getId()).getNombre() != evento.getNombre()){
+             return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert("eventoRepository", "Nombre_Evento", "No se pudo actualizar el evento correctamente")).
+                body(null);
+        }else{
+            Evento resultado = eventoRepository.save(evento);
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evento.getId().toString()))
+                .body(resultado);
+        }
+
+        /*Evento result = eventoRepository.save(evento);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evento.getId().toString()))
-            .body(result);
+            .body(result);*/
     }
 
     /**
