@@ -32,6 +32,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="hora_respuesta" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
             <column name="emisor_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -43,6 +47,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="amistad" columnName="time_stamp" columnDataType="datetime"/>
+        <dropDefaultValue tableName="amistad" columnName="hora_respuesta" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

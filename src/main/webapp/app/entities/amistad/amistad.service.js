@@ -17,6 +17,7 @@
                     if (data) {
                         data = angular.fromJson(data);
                         data.timeStamp = DateUtils.convertDateTimeFromServer(data.timeStamp);
+                        data.horaRespuesta = DateUtils.convertDateTimeFromServer(data.horaRespuesta);
                     }
                     return data;
                 }

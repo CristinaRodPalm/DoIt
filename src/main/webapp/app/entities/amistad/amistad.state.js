@@ -97,6 +97,7 @@
                             return {
                                 timeStamp: null,
                                 aceptada: null,
+                                horaRespuesta: null,
                                 id: null
                             };
                         }

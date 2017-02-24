@@ -27,6 +27,9 @@ public class Amistad implements Serializable {
     @Column(name = "aceptada")
     private Boolean aceptada;
 
+    @Column(name = "hora_respuesta")
+    private ZonedDateTime horaRespuesta;
+
     @ManyToOne(optional = false)
     @NotNull
     private User emisor;
@@ -67,6 +70,19 @@ public class Amistad implements Serializable {
 
     public void setAceptada(Boolean aceptada) {
         this.aceptada = aceptada;
+    }
+
+    public ZonedDateTime getHoraRespuesta() {
+        return horaRespuesta;
+    }
+
+    public Amistad horaRespuesta(ZonedDateTime horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
+        return this;
+    }
+
+    public void setHoraRespuesta(ZonedDateTime horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     public User getEmisor() {
@@ -121,6 +137,7 @@ public class Amistad implements Serializable {
             "id=" + id +
             ", timeStamp='" + timeStamp + "'" +
             ", aceptada='" + aceptada + "'" +
+            ", horaRespuesta='" + horaRespuesta + "'" +
             '}';
     }
 }

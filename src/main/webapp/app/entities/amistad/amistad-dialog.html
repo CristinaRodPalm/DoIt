@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -11,7 +10,7 @@
         <div class="form-group" ng-show="vm.amistad.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.amistad.id" readonly />
+                   ng-model="vm.amistad.id" readonly />
         </div>
 
         <!--<div class="form-group">
@@ -41,7 +40,6 @@
                     ng-model="vm.amistad.aceptada"
                     />
         </div>
-
         <div class="form-group">
             <label for="field_emisor">Emisor</label>
             <select class="form-control" id="field_emisor" name="emisor" ng-model="vm.amistad.emisor"
@@ -65,7 +63,7 @@
         </div>
         <div ng-show="editForm.receptor.$invalid">
             <p class="help-block"
-                ng-show="editForm.receptor.$error.required">
+               ng-show="editForm.receptor.$error.required">
                 This field is required.
             </p>
         </div>

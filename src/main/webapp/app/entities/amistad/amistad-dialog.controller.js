@@ -45,6 +45,7 @@
         }
 
         vm.datePickerOpenStatus.timeStamp = false;
+        vm.datePickerOpenStatus.horaRespuesta = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

@@ -35,6 +35,10 @@
         {
             "fieldName": "aceptada",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "horaRespuesta",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20170223181630",
