@@ -20,6 +20,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.validation.Errors;
 /**
  * REST controller for managing Amistad.
  */
@@ -35,7 +36,6 @@ public class AmistadResource {
     private final UserRepository userRepository;
 
     public AmistadResource(AmistadRepository amistadRepository, UserRepository userRepository) {
-
         this.amistadRepository = amistadRepository;
         this.userRepository = userRepository;
     }
@@ -49,14 +49,17 @@ public class AmistadResource {
      */
     @PostMapping("/amistads")
     @Timed
-    public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
+    public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad, Errors errors) throws URISyntaxException {
         log.debug("REST request to save Amistad : {}", amistad);
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
-        amistad.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
-        amistad.setTimeStamp(ZonedDateTime.now());
-        amistad.setAceptada(false);
+        if (errors.hasErrors()) {
+            System.out.println("HOOOOOOOOOOOOOOOOOOOOLA");
+            amistad.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            amistad.setTimeStamp(ZonedDateTime.now());
+            amistad.setAceptada(false);
+        }
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -77,7 +80,7 @@ public class AmistadResource {
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
         log.debug("REST request to update Amistad : {}", amistad);
         if (amistad.getId() == null) {
-            return createAmistad(amistad);
+            //return createAmistad(amistad);
         }
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
