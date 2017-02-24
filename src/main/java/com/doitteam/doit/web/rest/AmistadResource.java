@@ -3,14 +3,17 @@ package com.doitteam.doit.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
 
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.AmistadRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +23,6 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.validation.Errors;
 /**
  * REST controller for managing Amistad.
  */
@@ -51,14 +53,20 @@ public class AmistadResource {
     @Timed
     public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad, Errors errors) throws URISyntaxException {
         log.debug("REST request to save Amistad : {}", amistad);
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
+        }else if(amistad.getReceptor().equals(userLogin)){
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "badFriendship", "No se puede agregar el propio usuario")).body(null);
         }
         if (errors.hasErrors()) {
-            amistad.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            amistad.setEmisor(userLogin);
             amistad.setTimeStamp(ZonedDateTime.now());
             amistad.setAceptada(false);
         }
+
 
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
@@ -67,12 +75,20 @@ public class AmistadResource {
     }
 
     /**
+     * PUT  /amistads : Updates an existing amistad.
+     *
+     * @param amistad the amistad to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated amistad,
+     * or with status 400 (Bad Request) if the amistad is not valid,
+     * or with status 500 (Internal Server Error) if the amistad couldnt be updated
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+
     @PutMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
         log.debug("REST request to update Amistad : {}", amistad);
         if (amistad.getId() == null) {
-            // return createAmistad(amistad);
+            return createAmistad(amistad);
         }
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
@@ -122,23 +138,6 @@ public class AmistadResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @PutMapping("/amistads")
-    @Timed
-    public ResponseEntity<Amistad> acceptAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
-        log.debug("REST request to update Amistad : {}", amistad);
-        if (amistad.getId() == null) {
-            // return createAmistad(amistad);
-            return ResponseEntity.badRequest().
-                headers(HeaderUtil.createFailureAlert
-                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
-
-        }
-        amistad.setAceptada(true);
-        Amistad result = amistadRepository.save(amistad);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
-            .body(result);
-    }
 
 
 }
