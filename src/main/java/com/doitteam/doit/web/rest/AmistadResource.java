@@ -138,6 +138,40 @@ public class AmistadResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @PutMapping("/acceptAmistads")
+    @Timed
+    public ResponseEntity<Amistad> acceptAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
+        log.debug("REST request to update Amistad : {}", amistad);
+        if (amistad.getId() == null) {
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
 
+        }
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(true);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
+    }
+
+    @PutMapping("/cancelAmistads")
+    @Timed
+    public ResponseEntity<Amistad> cancelAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
+        log.debug("REST request to update Amistad : {}", amistad);
+        if (amistad.getId() == null) {
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
+
+        }
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(false);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
+    }
 
 }
