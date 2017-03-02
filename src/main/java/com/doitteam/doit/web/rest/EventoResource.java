@@ -84,21 +84,17 @@ public class EventoResource {
             return createEvento(evento);
         }
 
-        if(eventoRepository.findOne(evento.getId()).getNombre() != evento.getNombre()){
-             return ResponseEntity.badRequest().
-                headers(HeaderUtil.createFailureAlert("eventoRepository", "Nombre_Evento", "No se pudo actualizar el evento correctamente")).
-                body(null);
-        }else{
+        ZonedDateTime horaSistema = ZonedDateTime.now();
+        evento.setHora(horaSistema);
+
+        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        //setAdmin es el usuario administrador de ese evento.
+        evento.setAdmin(usuario);
+
             Evento resultado = eventoRepository.save(evento);
             return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evento.getId().toString()))
                 .body(resultado);
-        }
-
-        /*Evento result = eventoRepository.save(evento);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evento.getId().toString()))
-            .body(result);*/
     }
 
     /**
