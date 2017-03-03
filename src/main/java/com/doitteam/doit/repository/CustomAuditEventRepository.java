@@ -2,7 +2,6 @@ package com.doitteam.doit.repository;
 
 import com.doitteam.doit.config.audit.AuditEventConverter;
 import com.doitteam.doit.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,8 @@
 package com.doitteam.doit.web.rest.vm;
 
 import com.doitteam.doit.service.dto.UserDTO;
-import javax.validation.constraints.Size;
 
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.Set;
 

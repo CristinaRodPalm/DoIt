@@ -2,11 +2,8 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Reto;
-
-import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.RetoRepository;
 import com.doitteam.doit.repository.UserRepository;
-import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;

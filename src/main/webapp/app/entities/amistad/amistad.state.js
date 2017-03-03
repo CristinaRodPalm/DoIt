@@ -109,7 +109,7 @@
                 });
             }]
         })
-        .state('amistad.edit', {
+        .state('amistad.accept', {
             parent: 'amistad',
             url: '/{id}/edit',
             data: {
@@ -117,7 +117,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/amistad/amistad-dialog.html',
+                    templateUrl: 'app/entities/amistad/amistad-accept-dialog.html',
                     controller: 'AmistadDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -157,7 +157,45 @@
                     $state.go('^');
                 });
             }]
-        });
+        })
+
+
+
+
+/*
+            .state('amistad.accept', {
+                parent: 'amistad',
+                url: '/accept',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/amistad/amistad-accept-dialog.html',
+                        controller: 'AmistadAcceptController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    timeStamp: null,
+                                    aceptada: null,
+                                    horaRespuesta: null,
+                                    id: null
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                        $state.go('amistad', null, { reload: 'amistad' });
+                    }, function() {
+                        $state.go('amistad');
+                    });
+                }]
+            })
+
+*/
+        ;
     }
 
 })();

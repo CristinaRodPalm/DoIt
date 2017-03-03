@@ -1,11 +1,10 @@
 package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.User;
-
-import java.time.ZonedDateTime;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 

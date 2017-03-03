@@ -2,7 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.ParticipacionReto;
-
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.ParticipacionRetoRepository;
 import com.doitteam.doit.repository.UserRepository;

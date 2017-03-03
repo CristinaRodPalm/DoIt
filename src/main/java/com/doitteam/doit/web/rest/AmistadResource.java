@@ -2,13 +2,11 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
-
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.AmistadRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,20 +80,20 @@ public class AmistadResource {
      * or with status 400 (Bad Request) if the amistad is not valid,
      * or with status 500 (Internal Server Error) if the amistad couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
-
+*/
     @PutMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
         log.debug("REST request to update Amistad : {}", amistad);
         if (amistad.getId() == null) {
-            return createAmistad(amistad);
+            //return createAmistad(amistad);
         }
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
     }
-     */
+
 
     /**
      * GET  /amistads : get all the amistads.

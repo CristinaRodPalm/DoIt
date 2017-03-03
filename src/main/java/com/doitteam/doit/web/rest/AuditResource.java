@@ -2,7 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.doitteam.doit.service.AuditEventService;
 import com.doitteam.doit.web.rest.util.PaginationUtil;
-
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import org.springframework.boot.actuate.audit.AuditEvent;

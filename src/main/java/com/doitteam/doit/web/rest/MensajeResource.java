@@ -2,7 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Mensaje;
-
 import com.doitteam.doit.repository.MensajeRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class MensajeResource {
     private final Logger log = LoggerFactory.getLogger(MensajeResource.class);
 
     private static final String ENTITY_NAME = "mensaje";
-        
+
     private final MensajeRepository mensajeRepository;
 
     public MensajeResource(MensajeRepository mensajeRepository) {
