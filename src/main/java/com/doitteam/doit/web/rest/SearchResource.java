@@ -37,11 +37,9 @@ public class SearchResource {
 
         Map<String, Object> params = new HashMap<>();
 
-        if (telefono != null) {
-            params.put("telefono",telefono);
-        }
+        if (telefono != null) params.put("telefono",telefono);
 
-        List<UserExt> result = userExtCriteriaRepository.filterUserextDefinitions(params);
+        List<UserExt> result = userExtCriteriaRepository.filterUserExtDefinitions(params);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
