@@ -25,5 +25,22 @@
                 ]
             }
         });
+        $stateProvider.state('app-extra', {
+            abstract: true,
+            views: {
+              'navbar@': {
+                    templateUrl: 'app/layouts/navbar/navbar-extra.html',
+                    controller: 'NavbarController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                authorize: ['Auth',
+                    function (Auth) {
+                        return Auth.authorize();
+                    }
+                ]
+            }
+        });
     }
 })();
