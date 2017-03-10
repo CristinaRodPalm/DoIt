@@ -23,20 +23,5 @@
                 }
             }
         });
-        $stateProvider.state('register-extra', {
-            parent: 'account-extra',
-            url: '/register-extra',
-            data: {
-                authorities: [],
-                pageTitle: 'Registration-Extra'
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/account/register/register-extra.html',
-                    controller: 'RegisterController',
-                    controllerAs: 'vm'
-                }
-            }
-        });
     }
 })();

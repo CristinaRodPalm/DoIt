@@ -12,9 +12,5 @@
             abstract: true,
             parent: 'app'
         });
-        $stateProvider.state('account-extra', {
-            abstract: true,
-            parent: 'app-extra'
-        });
     }
 })();

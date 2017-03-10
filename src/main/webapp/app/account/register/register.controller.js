@@ -18,6 +18,10 @@
         vm.register = register;
         vm.registerAccount = {};
         vm.success = null;
+        vm.realName = "";
+        vm.surname = "";
+        vm.phone="";
+        vm.birthdate="";
 
         $timeout(function (){angular.element('#login').focus();});
 
