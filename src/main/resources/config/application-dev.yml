@@ -28,7 +28,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/doit?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: d4v1d001
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -58,7 +58,7 @@ liquibase:
     contexts: dev
 
 server:
-    port: 64
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties

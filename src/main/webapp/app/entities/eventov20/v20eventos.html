@@ -1,0 +1,103 @@
+<style>
+
+    @media
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px) {
+        body {
+            padding: 0;
+            margin: 0;
+            width: 320px; }
+    }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        body {
+            width: 495px;
+        }
+    }
+
+</style>
+
+<div>
+    <h2 align="center"> Eventos </h2>
+    <jhi-alert></jhi-alert>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="evento.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Creacion de un Evento
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <div id="page-wrap">
+
+        <h1 align="center">Eventos</h1>
+
+        <table class="table table-bordered" cellpadding="10">
+            <thead>
+            <tr>
+                <th width="0,0045%"></th>
+                <th width="33,33%">Contactos</th>
+                <th width="33,33%">Alta Evento</th>
+                <th width="33,33%">Muro</th>
+                <th width="0,0045%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="5" height="400">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
