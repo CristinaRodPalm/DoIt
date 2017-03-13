@@ -2,7 +2,10 @@ package com.doitteam.doit.service;
 
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
+import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.AuthorityRepository;
+import com.doitteam.doit.repository.UserExtCriteriaRepository;
+import com.doitteam.doit.repository.UserExtRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.security.SecurityUtils;
@@ -18,6 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +44,9 @@ public class UserService {
     public final JdbcTokenStore jdbcTokenStore;
 
     private final AuthorityRepository authorityRepository;
+
+    @Inject
+    private UserExtRepository userExtRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JdbcTokenStore jdbcTokenStore, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
@@ -87,7 +94,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey) {
+        String imageUrl, String langKey, String phone) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -109,6 +116,14 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        //el nuevo usuario con los campos adicionales junto con el usuario de jhipster original
+        UserExt newUserExtra = new UserExt();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setTelefono(phone);
+        userExtRepository.save(newUserExtra);
+        log.debug("Created Information for Extra User: {}", newUserExtra);
+
         return newUser;
     }
 
@@ -138,6 +153,7 @@ public class UserService {
         user.setActivated(true);
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
+
         return user;
     }
 

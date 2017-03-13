@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
@@ -20,8 +20,32 @@
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
+
+                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown
+                    class="dropdown pointer">
+                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="v20eventos-menu">
+                     <span>
+                             <span class="glyphicon glyphicon-plus"></span>
+                             <span class="hidden-sm">
+                                 Funcionalities
+                             </span>
+                             <b class="caret"></b>
+                         </span>
+                    </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+
+                        <li ui-sref-active="active">
+                            <a ui-sref="v20eventos" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                <span>Solicitudes de amistad</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
+                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown
+                    class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
@@ -33,59 +57,59 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active">
-                                <a ui-sref="likes-reto" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Likes Reto</span>
-                                </a>
-                            </li>
+                            <a ui-sref="likes-reto" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Likes Reto</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="mensaje" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Mensaje</span>
-                                </a>
-                            </li>
+                            <a ui-sref="mensaje" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Mensaje</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="chat" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Chat</span>
-                                </a>
-                            </li>
+                            <a ui-sref="chat" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Chat</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="evento" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Evento</span>
-                                </a>
-                            </li>
+                            <a ui-sref="evento" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Evento</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="invitacion-evento" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Invitacion Evento</span>
-                                </a>
-                            </li>
+                            <a ui-sref="invitacion-evento" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Invitacion Evento</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="reto" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Reto</span>
-                                </a>
-                            </li>
+                            <a ui-sref="reto" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Reto</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="participacion-reto" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Participacion Reto</span>
-                                </a>
-                            </li>
+                            <a ui-sref="participacion-reto" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Participacion Reto</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="amistad" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Amistad</span>
-                                </a>
-                            </li>
+                            <a ui-sref="amistad" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>Amistad</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="user-ext" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >User Ext</span>
-                                </a>
-                            </li>
+                            <a ui-sref="user-ext" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span>User Ext</span>
+                            </a>
+                        </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -133,7 +157,7 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true"
+                <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true"
                     has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
