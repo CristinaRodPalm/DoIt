@@ -8,12 +8,21 @@
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
+                    Has iniciado sesión como "{{vm.account.login}}".
                 </div>
 
+                <a class="btn btn-info" href="" ng-click="vm.login()" id="login" ng-switch-when="false">
+                    <span class="glyphicon glyphicon-log-in"></span>&nbsp;
+                    <span>Inicia sesión</span>
+                </a>
+
+                <br>
+
                 <div class="alert alert-warning" ng-switch-when="false">
-                    ¿Todavía no posees una cuenta? <a class="alert-link" ui-sref="register">¡Crea tu cuenta!</a>
+                    ¿Todavía no posees una cuenta? <a class="alert-link" ui-sref="register"><strong>¡Crea tu cuenta!</strong></a>
                 </div>
+
+
             </div>
         </div>
     </div>

@@ -25,5 +25,17 @@
                 ]
             }
         });
+        $stateProvider.state('app-no-navbar', {
+            abstract: true,
+            views: {
+            },
+            resolve: {
+                authorize: ['Auth',
+                    function (Auth) {
+                        return Auth.authorize();
+                    }
+                ]
+            }
+        });
     }
 })();
