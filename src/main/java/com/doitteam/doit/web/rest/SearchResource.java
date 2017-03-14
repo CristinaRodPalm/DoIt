@@ -31,13 +31,15 @@ public class SearchResource {
     @Timed
     @Transactional
     public ResponseEntity<List<UserExt>> searchUsers(
-        @RequestParam(value = "telefono", required = false) String telefono
+        @RequestParam(value = "telefono", required = false) String telefono,
+        @RequestParam(value = "login", required = false) String login
 
     ) throws URISyntaxException {
 
         Map<String, Object> params = new HashMap<>();
 
         if (telefono != null) params.put("telefono",telefono);
+        if (login != null) params.put("login", login);
 
         List<UserExt> result = userExtCriteriaRepository.filterUserExtDefinitions(params);
 
