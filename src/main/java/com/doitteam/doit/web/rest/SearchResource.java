@@ -32,7 +32,10 @@ public class SearchResource {
     @Transactional
     public ResponseEntity<List<UserExt>> searchUsers(
         @RequestParam(value = "telefono", required = false) String telefono,
-        @RequestParam(value = "login", required = false) String login
+        @RequestParam(value = "login", required = false) String login,
+        @RequestParam(value = "firstName", required = false) String firstName,
+        @RequestParam(value = "lastName", required = false) String lastName,
+        @RequestParam(value = "email", required = false) String email
 
     ) throws URISyntaxException {
 
@@ -40,10 +43,21 @@ public class SearchResource {
 
         if (telefono != null) params.put("telefono",telefono);
         if (login != null) params.put("login", login);
+        if (firstName != null) params.put("firstName", firstName);
+        if (lastName != null) params.put("lastName", lastName);
+        if (email != null) params.put("email", email);
 
         List<UserExt> result = userExtCriteriaRepository.filterUserExtDefinitions(params);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+
+
+    // TELF
+    // LOGIN
+    // lastname
+    // firstname
+    // email ¿?¿?¿?¿¿?¿?¿?¿
 
 }
