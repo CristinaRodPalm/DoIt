@@ -9,11 +9,12 @@
             </button>
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
                 <img class="logo-img" src="content/images/logo-jhipster.png" alt="logo"/>
-                <span>Doit</span> <span class="navbar-version">v{{VERSION}}</span>
+                <span>Do It!</span>
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
+
                 <li ui-sref-active="active">
                     <a ui-sref="home" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-home"></span>
@@ -22,13 +23,12 @@
                 </li>
 
                 <li ui-sref-active="active" ng-switch-when="false">
-                    <a ui-sref="register" ng-click="vm.collapseNavbar()" id="register">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                        <span>Register</span>
+                    <a ui-sref="register" ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus"></i>
+                        <span>Regístrate</span>
                     </a>
                 </li>
-                <li ng-switch-when="true" uib-dropdown
-                    class="dropdown pointer">
+                <li ng-switch-when="true" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="">
                      <span>
                              <span class="glyphicon glyphicon-plus"></span>
@@ -49,8 +49,8 @@
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-list"></span>&nbsp;
-                                <span>Mis amigos</span>
+                                <i class="fa fa-users"></i>&nbsp;
+                                <span>Amigos</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
@@ -68,7 +68,7 @@
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm">
-                                Entities
+                                Entidades
                             </span>
                             <b class="caret"></b>
                         </span>
@@ -146,7 +146,7 @@
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                                <span class="glyphicon glyphicon-cog"></span>&nbsp;
                                 <span>Ajustes</span>
                             </a>
                         </li>
@@ -183,7 +183,7 @@
                         <li ui-sref-active="active">
                             <a ui-sref="jhi-metrics" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
-                                <span>Metrics</span>
+                                <span>Recursos</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">

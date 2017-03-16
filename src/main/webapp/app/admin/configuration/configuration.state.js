@@ -13,7 +13,7 @@
             url: '/configuration',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Configuration'
+                pageTitle: 'Configuración'
             },
             views: {
                 'content@': {

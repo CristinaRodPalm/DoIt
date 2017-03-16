@@ -13,7 +13,7 @@
             url: '/metrics',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Application Metrics'
+                pageTitle: 'Recursos'
             },
             views: {
                 'content@': {

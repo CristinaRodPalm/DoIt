@@ -13,7 +13,7 @@
             url: '/health',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Health Checks'
+                pageTitle: 'Salud'
             },
             views: {
                 'content@': {

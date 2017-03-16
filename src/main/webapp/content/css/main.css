@@ -126,6 +126,7 @@ only screen and (                min-resolution: 2dppx) {
     .hipster {
         background: url("../images/hipster2x.png") no-repeat center top;
         background-size: contain;
+        background-position: center center;
     }
 }
 
