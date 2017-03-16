@@ -45,10 +45,21 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+            host: smtp.gmail.com
+            port: 587
+            username: doit.project2017@gmail.com
+            password: Stucom2017jhipster
+            protocol: smtp
+            tls: true
+            properties.mail.smtp:
+                auth: true
+                starttls.enable: true
+                ssl.trust: smtp.gmail.com
+    #mail:
+    #   host: localhost
+    #   port: 25
+    #   username:
+    #   password:
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -69,7 +80,7 @@ server:
 jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: doit@localhost
-        base-url: http://127.0.0.1:8080
+        base-url: http://127.0.0.1:64
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite: # Use the "graphite" Maven profile to have the Graphite dependencies
