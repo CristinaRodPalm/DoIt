@@ -12,11 +12,6 @@
                     Has iniciado sesión como "{{vm.account.login}}".
                 </div>
 
-                <!--
-                <div class="alert alert-warning" ng-switch-when="false">
-                    ¿Todavía no posees una cuenta? <a class="alert-link" ui-sref="register"><strong>¡Crea tu cuenta!</strong></a>
-                </div>
-                -->
                 <div ng-switch-when="false">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="alert alert-danger" ng-show="vm.authenticationError">
