@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
@@ -20,14 +20,25 @@
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
-
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown
+                <li ng-switch-when="false">
+                    <a href="" ng-click="vm.login()" id="login">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        <span>Sign in</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="false">
+                    <a ui-sref="register" ng-click="vm.collapseNavbar()" id="register">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        <span>Register</span>
+                    </a>
+                </li>
+                <li ng-switch-when="true" uib-dropdown
                     class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="">
                      <span>
                              <span class="glyphicon glyphicon-plus"></span>
                              <span class="hidden-sm">
-                                 Funcionalities
+                                 Funcionalidades
                              </span>
                              <b class="caret"></b>
                          </span>
@@ -45,6 +56,12 @@
                             <a ui-sref="" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-list"></span>&nbsp;
                                 <span>Mis amigos</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;
+                                <span>Buscar personas</span>
                             </a>
                         </li>
                     </ul>
@@ -121,11 +138,12 @@
                 </li>
 
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu">
+                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu"
+                    ng-switch-when="true">
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm">
-                                Account
+                                Mi cuenta
                             </span>
                             <b class="caret"></b>
                         </span>
@@ -134,31 +152,19 @@
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                                <span>Settings</span>
+                                <span>Ajustes</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="password" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                                <span>Password</span>
+                                <span>Administrar contraseña</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a href="" ng-click="vm.logout()" id="logout">
                                 <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                                <span>Sign out</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="false">
-                            <a href="" ng-click="vm.login()" id="login">
-                                <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                                <span>Sign in</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="false">
-                            <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
-                                <span>Register</span>
+                                <span>Salir</span>
                             </a>
                         </li>
                     </ul>
@@ -168,7 +174,7 @@
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>
-                            <span class="hidden-sm">Administration</span>
+                            <span class="hidden-sm">Administración</span>
                             <b class="caret"></b>
                         </span>
                     </a>
@@ -176,7 +182,7 @@
                         <li ui-sref-active="active">
                             <a ui-sref="user-management" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                <span>User management</span>
+                                <span>Gestión de usuarios</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
@@ -188,19 +194,19 @@
                         <li ui-sref-active="active">
                             <a ui-sref="jhi-health" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-heart"></span>&nbsp;
-                                <span>Health</span>
+                                <span>Salud</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="jhi-configuration" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
-                                <span>Configuration</span>
+                                <span>Configuración</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="audits" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-bell"></span>&nbsp;
-                                <span>Audits</span>
+                                <span>Datos</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">

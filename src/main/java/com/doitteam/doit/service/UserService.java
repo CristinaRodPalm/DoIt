@@ -94,7 +94,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey, String phone, ZonedDateTime birthdate) {
+        String imageUrl, String langKey, String phone, ZonedDateTime fechaNacimiento) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -121,9 +121,8 @@ public class UserService {
         UserExt newUserExtra = new UserExt();
         newUserExtra.setUser(newUser);
         newUserExtra.setTelefono(phone);
-        newUserExtra.setFechaNacimiento(birthdate);
+        newUserExtra.setFechaNacimiento(fechaNacimiento);
         userExtRepository.save(newUserExtra);
-        log.debug("JULIAN DATE TIME:" + birthdate);
         log.debug("Created Information for Extra User: {}", newUserExtra);
 
         return newUser;

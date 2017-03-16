@@ -18,7 +18,7 @@ public class ManagedUserVM extends UserDTO {
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
     private String phone;
-    private ZonedDateTime birthDate;
+    private ZonedDateTime fechaNacimiento;
 
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.
@@ -43,8 +43,8 @@ public class ManagedUserVM extends UserDTO {
         return phone;
     }
 
-    public ZonedDateTime getBirthDate() {
-        return birthDate;
+    public ZonedDateTime getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     @Override

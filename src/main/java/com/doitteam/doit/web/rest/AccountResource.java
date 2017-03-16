@@ -69,7 +69,7 @@ public class AccountResource {
                         .createUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
                             managedUserVM.getFirstName(), managedUserVM.getLastName(),
                             managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(), managedUserVM.getLangKey(),
-                            managedUserVM.getPhone(), managedUserVM.getBirthDate());
+                            managedUserVM.getPhone(), managedUserVM.getFechaNacimiento());
 
                     mailService.sendActivationEmail(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);

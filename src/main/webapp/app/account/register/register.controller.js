@@ -11,6 +11,8 @@
     function RegisterController ($timeout, Auth, LoginService) {
         var vm = this;
 
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.doNotMatch = null;
         vm.error = null;
         vm.errorUserExists = null;
@@ -19,7 +21,14 @@
         vm.registerAccount = {};
         vm.success = null;
 
-        $timeout(function (){angular.element('#login').focus();});
+
+        $timeout(function (){angular.element('#register').focus();});
+
+        vm.datePickerOpenStatus.fechaEvento = false;
+
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
 
         function register () {
             if (vm.registerAccount.password !== vm.confirmPassword) {
@@ -45,5 +54,6 @@
                 });
             }
         }
+
     }
 })();

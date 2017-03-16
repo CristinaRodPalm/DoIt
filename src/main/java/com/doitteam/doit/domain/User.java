@@ -78,7 +78,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private ZonedDateTime resetDate = null;
 
     @OneToOne(optional = false, mappedBy = "user")
-    @NotNull
     @JoinColumn(unique = true)
     @JsonIgnore
     private UserExt userExt;
