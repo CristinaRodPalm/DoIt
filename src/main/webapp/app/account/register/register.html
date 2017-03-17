@@ -1,10 +1,7 @@
 <div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Registro
-            </h1>
+            <h1>Registro</h1>
 
             <div class="alert alert-success" ng-show="vm.success">
                 <strong>¡Registro creado!</strong> Por favor, comprueba tu e-mail para confirmación.
@@ -90,9 +87,10 @@
 
                 <!--FECHA NACIMIENTO USUARIO-->
                 <div class="form-group">
-                    <label class="control-label" for="fechaNacimiento">Fecha de nacimiento</label>
+                    <label class="control-label" for="field_fechaNacimiento">Fecha Nacimiento</label>
                     <div class="input-group">
-                        <input id="fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" datetime-picker="{{dateformat}}" ng-model="vm.registerAccount.fechaNacimiento" is-open="vm.datePickerOpenStatus.fechaNacimiento"/>
+                        <input id="field_fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" datetime-picker="{{dateformat}}" ng-model="vm.registerAccount.fechaNacimiento" is-open="vm.datePickerOpenStatus.fechaNacimiento"
+                        />
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaNacimiento')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
