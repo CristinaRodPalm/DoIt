@@ -52,12 +52,4 @@ public class SearchResource {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
-
-    // TELF
-    // LOGIN
-    // lastname
-    // firstname
-    // email ¿?¿?¿?¿¿?¿?¿?¿
-
 }
