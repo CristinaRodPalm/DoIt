@@ -5,22 +5,22 @@
         .module('doitApp')
         .controller('UserExtSearchController',UserExtSearchController);
 
-    UserExtSearchController.$inject = ['$scope', '$state', 'DataUtils', 'UserExt'];
+    UserExtSearchController.$inject = ['$resource', 'UserExt'];
 
-    function UserExtSearchController ($scope, $state, DataUtils, UserExt) {
-        var vm = this;
+    function UserExtSearchController ($resource, UserExt) {
+        var resourceUrl = "api/search/users/:criteria";
 
-        vm.userExts = [];
-        vm.openFile = DataUtils.openFile;
-        vm.byteSize = DataUtils.byteSize;
-
-        loadAll();
-
-        function loadAll() {
-            UserExt.query(function(result) {
-                vm.userExts = result;
-                vm.searchQuery = null;
-            });
-        }
+        return  $resource(resourceUrl, {}, {
+            'query': {method: 'GET', isArray: true},
+            'get':{
+                method: 'GET',
+                transformResponse: function (data){
+                    if(data){
+                        data= angular.fromJson(data);
+                    }
+                    return data;
+                }
+            }
+        })
     }
 })();
