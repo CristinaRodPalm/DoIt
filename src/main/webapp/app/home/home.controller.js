@@ -7,7 +7,7 @@
 
     HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state'];
 
-    function HomeController ($rootScope, $scope, Principal, Auth, $state) {
+    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
@@ -15,6 +15,7 @@
        // vm.login = LoginService.open;
         vm.login = login;
         vm.register = register;
+        vm.requestResetPassword = requestResetPassword;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -57,6 +58,9 @@
             }).catch(function () {
                 vm.authenticationError = true;
             });
+        }
+        function requestResetPassword () {
+            $state.go('requestReset');
         }
     }
 })();

@@ -13,7 +13,7 @@
             url: '/settings',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Settings'
+                pageTitle: 'Ajustes'
             },
             views: {
                 'content@': {

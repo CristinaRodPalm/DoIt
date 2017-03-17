@@ -13,7 +13,7 @@
             url: '/audits',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Audits'
+                pageTitle: 'Datos'
             },
             views: {
                 'content@': {

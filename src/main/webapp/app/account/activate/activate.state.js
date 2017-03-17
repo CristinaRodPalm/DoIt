@@ -13,7 +13,7 @@
             url: '/activate?key',
             data: {
                 authorities: [],
-                pageTitle: 'Activation'
+                pageTitle: 'Activación'
             },
             views: {
                 'content@': {
