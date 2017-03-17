@@ -62,6 +62,18 @@ public class UserExtCriteriaRepository {
             "%"+searchTelf+"%"));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /*
     private void filterByFirstName(Map<String, Object> parameters){
         String firstName = (String) parameters.get("firstName");
