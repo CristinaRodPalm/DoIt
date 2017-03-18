@@ -21,7 +21,6 @@ public class UserExtCriteriaRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-
     public List<UserExt> filterUserExtDefinitions(Map<String, Object> parameters) {
         // donde se inicia la query
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -38,15 +37,16 @@ public class UserExtCriteriaRepository {
 
         String telefono = (String) parameters.get("telefono");
         String login = (String) parameters.get("login");
-        /*String firstName = (String) parameters.get("firstName");
+        String firstName = (String) parameters.get("firstName");
         String lastName = (String) parameters.get("lastName");
-        String email = (String) parameters.get("email");*/
+        String email = (String) parameters.get("email");
 
-        if(telefono != null) filterByTlf(parameters, userExtCriteriaQuery, userExtRoot, builder);
+
         if(login != null) filterByLogin(parameters, userExtCriteriaQuery, builder);
-        /*if(firstName != null) filterByFirstName(parameters);
-        if(lastName != null) filterByLastName(parameters);
-        if(email != null) filterByEmail(parameters);*/
+        if(telefono != null) filterByTlf(parameters, userExtCriteriaQuery, userExtRoot, builder);
+        if(firstName != null) filterByFirstName(parameters, userExtCriteriaQuery, builder);
+        if(lastName != null) filterByLastName(parameters, userExtCriteriaQuery, builder);
+        if(email != null) filterByEmail(parameters, userExtCriteriaQuery, builder);
     }
     private void filterByLogin(Map<String, Object> parameters, CriteriaQuery<UserExt> userExtCriteriaQuery, CriteriaBuilder builder){
         String searchLogin = (String) parameters.get("login");
@@ -62,47 +62,27 @@ public class UserExtCriteriaRepository {
             "%"+searchTelf+"%"));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    private void filterByFirstName(Map<String, Object> parameters){
+    private void filterByFirstName(Map<String, Object> parameters, CriteriaQuery<UserExt> userExtCriteriaQuery, CriteriaBuilder builder){
         String firstName = (String) parameters.get("firstName");
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<UserExt> query = cb.createQuery(UserExt.class);
-        Root<User> user = query.from(User.class);
+        Root<User> user = userExtCriteriaQuery.from(User.class);
         Join<User, UserExt> userExt = user.join("userExt");
-        query.select(userExt).where(cb.like(user.get("firstName"), "%"+firstName+"%"));
+        userExtCriteriaQuery.select(userExt).where(builder.equal(user.get("firstName"), firstName)).distinct(true);
     }
 
-    private void filterByLastName(Map<String, Object> parameters){
+    private void filterByLastName(Map<String, Object> parameters, CriteriaQuery<UserExt> userExtCriteriaQuery, CriteriaBuilder builder){
         String lastName = (String) parameters.get("lastName");
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<UserExt> query = cb.createQuery(UserExt.class);
-        Root<User> user = query.from(User.class);
+        Root<User> user = userExtCriteriaQuery.from(User.class);
         Join<User, UserExt> userExt = user.join("userExt");
-        query.select(userExt).where(cb.like(user.get("lastName"), "%"+lastName+"%"));
+        userExtCriteriaQuery.select(userExt).where(builder.equal(user.get("lastName"), lastName)).distinct(true);
     }
 
-    private void filterByEmail(Map<String, Object> parameters){
+    private void filterByEmail(Map<String, Object> parameters, CriteriaQuery<UserExt> userExtCriteriaQuery, CriteriaBuilder builder){
         String email = (String) parameters.get("email");
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<UserExt> query = cb.createQuery(UserExt.class);
-        Root<User> user = query.from(User.class);
+        Root<User> user = userExtCriteriaQuery.from(User.class);
         Join<User, UserExt> userExt = user.join("userExt");
-        query.select(userExt).where(cb.like(user.get("email"), "%"+email+"%"));
+        userExtCriteriaQuery.select(userExt).where(builder.equal(user.get("email"), email)).distinct(true);
     }
-*/
 }
