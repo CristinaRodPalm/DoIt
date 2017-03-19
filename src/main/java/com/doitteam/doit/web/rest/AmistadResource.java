@@ -7,6 +7,7 @@ import com.doitteam.doit.repository.AmistadRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,7 @@ public class AmistadResource {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
-        }else if(amistad.getReceptor().equals(userLogin)){
+        } else if (amistad.getReceptor().equals(userLogin)) {
             return ResponseEntity.badRequest().
                 headers(HeaderUtil.createFailureAlert
                     (ENTITY_NAME, "badFriendship", "No se puede agregar el propio usuario")).body(null);
@@ -80,7 +81,7 @@ public class AmistadResource {
      * or with status 400 (Bad Request) if the amistad is not valid,
      * or with status 500 (Internal Server Error) if the amistad couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
-*/
+     */
     @PutMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
@@ -170,6 +171,19 @@ public class AmistadResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/amistades")
+    @Timed
+    public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {
+        log.debug("REST Request para obtener amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        List<Amistad> amistadsCurrentUser = amistadRepository.findByReceptorIsCurrentUser(SecurityUtils.getCurrentUserLogin());
+        /*if (amistadsCurrentUser.size() < 1) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(
+                ENTITY_NAME, "noexists", "No hay solicitudes para este usuario")).body(null
+            );
+        }*/
+        return amistadsCurrentUser;
     }
 
 }
