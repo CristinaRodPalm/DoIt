@@ -177,13 +177,8 @@ public class AmistadResource {
     @Timed
     public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {
         log.debug("REST Request para obtener amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
-        List<Amistad> amistadsCurrentUser = amistadRepository.findByReceptorIsCurrentUser(SecurityUtils.getCurrentUserLogin());
-        /*if (amistadsCurrentUser.size() < 1) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(
-                ENTITY_NAME, "noexists", "No hay solicitudes para este usuario")).body(null
-            );
-        }*/
-        return amistadsCurrentUser;
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return amistadRepository.findByReceptorIsCurrentUser(userLogin.getId());
     }
 
 }
