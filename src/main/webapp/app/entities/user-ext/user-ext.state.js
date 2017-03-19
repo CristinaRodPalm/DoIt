@@ -168,7 +168,7 @@
                 views: {
                     'content@': {
                         templateUrl: 'app/entities/user-ext/user-ext-search.html',
-                        controller: 'UserExtSearchController',
+                        controller: 'UserExtController',
                         controllerAs: 'vm'
                     }
                 }

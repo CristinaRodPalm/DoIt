@@ -152,14 +152,31 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('amistad', null, { reload: 'amistad' });
+                    $state.go('amistad', null, { reload: 'amistades' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
 
+            .state ('amistades', {
+                parent: 'amistad',
+                url:'solicitudes-amistad',
+                data:{
+                    authorities:['ROLE_USER'],
+                    pageTitle:'Solicitudes de amistad'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/amistad/solicitudes-amistad.html',
+                        controller: 'AmistadController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                }
 
+            })
 
 
 /*

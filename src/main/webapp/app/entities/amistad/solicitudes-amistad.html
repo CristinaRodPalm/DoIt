@@ -1,0 +1,36 @@
+<div>
+    <h2>Solicitudes de amistad</h2>
+    <div class="container-fluid no-padding-left">
+        <small>Aquí se muestran las solicitudes de amistad que te han enviado otros usuarios</small>
+    </div>
+    <br>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <th><span>Emisor</span></th>
+                <th><span>Receptor</span></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="amistad in vm.amistads track by amistad.id">
+                    <td>{{amistad.emisor.login}}</td>
+                    <td>{{amistad.receptor.login}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                ui-sref="amistad.accept{{id:amistad.id}}"
+                                class="btn btn-primary">
+                                <span class="glyphicon glyphicon-check"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="amistad.delete({id:amistad.id})"
+                                    class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
