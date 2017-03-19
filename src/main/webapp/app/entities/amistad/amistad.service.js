@@ -11,7 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-            'getAll':{method:'GET', isArray:true, url:'api/amistads'},
+            'getAllByCurrentUser':{method:'GET', isArray:true, url:'api/amistades'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

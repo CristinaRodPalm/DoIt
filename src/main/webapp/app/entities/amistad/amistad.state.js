@@ -161,7 +161,7 @@
 
             .state ('amistades', {
                 parent: 'amistad',
-                url:'solicitudes-amistad',
+                url:'/solicitudes-amistad',
                 data:{
                     authorities:['ROLE_USER'],
                     pageTitle:'Solicitudes de amistad'
