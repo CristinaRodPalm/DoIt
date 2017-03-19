@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'getAll':{method:'GET', isArray:true, url:'api/amistads'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

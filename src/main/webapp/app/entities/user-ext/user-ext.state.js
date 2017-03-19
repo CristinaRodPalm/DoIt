@@ -135,7 +135,7 @@
                 }]
             })
             .state('user-ext.delete', {
-                parent: 'user-ext',
+                parent: '',
                 url: '/{id}/delete',
                 data: {
                     authorities: ['ROLE_USER']
