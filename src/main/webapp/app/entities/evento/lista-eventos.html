@@ -1,0 +1,54 @@
+<div>
+    <h2>Eventos</h2>
+    <small>¡Aquí puedes ver una lista de eventos
+        que han creado otros usuarios!</small>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th><span>Nombre</span></th>
+                <th><span>Descripción</span></th>
+                <th><span>Hora de creación</span></th>
+                <th><span>Ubicación</span></th>
+                <th><span>Fecha</span></th>
+                <th><span>Reto</span></th>
+                <th><span>Admin</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="evento in vm.eventos track by evento.id">
+                <td>
+                    <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
+                        <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                </td>
+                <td>{{evento.nombre}}</td>
+                <td>{{evento.descripcion}}</td>
+                <td>{{evento.hora | date:'medium'}}</td>
+                <td>{{evento.urlMaps}}</td>
+                <td>{{evento.fechaEvento | date:'medium'}}</td>
+                <td>
+                    <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
+                </td>
+                <td>
+                    {{evento.admin.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="evento-detail({id:evento.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
