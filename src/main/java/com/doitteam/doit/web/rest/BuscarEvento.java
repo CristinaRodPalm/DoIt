@@ -1,7 +1,9 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.UserExt;
+import com.doitteam.doit.repository.BuscarEventoRepository;
 import com.doitteam.doit.repository.UserExtCriteriaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,40 +16,39 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class SearchResource {
+public class BuscarEvento {
 
     @Inject
-    UserExtCriteriaRepository userExtCriteriaRepository;
+    BuscarEventoRepository buscarEventoRepository;
 
-    @RequestMapping(value = "/search/users",
+    @RequestMapping(value = "/search/eventos",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Transactional
-    public ResponseEntity<List<UserExt>> searchUsers(
-        @RequestParam(value = "telefono", required = false) String telefono,
-        @RequestParam(value = "login", required = false) String login,
-        @RequestParam(value = "firstName", required = false) String firstName,
-        @RequestParam(value = "lastName", required = false) String lastName,
-        @RequestParam(value = "email", required = false) String email
+    public ResponseEntity<List<Evento>> searchEvento(
+        @RequestParam(value = "nombre", required = false) String nombre,
+        @RequestParam(value = "descripcion", required = false) String descripcion,
 
+        @RequestParam(value = "fecha", required = false) ZonedDateTime fecha,
+        @RequestParam(value = "admin", required = false) String admin
     ) throws URISyntaxException {
 
         Map<String, Object> params = new HashMap<>();
 
-        if (telefono != null) params.put("telefono",telefono);
-        if (login != null) params.put("login", login);
-        if (firstName != null) params.put("firstName", firstName);
-        if (lastName != null) params.put("lastName", lastName);
-        if (email != null) params.put("email", email);
+        if (nombre != null) params.put("nombre",nombre);
+        if (fecha != null) params.put("fecha", fecha);
+        if (admin != null) params.put("admin", admin);
+        if(descripcion!= null) params.put("descripcion", descripcion);
 
-        List<UserExt> result = userExtCriteriaRepository.filterByDefinitions(params);
+        List<Evento> result = buscarEventoRepository.filter(params);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
