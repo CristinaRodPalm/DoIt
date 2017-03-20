@@ -178,7 +178,39 @@
                     }
                 },
                 resolve: {}
-            });
+            })
+            .state('crear-evento', {
+                parent: 'evento',
+                url: '/crear-evento',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Crear evento'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/crear-evento.html',
+                        controller: 'EventoDialogController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {}
+            })
+            .state('evento-search', {
+                parent: 'evento',
+                url: '/search-events',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Buscar eventos'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/evento-search.html',
+                        controller: 'EventoController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {}
+            })
     }
 
 })();
