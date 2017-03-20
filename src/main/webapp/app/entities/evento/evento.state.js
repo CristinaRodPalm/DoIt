@@ -178,7 +178,23 @@
                     }
                 },
                 resolve: {}
-            });
+            })
+            .state('crear-evento', {
+                parent: 'evento',
+                url: '/crear-evento',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Crear evento'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/crear-evento.html',
+                        controller: 'EventoDialogController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {}
+            })
     }
 
 })();
