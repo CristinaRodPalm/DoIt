@@ -55,19 +55,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="field_latitud">Latitud</label>
-                    <input type="number" class="form-control" name="latitud" id="field_latitud"
-                           ng-model="vm.evento.latitud"
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="field_longitud">Longitud</label>
-                    <input type="number" class="form-control" name="longitud" id="field_longitud"
-                           ng-model="vm.evento.longitud"/>
-                </div>
-
-                <div class="form-group">
                     <label class="control-label" for="field_fechaEvento">Fecha Evento</label>
                     <div class="input-group">
                         <input id="field_fechaEvento" type="text" class="form-control" name="fechaEvento" datetime-picker="{{dateformat}}" ng-model="vm.evento.fechaEvento" is-open="vm.datePickerOpenStatus.fechaEvento"/>
@@ -80,13 +67,6 @@
                 <div class="form-group">
                     <label for="field_reto">Reto</label>
                     <select class="form-control" id="field_reto" name="reto" ng-model="vm.evento.reto" ng-options="reto as reto.nombre for reto in vm.retos track by reto.id">
-                        <option value=""></option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="field_admin">Admin</label>
-                    <select class="form-control" id="field_admin" name="admin" ng-model="vm.evento.admin" ng-options="user as user.login for user in vm.users track by user.id">
                         <option value=""></option>
                     </select>
                 </div>
