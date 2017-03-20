@@ -18,6 +18,8 @@
 
         loadAmistadsCurrentUser();
 
+        confirmDelete();
+
         function loadAll() {
             Amistad.query(function(result) {
                 vm.amistads = result;
@@ -30,6 +32,10 @@
                 console.debug(result);
                 vm.amistadsCurrentUser = result;
             });
+        }
+
+        function confirmDelete (id) {
+            Amistad.delete({id: id})
         }
     }
 })();
