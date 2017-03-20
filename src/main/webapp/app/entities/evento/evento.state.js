@@ -195,6 +195,22 @@
                 },
                 resolve: {}
             })
+            .state('evento-search', {
+                parent: 'evento',
+                url: '/search-events',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Buscar eventos'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/evento-search.html',
+                        controller: 'EventoController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {}
+            })
     }
 
 })();

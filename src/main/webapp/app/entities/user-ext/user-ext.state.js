@@ -160,10 +160,10 @@
             })
             .state('user-search', {
                 parent: 'user-ext',
-                url: '/search',
+                url: '/search-users',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Buscador'
+                    pageTitle: 'Buscar personas'
                 },
                 views: {
                     'content@': {

@@ -1,0 +1,20 @@
+<div class="row text-center">
+    <div class="row col-lg-6 col-md-offset-3">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="criteria"
+                   placeholder="Busca eventos por nombre, lugar, fecha de creación...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="vm.userExtSearchController">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div>
+        <h3>Resultados de búsqueda</h3>
+        <div ng-repeat="user in data">
+            {{user.login}}
+        </div>
+    </div>
+</div>
