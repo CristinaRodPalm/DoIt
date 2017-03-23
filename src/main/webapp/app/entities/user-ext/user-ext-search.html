@@ -1,22 +1,46 @@
-<div class="row text-center">
-        <div class="row col-lg-6 col-md-offset-3">
-            <div class="input-group">
-                <input type="text" class="form-control" ng-model="criteria"
-                       placeholder="Busca a personas por nombre, lugar, teléfono...">
-                <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="vm.userExtSearchController">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-            </div>
+<div>
+    <div class="row text-center">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="criteria"
+                   placeholder="Busca a personas por nombre, lugar, teléfono...">
         </div>
-    <div class="row"></div>
-    <div>
-        <h3>Resultados de búsqueda</h3>
-
-        <div ng-repeat="user in vm.userExts|filter:criteria">
-            {{user.telefono}}
-            {{user.user.login}}
+        <div class="text-center">
+            <h3>Resultados de búsqueda</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="jh-table table table-striped">
+                <thead>
+                <tr>
+                    <th>Foto de perfil</th>
+                    <th>Nombre de usuario</th>
+                    <th>Nombre real</th>
+                    <th>Teléfono</th>
+                    <th>E-mail</th>
+                    <th>Fecha de nacimiento</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in vm.userExts|filter:criteria">
+                    <td>
+                        <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
+                            <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}"
+                                 style="max-height: 30px;" alt="userExt image"/>
+                        </a>
+                        <span
+                            ng-if="userExt.imagen">{{userExt.imagenContentType}}, {{vm.byteSize(userExt.imagen)}}</span>
+                    </td>
+                    <td>{{user.user.login}}</td>
+                    <td>{{user.user.firstName}} {{user.user.lastName}}</td>
+                    <td>{{user.telefono}}</td>
+                    <td>{{user.user.email}}</td>
+                    <td>{{user.fechaNacimiento}}</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
