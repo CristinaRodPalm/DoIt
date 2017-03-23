@@ -29,8 +29,6 @@ public class UserExtCriteriaRepository {
 
         if(parameters.get("telefono") != null){
             predicates.add(builder.like(userExtRoot.get("telefono"), (String) parameters.get("telefono")));
-            /*Join<User, UserSchoolRelationship> userSchool = user.join("userSchoolRelationships");
-            predicates.add(cb.equal(userSchool.get("school"), criteria.getSchoolId()));*/
         }
         if(parameters.get("login") != null){
             Join<UserExt, User> userExt = userExtRoot.join("user");

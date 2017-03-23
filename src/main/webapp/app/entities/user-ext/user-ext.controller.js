@@ -10,6 +10,9 @@
     function UserExtController ($scope, $state, DataUtils, UserExt) {
         var vm = this;
 
+
+
+
         vm.userExts = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
