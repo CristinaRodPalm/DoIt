@@ -27,52 +27,6 @@
                         <span>Regístrate</span>
                     </a>
                 </li>
-                <li ng-switch-when="true" uib-dropdown class="dropdown pointer"
-                    ng-class="{active: vm.$state.includes('entity')}">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="">
-                     <span>
-                             <span class="glyphicon glyphicon-plus"></span>
-                             <span class="hidden-sm">
-                                 Funcionalidades
-                             </span>
-                             <b class="caret"></b>
-                         </span>
-                    </a>
-
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-
-                        <li ui-sref-active="active">
-                            <a ui-sref="amistades" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                <span>Solicitudes de amistad</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="crear-evento" ng-click="vm.collapseNavbar()">
-                                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp;
-                                <span>Crear evento</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
-                                <span>Lista de eventos</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="user-search" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-search"></span>&nbsp;
-                                <span>Buscar personas</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="evento-search" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-search"></span>&nbsp;
-                                <span>Buscar eventos</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown
                     class="dropdown pointer">
@@ -146,7 +100,7 @@
 
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu"
-                    ng-switch-when="true">
+                       ng-switch-when="true">
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm">
@@ -156,6 +110,31 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ui-sref-active="active">
+                            <a ui-sref="crear-evento" ng-click="vm.collapseNavbar()">
+                                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp;
+                                <span>Crear evento</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
+                                <span>Lista de eventos</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="user-search" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;
+                                <span>Buscar personas</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="evento-search" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;
+                                <span>Buscar eventos</span>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-cog"></span>&nbsp;
@@ -175,6 +154,11 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="true">
+                    <a ui-sref="amistades" ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+                    </a>
                 </li>
                 <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true"
                     has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
