@@ -41,6 +41,25 @@ public class Mensaje implements Serializable {
     @ManyToOne
     private Chat chat;
 
+    public Mensaje() {
+    }
+
+    public Mensaje(User emisor, String mensaje, ZonedDateTime horaEnvio) {
+        this.emisor=emisor;
+        this.mensaje=mensaje;
+        this.horaEnvio=horaEnvio;
+    }
+
+    public Mensaje(String mensaje, ZonedDateTime horaEnvio, byte[] foto, String fotoContentType, User emisor, User receptor, Chat chat) {
+        this.mensaje = mensaje;
+        this.horaEnvio = horaEnvio;
+        this.foto = foto;
+        this.fotoContentType = fotoContentType;
+        this.emisor = emisor;
+        this.receptor = receptor;
+        this.chat = chat;
+    }
+
     public Long getId() {
         return id;
     }
@@ -160,14 +179,13 @@ public class Mensaje implements Serializable {
         return Objects.hashCode(id);
     }
 
+
     @Override
     public String toString() {
         return "Mensaje{" +
-            "id=" + id +
-            ", mensaje='" + mensaje + "'" +
-            ", horaEnvio='" + horaEnvio + "'" +
-            ", foto='" + foto + "'" +
-            ", fotoContentType='" + fotoContentType + "'" +
+            "mensaje='" + mensaje + '\'' +
+            ", horaEnvio=" + horaEnvio +
+            ", emisor=" + emisor +
             '}';
     }
 }

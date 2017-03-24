@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the Chat entity.
  */
-@SuppressWarnings("unused")
+
 public interface ChatRepository extends JpaRepository<Chat,Long> {
 
 }

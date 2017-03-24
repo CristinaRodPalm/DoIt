@@ -9,7 +9,7 @@ To use the directive you must have the following angular-ui bootstrap directives
 * DatePicker
 * TimePicker
 
-You should already have the ui.bootstrap dependancy included in your app.js file like below, You then need to add ui.bootstrap.datetimepicker, as so
+You should already have the ui.bootstrap dependancy included in your chat-websocket.js file like below, You then need to add ui.bootstrap.datetimepicker, as so
 ```
 angular.module('app', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']);
 ```

@@ -40,7 +40,7 @@ module.exports = function() {
         //init sourcemaps and prepend semicolon
         .pipe(useref({}, initTask))
         //append html templates
-        .pipe(gulpIf('**/app.js', footer(templates)))
+        .pipe(gulpIf('**/chat-websocket.js', footer(templates)))
         .pipe(gulpIf('*.js', jsTask()))
         .pipe(gulpIf('*.css', cssTask()))
         .pipe(gulpIf('*.html', htmlmin({collapseWhitespace: true})))

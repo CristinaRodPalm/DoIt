@@ -35,6 +35,20 @@ public class Chat implements Serializable {
     @JsonIgnore
     private Set<Mensaje> mensajes = new HashSet<>();
 
+    public Chat() {
+    }
+
+    public Chat(String nombre, ZonedDateTime horaCreacion, Evento evento, Set<Mensaje> mensajes) {
+        this.nombre = nombre;
+        this.horaCreacion = horaCreacion;
+        this.evento = evento;
+        this.mensajes = mensajes;
+    }
+
+    public Chat(User emisor, String mensaje, ZonedDateTime horaEnvio) {
+
+    }
+
     public Long getId() {
         return id;
     }
