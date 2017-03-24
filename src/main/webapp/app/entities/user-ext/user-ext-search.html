@@ -31,7 +31,6 @@
                             <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}"
                                  style="max-height: 30px;" alt="userExt image"/>
                         </a>
-                        <span ng-if="userExt.imagen">{{userExt.imagenContentType}}, {{vm.byteSize(userExt.imagen)}}</span>
                     </td>
                     <td>{{user.user.login}}</td>
                     <td>{{user.user.firstName}} {{user.user.lastName}}</td>
