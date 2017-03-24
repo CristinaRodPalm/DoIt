@@ -24,7 +24,7 @@
                 <li ui-sref-active="active" ng-switch-when="false">
                     <a ui-sref="register" ng-click="vm.collapseNavbar()">
                         <i class="fa fa-user-plus"></i>
-                        <span>Regístrate</span>
+                        <span class="hidden-sm">Regístrate</span>
                     </a>
                 </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
@@ -110,6 +110,8 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li class="dropdown-header">Has iniciado sesión como <strong>Alguien</strong></li>
+                        <li role="separator" class="divider"></li>
                         <li ui-sref-active="active">
                             <a ui-sref="crear-evento" ng-click="vm.collapseNavbar()">
                                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp;
@@ -158,6 +160,7 @@
                 <li ui-sref-active="active" ng-switch-when="true">
                     <a ui-sref="amistades" ng-click="vm.collapseNavbar()">
                         <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+                        <span class="hidden-sm">Solicitudes de amistad</span>
                     </a>
                 </li>
                 <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true"
