@@ -211,6 +211,22 @@
                 },
                 resolve: {}
             })
+            .state('evento-map', {
+                parent: 'evento',
+                url: '/event-location',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Lugar de evento'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/test-map.html',
+                        controller: 'EventoController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {}
+            })
     }
 
 })();
