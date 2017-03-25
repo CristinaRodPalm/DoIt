@@ -5,12 +5,12 @@
         .module('doitApp')
         .controller('EventoController', EventoController);
 
-    EventoController.$inject = ['$scope', '$state', 'DataUtils', 'Evento', 'NgMap'];
+    EventoController.$inject = ['$scope', '$state', 'DataUtils', 'Evento'];
 
-    function EventoController($scope, $state, DataUtils, Evento, NgMap) {
+    function EventoController($scope, $state, DataUtils, Evento) {
         var vm = this;
 
-        vm.apiMapsUrl = "AIzaSyA9Errugk2Ao7N8dH2PVSy_oi8rBVTe0DQ";
+        //vm.apiMapsUrl = "AIzaSyA9Errugk2Ao7N8dH2PVSy_oi8rBVTe0DQ";
         vm.eventos = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;

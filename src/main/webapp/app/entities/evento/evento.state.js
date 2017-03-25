@@ -221,7 +221,7 @@
                 views: {
                     'content@': {
                         templateUrl: 'app/entities/evento/test-map.html',
-                        controller: 'EventoController',
+                        controller: 'mapTestController',
                         controllerAs: 'vm'
                     }
                 },
