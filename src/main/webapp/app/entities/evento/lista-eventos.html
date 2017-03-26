@@ -40,11 +40,17 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                ui-sref="evento-detail({id:evento.id})"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
                             <span>Apuntarse</span>
+                        </button>
+                        <button type="submit"
+                                 ui-sref="evento-detail({id:evento.id})"
+                                 class="btn btn-info">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down"></span>
+                            <span>Info</span>
                         </button>
                     </div>
                 </td>
