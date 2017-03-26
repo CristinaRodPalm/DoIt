@@ -7,7 +7,7 @@
 
     mapController.$inject = ['NgMap', '$scope', '$state', 'DataUtils', 'Evento'];
 
-    function mapController(NgMap,$scope, $state, DataUtils, Evento) {
+    function mapController(NgMap, $scope, $state, DataUtils, Evento) {
         var vm = this;
 
         $scope.map = null;
