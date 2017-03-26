@@ -11,12 +11,12 @@
                     <td>{{amistad.emisor.login}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                class="btn btn-primary">
+                            <button class="btn btn-primary"
+                                    ui-sref="accept({id:amistad.id})">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </button>
                             <button class="btn btn-danger"
-                                    ng-click="vm.confirmDelete(amistad.id)">
+                                    ng-click="vm.confirmDelete({id:amistad.id})">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>

@@ -220,8 +220,8 @@
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'app/entities/evento/test-map.html',
-                        controller: 'mapTestController',
+                        templateUrl: 'app/entities/evento/map.html',
+                        controller: 'mapController',
                         controllerAs: 'vm'
                     }
                 },

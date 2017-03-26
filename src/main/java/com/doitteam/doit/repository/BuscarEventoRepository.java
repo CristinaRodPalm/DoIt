@@ -1,15 +1,13 @@
 package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.Evento;
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.domain.UserExt;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +38,8 @@ public class BuscarEventoRepository {
             predicates.add(builder.equal(root.get("fechaEvento"), parameters.get("fecha")));
         }
         if (parameters.get("admin") != null) {
+            Join<Evento, User> userExt = root.join("");
+            predicates.add(builder.like(userExt.get("login"), (String) parameters.get("login")));
         /*
             Join<UserExt, User> userExt = userExtRoot.join("user");
             predicates.add(builder.like(userExt.get("login"), (String) parameters.get("login")));

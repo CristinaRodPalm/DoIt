@@ -73,16 +73,31 @@ public class AmistadResource {
             .body(result);
     }
 
-    /**
-     * PUT  /amistads : Updates an existing amistad.
-     *
-     * @param amistad the amistad to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated amistad,
-     * or with status 400 (Bad Request) if the amistad is not valid,
-     * or with status 500 (Internal Server Error) if the amistad couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/amistads")
+    @GetMapping("/amistads")
+    @Timed
+    public List<Amistad> getAllAmistads() {
+        log.debug("REST request to get all Amistads");
+        List<Amistad> amistads = amistadRepository.findAll();
+        return amistads;
+    }
+
+    @GetMapping("/amistads/{id}")
+    @Timed
+    public ResponseEntity<Amistad> getAmistad(@PathVariable Long id) {
+        log.debug("REST request to get Amistad : {}", id);
+        Amistad amistad = amistadRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amistad));
+    }
+
+    @DeleteMapping("/amistads/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteAmistad(@PathVariable Long id) {
+        log.debug("REST request to delete Amistad : {}", id);
+        amistadRepository.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /*@PutMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
         log.debug("REST request to update Amistad : {}", amistad);
@@ -93,68 +108,26 @@ public class AmistadResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
-    }
-
-
-    /**
-     * GET  /amistads : get all the amistads.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of amistads in body
-     */
-    @GetMapping("/amistads")
+    }*/
+    @PutMapping("/amistads/accept/{id}")
     @Timed
-    public List<Amistad> getAllAmistads() {
-        log.debug("REST request to get all Amistads");
-        List<Amistad> amistads = amistadRepository.findAll();
-        return amistads;
-    }
-
-    /**
-     * GET  /amistads/:id : get the "id" amistad.
-     *
-     * @param id the id of the amistad to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the amistad, or with status 404 (Not Found)
-     */
-    @GetMapping("/amistads/{id}")
-    @Timed
-    public ResponseEntity<Amistad> getAmistad(@PathVariable Long id) {
-        log.debug("REST request to get Amistad : {}", id);
-        Amistad amistad = amistadRepository.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amistad));
-    }
-
-    /**
-     * DELETE  /amistads/:id : delete the "id" amistad.
-     *
-     * @param id the id of the amistad to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/amistads/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteAmistad(@PathVariable Long id) {
-        log.debug("REST request to delete Amistad : {}", id);
-        amistadRepository.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-
-    @PutMapping("/acceptAmistads")
-    @Timed
-    public ResponseEntity<Amistad> acceptAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
-        log.debug("REST request to update Amistad : {}", amistad);
-        if (amistad.getId() == null) {
+    public ResponseEntity<Amistad> acceptAmistads(@Valid @PathVariable Long id){
+        log.debug("REST request to update Amistad : {}", id.toString());
+        System.out.println(id);
+        if (id == null) {
             return ResponseEntity.badRequest().
                 headers(HeaderUtil.createFailureAlert
                     (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
-
         }
-        amistad.setHoraRespuesta(ZonedDateTime.now());
-        amistad.setAceptada(true);
-        Amistad result = amistadRepository.save(amistad);
+        Amistad amigo = amistadRepository.findById(id);
+        amigo.setHoraRespuesta(ZonedDateTime.now());
+        amigo.setAceptada(true);
+        Amistad result = amistadRepository.save(amigo);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amigo.getId().toString()))
             .body(result);
     }
-
+/*
     @PutMapping("/cancelAmistads")
     @Timed
     public ResponseEntity<Amistad> cancelAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
@@ -172,7 +145,7 @@ public class AmistadResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
     }
-
+*/
     @GetMapping("/amistades")
     @Timed
     public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {

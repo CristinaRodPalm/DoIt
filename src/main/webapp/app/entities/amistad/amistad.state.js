@@ -108,31 +108,6 @@
                     });
                 }]
             })
-            .state('amistad.accept', {
-                parent: 'amistad',
-                url: '/{id}/edit',
-                data: {
-                    authorities: ['ROLE_USER']
-                },
-                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
-                    $uibModal.open({
-                        templateUrl: 'app/entities/amistad/amistad-accept-dialog.html',
-                        controller: 'AmistadDialogController',
-                        controllerAs: 'vm',
-                        backdrop: 'static',
-                        size: 'lg',
-                        resolve: {
-                            entity: ['Amistad', function (Amistad) {
-                                return Amistad.get({id: $stateParams.id}).$promise;
-                            }]
-                        }
-                    }).result.then(function () {
-                        $state.go('amistad', null, {reload: 'amistad'});
-                    }, function () {
-                        $state.go('^');
-                    });
-                }]
-            })
             .state('amistad.delete', {
                 parent: 'amistad',
                 url: '/{id}/delete',
@@ -175,6 +150,10 @@
                 resolve: {}
 
             })
+            .state('accept', {
+
+            })
+
     }
 
 })();

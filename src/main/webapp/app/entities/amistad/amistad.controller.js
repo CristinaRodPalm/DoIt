@@ -9,16 +9,11 @@
 
     function AmistadController ($scope, $state, Amistad) {
         var vm = this;
-
         vm.amistads = [];
-
         vm.amistadsCurrentUser = [];
 
         loadAll();
-
         loadAmistadsCurrentUser();
-
-        confirmDelete();
 
         function loadAll() {
             Amistad.query(function(result) {
@@ -29,13 +24,8 @@
 
         function loadAmistadsCurrentUser(){
             Amistad.getAllByCurrentUser(function (result){
-                console.debug(result);
                 vm.amistadsCurrentUser = result;
             });
-        }
-
-        function confirmDelete (id) {
-            Amistad.delete({id: id})
         }
     }
 })();

@@ -16,7 +16,6 @@
         vm.byteSize = DataUtils.byteSize;
 
         loadAll();
-        map();
 
         function loadAll() {
             Evento.query(function (result) {
@@ -25,12 +24,5 @@
             });
         }
 
-        function map(ngMap) {
-            ngMap.getMap().then(function (map) {
-                console.log(map.getCenter());
-                console.log('markers', map.markers);
-                console.log('shapes', map.shapes);
-            });
-        }
     }
 })();
