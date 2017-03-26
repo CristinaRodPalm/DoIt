@@ -16,6 +16,10 @@
                         position="[{{posicion.latitud}}, {{posicion.longitud}}]" title="{{posicion.nombre}}">
 
                 </marker>-->
+
+                <marker position="{{evento.pos}}" ng-repeat="evento in vm.positions">
+
+                </marker>
             </ng-map>
 
             <div ng-repeat="posicion in vm.posicion">

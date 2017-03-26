@@ -29,13 +29,17 @@
             console.log('markers', map.markers);
             console.log('shapes', map.shapes);
             $scope.map = map;
-
-
         });
 
-            Evento.query(function (result) {
-                console.log(result);
-                vm.posicion = result;
+
+        vm.positions =[
+            {pos:[40.71, -73.21],name:1}, {pos:[40.72, -73.20],name:2},
+            {pos:[40.73, -73.19],name:3}, {pos:[40.74, -73.18],name:4},
+            {pos:[40.75, -73.17],name:5}, {pos:[40.76, -73.16],name:6}];
+
+
+        Evento.query(function (result) {
+                vm.eventos = result;
             });
 
 /*
