@@ -8,15 +8,23 @@
 
     <div class="row">
         <div class="text-center">
-            <ng-map ng-model="map" id="mapa" class="map-track" zoom-to-include-markers="auto"
-                    disable-default-u-i="true" style="{{mapStyle}} center="[41.3741174, 2.1616966]" zoom="2">
 
-                <marker ng-repeat="posicion in vm.posicion"
+
+            <ng-map id="mapa" class="map-track" zoom-to-include-markers="auto" disable-default-u-i="true"
+                    styles='{{mapStyle}}' center="[41.3741174, 2.1616966]" zoom="10">
+                <!--<marker ng-repeat="posicion in vm.posicion"
                         position="[{{posicion.latitud}}, {{posicion.longitud}}]" title="{{posicion.nombre}}">
-                    </marker>
 
+                </marker>-->
             </ng-map>
-            {{latitud}}
+
+            <div ng-repeat="posicion in vm.posicion">
+                {{posicion.latitud}}, {{posicion.longitud}}
+            </div>
+
+
+
+
         </div>
     </div>
 </div>
