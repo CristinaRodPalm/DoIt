@@ -38,13 +38,6 @@ public class EventoResource {
         this.userRepository = userRepository;
     }
 
-    /**
-     * POST  /eventos : Create a new evento.
-     *
-     * @param evento the evento to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new evento, or with status 400 (Bad Request) if the evento has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/eventos")
     @Timed
     public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) throws URISyntaxException {
@@ -66,15 +59,6 @@ public class EventoResource {
             .body(result);
     }
 
-    /**
-     * PUT  /eventos : Updates an existing evento.
-     *
-     * @param evento the evento to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated evento,
-     * or with status 400 (Bad Request) if the evento is not valid,
-     * or with status 500 (Internal Server Error) if the evento couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/eventos")
     @Timed
     public ResponseEntity<Evento> updateEvento(@RequestBody Evento evento) throws URISyntaxException {
@@ -96,11 +80,6 @@ public class EventoResource {
                 .body(resultado);
     }
 
-    /**
-     * GET  /eventos : get all the eventos.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of eventos in body
-     */
     @GetMapping("/eventos")
     @Timed
     public List<Evento> getAllEventos() {
@@ -109,12 +88,14 @@ public class EventoResource {
         return eventos;
     }
 
-    /**
-     * GET  /eventos/:id : get the "id" evento.
-     *
-     * @param id the id of the evento to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the evento, or with status 404 (Not Found)
-     */
+    @GetMapping("/langLat")
+    @Timed
+    public List<Object> getAllLangLat() {
+        List<Object> latLong = eventoRepository.findLatLong();
+        return latLong;
+    }
+
+
     @GetMapping("/eventos/{id}")
     @Timed
     public ResponseEntity<Evento> getEvento(@PathVariable Long id) {
@@ -123,12 +104,6 @@ public class EventoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(evento));
     }
 
-    /**
-     * DELETE  /eventos/:id : delete the "id" evento.
-     *
-     * @param id the id of the evento to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/eventos/{id}")
     @Timed
     public ResponseEntity<Void> deleteEvento(@PathVariable Long id) {
