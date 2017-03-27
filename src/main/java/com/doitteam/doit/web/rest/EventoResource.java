@@ -95,7 +95,7 @@ public class EventoResource {
         List<String> result = new ArrayList<>();
         List<Object[]> posiciones = eventoRepository.findLatLong();
         for(int i = 0; i < posiciones.size(); i++){
-            String aux = "[{"+posiciones.get(i)[0]+"},{"+posiciones.get(i)[1]+"}]";
+            String aux = "["+posiciones.get(i)[0]+","+posiciones.get(i)[1]+"]";
             result.add(aux);
         }
         return result;
