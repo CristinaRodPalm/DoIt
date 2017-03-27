@@ -117,16 +117,4 @@ public class EventoResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/langLat")
-    @Timed
-    public List<String> getAllLangLat() {
-        List<String> result = new ArrayList<>();
-        List<Object[]> posiciones = eventoRepository.findLatLong();
-        for(int i = 0; i < posiciones.size(); i++){
-            String aux = "["+posiciones.get(i)[0]+","+posiciones.get(i)[1]+"]";
-            result.add(aux);
-        }
-        return result;
-    }
-
 }

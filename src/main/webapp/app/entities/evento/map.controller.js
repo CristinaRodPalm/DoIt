@@ -31,9 +31,14 @@
             $scope.map = map;
         });
 
+        Evento.query(function(result){
+           vm.eventos = result;
+        });
+
+        /*
         Evento.location(function (result) {
             vm.coordenadas = result;
-        });
+        });*/
 
     }
 })();
