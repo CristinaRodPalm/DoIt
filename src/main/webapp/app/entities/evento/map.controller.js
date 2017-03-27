@@ -35,32 +35,5 @@
             vm.coordenadas = result;
         });
 
-/*
-        $http({
-            method: 'GET',
-            url: 'api/stats/song/' + res.song.id
-        }).then(function successCallback(response) {
-            $scope.statsForMap = response.data;
-            NgMap.getMap('playmap').then(function (map) {
-                $scope.map = map;
-                $scope.statsForMap.forEach(function (item) {
-                    var latLng = new google.maps.LatLng(item.latitude, item.longitude);
-                    $scope.dynMarkers.push(new google.maps.Marker({position: latLng}));
-                });
-                var markers = $scope.dynMarkers.map(function (location, i) {
-                    return new google.maps.Marker({
-                        position: location.position
-                    });
-                });
-                $scope.markerClusterer = new MarkerClusterer(map, markers, {
-                    styles: markerIcons
-                });
-                var bounds = new google.maps.LatLngBounds();
-                for (var i = 0; i < markers.length; i++) {
-                    bounds.extend(markers[i].getPosition());
-                }
-                map.fitBounds(bounds);
-            });
-        });*/
     }
 })();

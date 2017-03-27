@@ -24,7 +24,7 @@
             },
             'update': { method:'PUT' },
             'location':{ method: 'GET', isArray: true, url:'api/langLat'},
-            //'getOne' :{ method:'GET', isArray: true, url: resourceUrl}
+            'getOne' :{ method:'GET', isArray: true}
         });
     }
 })();

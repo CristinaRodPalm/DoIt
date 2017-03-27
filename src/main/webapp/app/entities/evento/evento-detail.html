@@ -38,10 +38,9 @@
         <dd>
             <ngmap>
                 <ng-map id="mapa" class="map-track"
-                        zoom-to-include-markers="auto"
-                        disable-default-u-i="true"
-                        styles='{{mapStyle}}' center="[41.3741174, 2.1616966]" zoom="10">
-                    <marker position="{{coordenadas}}">
+                        zoom-to-include-markers="20"
+                        disable-default-u-i="true" >
+                    <marker position="[{{vm.evento.latitud}},{{vm.evento.longitud}}]">
                     </marker>
                 </ng-map>
             </ngmap>
