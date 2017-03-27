@@ -15,6 +15,11 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
 
+        Evento.get(function (result){
+            console.log(result);
+            vm.coordenadas = result;
+        });
+
         var unsubscribe = $rootScope.$on('doitApp:eventoUpdate', function(event, result) {
             vm.evento = result;
         });

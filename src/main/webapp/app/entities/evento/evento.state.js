@@ -197,7 +197,7 @@
             })
             .state('evento-search', {
                 parent: 'evento',
-                url: '/search-events',
+                url: '/buscar-eventos',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Buscar eventos'

@@ -1,6 +1,7 @@
 
 <div>
-    <h2><span>Evento</span> {{vm.evento.id}}</h2>
+    <h2><span>Información de evento</span></h2>
+    <h3><small>ID: {{vm.evento.id}}</small></h3>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row jh-entity-details">
@@ -12,7 +13,7 @@
         <dd>
             <span>{{vm.evento.descripcion}}</span>
         </dd>
-        <dt><span>Hora</span></dt>
+        <dt><span>Hora de creación</span></dt>
         <dd>
             <span>{{vm.evento.hora | date:'medium'}}</span>
         </dd>
@@ -24,27 +25,34 @@
                 </a>
             </div>
         </dd>
-        <dt><span>Url Maps</span></dt>
-        <dd>
-            <span>{{vm.evento.urlMaps}}</span>
-        </dd>
-        <dt><span>Latitud</span></dt>
-        <dd>
-            <span>{{vm.evento.latitud}}</span>
-        </dd>
-        <dt><span>Longitud</span></dt>
-        <dd>
-            <span>{{vm.evento.longitud}}</span>
-        </dd>
         <dt><span>Fecha Evento</span></dt>
         <dd>
             <span>{{vm.evento.fechaEvento | date:'medium'}}</span>
         </dd>
+
+        <!--MAPA Y DIRECCION-->
+        <dt><span>Lugar del evento</span></dt>
+        <dd>
+            <span>Calle Falsa 123</span>
+        </dd>
+        <dd>
+            <ngmap>
+                <ng-map id="mapa" class="map-track"
+                        zoom-to-include-markers="auto"
+                        disable-default-u-i="true"
+                        styles='{{mapStyle}}' center="[41.3741174, 2.1616966]" zoom="10">
+                    <marker position="{{coordenadas}}">
+                    </marker>
+                </ng-map>
+            </ngmap>
+        </dd>
+        <!--MAPA Y DIRECCION-->
+
         <dt><span>Reto</span></dt>
         <dd>
             <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
         </dd>
-        <dt><span>Admin</span></dt>
+        <dt><span>Administrador</span></dt>
         <dd>
             {{vm.evento.admin.login}}
         </dd>
@@ -53,11 +61,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Atrás</span>
     </button>
 
     <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
+        <span class="hidden-sm-down"> Editar</span>
     </button>
 </div>
