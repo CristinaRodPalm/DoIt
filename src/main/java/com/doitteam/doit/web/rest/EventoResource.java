@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,9 +91,14 @@ public class EventoResource {
 
     @GetMapping("/langLat")
     @Timed
-    public List<Object> getAllLangLat() {
-        List<Object> latLong = eventoRepository.findLatLong();
-        return latLong;
+    public List<String> getAllLangLat() {
+        List<String> result = new ArrayList<>();
+        List<Object[]> posiciones = eventoRepository.findLatLong();
+        for(int i = 0; i < posiciones.size(); i++){
+            String aux = posiciones.get(i)[0]+", "+posiciones.get(i)[1];
+            result.add(aux);
+        }
+        return result;
     }
 
 

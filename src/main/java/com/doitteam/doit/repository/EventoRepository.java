@@ -16,6 +16,6 @@ public interface EventoRepository extends JpaRepository<Evento,Long> {
     List<Evento> findByAdminIsCurrentUser();
 
     @Query("select evento.latitud, evento.longitud from Evento evento")
-    List<Object> findLatLong();
+    List<Object[]> findLatLong();
 
 }
