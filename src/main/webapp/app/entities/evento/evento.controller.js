@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -7,21 +7,20 @@
 
     EventoController.$inject = ['$scope', '$state', 'DataUtils', 'Evento'];
 
-    function EventoController($scope, $state, DataUtils, Evento) {
+    function EventoController ($scope, $state, DataUtils, Evento) {
         var vm = this;
 
         vm.eventos = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
 
-        loadAll();;
+        loadAll();
 
         function loadAll() {
-            Evento.query(function (result) {
+            Evento.query(function(result) {
                 vm.eventos = result;
                 vm.searchQuery = null;
             });
         }
-
     }
 })();

@@ -41,7 +41,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="url_maps" type="varchar(255)">
+            <column name="direccion" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -69,6 +69,6 @@
         </createTable>
         <dropDefaultValue tableName="evento" columnName="hora" columnDataType="datetime"/>
         <dropDefaultValue tableName="evento" columnName="fecha_evento" columnDataType="datetime"/>
-
+        
     </changeSet>
 </databaseChangeLog>

@@ -30,7 +30,7 @@
                 <td>{{evento.nombre}}</td>
                 <td>{{evento.descripcion}}</td>
                 <td>{{evento.hora | date:'medium'}}</td>
-                <td>{{evento.urlMaps}}</td>
+                <td>{{evento.direccion}}</td>
                 <td>{{evento.fechaEvento | date:'medium'}}</td>
                 <td>
                     <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>

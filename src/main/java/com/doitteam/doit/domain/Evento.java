@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Evento.
@@ -38,8 +38,8 @@ public class Evento implements Serializable {
     @Column(name = "imagen_content_type")
     private String imagenContentType;
 
-    @Column(name = "url_maps")
-    private String urlMaps;
+    @Column(name = "direccion")
+    private String direccion;
 
     @Column(name = "latitud")
     private Double latitud;
@@ -137,17 +137,17 @@ public class Evento implements Serializable {
         this.imagenContentType = imagenContentType;
     }
 
-    public String getUrlMaps() {
-        return urlMaps;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public Evento urlMaps(String urlMaps) {
-        this.urlMaps = urlMaps;
+    public Evento direccion(String direccion) {
+        this.direccion = direccion;
         return this;
     }
 
-    public void setUrlMaps(String urlMaps) {
-        this.urlMaps = urlMaps;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public Double getLatitud() {
@@ -294,7 +294,7 @@ public class Evento implements Serializable {
             ", hora='" + hora + "'" +
             ", imagen='" + imagen + "'" +
             ", imagenContentType='" + imagenContentType + "'" +
-            ", urlMaps='" + urlMaps + "'" +
+            ", direccion='" + direccion + "'" +
             ", latitud='" + latitud + "'" +
             ", longitud='" + longitud + "'" +
             ", fechaEvento='" + fechaEvento + "'" +

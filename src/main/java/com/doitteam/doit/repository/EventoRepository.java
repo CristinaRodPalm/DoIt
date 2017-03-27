@@ -1,8 +1,8 @@
 package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.Evento;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
+import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface EventoRepository extends JpaRepository<Evento,Long> {
     @Query("select evento from Evento evento where evento.admin.login = ?#{principal.username}")
     List<Evento> findByAdminIsCurrentUser();
 
+
     @Query("select evento.latitud, evento.longitud from Evento evento")
     List<Object[]> findLatLong();
-
 }

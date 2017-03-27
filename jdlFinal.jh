@@ -3,7 +3,7 @@ entity Evento{
     descripcion String,
     hora ZonedDateTime,
     imagen ImageBlob,
-    urlMaps String,
+    direccion String,
     latitud Double,
     longitud Double
 }

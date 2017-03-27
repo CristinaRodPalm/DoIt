@@ -45,7 +45,7 @@
                     }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
-                            name: $state.current.name || 'eventos',
+                            name: $state.current.name || 'evento',
                             params: $state.params,
                             url: $state.href($state.current.name, $state.params)
                         };
@@ -99,7 +99,7 @@
                                     hora: null,
                                     imagen: null,
                                     imagenContentType: null,
-                                    urlMaps: null,
+                                    direccion: null,
                                     latitud: null,
                                     longitud: null,
                                     fechaEvento: null,
@@ -163,6 +163,7 @@
                     });
                 }]
             })
+
             .state('eventos', {
                 parent: 'entity',
                 url: '/lista-eventos',
@@ -179,6 +180,7 @@
                 },
                 resolve: {}
             })
+
             .state('crear-evento', {
                 parent: 'evento',
                 url: '/crear-evento',
@@ -212,11 +214,11 @@
                 resolve: {}
             })
             .state('evento-map', {
-                parent: 'evento',
+                parent: 'entity',
                 url: '/eventos-mundo',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Lugar de evento'
+                    pageTitle: 'Eventos en mundo'
                 },
                 views: {
                     'content@': {
@@ -227,6 +229,7 @@
                 },
                 resolve: {}
             })
+
     }
 
 })();

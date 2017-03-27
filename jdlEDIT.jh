@@ -4,7 +4,7 @@ entity Evento{
     fechaEvento ZonedDateTime required,
     horaCreacion ZonedDateTime required,
     imagen ImageBlob,
-    urlMaps String,
+    direccion String,
     latitud Double,
     longitud Double
 }
@@ -67,7 +67,7 @@ relationship ManyToOne{
 	Evento{reto(nombre)} to Reto{evento},
     Evento{admin(login)} to User
 }
-// CHAT DE EVENTO 
+// CHAT DE EVENTO
 relationship ManyToOne{
  	Chat{evento(nombre)} to Evento{chat}
 }

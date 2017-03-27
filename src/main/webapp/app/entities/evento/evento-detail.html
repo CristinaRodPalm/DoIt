@@ -1,9 +1,10 @@
+
 <div>
-    <h2><span>Información de evento</span></h2>
+    <h2><span>Evento</span></h2>
     <h3>
         <small>
             <strong>Administrador: </strong>
-                {{vm.evento.admin.login}}
+            {{vm.evento.admin.login}}
         </small>
     </h3>
     <hr>
@@ -17,7 +18,7 @@
         <dd>
             <span>{{vm.evento.descripcion}}</span>
         </dd>
-        <dt><span>Hora de creación</span></dt>
+        <dt><span>Hora</span></dt>
         <dd>
             <span>{{vm.evento.hora | date:'medium'}}</span>
         </dd>
@@ -25,20 +26,13 @@
         <dd>
             <div ng-if="vm.evento.imagen">
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
-                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
-                         style="max-width: 100%;" alt="evento image"/>
+                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
                 </a>
             </div>
         </dd>
-        <dt><span>Fecha Evento</span></dt>
-        <dd>
-            <span>{{vm.evento.fechaEvento | date:'medium'}}</span>
-        </dd>
-
-        <!--MAPA Y DIRECCION-->
         <dt><span>Lugar del evento</span></dt>
         <dd>
-            <span>Calle Falsa 123</span>
+            <span>{{vm.evento.direccion}}</span>
         </dd>
         <dd>
             <ngmap>
@@ -50,8 +44,18 @@
                 </ng-map>
             </ngmap>
         </dd>
-        <!--MAPA Y DIRECCION-->
-
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{vm.evento.latitud}}</span>
+        </dd>
+        <dt><span>Longitud</span></dt>
+        <dd>
+            <span>{{vm.evento.longitud}}</span>
+        </dd>
+        <dt><span>Fecha Evento</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaEvento | date:'medium'}}</span>
+        </dd>
         <dt><span>Reto</span></dt>
         <dd>
             <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
@@ -61,11 +65,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Atrás</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Editar</span>
+        <span class="hidden-sm-down"> Edit</span>
     </button>
 </div>

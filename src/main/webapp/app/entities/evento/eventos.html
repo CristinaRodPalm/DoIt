@@ -23,7 +23,7 @@
                     <th><span>Descripcion</span></th>
                     <th><span>Hora</span></th>
                     <th><span>Imagen</span></th>
-                    <th><span>Url Maps</span></th>
+                    <th><span>Direccion</span></th>
                     <th><span>Latitud</span></th>
                     <th><span>Longitud</span></th>
                     <th><span>Fecha Evento</span></th>
@@ -44,7 +44,7 @@
                         </a>
                         <span ng-if="evento.imagen">{{evento.imagenContentType}}, {{vm.byteSize(evento.imagen)}}</span>
                     </td>
-                    <td>{{evento.urlMaps}}</td>
+                    <td>{{evento.direccion}}</td>
                     <td>{{evento.latitud}}</td>
                     <td>{{evento.longitud}}</td>
                     <td>{{evento.fechaEvento | date:'medium'}}</td>
