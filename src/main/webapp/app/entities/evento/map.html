@@ -17,17 +17,10 @@
 
                 </marker>-->
 
-                <marker position="{{evento.pos}}" ng-repeat="evento in vm.positions">
-
+                <marker ng-repeat="coordenada in vm.coordenadas" position="{{coordenada}}">
+                    {{coordenada[0]}}
                 </marker>
             </ng-map>
-
-            <div ng-repeat="posicion in vm.posicion">
-                {{posicion.latitud}}, {{posicion.longitud}}
-            </div>
-
-
-
 
         </div>
     </div>
