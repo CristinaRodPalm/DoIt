@@ -1,7 +1,11 @@
-
 <div>
     <h2><span>Información de evento</span></h2>
-    <h3><small>ID: {{vm.evento.id}}</small></h3>
+    <h3>
+        <small>
+            <strong>Administrador: </strong>
+                {{vm.evento.admin.login}}
+        </small>
+    </h3>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row jh-entity-details">
@@ -21,7 +25,8 @@
         <dd>
             <div ng-if="vm.evento.imagen">
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
-                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
+                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
+                         style="max-width: 100%;" alt="evento image"/>
                 </a>
             </div>
         </dd>
@@ -39,7 +44,7 @@
             <ngmap>
                 <ng-map id="mapa" class="map-track"
                         zoom-to-include-markers="20"
-                        disable-default-u-i="true" >
+                        disable-default-u-i="true">
                     <marker position="[{{vm.evento.latitud}},{{vm.evento.longitud}}]">
                     </marker>
                 </ng-map>
@@ -50,10 +55,6 @@
         <dt><span>Reto</span></dt>
         <dd>
             <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
-        </dd>
-        <dt><span>Administrador</span></dt>
-        <dd>
-            {{vm.evento.admin.login}}
         </dd>
     </dl>
 

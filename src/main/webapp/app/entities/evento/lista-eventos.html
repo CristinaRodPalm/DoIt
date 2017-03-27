@@ -9,13 +9,13 @@
             <thead>
             <tr>
                 <th></th>
+                <th><span>Administrador</span></th>
                 <th><span>Nombre</span></th>
                 <th><span>Descripción</span></th>
                 <th><span>Hora de creación</span></th>
                 <th><span>Ubicación</span></th>
                 <th><span>Fecha</span></th>
                 <th><span>Reto</span></th>
-                <th><span>Admin</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -26,6 +26,7 @@
                         <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
+                <td>{{evento.admin.login}}</td>
                 <td>{{evento.nombre}}</td>
                 <td>{{evento.descripcion}}</td>
                 <td>{{evento.hora | date:'medium'}}</td>
@@ -33,9 +34,6 @@
                 <td>{{evento.fechaEvento | date:'medium'}}</td>
                 <td>
                     <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
-                </td>
-                <td>
-                    {{evento.admin.login}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

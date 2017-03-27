@@ -213,14 +213,14 @@
             })
             .state('evento-map', {
                 parent: 'evento',
-                url: '/event-location',
+                url: '/eventos-mundo',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Lugar de evento'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'app/entities/evento/map.html',
+                        templateUrl: 'app/entities/evento/eventos-mundo.html',
                         controller: 'mapController',
                         controllerAs: 'vm'
                     }

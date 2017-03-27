@@ -2,20 +2,32 @@
     <div class="col-md-8 col-md-offset-2">
         <h1>Crear evento</h1>
 
-        <form name="editForm" role="form" novalidate ng-submit="vm.save()">
+        <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
             <div class="form-group">
-                <label class="control-label" for="field_nombre">Nombre del evento</label>
-                <input type="text" class="form-control" name="nombre" id="field_nombre"
+                <label class="control-label" for="field_nombre">Nombre</label>
+                <input type="text" class="form-control"
+                       name="nombre" id="field_nombre"
+                       placeholder="Nombre del evento"
                        ng-model="vm.evento.nombre"/>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="field_descripcion">Descripcion</label>
-                <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                <label class="control-label" for="field_descripcion">Descripción</label>
+                <input type="text" class="form-control"
+                       name="descripcion" id="field_descripcion"
+                       placeholder="Descripción del evento"
                        ng-model="vm.evento.descripcion"/>
             </div>
 
+            <div class="form-group">
+                <label class="control-label" for="field_direccion">Dirección</label>
+                <input type="text" class="form-control"
+                        name="direccion" id="field_direccion"
+                        placeholder="Dirección del evento"
+                        ng-model="vm.evento.direccion"/>
+            </div>
+            <!--
             <div class="form-group">
                 <label class="control-label" for="field_hora">Hora</label>
                 <div class="input-group">
@@ -29,7 +41,7 @@
                     </span>
                 </div>
             </div>
-
+            -->
             <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.evento)" ngf-pattern="'image/*'">
                 <label class="control-label" for="field_imagen">Imagen</label>
                 <div>
@@ -44,25 +56,23 @@
                     </div>
                     <button type="button" ngf-select class="btn btn-default btn-block"
                             ngf-change="vm.setImagen($file, vm.evento)" accept="image/*">
-                        Add image
+                        Añadir imagen
                     </button>
                 </div>
-                <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                <input type="hidden" class="form-control"
+                       name="imagen" id="field_imagen"
                        ng-model="vm.evento.imagen"/>
-                <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                <input type="hidden" class="form-control"
+                       name="imagenContentType" id="field_imagenContentType"
                        ng-model="vm.evento.imagenContentType" />
                 <p></p>
-                <div class="form-group">
-                    <label class="control-label" for="field_urlMaps">Url Maps</label>
-                    <input type="text" class="form-control" name="urlMaps" id="field_urlMaps"
-                           ng-model="vm.evento.urlMaps"/>
-                </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="field_fechaEvento">Fecha Evento</label>
+                    <label class="control-label" for="field_fechaEvento">Fecha</label>
                     <div class="input-group">
                         <input id="field_fechaEvento" type="text" class="form-control"
                                name="fechaEvento" datetime-picker="{{dateformat}}"
+                               placeholder="Fecha del evento"
                                ng-model="vm.evento.fechaEvento" is-open="vm.datePickerOpenStatus.fechaEvento"/>
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEvento')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -72,7 +82,10 @@
 
                 <div class="form-group">
                     <label for="field_reto">Reto</label>
-                    <select class="form-control" id="field_reto" name="reto" ng-model="vm.evento.reto" ng-options="reto as reto.nombre for reto in vm.retos track by reto.id">
+                    <select class="form-control" id="field_reto"
+                            name="reto" ng-model="vm.evento.reto"
+                            ng-options="reto as reto.nombre for reto in vm.retos track by reto.id">
+                        <option value="" selected>Selecciona un reto</option>
                         <option value=""></option>
                     </select>
                 </div>
