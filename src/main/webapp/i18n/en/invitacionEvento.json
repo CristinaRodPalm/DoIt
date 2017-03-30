@@ -1,0 +1,26 @@
+{
+    "doitApp": {
+        "invitacionEvento" : {
+            "home": {
+                "title": "Invitacion Eventos",
+                "createLabel": "Create a new Invitacion Evento",
+                "createOrEditLabel": "Create or edit a Invitacion Evento"
+            },
+            "created": "A new Invitacion Evento is created with identifier {{ param }}",
+            "updated": "A Invitacion Evento is updated with identifier {{ param }}",
+            "deleted": "A Invitacion Evento is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Invitacion Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Invitacion Evento"
+            },
+            "horaResolucion": "Hora Resolucion",
+            "horaInvitacion": "Hora Invitacion",
+            "resolucion": "Resolucion",
+            "evento": "Evento",
+            "miembroEvento": "Miembro Evento",
+            "invitado": "Invitado"
+        }
+    }
+}

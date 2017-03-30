@@ -1,0 +1,24 @@
+{
+    "doitApp": {
+        "chat" : {
+            "home": {
+                "title": "Chats",
+                "createLabel": "Crear nuevo Chat",
+                "createOrEditLabel": "Crear o editar Chat"
+            },
+            "created": "Un nuevo Chat ha sido creado con el identificador {{ param }}",
+            "updated": "Un Chat ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Chat ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Chat {{ id }}?"
+            },
+            "detail": {
+                "title": "Chat"
+            },
+            "nombre": "Nombre",
+            "horaCreacion": "Hora Creacion",
+            "evento": "Evento",
+            "mensaje": "Mensaje"
+        }
+    }
+}

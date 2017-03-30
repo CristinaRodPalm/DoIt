@@ -1,0 +1,24 @@
+{
+    "doitApp": {
+        "likesReto" : {
+            "home": {
+                "title": "Likes Retos",
+                "createLabel": "Create a new Likes Reto",
+                "createOrEditLabel": "Create or edit a Likes Reto"
+            },
+            "created": "A new Likes Reto is created with identifier {{ param }}",
+            "updated": "A Likes Reto is updated with identifier {{ param }}",
+            "deleted": "A Likes Reto is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Likes Reto {{ id }}?"
+            },
+            "detail": {
+                "title": "Likes Reto"
+            },
+            "puntuacion": "Puntuacion",
+            "horaLike": "Hora Like",
+            "usuario": "Usuario",
+            "participacionReto": "Participacion Reto"
+        }
+    }
+}

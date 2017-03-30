@@ -1,0 +1,32 @@
+{
+    "doitApp": {
+        "evento" : {
+            "home": {
+                "title": "Eventos",
+                "createLabel": "Crear nuevo Evento",
+                "createOrEditLabel": "Crear o editar Evento"
+            },
+            "created": "Un nuevo Evento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Evento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Evento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Evento"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "hora": "Hora",
+            "imagen": "Imagen",
+            "direccion": "Direccion",
+            "latitud": "Latitud",
+            "longitud": "Longitud",
+            "fechaEvento": "Fecha Evento",
+            "reto": "Reto",
+            "admin": "Admin",
+            "miembroEvento": "Miembro Evento",
+            "chat": "Chat"
+        }
+    }
+}

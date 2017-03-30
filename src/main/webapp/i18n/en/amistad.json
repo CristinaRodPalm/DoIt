@@ -1,0 +1,25 @@
+{
+    "doitApp": {
+        "amistad" : {
+            "home": {
+                "title": "Amistads",
+                "createLabel": "Create a new Amistad",
+                "createOrEditLabel": "Create or edit a Amistad"
+            },
+            "created": "A new Amistad is created with identifier {{ param }}",
+            "updated": "A Amistad is updated with identifier {{ param }}",
+            "deleted": "A Amistad is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Amistad {{ id }}?"
+            },
+            "detail": {
+                "title": "Amistad"
+            },
+            "timeStamp": "Time Stamp",
+            "aceptada": "Aceptada",
+            "horaRespuesta": "Hora Respuesta",
+            "emisor": "Emisor",
+            "receptor": "Receptor"
+        }
+    }
+}
