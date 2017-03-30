@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('LikesRetoController', LikesRetoController);
 
-    LikesRetoController.$inject = ['$scope', '$state', 'LikesReto'];
+    LikesRetoController.$inject = ['LikesReto'];
 
-    function LikesRetoController ($scope, $state, LikesReto) {
+    function LikesRetoController(LikesReto) {
+
         var vm = this;
 
         vm.likesRetos = [];

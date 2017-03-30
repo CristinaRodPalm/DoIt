@@ -14,7 +14,7 @@
             url: '/chat',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Chats'
+                pageTitle: 'doitApp.chat.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('chat');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('chat-detail', {
@@ -31,7 +36,7 @@
             url: '/chat/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Chat'
+                pageTitle: 'doitApp.chat.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('chat');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'Chat', function($stateParams, Chat) {
                     return Chat.get({id : $stateParams.id}).$promise;
                 }],

@@ -1,12 +1,12 @@
 <div>
-    <h2>Chats</h2>
+    <h2 data-translate="doitApp.chat.home.title">Chats</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="chat.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
+                    <span  data-translate="doitApp.chat.home.createLabel">
                         Create new Chat
                     </span>
                 </button>
@@ -18,10 +18,10 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Nombre</span></th>
-                    <th><span>Hora Creacion</span></th>
-                    <th><span>Evento</span></th>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="doitApp.chat.nombre">Nombre</span></th>
+                    <th><span data-translate="doitApp.chat.horaCreacion">Hora Creacion</span></th>
+                    <th><span data-translate="doitApp.chat.evento">Evento</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -39,19 +39,19 @@
                                     ui-sref="chat-detail({id:chat.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="chat.edit({id:chat.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="chat.delete({id:chat.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>

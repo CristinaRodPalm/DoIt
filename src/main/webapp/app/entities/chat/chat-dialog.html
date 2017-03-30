@@ -4,23 +4,23 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myChatLabel">Create or edit a Chat</h4>
+        <h4 class="modal-title" id="myChatLabel" data-translate="doitApp.chat.home.createOrEditLabel">Create or edit a Chat</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.chat.id">
-            <label for="id">ID</label>
+            <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.chat.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_nombre">Nombre</label>
+            <label class="control-label" data-translate="doitApp.chat.nombre" for="field_nombre">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="field_nombre"
                     ng-model="vm.chat.nombre"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_horaCreacion">Hora Creacion</label>
+            <label class="control-label" data-translate="doitApp.chat.horaCreacion" for="field_horaCreacion">Hora Creacion</label>
                 <div class="input-group">
                     <input id="field_horaCreacion" type="text" class="form-control" name="horaCreacion" datetime-picker="{{dateformat}}" ng-model="vm.chat.horaCreacion" is-open="vm.datePickerOpenStatus.horaCreacion"
                     />
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            <label for="field_evento">Evento</label>
+            <label data-translate="doitApp.chat.evento" for="field_evento">Evento</label>
             <select class="form-control" id="field_evento" name="evento" ng-model="vm.chat.evento" ng-options="evento as evento.nombre for evento in vm.eventos track by evento.id">
                 <option value=""></option>
             </select>
@@ -39,10 +39,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

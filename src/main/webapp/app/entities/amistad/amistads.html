@@ -1,12 +1,12 @@
 <div>
-    <h2>Amistads</h2>
+    <h2 data-translate="doitApp.amistad.home.title">Amistads</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="amistad.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
+                    <span  data-translate="doitApp.amistad.home.createLabel">
                         Create new Amistad
                     </span>
                 </button>
@@ -18,12 +18,12 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Time Stamp</span></th>
-                    <th><span>Aceptada</span></th>
-                    <th><span>Hora Respuesta</span></th>
-                    <th><span>Emisor</span></th>
-                    <th><span>Receptor</span></th>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="doitApp.amistad.timeStamp">Time Stamp</span></th>
+                    <th><span data-translate="doitApp.amistad.aceptada">Aceptada</span></th>
+                    <th><span data-translate="doitApp.amistad.horaRespuesta">Hora Respuesta</span></th>
+                    <th><span data-translate="doitApp.amistad.emisor">Emisor</span></th>
+                    <th><span data-translate="doitApp.amistad.receptor">Receptor</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,19 +45,19 @@
                                     ui-sref="amistad-detail({id:amistad.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="amistad.edit({id:amistad.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="amistad.delete({id:amistad.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>

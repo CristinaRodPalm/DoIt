@@ -1,12 +1,12 @@
 <div>
-    <h2>Retos</h2>
+    <h2 data-translate="doitApp.reto.home.title">Retos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="reto.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
+                    <span  data-translate="doitApp.reto.home.createLabel">
                         Create new Reto
                     </span>
                 </button>
@@ -18,11 +18,11 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Nombre</span></th>
-                    <th><span>Descripcion</span></th>
-                    <th><span>Hora Publicacion</span></th>
-                    <th><span>Imagen</span></th>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="doitApp.reto.nombre">Nombre</span></th>
+                    <th><span data-translate="doitApp.reto.descripcion">Descripcion</span></th>
+                    <th><span data-translate="doitApp.reto.horaPublicacion">Hora Publicacion</span></th>
+                    <th><span data-translate="doitApp.reto.imagen">Imagen</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,19 +44,19 @@
                                     ui-sref="reto-detail({id:reto.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="reto.edit({id:reto.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="reto.delete({id:reto.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>

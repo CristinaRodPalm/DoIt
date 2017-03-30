@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('EventoController', EventoController);
 
-    EventoController.$inject = ['$scope', '$state', 'DataUtils', 'Evento'];
+    EventoController.$inject = ['DataUtils', 'Evento'];
 
-    function EventoController ($scope, $state, DataUtils, Evento) {
+    function EventoController(DataUtils, Evento) {
+
         var vm = this;
 
         vm.eventos = [];

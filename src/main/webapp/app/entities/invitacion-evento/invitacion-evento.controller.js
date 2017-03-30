@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('InvitacionEventoController', InvitacionEventoController);
 
-    InvitacionEventoController.$inject = ['$scope', '$state', 'InvitacionEvento'];
+    InvitacionEventoController.$inject = ['InvitacionEvento'];
 
-    function InvitacionEventoController ($scope, $state, InvitacionEvento) {
+    function InvitacionEventoController(InvitacionEvento) {
+
         var vm = this;
 
         vm.invitacionEventos = [];

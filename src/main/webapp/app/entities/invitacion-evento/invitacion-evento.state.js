@@ -14,7 +14,7 @@
             url: '/invitacion-evento',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'InvitacionEventos'
+                pageTitle: 'doitApp.invitacionEvento.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('invitacionEvento');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('invitacion-evento-detail', {
@@ -31,7 +36,7 @@
             url: '/invitacion-evento/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'InvitacionEvento'
+                pageTitle: 'doitApp.invitacionEvento.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('invitacionEvento');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'InvitacionEvento', function($stateParams, InvitacionEvento) {
                     return InvitacionEvento.get({id : $stateParams.id}).$promise;
                 }],

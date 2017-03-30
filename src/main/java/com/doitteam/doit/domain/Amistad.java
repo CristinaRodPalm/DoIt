@@ -2,7 +2,7 @@ package com.doitteam.doit.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;

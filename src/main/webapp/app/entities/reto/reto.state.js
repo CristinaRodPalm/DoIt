@@ -14,7 +14,7 @@
             url: '/reto',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Retos'
+                pageTitle: 'doitApp.reto.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('reto');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('reto-detail', {
@@ -31,7 +36,7 @@
             url: '/reto/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Reto'
+                pageTitle: 'doitApp.reto.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('reto');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'Reto', function($stateParams, Reto) {
                     return Reto.get({id : $stateParams.id}).$promise;
                 }],

@@ -1,30 +1,30 @@
 
 <div>
-    <h2><span>Invitacion Evento</span> {{vm.invitacionEvento.id}}</h2>
+    <h2><span data-translate="doitApp.invitacionEvento.detail.title">Invitacion Evento</span> {{vm.invitacionEvento.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row jh-entity-details">
-        <dt><span>Hora Resolucion</span></dt>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="doitApp.invitacionEvento.horaResolucion">Hora Resolucion</span></dt>
         <dd>
             <span>{{vm.invitacionEvento.horaResolucion | date:'medium'}}</span>
         </dd>
-        <dt><span>Hora Invitacion</span></dt>
+        <dt><span data-translate="doitApp.invitacionEvento.horaInvitacion">Hora Invitacion</span></dt>
         <dd>
             <span>{{vm.invitacionEvento.horaInvitacion | date:'medium'}}</span>
         </dd>
-        <dt><span>Resolucion</span></dt>
+        <dt><span data-translate="doitApp.invitacionEvento.resolucion">Resolucion</span></dt>
         <dd>
             <span>{{vm.invitacionEvento.resolucion}}</span>
         </dd>
-        <dt><span>Evento</span></dt>
+        <dt><span data-translate="doitApp.invitacionEvento.evento">Evento</span></dt>
         <dd>
             <a ui-sref="evento-detail({id:vm.invitacionEvento.evento.id})">{{vm.invitacionEvento.evento.nombre}}</a>
         </dd>
-        <dt><span>Miembro Evento</span></dt>
+        <dt><span data-translate="doitApp.invitacionEvento.miembroEvento">Miembro Evento</span></dt>
         <dd>
             {{vm.invitacionEvento.miembroEvento.login}}
         </dd>
-        <dt><span>Invitado</span></dt>
+        <dt><span data-translate="doitApp.invitacionEvento.invitado">Invitado</span></dt>
         <dd>
             {{vm.invitacionEvento.invitado.login}}
         </dd>
@@ -33,11 +33,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="invitacion-evento-detail.edit({id:vm.invitacionEvento.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

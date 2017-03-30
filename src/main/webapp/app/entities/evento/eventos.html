@@ -1,12 +1,12 @@
 <div>
-    <h2>Eventos</h2>
+    <h2 data-translate="doitApp.evento.home.title">Eventos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="evento.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
+                    <span  data-translate="doitApp.evento.home.createLabel">
                         Create new Evento
                     </span>
                 </button>
@@ -18,17 +18,17 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Nombre</span></th>
-                    <th><span>Descripcion</span></th>
-                    <th><span>Hora</span></th>
-                    <th><span>Imagen</span></th>
-                    <th><span>Direccion</span></th>
-                    <th><span>Latitud</span></th>
-                    <th><span>Longitud</span></th>
-                    <th><span>Fecha Evento</span></th>
-                    <th><span>Reto</span></th>
-                    <th><span>Admin</span></th>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
+                    <th><span data-translate="doitApp.evento.descripcion">Descripcion</span></th>
+                    <th><span data-translate="doitApp.evento.hora">Hora</span></th>
+                    <th><span data-translate="doitApp.evento.imagen">Imagen</span></th>
+                    <th><span data-translate="doitApp.evento.direccion">Direccion</span></th>
+                    <th><span data-translate="doitApp.evento.latitud">Latitud</span></th>
+                    <th><span data-translate="doitApp.evento.longitud">Longitud</span></th>
+                    <th><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></th>
+                    <th><span data-translate="doitApp.evento.reto">Reto</span></th>
+                    <th><span data-translate="doitApp.evento.admin">Admin</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -60,19 +60,19 @@
                                     ui-sref="evento-detail({id:evento.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="evento.edit({id:evento.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="evento.delete({id:evento.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>

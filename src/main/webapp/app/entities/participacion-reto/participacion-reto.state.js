@@ -14,7 +14,7 @@
             url: '/participacion-reto',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'ParticipacionRetos'
+                pageTitle: 'doitApp.participacionReto.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('participacionReto');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('participacion-reto-detail', {
@@ -31,7 +36,7 @@
             url: '/participacion-reto/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'ParticipacionReto'
+                pageTitle: 'doitApp.participacionReto.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('participacionReto');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'ParticipacionReto', function($stateParams, ParticipacionReto) {
                     return ParticipacionReto.get({id : $stateParams.id}).$promise;
                 }],

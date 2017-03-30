@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('MensajeController', MensajeController);
 
-    MensajeController.$inject = ['$scope', '$state', 'DataUtils', 'Mensaje'];
+    MensajeController.$inject = ['DataUtils', 'Mensaje'];
 
-    function MensajeController ($scope, $state, DataUtils, Mensaje) {
+    function MensajeController(DataUtils, Mensaje) {
+
         var vm = this;
 
         vm.mensajes = [];
