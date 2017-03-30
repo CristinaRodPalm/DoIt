@@ -2,15 +2,14 @@ package com.doitteam.doit.service;
 
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
-import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.AuthorityRepository;
-import com.doitteam.doit.repository.UserExtCriteriaRepository;
-import com.doitteam.doit.repository.UserExtRepository;
+import com.doitteam.doit.config.Constants;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.security.SecurityUtils;
-import com.doitteam.doit.service.dto.UserDTO;
 import com.doitteam.doit.service.util.RandomUtil;
+import com.doitteam.doit.service.dto.UserDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,12 +20,8 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Service class for managing users.
@@ -44,9 +39,6 @@ public class UserService {
     public final JdbcTokenStore jdbcTokenStore;
 
     private final AuthorityRepository authorityRepository;
-
-    @Inject
-    private UserExtRepository userExtRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JdbcTokenStore jdbcTokenStore, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
@@ -94,7 +86,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey, String phone, ZonedDateTime fechaNacimiento) {
+        String imageUrl, String langKey) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -116,15 +108,6 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
-
-        //el nuevo usuario con los campos adicionales junto con el usuario de jhipster original
-        UserExt newUserExtra = new UserExt();
-        newUserExtra.setUser(newUser);
-        newUserExtra.setTelefono(phone);
-        newUserExtra.setFechaNacimiento(fechaNacimiento);
-        userExtRepository.save(newUserExtra);
-        log.debug("Created Information for Extra User: {}", newUserExtra);
-
         return newUser;
     }
 
@@ -136,7 +119,7 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
-            user.setLangKey("en"); // default language
+            user.setLangKey("es"); // default language
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
@@ -154,12 +137,16 @@ public class UserService {
         user.setActivated(true);
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
-
         return user;
     }
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.
+     *
+     * @param firstName first name of user
+     * @param lastName last name of user
+     * @param email email id of user
+     * @param langKey language key
      */
     public void updateUser(String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
@@ -173,6 +160,9 @@ public class UserService {
 
     /**
      * Update all information for a specific user, and return the modified user.
+     *
+     * @param userDTO user to update
+     * @return updated user
      */
     public Optional<UserDTO> updateUser(UserDTO userDTO) {
         return Optional.of(userRepository
@@ -213,9 +203,9 @@ public class UserService {
         });
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true)    
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).map(UserDTO::new);
+        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)

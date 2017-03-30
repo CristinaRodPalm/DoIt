@@ -3,34 +3,34 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Do It!</title>
+    <title>doit</title>
     <meta name="description" content="">
+    <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
-
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <!-- endbuild -->
 </head>
 <body ng-app="doitApp" ng-strict-di>
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <p class="browserupgrade"><span class="glyphicon glyphicon-exclamation-sign"></span><strong>¡Ups!</strong> Nos hemos fijado que tienes un navegador desactualizado<span class="glyphicon glyphicon-alert"></span>
-            ¡Actualízalo <a href="http://browsehappy.com/">aquí!</a>
-        </p>
     <![endif]-->
-    <!--<page-ribbon></page-ribbon>-->
+    <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
         <div class="well" ui-view="content">
             <!-- Angular views -->
+        </div>
+
+        <div class="footer" ng-cloak>
+            <p data-translate="footer">This is your footer</p>
         </div>
     </div>
 
@@ -47,24 +47,26 @@
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyA9Errugk2Ao7N8dH2PVSy_oi8rBVTe0DQ"></script>
-
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -86,6 +88,7 @@
     <script src="app/services/auth/activate.service.js"></script>
     <script src="app/services/auth/account.service.js"></script>
     <script src="app/layouts/navbar/navbar.controller.js"></script>
+    <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
@@ -158,6 +161,10 @@
     <script src="app/components/util/base64.service.js"></script>
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/login/login.controller.js"></script>
+    <script src="app/components/language/language.service.js"></script>
+    <script src="app/components/language/language.filter.js"></script>
+    <script src="app/components/language/language.controller.js"></script>
+    <script src="app/components/language/language.constants.js"></script>
     <script src="app/components/form/show-validation.directive.js"></script>
     <script src="app/components/form/pagination.constants.js"></script>
     <script src="app/components/form/minbytes.directive.js"></script>
@@ -169,9 +176,12 @@
     <script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
     <script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>
     <script src="app/blocks/interceptor/auth.interceptor.js"></script>
+    <script src="app/blocks/handlers/translation.handler.js"></script>
     <script src="app/blocks/handlers/state.handler.js"></script>
     <script src="app/blocks/config/uib-pagination.config.js"></script>
     <script src="app/blocks/config/uib-pager.config.js"></script>
+    <script src="app/blocks/config/translation-storage.provider.js"></script>
+    <script src="app/blocks/config/translation.config.js"></script>
     <script src="app/blocks/config/localstorage.config.js"></script>
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>

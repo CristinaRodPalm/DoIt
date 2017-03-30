@@ -13,7 +13,7 @@
             url: '/metrics',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Recursos'
+                pageTitle: 'metrics.title'
             },
             views: {
                 'content@': {
@@ -21,6 +21,12 @@
                     controller: 'JhiMetricsMonitoringController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('metrics');
+                    return $translate.refresh();
+                }]
             }
         });
     }

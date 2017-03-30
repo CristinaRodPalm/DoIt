@@ -1,18 +1,8 @@
-/*body {
+body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
-/*body{
-    background-image: url(../images/person-smartphone-office-table.jpeg);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}*/
 
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
@@ -115,15 +105,6 @@ Main page styles
     background-size: contain;
 }
 
-.btn-transparent{
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    border: 0;
-    background: transparent;
-}
-
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -135,7 +116,6 @@ only screen and (                min-resolution: 2dppx) {
     .hipster {
         background: url("../images/hipster2x.png") no-repeat center top;
         background-size: contain;
-        background-position: center center;
     }
 }
 
@@ -175,11 +155,7 @@ Generic styles
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
-a:hover {
-  cursor: pointer;
-}
-
-.hand {
+a:hover, .hand, [jh-sort-by] {
     cursor: pointer;
 }
 
@@ -316,16 +292,16 @@ entity tables helpers
 /* ==========================================================================
 entity detail page css
 ========================================================================== */
-.row.jh-entity-details > dd {
+.dl-horizontal.jh-entity-details > dd {
     margin-bottom: 15px;
 }
 
 @media screen and (min-width: 768px) {
-    .row.jh-entity-details > dt {
+    .dl-horizontal.jh-entity-details > dt {
         margin-bottom: 15px;
     }
 
-    .row.jh-entity-details > dd {
+    .dl-horizontal.jh-entity-details > dd {
         border-bottom: 1px solid #eee;
         padding-left: 180px;
         margin-left: 0;

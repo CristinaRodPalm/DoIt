@@ -1,5 +1,7 @@
 package com.doitteam.doit.web.rest.errors;
 
+import java.util.List;
+
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.HttpStatus;
@@ -10,12 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller advice to translate the server side exceptions to client-friendly json structures.
@@ -26,7 +23,7 @@ public class ExceptionTranslator {
     @ExceptionHandler(ConcurrencyFailureException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorVM processConcurencyError(ConcurrencyFailureException ex) {
+    public ErrorVM processConcurrencyError(ConcurrencyFailureException ex) {
         return new ErrorVM(ErrorConstants.ERR_CONCURRENCY_FAILURE);
     }
 
@@ -36,8 +33,11 @@ public class ExceptionTranslator {
     public ErrorVM processValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
-
-        return processFieldErrors(fieldErrors);
+        ErrorVM dto = new ErrorVM(ErrorConstants.ERR_VALIDATION);
+        for (FieldError fieldError : fieldErrors) {
+            dto.add(fieldError.getObjectName(), fieldError.getField(), fieldError.getCode());
+        }
+        return dto;
     }
 
     @ExceptionHandler(CustomParameterizedException.class)
@@ -52,16 +52,6 @@ public class ExceptionTranslator {
     @ResponseBody
     public ErrorVM processAccessDeniedException(AccessDeniedException e) {
         return new ErrorVM(ErrorConstants.ERR_ACCESS_DENIED, e.getMessage());
-    }
-
-    private ErrorVM processFieldErrors(List<FieldError> fieldErrors) {
-        ErrorVM dto = new ErrorVM(ErrorConstants.ERR_VALIDATION);
-
-        for (FieldError fieldError : fieldErrors) {
-            dto.add(fieldError.getObjectName(), fieldError.getField(), fieldError.getCode());
-        }
-
-        return dto;
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

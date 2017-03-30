@@ -1,17 +1,19 @@
 package com.doitteam.doit.config;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.servlet.InstrumentedFilter;
-import com.codahale.metrics.servlets.MetricsServlet;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.JHipsterProperties;
 import io.github.jhipster.web.filter.CachingHttpHeadersFilter;
+
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.servlet.InstrumentedFilter;
+import com.codahale.metrics.servlets.MetricsServlet;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.MimeMappings;
+import org.springframework.boot.context.embedded.*;
+import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import io.undertow.UndertowOptions;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +22,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import javax.servlet.*;
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.EnumSet;
+import java.util.*;
+import javax.servlet.*;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -71,6 +73,20 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         container.setMimeMappings(mappings);
         // When running in an IDE or with ./mvnw spring-boot:run, set location of the static web assets.
         setLocationForStaticAssets(container);
+
+        /*
+         * Enable HTTP/2 for Undertow - https://twitter.com/ankinson/status/829256167700492288
+         * HTTP/2 requires HTTPS, so HTTP requests will fallback to HTTP/1.1.
+         * See the JHipsterProperties class and your application-*.yml configuration files
+         * for more information.
+         */
+        if (jHipsterProperties.getHttp().getVersion().equals(JHipsterProperties.Http.Version.V_2_0) &&
+            container instanceof UndertowEmbeddedServletContainerFactory) {
+
+            ((UndertowEmbeddedServletContainerFactory) container)
+                .addBuilderCustomizers(builder ->
+                    builder.setServerOption(UndertowOptions.ENABLE_HTTP2, true));
+        }
     }
 
     private void setLocationForStaticAssets(ConfigurableEmbeddedServletContainer container) {

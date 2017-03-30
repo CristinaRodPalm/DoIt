@@ -13,7 +13,7 @@
             url: '/settings',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Ajustes'
+                pageTitle: 'global.menu.account.settings'
             },
             views: {
                 'content@': {
@@ -21,6 +21,12 @@
                     controller: 'SettingsController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('settings');
+                    return $translate.refresh();
+                }]
             }
         });
     }

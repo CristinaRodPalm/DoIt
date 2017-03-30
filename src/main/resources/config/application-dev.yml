@@ -45,21 +45,10 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
     mail:
-            host: smtp.gmail.com
-            port: 587
-            username: doit.project2017@gmail.com
-            password: Stucom2017jhipster
-            protocol: smtp
-            tls: true
-            properties.mail.smtp:
-                auth: true
-                starttls.enable: true
-                ssl.trust: smtp.gmail.com
-    #mail:
-    #   host: localhost
-    #   port: 25
-    #   username:
-    #   password:
+        host: localhost
+        port: 25
+        username:
+        password:
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -68,8 +57,25 @@ spring:
 liquibase:
     contexts: dev
 
+# ===================================================================
+# To enable SSL, generate a certificate using:
+# keytool -genkey -alias doit -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+#
+# You can also use Let's Encrypt:
+# https://maximilian-boehm.com/hp2121/Create-a-Java-Keystore-JKS-from-Let-s-Encrypt-Certificates.htm
+#
+# Then, modify the server.ssl properties so your "server" configuration looks like:
+#
+# server:
+#    port: 8443
+#    ssl:
+#        key-store: keystore.p12
+#        key-store-password: <your-password>
+#        keyStoreType: PKCS12
+#        keyAlias: doit
+# ===================================================================
 server:
-    port: 64
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties
@@ -78,9 +84,11 @@ server:
 # ===================================================================
 
 jhipster:
+    http:
+        version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: doit@localhost
-        base-url: http://127.0.0.1:64
+        base-url: http://127.0.0.1:8080
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite: # Use the "graphite" Maven profile to have the Graphite dependencies
@@ -93,7 +101,7 @@ jhipster:
             endpoint: /prometheusMetrics
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
-            reportFrequency: 60 # in seconds
+            report-frequency: 60 # in seconds
     logging:
         logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
             enabled: false

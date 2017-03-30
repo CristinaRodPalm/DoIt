@@ -1,12 +1,13 @@
 package com.doitteam.doit.service.dto;
 
 import com.doitteam.doit.config.Constants;
+
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
+
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;

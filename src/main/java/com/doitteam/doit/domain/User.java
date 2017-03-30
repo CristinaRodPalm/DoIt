@@ -1,6 +1,7 @@
 package com.doitteam.doit.domain;
 
 import com.doitteam.doit.config.Constants;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.validator.constraints.Email;
@@ -10,10 +11,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.time.ZonedDateTime;
 
 /**
  * A user.
@@ -49,7 +50,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String lastName;
 
     @Email
-    @Size(max = 100)
+    @Size(min = 5, max = 100)
     @Column(length = 100, unique = true)
     private String email;
 
@@ -76,19 +77,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private ZonedDateTime resetDate = null;
-
-    @OneToOne(optional = false, mappedBy = "user")
-    @JoinColumn(unique = true)
-    @JsonIgnore
-    private UserExt userExt;
-
-    public UserExt getUserExt() {
-        return userExt;
-    }
-
-    public void setUserExt(UserExt userExt) {
-        this.userExt = userExt;
-    }
 
     @JsonIgnore
     @ManyToMany
@@ -215,11 +203,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
         User user = (User) o;
 
-        if (!login.equals(user.login)) {
-            return false;
-        }
-
-        return true;
+        return login.equals(user.login);
     }
 
     @Override

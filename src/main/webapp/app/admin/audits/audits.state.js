@@ -13,7 +13,7 @@
             url: '/audits',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'Datos'
+                pageTitle: 'audits.title'
             },
             views: {
                 'content@': {
@@ -21,6 +21,12 @@
                     controller: 'AuditsController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('audits');
+                    return $translate.refresh();
+                }]
             }
         });
     }

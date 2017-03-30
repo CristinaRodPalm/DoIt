@@ -6,7 +6,6 @@ import com.doitteam.doit.domain.UserExt_;
 import com.doitteam.doit.domain.User_;
 import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;

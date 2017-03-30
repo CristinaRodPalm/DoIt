@@ -3,8 +3,7 @@ package com.doitteam.doit.service.mapper;
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.service.dto.UserDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 import java.util.List;
 import java.util.Set;
