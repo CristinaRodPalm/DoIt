@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.account = null;
-        vm.isAuthenticated = false;
+        vm.isAuthenticated = null;
         vm.login = login;
         vm.register = register;
         vm.requestResetPassword = requestResetPassword;
