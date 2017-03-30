@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Doit",
+        "title": "Do It!",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "navbar-functions":{
             "friend-requests":"Friend requests"
@@ -48,6 +48,8 @@
         "form": {
             "username": "Username",
             "username.placeholder": "Your username",
+            "password":"Password",
+            "password.placeholder":"Your password",
             "newpassword": "New password",
             "newpassword.placeholder": "New password",
             "confirmpassword": "New password confirmation",
@@ -131,6 +133,5 @@
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
-    },
-    "footer": "Created by Cristina Rodriguez, David Solanes, Ivan Graña and Julian Egea."
+    }
 }

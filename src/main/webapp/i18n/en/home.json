@@ -1,9 +1,9 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to Do It!",
+        "subtitle": "A project made with <em>Open Source</em> tool <a href='https://jhipster.github.io/' target='_blank'>JHipster</a>",
         "logged": {
-            "message": "You are logged in as user \"{{username}}\"."
+            "message": "You are logged as user \"{{username}}\"."
         },
         "question": "If you have any question on JHipster:",
         "link": {
@@ -14,6 +14,7 @@
             "follow": "follow @java_hipster on Twitter"
         },
         "like": "If you like JHipster, don't forget to give us a star on",
-        "github": "GitHub"
+        "github": "GitHub",
+        "footer": "<small><em> Created by Cristina Rodriguez, David Solanes, Ivan Graña and Julian Egea. </em></small>"
     }
 }

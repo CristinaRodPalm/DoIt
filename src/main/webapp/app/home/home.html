@@ -4,52 +4,68 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1 data-translate="home.title">Welcome, Java Hipster!</h1>
-            <p class="lead" data-translate="home.subtitle">This is your homepage</p>
+            <h1 data-translate="home.title">Title</h1>
+            <h3 data-translate="home.subtitle">Subtitle</h3>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message"
-                     translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false"
-                     data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the
-                    default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user"
-                    and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register"
-                     translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message">
+                    Mensaje login
                 </div>
             </div>
 
-            <p data-translate="home.question">
-                If you have any question on JHipster:
-            </p>
+            <!--NG SWITCH WHEN NO FUNCIONA -->
 
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank" data-translate="home.link.homepage">JHipster
-                    homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank"
-                       data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank"
-                       data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank"
-                       data-translate="home.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" data-translate="home.link.follow">follow
-                    @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-                <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a
-                href="https://github.com/jhipster/generator-jhipster" target="_blank" data-translate="home.github">Github</a>!
-            </p>
+            <div ng-switch-when="false">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="alert alert-danger" ng-show="vm.authenticationError"
+                          data-translate="login.messages.error.authentication">
+                        <strong>
+                            <span class="glyphicon glyphicon-alert"></span>
+                            ¡Error!
+                        </strong>
+                        Por favor, comprueba tus credenciales e intentálo de nuevo.
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <form class="form" role="form" ng-submit="vm.login($event)">
+                        <div class="form-group">
+                            <label for="username" data-translate="global.form.username">Login</label>
+                            <input type="text" class="form-control"
+                                   id="username"
+                                   placeholder="{{'global.form.username.placeholder' | translate}}"
+                                   ng-model="vm.username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" data-translate="global.form.password">Contraseña</label>
+                            <input type="password" class="form-control"
+                                   id="password"
+                                   placeholder="{{'global.form.password.placeholder' | translate}}"
+                                   ng-model="vm.password">
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-lg"+
+                                data-translate="global.menu.account.login">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Inicia sesión
+                        </button>
+                        <div class="row"></div>
+                        <br>
+                        <div class="alert alert-danger" data-translate="">
+                            <a class="alert-link"
+                               ng-click="vm.requestResetPassword()">
+                                ¿Has olvidado tu contraseña?
+                            </a>
+                        </div>
+                        <div class="alert alert-info" data-translate="global.messages.info.register" translate-compile>
+                            ¿Todavía no posees una cuenta?<a class="alert-link" ng-click="vm.register()">
+                            ¡Crea tu cuenta!</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <div class="footer" ng-cloak>
-        <p data-translate="home.footer">This is your footer</p>
+        <p data-translate="home.footer">Footer</p>
     </div>
 </div>

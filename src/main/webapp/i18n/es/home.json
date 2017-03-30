@@ -1,9 +1,9 @@
 {
     "home": {
-        "title": "¡Bienvenido, Java Hipster!",
-        "subtitle": "Esta es su página de inicio",
+        "title": "¡Bienvenido a Do It!",
+        "subtitle": "Un proyecto creado con la herramienta <em>Open Source</em> <a href='https://jhipster.github.io/' target='_blank'>JHipster</a>",
         "logged": {
-            "message": "Está conectado como \"{{username}}\"."
+            "message": "Estás conectado como \"{{username}}\"."
         },
         "question": "Si tiene preguntas sobre JHipster:",
         "link": {
@@ -14,6 +14,7 @@
             "follow": "contacto @java_hipster en Twitter"
         },
         "like": "Si te gusta JHipster, danos una estrella en",
-        "github": "GitHub"
+        "github": "GitHub",
+        "footer": "<small><em> Creado por Cristina Rodríguez, David Solanes, Ivan Graña y Julián Egea. </em></small>"
     }
 }
