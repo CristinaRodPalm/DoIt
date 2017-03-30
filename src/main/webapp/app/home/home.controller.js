@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.account = null;
-        vm.isAuthenticated = null;
+        vm.isAuthenticated = false;
         vm.login = login;
         vm.register = register;
         vm.requestResetPassword = requestResetPassword;
@@ -31,6 +31,7 @@
         function register () {
             $state.go('register');
         }
+
         function login(event){
             event.preventDefault();
             Auth.login({

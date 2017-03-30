@@ -15,8 +15,8 @@
 
             <!--NG SWITCH WHEN NO FUNCIONA -->
 
-            <div ng-switch-when="false">
-                <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2" ng-switch="!vm.isAuthenticated()">
+                <div class="row">
                     <div class="alert alert-danger" ng-show="vm.authenticationError"
                           data-translate="login.messages.error.authentication">
                         <strong>
@@ -26,7 +26,7 @@
                         Por favor, comprueba tus credenciales e intentálo de nuevo.
                     </div>
                 </div>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="row">
                     <form class="form" role="form" ng-submit="vm.login($event)">
                         <div class="form-group">
                             <label for="username" data-translate="global.form.username">Login</label>
@@ -50,9 +50,10 @@
                         </button>
                         <div class="row"></div>
                         <br>
-                        <div class="alert alert-danger" data-translate="">
+                        <div class="alert alert-danger">
                             <a class="alert-link"
-                               ng-click="vm.requestResetPassword()">
+                               ng-click="vm.requestResetPassword()"
+                               data-translate="login.password.forgot">
                                 ¿Has olvidado tu contraseña?
                             </a>
                         </div>
