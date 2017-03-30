@@ -1,4 +1,3 @@
-
 <div>
     <h2><span>Evento</span></h2>
     <h3>
@@ -63,7 +62,7 @@
     </dl>
 
     <button type="submit"
-            ui-sref="{{ vm.previousState }}"
+            ui-sref="{{vm.previousState}}"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
@@ -73,3 +72,18 @@
         <span class="hidden-sm-down"> Edit</span>
     </button>
 </div>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+
+    var geocoder = new google.maps.Geocoder();
+    var address = vm.evento.direccion;
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            alert(latitude+","+longitude);
+        }
+    });
+</script>

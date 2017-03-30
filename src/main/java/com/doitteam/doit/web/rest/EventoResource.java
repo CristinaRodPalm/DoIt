@@ -117,4 +117,25 @@ public class EventoResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /*
+    @GetMapping("/eventos/{id}")
+    @Timed
+    public ResponseEntity<String> getDireccionEventoByLatLong(@PathVariable Long id){
+        log.debug("REST Request to get Direccion from Evento: {}", id);
+        String urlMaps= "http://maps.googleapis.com/maps/api/geocode/json?latlng="+
+            eventoRepository.findOne(id).getLatitud()+","+eventoRepository.findOne(id).getLongitud();;
+        log.debug(urlMaps);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert(ENTITY_NAME, urlMaps)).body(urlMaps);
+    }
+    @GetMapping("/eventos/{id}")
+    @Timed
+    public ResponseEntity<String> getLatLongEventoByDireccion(@PathVariable Long id){
+        log.debug("REST Request to get Latitude and Longitude from Evento: {}", id);
+        String direccion = eventoRepository.findOne(id).getDireccion().replace(' ', '+');
+        String urlMaps= "https://maps.googleapis.com/maps/api/geocode/json?address="+direccion;
+        //log.debug(direccion);
+        log.debug(urlMaps);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert(ENTITY_NAME, urlMaps)).body(urlMaps);
+    }
+    */
 }
