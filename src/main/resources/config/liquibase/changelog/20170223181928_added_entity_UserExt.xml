@@ -23,7 +23,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="fecha_nacimiento" type="timestamp">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="imagen" type="longblob">

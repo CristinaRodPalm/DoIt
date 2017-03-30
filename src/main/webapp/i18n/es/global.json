@@ -2,6 +2,9 @@
     "global": {
         "title": "Doit",
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
+        "navbar-functions":{
+          "friend-requests":"Solicitudes de amistad"
+        },
         "menu": {
             "home": "Inicio",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
@@ -129,5 +132,5 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "pie de página"
+    "footer": "Creado por Cristina Rodríguez, David Solanes, Ivan Graña y Julián Egea."
 }
