@@ -2,7 +2,8 @@
     "doitApp": {
         "amistad" : {
             "home": {
-                "title": "Amistads",
+                "title": "Friend requests",
+                "subtitle":"Here is where are shown friend requests to you.",
                 "createLabel": "Create a new Amistad",
                 "createOrEditLabel": "Create or edit a Amistad"
             },

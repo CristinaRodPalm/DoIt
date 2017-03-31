@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12,13 +12,22 @@
         var vm = this;
 
         vm.amistads = [];
+        vm.amistadsCurrentUser = [];
 
         loadAll();
+        loadAmistadsCurrentUser();
 
         function loadAll() {
-            Amistad.query(function(result) {
+            Amistad.query(function (result) {
                 vm.amistads = result;
                 vm.searchQuery = null;
+            });
+        }
+
+        function loadAmistadsCurrentUser() {
+            Amistad.getAllByCurrentUser(function (result) {
+                console.debug(result);
+                vm.amistadsCurrentUser = result;
             });
         }
     }

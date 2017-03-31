@@ -3,7 +3,10 @@ package com.doitteam.doit.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
 
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.AmistadRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -27,11 +30,13 @@ public class AmistadResource {
     private final Logger log = LoggerFactory.getLogger(AmistadResource.class);
 
     private static final String ENTITY_NAME = "amistad";
-        
-    private final AmistadRepository amistadRepository;
 
-    public AmistadResource(AmistadRepository amistadRepository) {
+    private final AmistadRepository amistadRepository;
+    private final UserRepository userRepository;
+
+    public AmistadResource(AmistadRepository amistadRepository, UserRepository userRepository) {
         this.amistadRepository = amistadRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -115,6 +120,14 @@ public class AmistadResource {
         log.debug("REST request to delete Amistad : {}", id);
         amistadRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/amistades")
+    @Timed
+    public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {
+        log.debug("REST Request para obtener amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return amistadRepository.findByReceptorIsCurrentUser(userLogin.getId());
     }
 
 }

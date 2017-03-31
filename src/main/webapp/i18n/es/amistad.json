@@ -2,7 +2,8 @@
     "doitApp": {
         "amistad" : {
             "home": {
-                "title": "Amistads",
+                "title": "Solicitudes de amistad",
+                "subtitle": "Aquí se muestran las solicitudes de amistad que te han enviado otros usuarios.",
                 "createLabel": "Crear nuevo Amistad",
                 "createOrEditLabel": "Crear o editar Amistad"
             },
