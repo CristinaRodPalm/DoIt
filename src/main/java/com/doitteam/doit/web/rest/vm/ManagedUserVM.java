@@ -15,6 +15,10 @@ public class ManagedUserVM extends UserDTO {
 
     public static final int PASSWORD_MAX_LENGTH = 100;
 
+    private String phone;
+
+    private ZonedDateTime fechaNacimiento;
+
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
@@ -35,6 +39,14 @@ public class ManagedUserVM extends UserDTO {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public ZonedDateTime getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     @Override

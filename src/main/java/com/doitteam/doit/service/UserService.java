@@ -2,8 +2,10 @@ package com.doitteam.doit.service;
 
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
+import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.AuthorityRepository;
 import com.doitteam.doit.config.Constants;
+import com.doitteam.doit.repository.UserExtRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.security.SecurityUtils;
@@ -12,6 +14,7 @@ import com.doitteam.doit.service.dto.UserDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,6 +42,9 @@ public class UserService {
     public final JdbcTokenStore jdbcTokenStore;
 
     private final AuthorityRepository authorityRepository;
+
+    @Autowired
+    private UserExtRepository userExtRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JdbcTokenStore jdbcTokenStore, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
@@ -86,7 +92,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey) {
+        String imageUrl, String langKey, String phone, ZonedDateTime fechaNacimiento) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -108,6 +114,16 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+
+        //el nuevo usuario con los campos adicionales junto con el usuario de jhipster original
+        UserExt newUserExtra = new UserExt();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setTelefono(phone);
+        newUserExtra.setFechaNacimiento(fechaNacimiento);
+        userExtRepository.save(newUserExtra);
+        log.debug("Created Information for Extra User: {}", newUserExtra);
+
         return newUser;
     }
 
@@ -203,7 +219,7 @@ public class UserService {
         });
     }
 
-    @Transactional(readOnly = true)    
+    @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }

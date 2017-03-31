@@ -17,21 +17,11 @@
             <label class="control-label" data-translate="doitApp.userExt.fechaNacimiento" for="field_fechaNacimiento">Fecha Nacimiento</label>
                 <div class="input-group">
                     <input id="field_fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" datetime-picker="{{dateformat}}" ng-model="vm.userExt.fechaNacimiento" is-open="vm.datePickerOpenStatus.fechaNacimiento"
-                    required/>
+                    />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaNacimiento')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-            <div ng-show="editForm.fechaNacimiento.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.fechaNacimiento.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.fechaNacimiento.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
-                    This field should be a date and time.
-                </p>
-            </div>
         </div>
         <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.userExt)" ngf-pattern="'image/*'">
             <label class="control-label" data-translate="doitApp.userExt.imagen" for="field_imagen">Imagen</label>

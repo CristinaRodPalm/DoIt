@@ -72,6 +72,35 @@
                         </p>
                     </div>
                 </div>
+
+                <!--NUEVOS CAMPOS-->
+
+                <!--TELEFONO USUARIO-->
+                <div class="form-group">
+                    <label class="control-label" for="phone">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Tu teléfono"
+                           ng-model="vm.registerAccount.phone" ng-minlength=9 ng-maxlength=9
+                           ng-pattern="/^[0-9]/" required>
+                </div>
+                <!--TELEFONO USUARIO-->
+
+                <!--FECHA NACIMIENTO USUARIO-->
+                <div class="form-group">
+                    <label class="control-label" for="field_fechaNacimiento">Fecha Nacimiento</label>
+                    <div class="input-group">
+                        <input id="field_fechaNacimiento" type="text" class="form-control"
+                               name="fechaNacimiento" datetime-picker="{{dateformat}}"
+                               ng-model="vm.registerAccount.fechaNacimiento"
+                               is-open="vm.datePickerOpenStatus.fechaNacimiento"
+                               />
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaNacimiento')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </div>
+                </div>
+                <!--FECHA NACIMIENTO USUARIO-->
+                <!--NUEVOS CAMPOS-->
+
                 <div class="form-group">
                     <label class="control-label" for="password" data-translate="global.form.newpassword">New password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
@@ -114,10 +143,6 @@
 
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
             </form>
-            <p></p>
-            <div class="alert alert-warning" data-translate="global.messages.info.authenticated" translate-compile>
-                If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>
         </div>
     </div>
 </div>

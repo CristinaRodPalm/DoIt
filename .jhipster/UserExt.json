@@ -16,10 +16,7 @@
     "fields": [
         {
             "fieldName": "fechaNacimiento",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "imagen",

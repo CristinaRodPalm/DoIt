@@ -20,8 +20,7 @@ public class UserExt implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "fecha_nacimiento", nullable = false)
+    @Column(name = "fecha_nacimiento")
     private ZonedDateTime fechaNacimiento;
 
     @Lob
