@@ -11,57 +11,55 @@
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message">
                     Mensaje login
                 </div>
-            </div>
 
-            <!--NG SWITCH WHEN NO FUNCIONA -->
-
-            <div class="col-md-8 col-md-offset-2" ng-switch-when="false" >
-                <div class="row">
-                    <div class="alert alert-danger" translate="login.messages.error.authentication"
-                        ng-show="vm.isAuthenticated()">
-                        <strong>
-                            <span class="glyphicon glyphicon-alert"></span>
-                            ¡Error!
-                        </strong>
-                        Por favor, comprueba tus credenciales e intentálo de nuevo.
+                <div class="col-md-8 col-md-offset-2" ng-switch-when="false">
+                    <div class="row">
+                        <div class="alert alert-danger" translate="login.messages.error.authentication"
+                             ng-show="vm.authenticationError">
+                            <strong>
+                                <span class="glyphicon glyphicon-alert"></span>
+                                ¡Error!
+                            </strong>
+                            Por favor, comprueba tus credenciales e intentálo de nuevo.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <form class="form" role="form" ng-submit="vm.login($event)">
-                        <div class="form-group">
-                            <label for="username" data-translate="global.form.username">Login</label>
-                            <input type="text" class="form-control"
-                                   id="username"
-                                   placeholder="{{'global.form.username.placeholder' | translate}}"
-                                   ng-model="vm.username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" data-translate="global.form.password">Contraseña</label>
-                            <input type="password" class="form-control"
-                                   id="password"
-                                   placeholder="{{'global.form.password.placeholder' | translate}}"
-                                   ng-model="vm.password">
-                        </div>
-                        <button type="submit"
-                                class="btn btn-primary btn-block btn-lg"+
-                                data-translate="global.menu.account.login">
-                            <span class="glyphicon glyphicon-log-in"></span>
-                            Inicia sesión
-                        </button>
-                        <div class="row"></div>
-                        <br>
-                        <div class="alert alert-danger">
-                            <a class="alert-link"
-                               ng-click="vm.requestResetPassword()"
-                               data-translate="login.password.forgot">
-                                ¿Has olvidado tu contraseña?
-                            </a>
-                        </div>
-                        <div class="alert alert-info" data-translate="global.messages.info.register" translate-compile>
-                            ¿Todavía no posees una cuenta?<a class="alert-link" ng-click="vm.register()">
-                            ¡Crea tu cuenta!</a>
-                        </div>
-                    </form>
+                    <div class="row">
+                        <form class="form" role="form" ng-submit="vm.login($event)">
+                            <div class="form-group">
+                                <label for="username" data-translate="global.form.username">Login</label>
+                                <input type="text" class="form-control"
+                                       id="username"
+                                       placeholder="{{'global.form.username.placeholder' | translate}}"
+                                       ng-model="vm.username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" data-translate="global.form.password">Contraseña</label>
+                                <input type="password" class="form-control"
+                                       id="password"
+                                       placeholder="{{'global.form.password.placeholder' | translate}}"
+                                       ng-model="vm.password">
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-primary btn-block btn-lg"
+                                    data-translate="global.menu.account.login">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Inicia sesión
+                            </button>
+                            <div class="row"></div>
+                            <br>
+                            <div class="alert alert-danger">
+                                <a class="alert-link"
+                                   ng-click="vm.requestResetPassword()"
+                                   data-translate="login.password.forgot">
+                                    ¿Has olvidado tu contraseña?
+                                </a>
+                            </div>
+                            <div class="alert alert-info" data-translate="global.messages.info.register" translate-compile>
+                                ¿Todavía no posees una cuenta?<a class="alert-link" ng-click="vm.register()">
+                                ¡Crea tu cuenta!</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

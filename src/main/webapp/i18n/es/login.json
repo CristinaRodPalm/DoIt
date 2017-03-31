@@ -9,10 +9,10 @@
         },
         "messages": {
             "error": {
-                "authentication": "<strong>¡El inicio de sesión ha fallado!</strong> Por favor, revisa las credenciales e intentálo de nuevo."
+                "authentication": "<strong><span class='glyphicon glyphicon-alert'></span> ¡El inicio de sesión ha fallado!</strong> Por favor, revisa las credenciales e intentálo de nuevo."
             }
         },
-        "password" : {
+        "password": {
             "forgot": "¿Has olvidado tu contraseña?"
         }
     }
