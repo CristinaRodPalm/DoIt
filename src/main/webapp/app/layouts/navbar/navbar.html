@@ -210,8 +210,11 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu ng-if="languageVm.languages.length > 1">
                         <li active-menu="{{language}}" ng-repeat="language in languageVm.languages">
-                            <a href="" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language |
-                                findLanguageFromKey}}</a>
+                            <a href="" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">
+                                <span ng-if="language == 'es'" class="flag-icon flag-icon-es"></span>
+                                <span ng-if="language == 'en'" class="flag-icon flag-icon-gb"></span>
+                                {{language | findLanguageFromKey}}
+                            </a>
                         </li>
                     </ul>
                 </li>
