@@ -15,10 +15,10 @@
 
             <!--NG SWITCH WHEN NO FUNCIONA -->
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2" ng-switch-when="false" >
                 <div class="row">
-                    <div class="alert alert-danger" ng-show="vm.authenticationError"
-                          data-translate="login.messages.error.authentication">
+                    <div class="alert alert-danger" translate="login.messages.error.authentication"
+                        ng-show="vm.isAuthenticated()">
                         <strong>
                             <span class="glyphicon glyphicon-alert"></span>
                             ¡Error!

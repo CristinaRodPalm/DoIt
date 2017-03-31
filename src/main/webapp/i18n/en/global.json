@@ -26,7 +26,7 @@
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
-                "login": "Sign in",
+                "login": "<span class='glyphicon glyphicon-log-in'></span> Sign in",
                 "logout": "Sign out",
                 "register": "Register"
             },
