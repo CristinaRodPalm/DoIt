@@ -3,7 +3,8 @@
         "title": "Do It!",
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
         "navbar-functions": {
-            "friend-requests": "Solicitudes de amistad"
+            "friend-requests": "Solicitudes de amistad",
+            "world-events":"Eventos del mundo"
         },
         "menu": {
             "home": "Inicio",

@@ -1,6 +1,6 @@
 {
     "doitApp": {
-        "evento" : {
+        "evento": {
             "home": {
                 "title": "Eventos",
                 "createLabel": "Create a new Evento",
@@ -26,7 +26,11 @@
             "reto": "Reto",
             "admin": "Admin",
             "miembroEvento": "Miembro Evento",
-            "chat": "Chat"
+            "chat": "Chat",
+            "world-events": {
+                "title": "World events",
+                "subtitle": "Here you can see all the events created by the users around the world!"
+            }
         }
     }
 }

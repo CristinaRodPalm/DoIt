@@ -172,7 +172,7 @@
                 url: '/solicitudes-amistad',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Solicitudes de amistad'
+                    pageTitle: 'doitApp.amistad.home.title'
                 },
                 views: {
                     'content@': {
@@ -181,7 +181,13 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('amistad');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
 
             })
     }

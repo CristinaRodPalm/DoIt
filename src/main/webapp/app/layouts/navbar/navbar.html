@@ -33,6 +33,13 @@
                               data-translate="global.navbar-functions.friend-requests">Friend requests</span>
                     </a>
                 </li>
+                <li ui-sref-active="active" ng-switch-when="true">
+                    <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-globe"></span>
+                        <span class="hidden-sm"
+                              data-translate="global.navbar-functions.world-events">World events</span>
+                    </a>
+                </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown
                     class="dropdown pointer">
