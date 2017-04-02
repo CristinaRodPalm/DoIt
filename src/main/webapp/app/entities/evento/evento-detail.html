@@ -1,9 +1,14 @@
 
 <div>
-    <h2><span data-translate="doitApp.evento.detail.title">Evento</span> {{vm.evento.id}}</h2>
+    <h2><span data-translate="doitApp.evento.detail.title">Evento</span></h2>
+    <small>ID: {{vm.evento.id}}</small>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
+        <dd>
+            {{vm.evento.admin.login}}
+        </dd>
         <dt><span data-translate="doitApp.evento.nombre">Nombre</span></dt>
         <dd>
             <span>{{vm.evento.nombre}}</span>
@@ -24,17 +29,19 @@
                 </a>
             </div>
         </dd>
-        <dt><span data-translate="doitApp.evento.direccion">Direccion</span></dt>
+        <dt><span data-translate="doitApp.evento.direccion">Lugar del evento</span></dt>
         <dd>
             <span>{{vm.evento.direccion}}</span>
         </dd>
-        <dt><span data-translate="doitApp.evento.latitud">Latitud</span></dt>
         <dd>
-            <span>{{vm.evento.latitud}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.evento.longitud">Longitud</span></dt>
-        <dd>
-            <span>{{vm.evento.longitud}}</span>
+            <ngmap>
+                <ng-map id="mapa" class="map-track"
+                        zoom-to-include-markers="20"
+                        disable-default-u-i="true">
+                    <marker position="[{{vm.evento.latitud}},{{vm.evento.longitud}}]">
+                    </marker>
+                </ng-map>
+            </ngmap>
         </dd>
         <dt><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></dt>
         <dd>
@@ -44,19 +51,18 @@
         <dd>
             <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
         </dd>
-        <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
-        <dd>
-            {{vm.evento.admin.login}}
-        </dd>
     </dl>
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})" class="btn btn-primary">
+    <!--OCULTAR ESTE BOTON SI EL USUARIO LOGEADO NO ES EL ADMINISTRADOR DEL EVENTO-->
+    <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})"
+            class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>

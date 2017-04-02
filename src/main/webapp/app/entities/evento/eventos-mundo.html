@@ -1,6 +1,8 @@
 <div>
     <h2 translate="doitApp.evento.world-events.title">World events</h2>
-    <small translate="doitApp.evento.world-events.subtitle">Aquí podrás ver todos los eventos que se han creado en el mundo</small>
+    <small translate="doitApp.evento.world-events.subtitle">Aquí podrás ver todos los eventos que se han creado en el
+        mundo
+    </small>
     <jhi-alert></jhi-alert>
 
     <div class="row">
@@ -9,7 +11,7 @@
                     styles='{{mapStyle}}' zoom="2">
 
                 <marker ng-repeat="evento in vm.eventos" position="[{{evento.latitud}},{{evento.longitud}}]">
-{{evento.latitud}}, {{evento.longitud}} **
+                    {{evento.latitud}}, {{evento.longitud}}
                 </marker>
 
             </ng-map>
