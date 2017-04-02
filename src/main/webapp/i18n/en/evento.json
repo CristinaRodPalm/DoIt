@@ -2,7 +2,8 @@
     "doitApp": {
         "evento": {
             "home": {
-                "title": "Eventos",
+                "title": "Events",
+                "subtitle":"Here you can see a list of events created by other users!",
                 "createLabel": "Create a new Evento",
                 "createOrEditLabel": "Create or edit a Evento"
             },
@@ -15,18 +16,19 @@
             "detail": {
                 "title": "Evento"
             },
-            "nombre": "Nombre",
-            "descripcion": "Descripcion",
-            "hora": "Hora",
-            "imagen": "Imagen",
-            "direccion": "Direccion",
+            "nombre": "Name",
+            "descripcion": "Description",
+            "hora": "Created",
+            "imagen": "Image",
+            "direccion": "Address",
             "latitud": "Latitud",
             "longitud": "Longitud",
-            "fechaEvento": "Fecha Evento",
-            "reto": "Reto",
-            "admin": "Admin",
-            "miembroEvento": "Miembro Evento",
+            "fechaEvento": "Event date",
+            "reto": "Challenge",
+            "admin": "Administrator",
+            "miembroEvento": "Event members",
             "chat": "Chat",
+            "participar":"Participate",
             "world-events": {
                 "title": "World events",
                 "subtitle": "Here you can see all the events created by the users around the world!"

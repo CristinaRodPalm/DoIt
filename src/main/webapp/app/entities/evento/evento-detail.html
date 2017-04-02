@@ -22,7 +22,6 @@
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
                     <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
                 </a>
-                {{vm.evento.imagenContentType}}, {{vm.byteSize(vm.evento.imagen)}}
             </div>
         </dd>
         <dt><span data-translate="doitApp.evento.direccion">Direccion</span></dt>

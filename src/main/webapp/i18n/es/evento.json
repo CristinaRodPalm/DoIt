@@ -3,6 +3,7 @@
         "evento" : {
             "home": {
                 "title": "Eventos",
+                "subtitle":"¡Aquí puedes ver una lista de eventos que han creado otros usuarios!",
                 "createLabel": "Crear nuevo Evento",
                 "createOrEditLabel": "Crear o editar Evento"
             },
@@ -13,20 +14,21 @@
                 "question": "¿Seguro que quiere eliminar Evento {{ id }}?"
             },
             "detail": {
-                "title": "Evento"
+                "title": "Event"
             },
             "nombre": "Nombre",
-            "descripcion": "Descripcion",
-            "hora": "Hora",
+            "descripcion": "Descripción",
+            "hora": "Creado",
             "imagen": "Imagen",
-            "direccion": "Direccion",
+            "direccion": "Dirección",
             "latitud": "Latitud",
             "longitud": "Longitud",
-            "fechaEvento": "Fecha Evento",
+            "fechaEvento": "Fecha del evento",
             "reto": "Reto",
-            "admin": "Admin",
-            "miembroEvento": "Miembro Evento",
+            "admin": "Administrador",
+            "miembroEvento": "Miembros del evento",
             "chat": "Chat",
+            "participar":"Apuntarse",
             "world-events": {
                 "title": "Eventos en el mundo",
                 "subtitle": "¡Aquí podrás ver todos los eventos que se han creado en el mundo!"

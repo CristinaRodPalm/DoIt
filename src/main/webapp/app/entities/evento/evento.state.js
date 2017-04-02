@@ -55,7 +55,7 @@
                     }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
-                            name: $state.current.name || 'evento',
+                            name: $state.current.name || 'eventos',
                             params: $state.params,
                             url: $state.href($state.current.name, $state.params)
                         };
@@ -178,7 +178,7 @@
                 url: '/lista-eventos',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Eventos'
+                    pageTitle: 'doitApp.evento.home.title'
                 },
                 views: {
                     'content@': {
@@ -187,7 +187,13 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
 
             .state('crear-evento', {

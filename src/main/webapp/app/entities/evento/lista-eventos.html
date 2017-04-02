@@ -1,6 +1,6 @@
 <div>
-    <h2>Eventos</h2>
-    <small>¡Aquí puedes ver una lista de eventos
+    <h2 translate="doitApp.evento.home.title">Events</h2>
+    <small translate="doitApp.evento.home.subtitle">¡Aquí puedes ver una lista de eventos
         que han creado otros usuarios!</small>
     <jhi-alert></jhi-alert>
     <br/>
@@ -9,13 +9,13 @@
             <thead>
             <tr>
                 <th></th>
-                <th><span>Administrador</span></th>
-                <th><span>Nombre</span></th>
-                <th><span>Descripción</span></th>
-                <th><span>Hora de creación</span></th>
-                <th><span>Ubicación</span></th>
-                <th><span>Fecha</span></th>
-                <th><span>Reto</span></th>
+                <th translate="doitApp.evento.admin"><span>Administrador</span></th>
+                <th translate="doitApp.evento.nombre"><span>Nombre</span></th>
+                <th translate="doitApp.evento.descripcion"><span>Descripción</span></th>
+                <th translate="doitApp.evento.hora"><span>Hora de creación</span></th>
+                <th translate="doitApp.evento.direccion"><span>Ubicación</span></th>
+                <th translate="doitApp.evento.fechaEvento"><span>Fecha</span></th>
+                <th translate="doitApp.evento.reto"><span>Reto</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -41,7 +41,7 @@
                                  class="btn btn-primary">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
-                            <span>Apuntarse</span>
+                            <span translate="doitApp.evento.participar">Apuntarse</span>
                         </button>
                         <button type="submit"
                                  ui-sref="evento-detail({id:evento.id})"
