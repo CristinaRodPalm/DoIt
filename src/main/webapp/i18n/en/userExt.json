@@ -15,10 +15,18 @@
             "detail": {
                 "title": "User Ext"
             },
-            "fechaNacimiento": "Fecha Nacimiento",
-            "imagen": "Imagen",
-            "telefono": "Telefono",
-            "user": "User"
+            "send":"Send friend request",
+            "login":"Username",
+            "realname":"Real name",
+            "birthdate": "Birthdate",
+            "email":"E-mail",
+            "image": "Imagen",
+            "phone": "Phone",
+            "user": "User",
+            "search":{
+                "title":"Search users",
+                "subtitle":"Search results:"
+            }
         }
     }
 }

@@ -5,7 +5,12 @@
         "navbar-functions":{
             "friend-requests":"Friend requests",
             "world-events":"World events",
-            "list-events":"Events"
+            "list-events":"Events",
+            "search":{
+                "title":"Search...",
+                "users":"Other users",
+                "events":"Events"
+            }
         },
         "menu": {
             "home": "Home",
@@ -57,7 +62,8 @@
             "confirmpassword": "New password confirmation",
             "confirmpassword.placeholder": "Confirm the new password",
             "email": "E-mail",
-            "email.placeholder": "Your e-mail"
+            "email.placeholder": "Your e-mail",
+            "search.placeholder":"Search other users by name, phone, birthdate..."
         },
         "messages": {
             "info": {

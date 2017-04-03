@@ -2,12 +2,12 @@
     <div class="row text-center">
         <div class="input-group">
             <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="Busca a personas por nombre, lugar, teléfono..."
+            <input type="text" class="form-control" placeholder="{{'global.form.search.placeholder' | translate}}"
                    aria-describedby="basic-addon1" ng-model="criteria">
         </div>
 
         <div class="text-center">
-            <h3>Resultados de búsqueda</h3>
+            <h3 translate="doitApp.userExt.search.subtitle">Resultados de búsqueda</h3>
         </div>
     </div>
     <div class="row">
@@ -15,12 +15,12 @@
             <table class="jh-table table table-striped">
                 <thead>
                 <tr>
-                    <th>Foto de perfil</th>
-                    <th>Nombre de usuario</th>
-                    <th>Nombre real</th>
-                    <th>Teléfono</th>
-                    <th>E-mail</th>
-                    <th>Fecha de nacimiento</th>
+                    <th></th>
+                    <th><span translate="doitApp.userExt.login">Username</span></th>
+                    <th><span translate="doitApp.userExt.realname">Real Name</span></th>
+                    <th><span translate="doitApp.userExt.phone">Phone</span></th>
+                    <th><span translate="doitApp.userExt.email">E-mail</span></th>
+                    <th><span translate="doitApp.userExt.birthdate">Birthdate</span></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -42,8 +42,15 @@
                             <button type="submit"
                                     class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Enviar solicitud de amistad
+                                <span translate="doitApp.userExt.send">Send friend request</span>
                             </button>
+                            <div class="btn-group">
+                                <button type="submit"
+                                        class="btn btn-info">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    <span translate="entity.action.view"></span>
+                                </button>
+                            </div>
                         </div>
                     </td>
                 </tr>

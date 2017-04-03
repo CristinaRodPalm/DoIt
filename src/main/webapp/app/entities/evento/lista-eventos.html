@@ -9,13 +9,13 @@
             <thead>
             <tr>
                 <th></th>
-                <th translate="doitApp.evento.admin"><span>Administrador</span></th>
-                <th translate="doitApp.evento.nombre"><span>Nombre</span></th>
-                <th translate="doitApp.evento.descripcion"><span>Descripción</span></th>
-                <th translate="doitApp.evento.hora"><span>Hora de creación</span></th>
-                <th translate="doitApp.evento.direccion"><span>Ubicación</span></th>
-                <th translate="doitApp.evento.fechaEvento"><span>Fecha</span></th>
-                <th translate="doitApp.evento.reto"><span>Reto</span></th>
+                <th><span data-translate="doitApp.evento.admin">Administrador</span></th>
+                <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
+                <th><span data-translate="doitApp.evento.descripcion">Descripción</span></th>
+                <th><span data-translate="doitApp.evento.hora">Hora de creación</span></th>
+                <th><span data-translate="doitApp.evento.direccion">Ubicación</span></th>
+                <th><span data-translate="doitApp.evento.fechaEvento">Fecha</span></th>
+                <th><span data-translate="doitApp.evento.reto">Reto</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -26,12 +26,12 @@
                         <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
-                <td>{{evento.admin.login}}</td>
-                <td>{{evento.nombre}}</td>
-                <td>{{evento.descripcion}}</td>
-                <td>{{evento.hora | date:'medium'}}</td>
-                <td>{{evento.direccion}}</td>
-                <td>{{evento.fechaEvento | date:'medium'}}</td>
+                <td><span> {{evento.admin.login}}</span></td>
+                <td><span>{{evento.nombre}}</span></td>
+                <td><span>{{evento.descripcion}}</span></td>
+                <td><span>{{evento.hora | date:'medium'}}</span></td>
+                <td><span>{{evento.direccion}}</span></td>
+                <td><span>{{evento.fechaEvento | date:'medium'}}</span></td>
                 <td>
                     <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
                 </td>

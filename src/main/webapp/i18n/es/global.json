@@ -5,7 +5,12 @@
         "navbar-functions": {
             "friend-requests": "Solicitudes de amistad",
             "world-events":"Eventos del mundo",
-            "list-events":"Eventos"
+            "list-events":"Eventos",
+            "search":{
+                "title":"Buscar...",
+                "users":"Personas",
+                "events":"Eventos"
+            }
         },
         "menu": {
             "home": "Inicio",
@@ -57,7 +62,8 @@
             "confirmpassword": "Confirmación de la nueva contraseña",
             "confirmpassword.placeholder": "Confirmación de la nueva contraseña",
             "email": "Correo electrónico",
-            "email.placeholder": "Tu correo electrónico"
+            "email.placeholder": "Tu correo electrónico",
+            "search.placeholder":"Busca personas por nombre, teléfono, fecha de nacimiento..."
         },
         "messages": {
             "info": {

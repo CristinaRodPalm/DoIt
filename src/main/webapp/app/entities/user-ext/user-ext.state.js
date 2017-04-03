@@ -167,7 +167,29 @@
                     $state.go('^');
                 });
             }]
-        });
+        })
+            .state('user-search', {
+                parent: 'user-ext',
+                url: '/search-users',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'doitApp.userExt.search.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/user-ext/user-ext-search.html',
+                        controller: 'UserExtController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('userExt');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            });
     }
 
 })();
