@@ -41,13 +41,6 @@ public class AmistadResource {
         this.userRepository = userRepository;
     }
 
-    /**
-     * POST  /amistads : Create a new amistad.
-     *
-     * @param amistad the amistad to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new amistad, or with status 400 (Bad Request) if the amistad has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad, Errors errors) throws URISyntaxException {
@@ -97,47 +90,35 @@ public class AmistadResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    /*@PutMapping("/amistads")
+    @PutMapping("/amistads/{id}/accept")
     @Timed
-    public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
-        log.debug("REST request to update Amistad : {}", amistad);
-        if (amistad.getId() == null) {
-            //return createAmistad(amistad);
-        }
-        Amistad result = amistadRepository.save(amistad);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
-            .body(result);
-    }*/
-    @PutMapping("/amistads/accept/{id}")
-    @Timed
-    public ResponseEntity<Amistad> acceptAmistads(@Valid @PathVariable Long id){
-        log.debug("REST request to update Amistad : {}", id.toString());
-        System.out.println(id);
+    public ResponseEntity<Amistad> accept(@PathVariable Long id){
+        log.debug("REST request to update Amistad : {}", id);
         if (id == null) {
             return ResponseEntity.badRequest().
                 headers(HeaderUtil.createFailureAlert
                     (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
         }
-        Amistad amigo = amistadRepository.findById(id);
-        amigo.setHoraRespuesta(ZonedDateTime.now());
-        amigo.setAceptada(true);
-        Amistad result = amistadRepository.save(amigo);
+        Amistad amistad = amistadRepository.findById(id);
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(true);
+        Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amigo.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
     }
-/*
-    @PutMapping("/cancelAmistads")
+
+    @PutMapping("/amistads/{id}/deny")
     @Timed
-    public ResponseEntity<Amistad> cancelAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
-        log.debug("REST request to update Amistad : {}", amistad);
-        if (amistad.getId() == null) {
+    public ResponseEntity<Amistad> deny(@PathVariable Long id){
+        log.debug("REST request to update Amistad : {}", id);
+        if (id == null) {
             return ResponseEntity.badRequest().
                 headers(HeaderUtil.createFailureAlert
                     (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
 
         }
+        Amistad amistad = amistadRepository.findById(id);
         amistad.setHoraRespuesta(ZonedDateTime.now());
         amistad.setAceptada(false);
         Amistad result = amistadRepository.save(amistad);
@@ -145,7 +126,7 @@ public class AmistadResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
             .body(result);
     }
-*/
+
     @GetMapping("/amistades")
     @Timed
     public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {

@@ -27,5 +27,10 @@
                 vm.amistadsCurrentUser = result;
             });
         }
+
+        vm.acceptFriend = function(id){
+            Amistad.accept({'id':id}, {});
+        }
+
     }
 })();

@@ -150,9 +150,6 @@
                 resolve: {}
 
             })
-            .state('accept', {
-
-            })
 
     }
 
