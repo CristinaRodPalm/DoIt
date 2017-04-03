@@ -32,5 +32,9 @@
             Amistad.accept({'id':id}, {});
         }
 
+        vm.denyFriend = function(id){
+            Amistad.deny({'id':id}, {});
+        }
+
     }
 })();

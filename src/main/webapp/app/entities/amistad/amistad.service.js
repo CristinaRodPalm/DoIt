@@ -26,6 +26,10 @@
             'accept':{
                 method:'PUT',
                 url:'api/amistads/:id/accept'
+            },
+            'deny':{
+                method:'PUT',
+                url:'api/amistads/:id/deny'
             }
         });
     }
