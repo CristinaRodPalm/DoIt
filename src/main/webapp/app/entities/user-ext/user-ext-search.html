@@ -32,11 +32,13 @@
                                  style="max-height: 30px;" alt="userExt image"/>
                         </a>
                     </td>
-                    <td>{{user.user.login}}</td>
-                    <td>{{user.user.firstName}} {{user.user.lastName}}</td>
-                    <td>{{user.telefono}}</td>
-                    <td>{{user.user.email}}</td>
-                    <td>{{user.fechaNacimiento}}</td>
+                    <td><span>{{user.user.login}}</span></td>
+                    <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
+                    <td><span>{{user.telefono}}</span></td>
+                    <td><span>{{user.user.email}}</span></td>
+                    <td><span>{{user.fechaNacimiento}}</span></td>
+                    <td><span>{{user.id}}</span></td>
+                    <td><span>{{user.user.id}}</span></td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -44,13 +46,12 @@
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 <span translate="doitApp.userExt.send">Send friend request</span>
                             </button>
-                            <div class="btn-group">
-                                <button type="submit"
-                                        class="btn btn-info">
-                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                    <span translate="entity.action.view"></span>
-                                </button>
-                            </div>
+                            <button type="submit"
+                                    ui-sref="user-ext-detail({id:userExt.id})"
+                                    class="btn btn-info">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span translate="entity.action.view"></span>
+                            </button>
                         </div>
                     </td>
                 </tr>

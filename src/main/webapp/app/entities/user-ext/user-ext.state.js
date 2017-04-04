@@ -55,7 +55,7 @@
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'user-ext',
+                        name: $state.current.name || 'user-search',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
