@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,6 +121,43 @@ public class AmistadResource {
         log.debug("REST request to delete Amistad : {}", id);
         amistadRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @PutMapping("/amistads/{id}/accept")
+    @Timed
+    public ResponseEntity<Amistad> accept(@PathVariable Long id) {
+        log.debug("REST request to update Amistad : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
+        }
+        Amistad amistad = amistadRepository.findById(id);
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(true);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
+    }
+
+    @PutMapping("/amistads/{id}/deny")
+    @Timed
+    public ResponseEntity<Amistad> deny(@PathVariable Long id) {
+        log.debug("REST request to update Amistad : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
+
+        }
+        Amistad amistad = amistadRepository.findById(id);
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(false);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
     }
 
     @GetMapping("/amistades")

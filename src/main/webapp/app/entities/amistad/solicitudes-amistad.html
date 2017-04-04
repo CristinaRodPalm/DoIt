@@ -12,11 +12,11 @@
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button class="btn btn-primary"
-                                    ui-sref="accept({id:amistad.id})">
+                                    ng-click="vm.acceptFriend(amistad.id)">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </button>
                             <button class="btn btn-danger"
-                                    ng-click="vm.confirmDelete({id:amistad.id})">
+                                    ng-click="vm.denyFriend(amistad.id)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
