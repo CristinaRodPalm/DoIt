@@ -23,6 +23,7 @@
                     return data;
                 }
             },
+
             'update': {method: 'PUT'},
             'accept': {
                 method: 'PUT',
@@ -31,6 +32,7 @@
             'deny': {
                 method: 'PUT',
                 url: 'api/amistads/:id/deny'
+
             }
         });
     }

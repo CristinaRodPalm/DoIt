@@ -40,13 +40,6 @@ public class AmistadResource {
         this.userRepository = userRepository;
     }
 
-    /**
-     * POST  /amistads : Create a new amistad.
-     *
-     * @param amistad the amistad to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new amistad, or with status 400 (Bad Request) if the amistad has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
@@ -143,7 +136,7 @@ public class AmistadResource {
 
     @PutMapping("/amistads/{id}/deny")
     @Timed
-    public ResponseEntity<Amistad> deny(@PathVariable Long id) {
+    public ResponseEntity<Amistad> deny(@PathVariable Long id){
         log.debug("REST request to update Amistad : {}", id);
         if (id == null) {
             return ResponseEntity.badRequest().
