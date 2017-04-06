@@ -1,26 +1,26 @@
 
 <div>
-    <h2><span>Amistad</span> {{vm.amistad.id}}</h2>
+    <h2><span data-translate="doitApp.amistad.detail.title">Amistad</span> {{vm.amistad.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row jh-entity-details">
-        <dt><span>Time Stamp</span></dt>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="doitApp.amistad.timeStamp">Time Stamp</span></dt>
         <dd>
             <span>{{vm.amistad.timeStamp | date:'medium'}}</span>
         </dd>
-        <dt><span>Aceptada</span></dt>
+        <dt><span data-translate="doitApp.amistad.aceptada">Aceptada</span></dt>
         <dd>
             <span>{{vm.amistad.aceptada}}</span>
         </dd>
-        <dt><span>Hora Respuesta</span></dt>
+        <dt><span data-translate="doitApp.amistad.horaRespuesta">Hora Respuesta</span></dt>
         <dd>
             <span>{{vm.amistad.horaRespuesta | date:'medium'}}</span>
         </dd>
-        <dt><span>Emisor</span></dt>
+        <dt><span data-translate="doitApp.amistad.emisor">Emisor</span></dt>
         <dd>
             {{vm.amistad.emisor.login}}
         </dd>
-        <dt><span>Receptor</span></dt>
+        <dt><span data-translate="doitApp.amistad.receptor">Receptor</span></dt>
         <dd>
             {{vm.amistad.receptor.login}}
         </dd>
@@ -29,11 +29,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="amistad-detail.edit({id:vm.amistad.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

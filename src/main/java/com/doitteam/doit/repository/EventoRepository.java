@@ -14,4 +14,5 @@ public interface EventoRepository extends JpaRepository<Evento,Long> {
 
     @Query("select evento from Evento evento where evento.admin.login = ?#{principal.username}")
     List<Evento> findByAdminIsCurrentUser();
+
 }

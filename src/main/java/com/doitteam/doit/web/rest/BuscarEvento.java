@@ -5,6 +5,7 @@ import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.BuscarEventoRepository;
 import com.doitteam.doit.repository.UserExtCriteriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
+
 import javax.transaction.Transactional;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
@@ -25,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/api")
 public class BuscarEvento {
 
-    @Inject
+    @Autowired
     BuscarEventoRepository buscarEventoRepository;
 
     @RequestMapping(value = "/search/eventos",

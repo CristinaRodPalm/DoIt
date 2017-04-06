@@ -12,10 +12,10 @@
 
         vm.account = null;
         vm.isAuthenticated = null;
-       // vm.login = LoginService.open;
         vm.login = login;
         vm.register = register;
         vm.requestResetPassword = requestResetPassword;
+
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -32,7 +32,7 @@
             $state.go('register');
         }
 
-        function login (event) {
+        function login(event){
             event.preventDefault();
             Auth.login({
                 username: vm.username,
@@ -40,16 +40,8 @@
                 rememberMe: vm.rememberMe
             }).then(function () {
                 vm.authenticationError = false;
-                /*$uibModalInstance.close();
-                if ($state.current.name === 'register' || $state.current.name === 'activate' ||
-                    $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
-                    $state.go('home');
-                }*/
-
+                vm.isAuthenticated = Principal.isAuthenticated;
                 $rootScope.$broadcast('authenticationSuccess');
-
-                // previousState was set in the authExpiredInterceptor before being redirected to login modal.
-                // since login is successful, go to stored previousState and clear previousState
                 if (Auth.getPreviousState()) {
                     var previousState = Auth.getPreviousState();
                     Auth.resetPreviousState();

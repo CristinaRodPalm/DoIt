@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.0.0",
+    "jhipsterVersion": "4.1.1",
     "baseName": "doit",
     "packageName": "com.doitteam.doit",
     "packageFolder": "com/doitteam/doit",
@@ -22,6 +22,12 @@
     "clientFramework": "angular1",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": true,
+    "serviceDiscoveryType": false,
+    "nativeLanguage": "es",
+    "languages": [
+      "es",
+      "en"
+    ]
   }
 }

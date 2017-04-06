@@ -2,6 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.UserExt;
+
 import com.doitteam.doit.repository.UserExtRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +27,7 @@ public class UserExtResource {
     private final Logger log = LoggerFactory.getLogger(UserExtResource.class);
 
     private static final String ENTITY_NAME = "userExt";
-
+        
     private final UserExtRepository userExtRepository;
 
     public UserExtResource(UserExtRepository userExtRepository) {

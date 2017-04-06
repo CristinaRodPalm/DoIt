@@ -13,10 +13,31 @@ var handleErrors = require('./handle-errors');
 var config = require('./config');
 
 module.exports = {
+    i18n: i18n,
+    languages: languages,
     fonts: fonts,
     common: common,
     swagger: swagger,
     images: images
+}
+
+var yorc = require('../.yo-rc.json')['generator-jhipster'];
+
+function i18n() {
+    return gulp.src(config.app + 'i18n/**')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.dist + 'i18n/'))
+        .pipe(gulp.dest(config.dist + 'i18n/'));
+}
+
+function languages() {
+    var locales = yorc.languages.map(function (locale) {
+        return config.bower + 'angular-i18n/angular-locale_' + locale + '.js';
+    });
+    return gulp.src(locales)
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.app + 'i18n/'))
+        .pipe(gulp.dest(config.app + 'i18n/'));
 }
 
 function fonts() {

@@ -13,7 +13,7 @@
             url: '/activate?key',
             data: {
                 authorities: [],
-                pageTitle: 'Activación'
+                pageTitle: 'activate.title'
             },
             views: {
                 'content@': {
@@ -21,6 +21,12 @@
                     controller: 'ActivationController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('activate');
+                    return $translate.refresh();
+                }]
             }
         });
     }

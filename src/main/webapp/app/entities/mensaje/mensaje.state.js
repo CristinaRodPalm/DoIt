@@ -14,7 +14,7 @@
             url: '/mensaje',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Mensajes'
+                pageTitle: 'doitApp.mensaje.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('mensaje');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('mensaje-detail', {
@@ -31,7 +36,7 @@
             url: '/mensaje/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Mensaje'
+                pageTitle: 'doitApp.mensaje.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('mensaje');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'Mensaje', function($stateParams, Mensaje) {
                     return Mensaje.get({id : $stateParams.id}).$promise;
                 }],

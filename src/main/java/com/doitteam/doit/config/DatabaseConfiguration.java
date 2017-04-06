@@ -1,8 +1,9 @@
 package com.doitteam.doit.config;
 
-import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.liquibase.AsyncSpringLiquibase;
+
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

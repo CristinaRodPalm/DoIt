@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('doitApp')
@@ -6,12 +6,12 @@
 
     Amistad.$inject = ['$resource', 'DateUtils'];
 
-    function Amistad ($resource, DateUtils) {
-        var resourceUrl =  'api/amistads/:id';
+    function Amistad($resource, DateUtils) {
+        var resourceUrl = 'api/amistads/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
-            'getAllByCurrentUser':{method:'GET', isArray:true, url:'api/amistades'},
+            'query': {method: 'GET', isArray: true},
+            'getAllByCurrentUser': {method: 'GET', isArray: true, url: 'api/amistades'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -23,13 +23,16 @@
                     return data;
                 }
             },
-            'accept':{
-                method:'PUT',
-                url:'api/amistads/:id/accept'
+
+            'update': {method: 'PUT'},
+            'accept': {
+                method: 'PUT',
+                url: 'api/amistads/:id/accept'
             },
-            'deny':{
-                method:'PUT',
-                url:'api/amistads/:id/deny'
+            'deny': {
+                method: 'PUT',
+                url: 'api/amistads/:id/deny'
+
             }
         });
     }

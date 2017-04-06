@@ -2,6 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.InvitacionEvento;
+
 import com.doitteam.doit.repository.InvitacionEventoRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +27,7 @@ public class InvitacionEventoResource {
     private final Logger log = LoggerFactory.getLogger(InvitacionEventoResource.class);
 
     private static final String ENTITY_NAME = "invitacionEvento";
-
+        
     private final InvitacionEventoRepository invitacionEventoRepository;
 
     public InvitacionEventoResource(InvitacionEventoRepository invitacionEventoRepository) {

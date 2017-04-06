@@ -1,22 +1,22 @@
 
 <div>
-    <h2><span>Likes Reto</span> {{vm.likesReto.id}}</h2>
+    <h2><span data-translate="doitApp.likesReto.detail.title">Likes Reto</span> {{vm.likesReto.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row jh-entity-details">
-        <dt><span>Puntuacion</span></dt>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="doitApp.likesReto.puntuacion">Puntuacion</span></dt>
         <dd>
             <span>{{vm.likesReto.puntuacion}}</span>
         </dd>
-        <dt><span>Hora Like</span></dt>
+        <dt><span data-translate="doitApp.likesReto.horaLike">Hora Like</span></dt>
         <dd>
             <span>{{vm.likesReto.horaLike | date:'medium'}}</span>
         </dd>
-        <dt><span>Usuario</span></dt>
+        <dt><span data-translate="doitApp.likesReto.usuario">Usuario</span></dt>
         <dd>
             {{vm.likesReto.usuario.login}}
         </dd>
-        <dt><span>Participacion Reto</span></dt>
+        <dt><span data-translate="doitApp.likesReto.participacionReto">Participacion Reto</span></dt>
         <dd>
             <a ui-sref="participacion-reto-detail({id:vm.likesReto.participacionReto.id})">{{vm.likesReto.participacionReto.id}}</a>
         </dd>
@@ -25,11 +25,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="likes-reto-detail.edit({id:vm.likesReto.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

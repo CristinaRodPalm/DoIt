@@ -1,18 +1,19 @@
 package com.doitteam.doit.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.config.Constants;
+import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.service.MailService;
 import com.doitteam.doit.service.UserService;
 import com.doitteam.doit.service.dto.UserDTO;
+import com.doitteam.doit.web.rest.vm.ManagedUserVM;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import com.doitteam.doit.web.rest.util.PaginationUtil;
-import com.doitteam.doit.web.rest.vm.ManagedUserVM;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,8 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing users.
@@ -92,8 +92,12 @@ public class UserResource {
     public ResponseEntity createUser(@RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
         log.debug("REST request to save User : {}", managedUserVM);
 
-        //Lowercase the user login before comparing with database
-        if (userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).isPresent()) {
+        if (managedUserVM.getId() != null) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new user cannot already have an ID"))
+                .body(null);
+        // Lowercase the user login before comparing with database
+        } else if (userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).isPresent()) {
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "userexists", "Login already in use"))
                 .body(null);
@@ -105,7 +109,7 @@ public class UserResource {
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
-                .headers(HeaderUtil.createAlert( "A user is created with identifier " + newUser.getLogin(), newUser.getLogin()))
+                .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
                 .body(newUser);
         }
     }
@@ -134,7 +138,7 @@ public class UserResource {
         Optional<UserDTO> updatedUser = userService.updateUser(managedUserVM);
 
         return ResponseUtil.wrapOrNotFound(updatedUser,
-            HeaderUtil.createAlert("A user is updated with identifier " + managedUserVM.getLogin(), managedUserVM.getLogin()));
+            HeaderUtil.createAlert("userManagement.updated", managedUserVM.getLogin()));
     }
 
     /**
@@ -142,12 +146,10 @@ public class UserResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and with body all users
-     * @throws URISyntaxException if the pagination headers couldn't be generated
      */
     @GetMapping("/users")
     @Timed
-    public ResponseEntity<List<UserDTO>> getAllUsers(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<UserDTO>> getAllUsers(@ApiParam Pageable pageable) {
         final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -180,6 +182,6 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "A user is deleted with identifier " + login, login)).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
 }

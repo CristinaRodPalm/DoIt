@@ -1,0 +1,38 @@
+{
+    "doitApp": {
+        "evento" : {
+            "home": {
+                "title": "Eventos",
+                "subtitle":"¡Aquí puedes ver una lista de eventos que han creado otros usuarios!",
+                "createLabel": "Crear nuevo Evento",
+                "createOrEditLabel": "Crear o editar Evento"
+            },
+            "created": "Un nuevo Evento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Evento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Evento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Event"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripción",
+            "hora": "Creado",
+            "imagen": "Imagen",
+            "direccion": "Dirección",
+            "latitud": "Latitud",
+            "longitud": "Longitud",
+            "fechaEvento": "Fecha del evento",
+            "reto": "Reto",
+            "admin": "Administrador",
+            "miembroEvento": "Miembros del evento",
+            "chat": "Chat",
+            "participar":"Apuntarse",
+            "world-events": {
+                "title": "Eventos en el mundo",
+                "subtitle": "¡Aquí podrás ver todos los eventos que se han creado en el mundo!"
+            }
+        }
+    }
+}

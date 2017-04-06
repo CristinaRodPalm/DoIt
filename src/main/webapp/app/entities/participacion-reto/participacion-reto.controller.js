@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('ParticipacionRetoController', ParticipacionRetoController);
 
-    ParticipacionRetoController.$inject = ['$scope', '$state', 'DataUtils', 'ParticipacionReto'];
+    ParticipacionRetoController.$inject = ['DataUtils', 'ParticipacionReto'];
 
-    function ParticipacionRetoController ($scope, $state, DataUtils, ParticipacionReto) {
+    function ParticipacionRetoController(DataUtils, ParticipacionReto) {
+
         var vm = this;
 
         vm.participacionRetos = [];

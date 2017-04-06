@@ -1,15 +1,17 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.service.MailService;
 import com.doitteam.doit.service.UserService;
 import com.doitteam.doit.service.dto.UserDTO;
-import com.doitteam.doit.web.rest.util.HeaderUtil;
 import com.doitteam.doit.web.rest.vm.KeyAndPasswordVM;
 import com.doitteam.doit.web.rest.vm.ManagedUserVM;
+import com.doitteam.doit.web.rest.util.HeaderUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing the current user's account.
@@ -39,7 +41,7 @@ public class AccountResource {
     private final MailService mailService;
 
     public AccountResource(UserRepository userRepository, UserService userService,
-                           MailService mailService) {
+            MailService mailService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
@@ -53,7 +55,7 @@ public class AccountResource {
      * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or e-mail is already in use
      */
     @PostMapping(path = "/register",
-        produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
+                    produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
 
@@ -74,7 +76,7 @@ public class AccountResource {
                     mailService.sendActivationEmail(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 })
-            );
+        );
     }
 
     /**
@@ -125,7 +127,7 @@ public class AccountResource {
      */
     @PostMapping("/account")
     @Timed
-    public ResponseEntity<String> saveAccount(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity saveAccount(@Valid @RequestBody UserDTO userDTO) {
         Optional<User> existingUser = userRepository.findOneByEmail(userDTO.getEmail());
         if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userDTO.getLogin()))) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("user-management", "emailexists", "Email already in use")).body(null);
@@ -135,7 +137,7 @@ public class AccountResource {
             .map(u -> {
                 userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
                     userDTO.getLangKey());
-                return new ResponseEntity<String>(HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
@@ -189,13 +191,13 @@ public class AccountResource {
             return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
         }
         return userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey())
-            .map(user -> new ResponseEntity<String>(HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+              .map(user -> new ResponseEntity<String>(HttpStatus.OK))
+              .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     private boolean checkPasswordLength(String password) {
-        return (!StringUtils.isEmpty(password) &&
+        return !StringUtils.isEmpty(password) &&
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
-            password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH);
+            password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
     }
 }

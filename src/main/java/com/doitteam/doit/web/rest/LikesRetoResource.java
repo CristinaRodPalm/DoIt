@@ -2,10 +2,8 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.LikesReto;
-import com.doitteam.doit.domain.User;
+
 import com.doitteam.doit.repository.LikesRetoRepository;
-import com.doitteam.doit.repository.UserRepository;
-import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +26,11 @@ public class LikesRetoResource {
     private final Logger log = LoggerFactory.getLogger(LikesRetoResource.class);
 
     private static final String ENTITY_NAME = "likesReto";
-
+        
     private final LikesRetoRepository likesRetoRepository;
-    private final UserRepository userRepository;
 
-    public LikesRetoResource(LikesRetoRepository likesRetoRepository, UserRepository userRepository) {
+    public LikesRetoResource(LikesRetoRepository likesRetoRepository) {
         this.likesRetoRepository = likesRetoRepository;
-        this.userRepository = userRepository;
     }
 
     /**
@@ -52,22 +47,6 @@ public class LikesRetoResource {
         if (likesReto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new likesReto cannot already have an ID")).body(null);
         }
-
-        ZonedDateTime horaSistema = ZonedDateTime.now();
-        likesReto.setHoraLike(horaSistema);
-
-        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        likesReto.setUsuario(usuario);
-
-        if(likesReto.getParticipacionReto().getUsuario().equals(usuario)){
-            return ResponseEntity.badRequest().
-                headers(HeaderUtil.
-                    createFailureAlert(ENTITY_NAME, "usuarioEgolatra",
-                        "No te puedes votar a ti mismo, majete!")).
-                body(null);
-        }
-
-
         LikesReto result = likesRetoRepository.save(likesReto);
         return ResponseEntity.created(new URI("/api/likes-retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

@@ -1,8 +1,10 @@
 package com.doitteam.doit.config;
 
 import com.doitteam.doit.security.AuthoritiesConstants;
-import io.github.jhipster.security.AjaxLogoutSuccessHandler;
+
 import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
+import io.github.jhipster.security.AjaxLogoutSuccessHandler;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

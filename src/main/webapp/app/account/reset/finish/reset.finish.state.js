@@ -20,6 +20,12 @@
                     controller: 'ResetFinishController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('reset');
+                    return $translate.refresh();
+                }]
             }
         });
     }

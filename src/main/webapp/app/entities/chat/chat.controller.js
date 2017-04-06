@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('ChatController', ChatController);
 
-    ChatController.$inject = ['$scope', '$state', 'Chat'];
+    ChatController.$inject = ['Chat'];
 
-    function ChatController ($scope, $state, Chat) {
+    function ChatController(Chat) {
+
         var vm = this;
 
         vm.chats = [];

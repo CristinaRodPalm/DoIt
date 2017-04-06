@@ -14,7 +14,7 @@
                 url: '/amistad',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Amistads'
+                    pageTitle: 'doitApp.amistad.home.title'
                 },
                 views: {
                     'content@': {
@@ -23,14 +23,20 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('amistad');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
             .state('amistad-detail', {
                 parent: 'amistad',
                 url: '/amistad/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Amistad'
+                    pageTitle: 'doitApp.amistad.detail.title'
                 },
                 views: {
                     'content@': {
@@ -40,6 +46,10 @@
                     }
                 },
                 resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('amistad');
+                        return $translate.refresh();
+                    }],
                     entity: ['$stateParams', 'Amistad', function ($stateParams, Amistad) {
                         return Amistad.get({id: $stateParams.id}).$promise;
                     }],
@@ -108,6 +118,31 @@
                     });
                 }]
             })
+            .state('amistad.edit', {
+                parent: 'amistad',
+                url: '/{id}/edit',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/amistad/amistad-dialog.html',
+                        controller: 'AmistadDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Amistad', function (Amistad) {
+                                return Amistad.get({id: $stateParams.id}).$promise;
+                            }]
+                        }
+                    }).result.then(function () {
+                        $state.go('amistad', null, {reload: 'amistad'});
+                    }, function () {
+                        $state.go('^');
+                    });
+                }]
+            })
             .state('amistad.delete', {
                 parent: 'amistad',
                 url: '/{id}/delete',
@@ -132,13 +167,12 @@
                     });
                 }]
             })
-
             .state('amistades', {
                 parent: 'amistad',
                 url: '/solicitudes-amistad',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Solicitudes de amistad'
+                    pageTitle: 'doitApp.amistad.home.title'
                 },
                 views: {
                     'content@': {
@@ -147,7 +181,14 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('amistad');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
 
             })
 

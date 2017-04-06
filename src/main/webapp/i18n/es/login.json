@@ -1,0 +1,19 @@
+{
+    "login": {
+        "title": "Iniciar la sesión",
+        "form": {
+            "password": "Contraseña",
+            "password.placeholder": "Tu contraseña",
+            "rememberme": "Iniciar la sesión automáticamente",
+            "button": "Iniciar sesión"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong><span class='glyphicon glyphicon-alert'></span> ¡El inicio de sesión ha fallado!</strong> Por favor, revisa las credenciales e intentálo de nuevo."
+            }
+        },
+        "password": {
+            "forgot": "¿Has olvidado tu contraseña?"
+        }
+    }
+}

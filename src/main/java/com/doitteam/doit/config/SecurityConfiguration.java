@@ -1,8 +1,8 @@
 package com.doitteam.doit.config;
 
 
-import io.github.jhipster.security.AjaxLogoutSuccessHandler;
-import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
+import io.github.jhipster.security.*;
+
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

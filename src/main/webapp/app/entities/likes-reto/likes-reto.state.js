@@ -14,7 +14,7 @@
             url: '/likes-reto',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'LikesRetos'
+                pageTitle: 'doitApp.likesReto.home.title'
             },
             views: {
                 'content@': {
@@ -24,6 +24,11 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('likesReto');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('likes-reto-detail', {
@@ -31,7 +36,7 @@
             url: '/likes-reto/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'LikesReto'
+                pageTitle: 'doitApp.likesReto.detail.title'
             },
             views: {
                 'content@': {
@@ -41,6 +46,10 @@
                 }
             },
             resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('likesReto');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'LikesReto', function($stateParams, LikesReto) {
                     return LikesReto.get({id : $stateParams.id}).$promise;
                 }],

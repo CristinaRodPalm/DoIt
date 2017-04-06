@@ -1,6 +1,7 @@
 package com.doitteam.doit.aop.logging;
 
 import io.github.jhipster.config.JHipsterConstants;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -34,11 +35,14 @@ public class LoggingAspect {
      */
     @Pointcut("within(com.doitteam.doit.repository..*) || within(com.doitteam.doit.service..*) || within(com.doitteam.doit.web.rest..*)")
     public void loggingPointcut() {
-        // Method is empty as this is just a Poincut, the implementations are in the advices.
+        // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
 
     /**
      * Advice that logs methods throwing exceptions.
+     *
+     * @param joinPoint join point for advice
+     * @param e exception
      */
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
@@ -54,6 +58,10 @@ public class LoggingAspect {
 
     /**
      * Advice that logs when a method is entered and exited.
+     *
+     * @param joinPoint join point for advice
+     * @return result
+     * @throws Throwable throws IllegalArgumentException
      */
     @Around("loggingPointcut()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {

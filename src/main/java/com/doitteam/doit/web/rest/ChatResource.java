@@ -2,6 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Chat;
+
 import com.doitteam.doit.repository.ChatRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -25,7 +26,7 @@ public class ChatResource {
     private final Logger log = LoggerFactory.getLogger(ChatResource.class);
 
     private static final String ENTITY_NAME = "chat";
-
+        
     private final ChatRepository chatRepository;
 
     public ChatResource(ChatRepository chatRepository) {

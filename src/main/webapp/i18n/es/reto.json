@@ -1,0 +1,26 @@
+{
+    "doitApp": {
+        "reto" : {
+            "home": {
+                "title": "Retos",
+                "createLabel": "Crear nuevo Reto",
+                "createOrEditLabel": "Crear o editar Reto"
+            },
+            "created": "Un nuevo Reto ha sido creado con el identificador {{ param }}",
+            "updated": "Un Reto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Reto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Reto {{ id }}?"
+            },
+            "detail": {
+                "title": "Reto"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "horaPublicacion": "Hora Publicacion",
+            "imagen": "Imagen",
+            "participacionReto": "Participacion Reto",
+            "evento": "Evento"
+        }
+    }
+}

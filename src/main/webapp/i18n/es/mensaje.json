@@ -1,0 +1,26 @@
+{
+    "doitApp": {
+        "mensaje" : {
+            "home": {
+                "title": "Mensajes",
+                "createLabel": "Crear nuevo Mensaje",
+                "createOrEditLabel": "Crear o editar Mensaje"
+            },
+            "created": "Un nuevo Mensaje ha sido creado con el identificador {{ param }}",
+            "updated": "Un Mensaje ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Mensaje ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Mensaje {{ id }}?"
+            },
+            "detail": {
+                "title": "Mensaje"
+            },
+            "mensaje": "Mensaje",
+            "horaEnvio": "Hora Envio",
+            "foto": "Foto",
+            "emisor": "Emisor",
+            "receptor": "Receptor",
+            "chat": "Chat"
+        }
+    }
+}

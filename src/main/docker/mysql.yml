@@ -1,7 +1,6 @@
 version: '2'
 services:
     doit-mysql:
-        container_name: doit-mysql
         image: mysql:5.7.13
         # volumes:
         #     - ~/volumes/jhipster/doit/mysql/:/var/lib/mysql/

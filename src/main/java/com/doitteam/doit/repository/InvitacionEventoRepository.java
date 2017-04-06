@@ -1,8 +1,8 @@
 package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.InvitacionEvento;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
+import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
 

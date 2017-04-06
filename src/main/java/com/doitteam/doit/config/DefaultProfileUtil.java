@@ -1,11 +1,11 @@
 package com.doitteam.doit.config;
 
 import io.github.jhipster.config.JHipsterConstants;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Utility class to load a Spring profile to be used as default
@@ -37,6 +37,9 @@ public final class DefaultProfileUtil {
 
     /**
      * Get the profiles that are applied else get default profiles.
+     *
+     * @param env spring environment
+     * @return profiles
      */
     public static String[] getActiveProfiles(Environment env) {
         String[] profiles = env.getActiveProfiles();

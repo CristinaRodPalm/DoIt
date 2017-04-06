@@ -1,11 +1,12 @@
 package com.doitteam.doit.config;
 
+import io.github.jhipster.config.JHipsterProperties;
+
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.LoggerContextListener;
 import ch.qos.logback.core.spi.ContextAwareBase;
-import io.github.jhipster.config.JHipsterProperties;
 import net.logstash.logback.appender.LogstashSocketAppender;
 import net.logstash.logback.stacktrace.ShortenedThrowableConverter;
 import org.slf4j.Logger;
@@ -20,15 +21,16 @@ public class LoggingConfiguration {
 
     private LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
 
-    @Value("${spring.application.name}")
-    private String appName;
+    private final String appName;
 
-    @Value("${server.port}")
-    private String serverPort;
+    private final String serverPort;
 
     private final JHipsterProperties jHipsterProperties;
 
-    public LoggingConfiguration(JHipsterProperties jHipsterProperties) {
+    public LoggingConfiguration(@Value("${spring.application.name}") String appName, @Value("${server.port}") String serverPort,
+         JHipsterProperties jHipsterProperties) {
+        this.appName = appName;
+        this.serverPort = serverPort;
         this.jHipsterProperties = jHipsterProperties;
         if (jHipsterProperties.getLogging().getLogstash().isEnabled()) {
             addLogstashAppender(context);
@@ -71,7 +73,6 @@ public class LoggingConfiguration {
 
         context.getLogger("ROOT").addAppender(asyncLogstashAppender);
     }
-
 
     /**
      * Logback configuration is achieved by configuration file and API.

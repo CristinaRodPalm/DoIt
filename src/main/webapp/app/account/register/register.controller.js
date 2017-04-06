@@ -6,9 +6,9 @@
         .controller('RegisterController', RegisterController);
 
 
-    RegisterController.$inject = [ '$timeout', 'Auth', 'LoginService'];
+    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService'];
 
-    function RegisterController ($timeout, Auth, LoginService) {
+    function RegisterController ($translate, $timeout, Auth, LoginService) {
         var vm = this;
 
         vm.datePickerOpenStatus = {};
@@ -21,8 +21,7 @@
         vm.registerAccount = {};
         vm.success = null;
 
-
-        $timeout(function (){angular.element('#register').focus();});
+        $timeout(function (){angular.element('#login').focus();});
 
         vm.datePickerOpenStatus.fechaEvento = false;
 
@@ -34,7 +33,7 @@
             if (vm.registerAccount.password !== vm.confirmPassword) {
                 vm.doNotMatch = 'ERROR';
             } else {
-                vm.registerAccount.langKey =  'en' ;
+                vm.registerAccount.langKey = $translate.use();
                 vm.doNotMatch = null;
                 vm.error = null;
                 vm.errorUserExists = null;
@@ -54,6 +53,5 @@
                 });
             }
         }
-
     }
 })();

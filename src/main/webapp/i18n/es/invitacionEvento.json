@@ -1,0 +1,26 @@
+{
+    "doitApp": {
+        "invitacionEvento" : {
+            "home": {
+                "title": "Invitacion Eventos",
+                "createLabel": "Crear nuevo Invitacion Evento",
+                "createOrEditLabel": "Crear o editar Invitacion Evento"
+            },
+            "created": "Un nuevo Invitacion Evento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Invitacion Evento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Invitacion Evento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Invitacion Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Invitacion Evento"
+            },
+            "horaResolucion": "Hora Resolucion",
+            "horaInvitacion": "Hora Invitacion",
+            "resolucion": "Resolucion",
+            "evento": "Evento",
+            "miembroEvento": "Miembro Evento",
+            "invitado": "Invitado"
+        }
+    }
+}

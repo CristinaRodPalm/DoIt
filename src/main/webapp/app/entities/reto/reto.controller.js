@@ -5,9 +5,10 @@
         .module('doitApp')
         .controller('RetoController', RetoController);
 
-    RetoController.$inject = ['$scope', '$state', 'DataUtils', 'Reto'];
+    RetoController.$inject = ['DataUtils', 'Reto'];
 
-    function RetoController ($scope, $state, DataUtils, Reto) {
+    function RetoController(DataUtils, Reto) {
+
         var vm = this;
 
         vm.retos = [];

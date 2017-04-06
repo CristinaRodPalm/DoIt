@@ -14,7 +14,7 @@
                 url: '/evento',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Eventos'
+                    pageTitle: 'doitApp.evento.home.title'
                 },
                 views: {
                     'content@': {
@@ -23,14 +23,20 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
             .state('evento-detail', {
                 parent: 'evento',
                 url: '/evento/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Evento'
+                    pageTitle: 'doitApp.evento.detail.title'
                 },
                 views: {
                     'content@': {
@@ -40,12 +46,16 @@
                     }
                 },
                 resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        return $translate.refresh();
+                    }],
                     entity: ['$stateParams', 'Evento', function ($stateParams, Evento) {
                         return Evento.get({id: $stateParams.id}).$promise;
                     }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
-                            name: $state.current.name || 'evento',
+                            name: $state.current.name || 'eventos',
                             params: $state.params,
                             url: $state.href($state.current.name, $state.params)
                         };
@@ -163,13 +173,12 @@
                     });
                 }]
             })
-
             .state('eventos', {
                 parent: 'entity',
                 url: '/lista-eventos',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Eventos'
+                    pageTitle: 'doitApp.evento.home.title'
                 },
                 views: {
                     'content@': {
@@ -178,7 +187,13 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
 
             .state('crear-evento', {
@@ -195,7 +210,13 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
             .state('evento-search', {
                 parent: 'evento',
@@ -211,14 +232,20 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
             })
-            .state('evento-map', {
+            .state('eventos-mundo', {
                 parent: 'entity',
                 url: '/eventos-mundo',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Eventos en mundo'
+                    pageTitle: 'doitApp.evento.world-events.title'
                 },
                 views: {
                     'content@': {
@@ -227,9 +254,14 @@
                         controllerAs: 'vm'
                     }
                 },
-                resolve: {}
-            })
-
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            });
     }
 
 })();

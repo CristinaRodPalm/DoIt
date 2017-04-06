@@ -4,25 +4,40 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myLikesRetoLabel">Create or edit a Likes Reto</h4>
+        <h4 class="modal-title" id="myLikesRetoLabel" data-translate="doitApp.likesReto.home.createOrEditLabel">Create or edit a Likes Reto</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.likesReto.id">
-            <label for="id">ID</label>
+            <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.likesReto.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_puntuacion">Puntuacion</label>
+            <label class="control-label" data-translate="doitApp.likesReto.puntuacion" for="field_puntuacion">Puntuacion</label>
             <input type="number" class="form-control" name="puntuacion" id="field_puntuacion"
                     ng-model="vm.likesReto.puntuacion"
                     />
         </div>
-
+        <div class="form-group">
+            <label class="control-label" data-translate="doitApp.likesReto.horaLike" for="field_horaLike">Hora Like</label>
+                <div class="input-group">
+                    <input id="field_horaLike" type="text" class="form-control" name="horaLike" datetime-picker="{{dateformat}}" ng-model="vm.likesReto.horaLike" is-open="vm.datePickerOpenStatus.horaLike"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('horaLike')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
 
         <div class="form-group">
-            <label for="field_participacionReto">Participacion Reto</label>
+            <label data-translate="doitApp.likesReto.usuario" for="field_usuario">Usuario</label>
+            <select class="form-control" id="field_usuario" name="usuario" ng-model="vm.likesReto.usuario" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="doitApp.likesReto.participacionReto" for="field_participacionReto">Participacion Reto</label>
             <select class="form-control" id="field_participacionReto" name="participacionReto" ng-model="vm.likesReto.participacionReto" ng-options="participacionReto as participacionReto.id for participacionReto in vm.participacionretos track by participacionReto.id">
                 <option value=""></option>
             </select>
@@ -30,10 +45,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

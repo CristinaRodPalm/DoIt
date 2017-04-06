@@ -1,0 +1,32 @@
+{
+    "doitApp": {
+        "userExt" : {
+            "home": {
+                "title": "User Exts",
+                "createLabel": "Crear nuevo User Ext",
+                "createOrEditLabel": "Crear o editar User Ext"
+            },
+            "created": "Un nuevo User Ext ha sido creado con el identificador {{ param }}",
+            "updated": "Un User Ext ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un User Ext ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar User Ext {{ id }}?"
+            },
+            "detail": {
+                "title": "User Ext"
+            },
+            "send":"Enviar petición de amistad",
+            "login":"Nombre de usuario",
+            "realname":"Nombre real",
+            "birthdate": "Fecha Nacimiento",
+            "email":"E-mail",
+            "image": "Imagen",
+            "phone": "Teléfono",
+            "user": "User",
+            "search":{
+                "title":"Buscar personas",
+                "subtitle":"Resultados de búsqueda:"
+            }
+        }
+    }
+}

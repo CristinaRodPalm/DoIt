@@ -1,14 +1,16 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('doitApp')
         .controller('AmistadController', AmistadController);
 
-    AmistadController.$inject = ['$scope', '$state', 'Amistad'];
+    AmistadController.$inject = ['Amistad'];
 
-    function AmistadController ($scope, $state, Amistad) {
+    function AmistadController(Amistad) {
+
         var vm = this;
+
         vm.amistads = [];
         vm.amistadsCurrentUser = [];
 
@@ -16,14 +18,15 @@
         loadAmistadsCurrentUser();
 
         function loadAll() {
-            Amistad.query(function(result) {
+            Amistad.query(function (result) {
                 vm.amistads = result;
                 vm.searchQuery = null;
             });
         }
 
-        function loadAmistadsCurrentUser(){
-            Amistad.getAllByCurrentUser(function (result){
+        function loadAmistadsCurrentUser() {
+            Amistad.getAllByCurrentUser(function (result) {
+                console.debug(result);
                 vm.amistadsCurrentUser = result;
             });
         }
@@ -31,7 +34,7 @@
         vm.acceptFriend = function(id){
             Amistad.accept({'id':id}, {});
         }
-
+        
         vm.denyFriend = function(id){
             Amistad.deny({'id':id}, {});
         }

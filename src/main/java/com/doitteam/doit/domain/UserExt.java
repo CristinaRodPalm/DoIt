@@ -1,16 +1,14 @@
 package com.doitteam.doit.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- *
+ * A UserExt.
  */
 @Entity
 @Table(name = "user_ext")
@@ -25,8 +23,6 @@ public class UserExt implements Serializable {
     @Column(name = "fecha_nacimiento")
     private ZonedDateTime fechaNacimiento;
 
-    // TODO: desactivar --> lo usamos para ir más rápido en swagger con la búsqueda
-    @JsonIgnore
     @Lob
     @Column(name = "imagen")
     private byte[] imagen;

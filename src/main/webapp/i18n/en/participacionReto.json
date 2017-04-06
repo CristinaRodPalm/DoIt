@@ -1,0 +1,26 @@
+{
+    "doitApp": {
+        "participacionReto" : {
+            "home": {
+                "title": "Participacion Retos",
+                "createLabel": "Create a new Participacion Reto",
+                "createOrEditLabel": "Create or edit a Participacion Reto"
+            },
+            "created": "A new Participacion Reto is created with identifier {{ param }}",
+            "updated": "A Participacion Reto is updated with identifier {{ param }}",
+            "deleted": "A Participacion Reto is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Participacion Reto {{ id }}?"
+            },
+            "detail": {
+                "title": "Participacion Reto"
+            },
+            "imagen": "Imagen",
+            "horaPublicacion": "Hora Publicacion",
+            "descripcion": "Descripcion",
+            "usuario": "Usuario",
+            "reto": "Reto",
+            "likesReto": "Likes Reto"
+        }
+    }
+}

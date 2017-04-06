@@ -5,13 +5,11 @@
         .module('doitApp')
         .controller('UserExtController', UserExtController);
 
-    UserExtController.$inject = ['$scope', '$state', 'DataUtils', 'UserExt'];
+    UserExtController.$inject = ['DataUtils', 'UserExt'];
 
-    function UserExtController ($scope, $state, DataUtils, UserExt) {
+    function UserExtController(DataUtils, UserExt) {
+
         var vm = this;
-
-
-
 
         vm.userExts = [];
         vm.openFile = DataUtils.openFile;
