@@ -5,6 +5,13 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dd>
+            <div ng-if="vm.evento.imagen">
+                <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
+                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
+                </a>
+            </div>
+        </dd>
         <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
         <dd>
             {{vm.evento.admin.login}}
@@ -21,14 +28,7 @@
         <dd>
             <span>{{vm.evento.hora | date:'medium'}}</span>
         </dd>
-        <dt><span data-translate="doitApp.evento.imagen">Imagen</span></dt>
-        <dd>
-            <div ng-if="vm.evento.imagen">
-                <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
-                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
-                </a>
-            </div>
-        </dd>
+
         <dt><span data-translate="doitApp.evento.direccion">Lugar del evento</span></dt>
         <dd>
             <span>{{vm.evento.direccion}}</span>
