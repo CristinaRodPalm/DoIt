@@ -4,13 +4,7 @@
     angular
         .module('doitApp')
         .controller('EventoDialogController', EventoDialogController)
-        .config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-            GoogleMapApi.configure({
-                key: 'AIzaSyA9Errugk2Ao7N8dH2PVbSy_oi8rBVTe0DQ',
-                v: '2.4.1',
-                libraries: 'places'
-            });
-        }]);
+
 
     EventoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
 
@@ -78,24 +72,6 @@
             vm.datePickerOpenStatus[date] = true;
         }
 
-
-        // AUTOCOMPLETE
-        angular.extend($scope, {
-
-            searchbox: {
-                template:'searchbox.tpl.html',
-                events:{
-                    places_changed: function (searchBox) {}
-                }
-            },
-            options: {
-                scrollwheel: false
-            }
-        });
-
-        GoogleMapApi.then(function(maps) {
-            maps.visualRefresh = true;
-        });
 
 
     }
