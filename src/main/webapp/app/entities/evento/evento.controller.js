@@ -23,5 +23,6 @@
                 vm.searchQuery = null;
             });
         }
+
     }
 })();

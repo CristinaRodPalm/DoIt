@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider.state('jhi-health', {
             parent: 'admin',
-            url: '/apphealth',
+            url: '/health',
             data: {
                 authorities: ['ROLE_ADMIN'],
                 pageTitle: 'health.title'

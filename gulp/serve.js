@@ -15,7 +15,12 @@ module.exports = function () {
     // redirect. This is required for some endpoints for proxy-middleware
     // to correctly handle them.
     var proxyRoutes = [
-        '/'
+                '/oauth',
+                '/api',
+                '/management',
+               '/swagger-resources',
+                '/v2/api-docs',
+               '/h2-console'
     ];
 
     var requireTrailingSlash = proxyRoutes.filter(function (r) {

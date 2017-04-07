@@ -57,12 +57,33 @@
             <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
                     ng-model="vm.evento.imagenContentType" />
         </div>
+
+
+
+
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.direccion" for="field_direccion">Direccion</label>
-            <input type="text" class="form-control" name="direccion" id="field_direccion"
-                    ng-model="vm.evento.direccion"
-                    />
+
+
+            <!--<input type="text" class="form-control" name="direccion"
+                   id="field_direccion" ng-model="vm.evento.direccion"
+                   ng-autocomplete="field_direccion"/>-->
+            <ui-gmap-search-box
+                template='{expression}'
+                events='{expression}'
+                position="'{string}'"
+                parentdiv="'{string}'"
+                options='{expression}'>
+            </ui-gmap-search-box>
+            <script id="searchbox.tpl.html" type="text/ng-template">
+                <input type="text" placeholder="Search">
+            </script>
+
         </div>
+
+
+
+
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.latitud" for="field_latitud">Latitud</label>
             <input type="number" class="form-control" name="latitud" id="field_latitud"
