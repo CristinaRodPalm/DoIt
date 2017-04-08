@@ -30,5 +30,27 @@
                 }]
             }
         });
+
+        $stateProvider.state('about', {
+            parent: 'app',
+            url: '/about',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/about/about.html',
+                    controller: 'HomeController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        });
     }
 })();

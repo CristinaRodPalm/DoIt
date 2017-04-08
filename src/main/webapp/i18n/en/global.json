@@ -3,14 +3,16 @@
         "title": "Do It!",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "navbar-functions":{
+            "functionalities":"Functionalities",
             "friend-requests":"Friend requests",
             "world-events":"World events",
             "list-events":"Events",
             "search":{
-                "title":"Search...",
+                "title":"Search",
                 "users":"Other users",
                 "events":"Events"
-            }
+            },
+            "about":"About"
         },
         "menu": {
             "home": "Home",
