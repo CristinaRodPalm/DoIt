@@ -6,12 +6,13 @@
             "functionalities":"Funcionalidades",
             "friend-requests": "Solicitudes de amistad",
             "world-events":"Eventos del mundo",
-            "list-events":"Eventos",
+            "list-events":"Lista de eventos",
             "search":{
                 "title":"Buscar",
                 "users":"Personas",
                 "events":"Eventos"
             },
+            "create-event":"Crear un evento",
             "about":"Sobre nosotros"
         },
         "menu": {
@@ -110,7 +111,7 @@
             "cancel": "Cancelar",
             "delete": "Eliminar",
             "edit": "Editar",
-            "open": "Open",
+            "open": "Abrir",
             "save": "Guardar",
             "view": "Vista"
         },

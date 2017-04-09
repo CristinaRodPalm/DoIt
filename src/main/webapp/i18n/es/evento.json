@@ -3,6 +3,7 @@
         "evento" : {
             "home": {
                 "title": "Eventos",
+                "titlePage": "Crear evento",
                 "subtitle":"¡Aquí puedes ver una lista de eventos que han creado otros usuarios!",
                 "createLabel": "Crear nuevo Evento",
                 "createOrEditLabel": "Crear o editar Evento"
@@ -14,7 +15,7 @@
                 "question": "¿Seguro que quiere eliminar Evento {{ id }}?"
             },
             "detail": {
-                "title": "Event"
+                "title": "Evento"
             },
             "nombre": "Nombre",
             "descripcion": "Descripción",

@@ -6,9 +6,9 @@
         .controller('EventoDialogController', EventoDialogController)
 
 
-    EventoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
+    EventoDialogController.$inject = ['$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
 
-    function EventoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
+    function EventoDialogController ($timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
         var vm = this;
 
         vm.evento = entity;
@@ -29,7 +29,7 @@
         });
 
         function clear () {
-            $uibModalInstance.dismiss('cancel');
+            $state.go('eventos', null, {reload: 'evento'});
         }
 
         function save () {
@@ -43,7 +43,8 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:eventoUpdate', result);
-            $uibModalInstance.close(result);
+            $state.go('eventos', null, {reload: 'evento'});
+            //$uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
@@ -71,8 +72,6 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
-
-
 
     }
 })();

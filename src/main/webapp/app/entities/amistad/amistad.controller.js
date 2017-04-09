@@ -26,15 +26,15 @@
 
         function loadAmistadsCurrentUser() {
             Amistad.getAllByCurrentUser(function (result) {
-                console.debug(result);
                 vm.amistadsCurrentUser = result;
             });
         }
 
         vm.acceptFriend = function(id){
             Amistad.accept({'id':id}, {});
+            $state.go('amistades', null, {reload: 'amistades'});
         }
-        
+
         vm.denyFriend = function(id){
             Amistad.deny({'id':id}, {});
         }

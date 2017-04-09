@@ -94,7 +94,31 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/evento-dialog.html',
+                        controller: 'EventoDialogController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    entity: function () {
+                        return {
+                            nombre: null,
+                            descripcion: null,
+                            hora: null,
+                            imagen: null,
+                            imagenContentType: null,
+                            direccion: null,
+                            latitud: null,
+                            longitud: null,
+                            fechaEvento: null,
+                            id: null
+                        };
+                    }
+                },
+                //COMENTAMOS EL MODAL PARA QUE PASE A SER UNA VISTA UNICA HTML
+                /*onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/evento/evento-dialog.html',
                         controller: 'EventoDialogController',
@@ -122,7 +146,7 @@
                     }, function () {
                         $state.go('evento');
                     });
-                }]
+                }]*/
             })
             .state('evento.edit', {
                 parent: 'evento',
@@ -195,29 +219,6 @@
                     }]
                 }
             })
-
-            .state('crear-evento', {
-                parent: 'evento',
-                url: '/crear-evento',
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'Crear evento'
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/entities/evento/crear-evento.html',
-                        controller: 'EventoDialogController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('evento');
-                        $translatePartialLoader.addPart('global');
-                        return $translate.refresh();
-                    }]
-                }
-            })
             .state('evento-search', {
                 parent: 'evento',
                 url: '/buscar-eventos',
@@ -241,15 +242,37 @@
                 }
             })
             .state('eventos-mundo', {
-                parent: 'entity',
+                parent: 'evento',
                 url: '/eventos-mundo',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'doitApp.evento.world-events.title'
+                    pageTitle: 'doitApp.evento.home.createLabel'
                 },
                 views: {
                     'content@': {
                         templateUrl: 'app/entities/evento/eventos-mundo.html',
+                        controller: 'mapController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('crear-evento', {
+                parent: 'evento',
+                url: '/crear-evento',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'doitApp.evento.home.titlePage'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/crear-evento.html',
                         controller: 'mapController',
                         controllerAs: 'vm'
                     }

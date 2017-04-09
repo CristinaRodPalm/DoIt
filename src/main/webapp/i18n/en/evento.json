@@ -3,6 +3,7 @@
         "evento": {
             "home": {
                 "title": "Events",
+                "titlePage": "Create event",
                 "subtitle":"Here you can see a list of events created by other users!",
                 "createLabel": "Create a new Evento",
                 "createOrEditLabel": "Create or edit a Evento"

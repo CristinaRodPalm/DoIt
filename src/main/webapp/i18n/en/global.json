@@ -6,12 +6,13 @@
             "functionalities":"Functionalities",
             "friend-requests":"Friend requests",
             "world-events":"World events",
-            "list-events":"Events",
+            "list-events":"Events list",
             "search":{
                 "title":"Search",
                 "users":"Other users",
                 "events":"Events"
             },
+            "create-event":"Create an event",
             "about":"About"
         },
         "menu": {
