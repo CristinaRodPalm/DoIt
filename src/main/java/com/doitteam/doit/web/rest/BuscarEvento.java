@@ -2,9 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Evento;
-import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.BuscarEventoRepository;
-import com.doitteam.doit.repository.UserExtCriteriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
