@@ -44,9 +44,13 @@ public class AmistadResource {
     @Timed
     public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
         log.debug("REST request to save Amistad : {}", amistad);
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
+        amistad.setTimeStamp(ZonedDateTime.now());
+        amistad.setHoraRespuesta(null);
+        amistad.setEmisor(userLogin);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

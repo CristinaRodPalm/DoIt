@@ -23,8 +23,8 @@
                     return data;
                 }
             },
-
             'update': {method: 'PUT'},
+            'save': {method: 'POST'},
             'accept': {
                 method: 'PUT',
                 url: 'api/amistads/:id/accept'
