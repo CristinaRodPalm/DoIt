@@ -48,6 +48,13 @@ public class AmistadResource {
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
+        List<Amistad> amigos = amistadRepository.findAll();
+        for (Amistad amigo: amigos) {
+            if(amigo.equals(amistad)){
+                return ResponseEntity.badRequest().headers(HeaderUtil.
+                    createFailureAlert(ENTITY_NAME, "amistadexists", "Este usuario ya es tu amigo")).body(null);
+            }
+        }
         amistad.setTimeStamp(ZonedDateTime.now());
         amistad.setHoraRespuesta(null);
         amistad.setEmisor(userLogin);

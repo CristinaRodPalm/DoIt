@@ -3,6 +3,7 @@
 
     angular
         .module('doitApp', [
+            //'nemLogging',
             'ngStorage',
             'tmh.dynamicLocale',
             'pascalprecht.translate',
@@ -18,6 +19,8 @@
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             'ngMap'
+            //'uiGmapgoogle-maps'
+
         ])
         .run(run);
 
