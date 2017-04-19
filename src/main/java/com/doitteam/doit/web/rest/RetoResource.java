@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class RetoResource {
     private final Logger log = LoggerFactory.getLogger(RetoResource.class);
 
     private static final String ENTITY_NAME = "reto";
-        
+
     private final RetoRepository retoRepository;
 
     public RetoResource(RetoRepository retoRepository) {
@@ -47,6 +48,7 @@ public class RetoResource {
         if (reto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reto cannot already have an ID")).body(null);
         }
+        reto.setHoraPublicacion(ZonedDateTime.now());
         Reto result = retoRepository.save(reto);
         return ResponseEntity.created(new URI("/api/retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

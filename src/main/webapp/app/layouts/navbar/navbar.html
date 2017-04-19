@@ -58,6 +58,15 @@
                             </a>
                         </li>
 
+                        <!-- LISTA DE RETOS -->
+                        <li ui-sref-active="active" ng-switch-when="true">
+                            <a ui-sref="reto" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="hidden-sm"
+                                      data-translate="global.navbar-functions.challenges">Challenges</span>
+                            </a>
+                        </li>
+
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-calendar"></span>

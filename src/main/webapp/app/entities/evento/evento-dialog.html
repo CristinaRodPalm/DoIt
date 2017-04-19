@@ -24,7 +24,7 @@
                    ng-model="vm.evento.descripcion"
             />
         </div>
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.hora" for="field_hora">Hora</label>
             <div class="input-group">
                 <input id="field_hora" type="text" class="form-control" name="hora" datetime-picker="{{dateformat}}"
@@ -35,7 +35,7 @@
                             class="glyphicon glyphicon-calendar"></i></button>
                     </span>
             </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.direccion"
@@ -78,13 +78,13 @@
                 <option value=""></option>
             </select>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label data-translate="doitApp.evento.admin" for="field_admin">Admin</label>
             <select class="form-control" id="field_admin" name="admin" ng-model="vm.evento.admin"
                     ng-options="user as user.login for user in vm.users track by user.id">
                 <option value=""></option>
             </select>
-        </div>
+        </div>-->
         <p></p>
         <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.evento)" ngf-pattern="'image/*'">            <div>
                 <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
