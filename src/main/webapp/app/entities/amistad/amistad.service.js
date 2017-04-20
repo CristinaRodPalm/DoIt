@@ -24,7 +24,7 @@
                 }
             },
             'update': {method: 'PUT'},
-            'save': {method: 'POST'},
+            'sendFriendRequest': {method: 'POST', isArray: false, url: 'api/amistad/:id/emisor'},
             'accept': {
                 method: 'PUT',
                 url: 'api/amistads/:id/accept'

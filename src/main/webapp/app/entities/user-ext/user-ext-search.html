@@ -40,7 +40,7 @@
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    ui-sref="amistad.new"
+                                    ng-click="vm.sendFriendRequest(user.user.id)"
                                     class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 <span translate="doitApp.userExt.send">Send friend request</span>

@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('UserExtController', UserExtController);
 
-    UserExtController.$inject = ['DataUtils', 'UserExt'];
+    UserExtController.$inject = ['DataUtils', 'UserExt', 'Amistad', '$state'];
 
-    function UserExtController(DataUtils, UserExt) {
+    function UserExtController(DataUtils, UserExt, Amistad, $state) {
 
         var vm = this;
 
@@ -22,6 +22,12 @@
                 vm.userExts = result;
                 vm.searchQuery = null;
             });
+        }
+
+        vm.sendFriendRequest=function(id){
+            Amistad.sendFriendRequest({'id': id},{});
+            console.log(id)
+            $state.go('amistades', null, {reload:'user-search'});
         }
     }
 })();
