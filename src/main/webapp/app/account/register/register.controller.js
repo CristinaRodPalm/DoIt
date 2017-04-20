@@ -6,9 +6,9 @@
         .controller('RegisterController', RegisterController);
 
 
-    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService'];
+    RegisterController.$inject = ['$scope', '$translate', '$timeout', 'Auth', 'LoginService', 'DataUtils'];
 
-    function RegisterController ($translate, $timeout, Auth, LoginService) {
+    function RegisterController ($scope, $translate, $timeout, Auth, LoginService, DataUtils) {
         var vm = this;
 
         vm.datePickerOpenStatus = {};
@@ -53,5 +53,19 @@
                 });
             }
         }
+
+        vm.setImagen = function ($file, registerAccount) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        registerAccount.imagen = base64Data;
+                        registerAccount.imagenContentType = $file.type;
+                    });
+                });
+            }
+        };
     }
 })();

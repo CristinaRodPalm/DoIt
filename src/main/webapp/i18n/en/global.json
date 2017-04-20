@@ -57,7 +57,15 @@
         },
         "form": {
             "username": "Username",
+            "firstName": "First name",
+            "lastName": "Last name",
             "username.placeholder": "Your username",
+            "firstName.placeholder": "Your first name",
+            "lastName.placeholder": "Your last name",
+            "fechaNacimiento": "Birthday",
+            "fechaNacimiento.placeholder": "Your birthday",
+            "telefono": "Phone",
+            "telefono.placeholder": "Your phone",
             "password":"Password",
             "password.placeholder":"Your password",
             "newpassword": "New password",
@@ -66,7 +74,8 @@
             "confirmpassword.placeholder": "Confirm the new password",
             "email": "E-mail",
             "email.placeholder": "Your e-mail",
-            "search.placeholder":"Search other users by name, phone, birthdate..."
+            "search.placeholder":"Search other users by name, phone, birthdate...",
+            "imagen": "Image"
         },
         "messages": {
             "info": {

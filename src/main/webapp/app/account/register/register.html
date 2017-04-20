@@ -26,6 +26,7 @@
         <div class="col-md-8 col-md-offset-2">
             <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.register()" show-validation>
 
+<!-- login -->
                 <div class="form-group">
                     <label class="control-label" for="login" data-translate="global.form.username">Username</label>
                     <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}"
@@ -49,6 +50,51 @@
                     </p>
                     </div>
                 </div>
+<!-- name -->
+                <div class="form-group">
+                    <label class="control-label" for="firstName" data-translate="global.form.firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'global.form.firstName.placeholder' | translate}}"
+                           ng-model="vm.registerAccount.firstName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+                    <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.required" data-translate="register.messages.validate.firstName.required">
+                            Your name is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.minlength" data-translate="register.messages.validate.firstName.minlength">
+                            Your name is required to be at least 1 character.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.maxlength" data-translate="register.messages.validate.firstName.maxlength">
+                            Your name cannot be longer than 50 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.pattern" data-translate="register.messages.validate.firstName.pattern">
+                            Your name can only contain lower-case letters and digits.
+                        </p>
+                    </div>
+                </div>
+<!-- lastname -->
+                <div class="form-group">
+                    <label class="control-label" for="lastName" data-translate="global.form.lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'global.form.lastName.placeholder' | translate}}"
+                           ng-model="vm.registerAccount.lastName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+                    <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.minlength" data-translate="register.messages.validate.lastName.minlength">
+                            Your name is required to be at least 1 character.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.maxlength" data-translate="register.messages.validate.lastName.maxlength">
+                            Your name cannot be longer than 50 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.pattern" data-translate="register.messages.validate.lastName.pattern">
+                            Your name can only contain lower-case letters and digits.
+                        </p>
+                    </div>
+                </div>
+<!-- email -->
                 <div class="form-group">
                     <label class="control-label" for="email" data-translate="global.form.email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
@@ -72,23 +118,19 @@
                         </p>
                     </div>
                 </div>
-
-                <!--NUEVOS CAMPOS-->
-
-                <!--TELEFONO USUARIO-->
+<!-- telefono usuario -->
                 <div class="form-group">
-                    <label class="control-label" for="phone">Teléfono</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Tu teléfono"
+                    <label class="control-label" data-translate="global.form.telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="{{'global.form.telefono.placeholder' | translate}}"
                            ng-model="vm.registerAccount.phone" ng-minlength=9 ng-maxlength=9
                            ng-pattern="/^[0-9]/" required>
                 </div>
-                <!--TELEFONO USUARIO-->
-
-                <!--FECHA NACIMIENTO USUARIO-->
+<!-- fecha nacimiento -->
                 <div class="form-group">
-                    <label class="control-label" for="field_fechaNacimiento">Fecha Nacimiento</label>
+                    <label class="control-label" data-translate="global.form.fechaNacimiento">Fecha Nacimiento</label>
                     <div class="input-group">
                         <input id="field_fechaNacimiento" type="text" class="form-control"
+                               placeholder="{{'global.form.fechaNacimiento.placeholder' | translate}}"
                                name="fechaNacimiento" datetime-picker="{{dateformat}}"
                                ng-model="vm.registerAccount.fechaNacimiento"
                                is-open="vm.datePickerOpenStatus.fechaNacimiento"
@@ -98,9 +140,7 @@
                     </span>
                     </div>
                 </div>
-                <!--FECHA NACIMIENTO USUARIO-->
-                <!--NUEVOS CAMPOS-->
-
+<!-- password -->
                 <div class="form-group">
                     <label class="control-label" for="password" data-translate="global.form.newpassword">New password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
@@ -121,6 +161,7 @@
                     </div>
                     <password-strength-bar password-to-check="vm.registerAccount.password"></password-strength-bar>
                 </div>
+<!-- confirm -->
                 <div class="form-group">
                     <label class="control-label" for="confirmPassword" data-translate="global.form.confirmpassword">New password confirmation</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{'global.form.confirmpassword.placeholder' | translate}}"
@@ -140,6 +181,30 @@
                         </p>
                     </div>
                 </div>
+<!-- imagen -->
+                <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.registerAccount)" ngf-pattern="'image/*'">
+                    <label class="control-label" data-translate="global.form.imagen" for="field_imagen">Imagen</label>
+                    <div>
+                        <img data-ng-src="{{'data:' + vm.registerAccount.imagenContentType + ';base64,' + vm.registerAccount.imagen}}" style="max-height: 100px;" ng-if="vm.registerAccount.imagen" alt="registerAccount image"/>
+                        <div ng-if="vm.registerAccount.imagen" class="help-block clearfix">
+                            <span class="pull-left">{{vm.registerAccount.imagenContentType}}, {{vm.byteSize(vm.registerAccount.imagen)}}</span>
+                            <button type="button" ng-click="vm.registerAccount.imagen=null;vm.registerAccount.imagenContentType=null;"
+                                    class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <button type="button" ngf-select class="btn btn-default btn-block"
+                                ngf-change="vm.setImagen($file, vm.registerAccount)" accept="image/*" data-translate="entity.action.addimage">
+                            Add image
+                        </button>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                           ng-model="vm.registerAccount.imagen"
+                    />
+                    <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                           ng-model="vm.registerAccount.imagenContentType" />
+                </div>
+
 
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
             </form>
