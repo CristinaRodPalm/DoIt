@@ -6,6 +6,8 @@
             "functionalities":"Functionalities",
             "friend-requests":"Friend requests",
             "world-events":"World events",
+            "challenges": "Challenges",
+            "create-challenge":"Create a challenge",
             "list-events":"Events list",
             "search":{
                 "title":"Search",

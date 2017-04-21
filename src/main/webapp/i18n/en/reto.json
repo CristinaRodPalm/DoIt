@@ -3,6 +3,7 @@
         "reto" : {
             "home": {
                 "title": "Challenges",
+                "subtitle": "Here you can see all the challenges that we created for you!",
                 "createLabel": "Create a new Reto",
                 "createOrEditLabel": "Create or edit a Reto"
             },
@@ -13,14 +14,15 @@
                 "question": "Are you sure you want to delete Reto {{ id }}?"
             },
             "detail": {
-                "title": "Reto"
+                "title": "Challenge"
             },
-            "nombre": "Nombre",
-            "descripcion": "Descripcion",
-            "horaPublicacion": "Hora Publicacion",
-            "imagen": "Imagen",
-            "participacionReto": "Participacion Reto",
-            "evento": "Evento"
+            "nombre": "Name",
+            "descripcion": "Description",
+            "horaPublicacion": "Published",
+            "imagen": "Image",
+            "participar":"Participate",
+            "participacionReto": "Participants",
+            "evento": "Event"
         }
     }
 }

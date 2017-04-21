@@ -3,6 +3,7 @@
         "reto" : {
             "home": {
                 "title": "Retos",
+                "subtitle": "¡Aquí puedes ver los retos que hemos creado para vosotros!",
                 "createLabel": "Crear nuevo Reto",
                 "createOrEditLabel": "Crear o editar Reto"
             },
@@ -19,7 +20,8 @@
             "descripcion": "Descripcion",
             "horaPublicacion": "Hora Publicacion",
             "imagen": "Imagen",
-            "participacionReto": "Participacion Reto",
+            "participar":"Participar",
+            "participacionReto": "Participaciones",
             "evento": "Evento"
         }
     }
