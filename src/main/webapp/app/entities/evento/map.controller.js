@@ -13,6 +13,8 @@
         $scope.map = null;
         $scope.mapa;
 
+
+
         $scope.mapStyle = [{
             "featureType": "water", "elementType": "all", "stylers": [{"hue": "#7fc8ed"},
                 {"saturation": 55}, {"lightness": -6}, {"visibility": "on"}]
@@ -57,13 +59,14 @@
         NgMap.getMap(mapa).then(function (map) {
             console.log(map.getCenter());
             console.log('markers', map.markers);
-            console.log('shapes', map.shapes);
             $scope.map = map;
         });
 
         Evento.query(function (result) {
             vm.eventos = result;
         });
+
+
 
         /*
          Evento.location(function (result) {

@@ -7,13 +7,14 @@
 
     <div class="row">
         <div class="text-center">
-            <ng-map id="mapa" class="map-track" zoom-to-include-markers="auto" disable-default-u-i="true"
-                    styles='{{mapStyle}}' zoom="2">
+            <ng-map zoom-to-include-markers="auto" id="mapa" class="map-track"
+                    disable-default-u-i="true"
+                    styles='{{mapStyle}}'
+                   >
 
                 <marker ng-repeat="evento in vm.eventos" position="[{{evento.latitud}},{{evento.longitud}}]">
-                    {{evento.latitud}}, {{evento.longitud}}
                 </marker>
-
+<!--  {{evento.latitud}}, {{evento.longitud}} -->
             </ng-map>
         </div>
     </div>

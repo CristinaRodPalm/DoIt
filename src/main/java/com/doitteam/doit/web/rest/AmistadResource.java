@@ -43,38 +43,20 @@ public class AmistadResource {
     @PostMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> createAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
+        System.out.println(amistad);
         log.debug("REST request to save Amistad : {}", amistad);
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<Amistad> amigos = amistadRepository.findAllFriends(userLogin.getId());
+        for (Amistad amigo: amigos) {
+            if(amistad.getReceptor().equals(amigo.getReceptor()) || amistad.getReceptor().equals(amigo.getEmisor())){
+                return ResponseEntity.badRequest().headers(HeaderUtil.
+                    createFailureAlert(ENTITY_NAME, "friendexists", "Este usuario ya es tu amigo!")).
+                    body(null);
+            }
+        }
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
-        Amistad result = amistadRepository.save(amistad);
-        return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
-
-    //AUN NO FUNCIONA
-    @PostMapping("/amistad/{id}/emisor")
-    @Timed
-    public ResponseEntity<Amistad> sendFriendRequest(@PathVariable Long id) throws URISyntaxException {
-        log.debug("REST request to save Amistad : {}");
-        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        User userReceptor = userRepository.findOne(id);
-        //comprobar si el usuario logeado ya ha mandado solicitud de amistad al mismo usuario varias veces
-        Amistad amistad = new Amistad();
-        List<Amistad> amigos = amistadRepository.findAllFriends(userLogin.getId());
-        for (Amistad amigo: amigos) {
-            System.out.println(amigo);
-            if(amigo.getId().equals(amistad.getReceptor().getId())){
-                return ResponseEntity.badRequest().headers(HeaderUtil.
-                    createFailureAlert(ENTITY_NAME, "amistadexists", "Este usuario ya es tu amigo")).body(null);
-            }
-        }
-        amistad.setTimeStamp(ZonedDateTime.now());
-        amistad.setHoraRespuesta(null);
-        amistad.setEmisor(userLogin);
-        amistad.setReceptor(userReceptor);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
