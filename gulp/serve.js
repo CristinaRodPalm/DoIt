@@ -15,7 +15,6 @@ module.exports = function () {
     // redirect. This is required for some endpoints for proxy-middleware
     // to correctly handle them.
     var proxyRoutes = [
-                '/',
                 '/oauth',
                 '/api',
                 '/management',
