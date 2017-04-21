@@ -2,7 +2,7 @@
     "doitApp": {
         "reto" : {
             "home": {
-                "title": "Retos",
+                "title": "Challenges",
                 "createLabel": "Create a new Reto",
                 "createOrEditLabel": "Create or edit a Reto"
             },
