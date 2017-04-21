@@ -63,7 +63,6 @@ public class AmistadResource {
         User userReceptor = userRepository.findOne(id);
         //comprobar si el usuario logeado ya ha mandado solicitud de amistad al mismo usuario varias veces
         Amistad amistad = new Amistad();
-        amistad.setId((long) (amistadRepository.findAll().size()+1));
         List<Amistad> amigos = amistadRepository.findAllFriends(userLogin.getId());
         for (Amistad amigo: amigos) {
             System.out.println(amigo);
