@@ -38,6 +38,15 @@ public class Amistad implements Serializable {
     @NotNull
     private User receptor;
 
+    public Amistad() {
+    }
+
+    public Amistad(ZonedDateTime timeStamp, User emisor, User receptor) {
+        this.timeStamp = timeStamp;
+        this.emisor = emisor;
+        this.receptor = receptor;
+    }
+
     public Long getId() {
         return id;
     }

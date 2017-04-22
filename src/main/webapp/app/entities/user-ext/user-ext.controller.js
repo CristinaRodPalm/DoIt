@@ -25,7 +25,7 @@
         }
 
         vm.sendFriendRequest=function(id){
-            Amistad.sendFriendRequest({'id': id},{});
+            Amistad.sendFriendRequest({'id': id}, {});
             console.log(id)
             $state.go('user-search', null, {reload:'user-search'});
         }

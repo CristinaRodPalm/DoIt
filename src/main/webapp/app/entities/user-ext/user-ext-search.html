@@ -15,7 +15,6 @@
             <table class="jh-table table table-striped">
                 <thead>
                 <tr>
-                    <th></th>
                     <th><span>Image</span></th>
                     <th><span translate="doitApp.userExt.login">Username</span></th>
                     <th><span translate="doitApp.userExt.realname">Real Name</span></th>
@@ -28,12 +27,12 @@
                 <tbody>
                 <tr ng-repeat="user in vm.userExts|filter:criteria">
                     <td>
-                        <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
-                            <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}"
-                                 style="max-height: 30px;" alt="userExt image"/>
+                        <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
+                            <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
+                                 style="max-height: 30px;" alt="user image"/>
                         </a>
                     </td>
-                    <td><span>{{user.user.image}} </span></td>
+
                     <td><span>{{user.user.login}}</span></td>
                     <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
                     <td><span>{{user.telefono}}</span></td>
@@ -61,6 +60,5 @@
         </div>
     </div>
 </div>
-<!--ng-click="vm.sendFriendRequest(user.user.id)"-->
 
 

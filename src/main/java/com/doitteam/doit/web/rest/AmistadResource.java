@@ -57,11 +57,35 @@ public class AmistadResource {
         if (amistad.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new amistad cannot already have an ID")).body(null);
         }
+        amistad.setTimeStamp(ZonedDateTime.now());
+        amistad.setEmisor(userLogin);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+
+    // Enviar solicitud amistad desde búscar amigo
+    @PostMapping("/amistad/{id}/emisor")
+    @Timed
+    public ResponseEntity<Amistad> sendFriendRequest(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to save Amistad : {}");
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        User userReceptor = userRepository.findOne(id);
+        List<Amistad> amigos = amistadRepository.findAllFriends(userLogin.getId());
+        for (Amistad amigo: amigos) {
+            if(id.equals(amigo.getReceptor().getId()) || id.equals(amigo.getEmisor().getId())){
+                return ResponseEntity.badRequest().headers(HeaderUtil.
+                    createFailureAlert(ENTITY_NAME, "friendexists", "Este usuario ya es tu amigo!")).
+                    body(null);
+            }
+        }
+        Amistad result = amistadRepository.save(new Amistad(ZonedDateTime.now(), userLogin, userReceptor));
+        return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
 
     /**
      * PUT  /amistads : Updates an existing amistad.
