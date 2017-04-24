@@ -37,7 +37,7 @@
                     <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
                     <td><span>{{user.telefono}}</span></td>
                     <td><span>{{user.user.email}}</span></td>
-                    <td><span>{{user.fechaNacimiento}}</span></td>
+                    <td><span>{{user.nacimiento | date:'dd/MM/yyyy'}}</span></td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

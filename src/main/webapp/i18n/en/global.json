@@ -78,7 +78,8 @@
             "email": "E-mail",
             "email.placeholder": "Your e-mail",
             "search.placeholder":"Search other users by name, phone, birthdate...",
-            "imagen": "Image"
+            "imagen": "Image",
+            "nacimiento": "Birthdate"
         },
         "messages": {
             "info": {

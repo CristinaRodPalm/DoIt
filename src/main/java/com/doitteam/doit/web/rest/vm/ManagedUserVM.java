@@ -3,6 +3,7 @@ package com.doitteam.doit.web.rest.vm;
 import com.doitteam.doit.service.dto.UserDTO;
 import javax.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -16,9 +17,7 @@ public class ManagedUserVM extends UserDTO {
     public static final int PASSWORD_MAX_LENGTH = 100;
 
     private String phone;
-
-    private ZonedDateTime fechaNacimiento;
-
+    private LocalDate nacimiento;
     private byte[] imagen;
     private String imagenContentType;
 
@@ -48,24 +47,16 @@ public class ManagedUserVM extends UserDTO {
         return phone;
     }
 
-    public ZonedDateTime getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
     public byte[] getImagen() {
         return imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
     }
 
     public String getImagenContentType() {
         return imagenContentType;
     }
 
-    public void setImagenContentType(String imagenContentType) {
-        this.imagenContentType = imagenContentType;
+    public LocalDate getNacimiento() {
+        return nacimiento;
     }
 
     @Override

@@ -23,7 +23,7 @@
 
         $timeout(function (){angular.element('#login').focus();});
 
-        vm.datePickerOpenStatus.fechaEvento = false;
+        vm.datePickerOpenStatus.nacimiento = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

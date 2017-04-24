@@ -78,7 +78,8 @@
             "confirmpassword.placeholder": "Confirmación de la nueva contraseña",
             "email": "Correo electrónico",
             "email.placeholder": "Tu correo electrónico",
-            "search.placeholder":"Busca personas por nombre, teléfono, fecha de nacimiento..."
+            "search.placeholder":"Busca personas por nombre, teléfono, fecha de nacimiento...",
+            "nacimiento": "Fecha de nacimiento"
         },
         "messages": {
             "info": {

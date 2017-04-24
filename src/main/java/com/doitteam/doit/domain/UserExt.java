@@ -35,7 +35,7 @@ public class UserExt implements Serializable {
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
-    @Past
+    //@Past
     @Column(name = "nacimiento")
     private LocalDate nacimiento;
 

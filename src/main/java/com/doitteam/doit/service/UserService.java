@@ -23,6 +23,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -92,7 +93,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-                           String imageUrl, String langKey, String phone, ZonedDateTime fechaNacimiento, byte[] imagen, String imagenContentType) {
+                           String imageUrl, String langKey, String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -115,12 +116,11 @@ public class UserService {
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
 
-
         //el nuevo usuario con los campos adicionales junto con el usuario de jhipster original
         UserExt newUserExtra = new UserExt();
         newUserExtra.setUser(newUser);
         newUserExtra.setTelefono(phone);
-        newUserExtra.setFechaNacimiento(fechaNacimiento);
+        newUserExtra.setNacimiento(nacimiento);
         newUserExtra.setImagen(imagen);
         newUserExtra.setImagenContentType(imagenContentType);
         userExtRepository.save(newUserExtra);
