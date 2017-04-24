@@ -19,6 +19,11 @@ public class ManagedUserVM extends UserDTO {
 
     private ZonedDateTime fechaNacimiento;
 
+
+
+    private byte[] imagen;
+    private String imagenContentType;
+
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
@@ -47,6 +52,22 @@ public class ManagedUserVM extends UserDTO {
 
     public ZonedDateTime getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getImagenContentType() {
+        return imagenContentType;
+    }
+
+    public void setImagenContentType(String imagenContentType) {
+        this.imagenContentType = imagenContentType;
     }
 
     @Override
