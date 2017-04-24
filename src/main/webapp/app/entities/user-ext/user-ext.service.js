@@ -17,11 +17,27 @@
                     if (data) {
                         data = angular.fromJson(data);
                         data.fechaNacimiento = DateUtils.convertDateTimeFromServer(data.fechaNacimiento);
+                        data.nacimiento = DateUtils.convertLocalDateFromServer(data.nacimiento);
                     }
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.nacimiento = DateUtils.convertLocalDateToServer(copy.nacimiento);
+                    return angular.toJson(copy);
+                }
+            },
+            'save': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.nacimiento = DateUtils.convertLocalDateToServer(copy.nacimiento);
+                    return angular.toJson(copy);
+                }
+            }
         });
     }
 })();

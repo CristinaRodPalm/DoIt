@@ -4,6 +4,7 @@ package com.doitteam.doit.domain;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -33,6 +34,10 @@ public class UserExt implements Serializable {
     @NotNull
     @Column(name = "telefono", nullable = false)
     private String telefono;
+
+    @Past
+    @Column(name = "nacimiento")
+    private LocalDate nacimiento;
 
     @OneToOne(optional = false)
     @NotNull
@@ -99,6 +104,19 @@ public class UserExt implements Serializable {
         this.telefono = telefono;
     }
 
+    public LocalDate getNacimiento() {
+        return nacimiento;
+    }
+
+    public UserExt nacimiento(LocalDate nacimiento) {
+        this.nacimiento = nacimiento;
+        return this;
+    }
+
+    public void setNacimiento(LocalDate nacimiento) {
+        this.nacimiento = nacimiento;
+    }
+
     public User getUser() {
         return user;
     }
@@ -140,6 +158,7 @@ public class UserExt implements Serializable {
             ", imagen='" + imagen + "'" +
             ", imagenContentType='" + imagenContentType + "'" +
             ", telefono='" + telefono + "'" +
+            ", nacimiento='" + nacimiento + "'" +
             '}';
     }
 }

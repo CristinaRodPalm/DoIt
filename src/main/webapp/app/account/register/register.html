@@ -127,18 +127,12 @@
                 </div>
 <!-- fecha nacimiento -->
                 <div class="form-group">
-                    <label class="control-label" data-translate="global.form.fechaNacimiento">Fecha Nacimiento</label>
+                    <label class="control-label" data-translate="doitApp.userExt.nacimiento" for="field_nacimiento">Nacimiento</label>
                     <div class="input-group">
-                        <input id="field_fechaNacimiento" type="text" class="form-control"
-                               placeholder="{{'global.form.fechaNacimiento.placeholder' | translate}}"
-                               name="fechaNacimiento" datetime-picker="{{dateformat}}"
-                               ng-model="vm.registerAccount.fechaNacimiento"
-                               is-open="vm.datePickerOpenStatus.fechaNacimiento"
-                               />
+                        <input id="field_nacimiento" type="text" class="form-control" name="nacimiento" uib-datepicker-popup="{{dateformat}}" ng-model="vm.userExt.nacimiento" is-open="vm.datePickerOpenStatus.nacimiento"
+                        />
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaNacimiento')">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('nacimiento')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                     </div>
                 </div>

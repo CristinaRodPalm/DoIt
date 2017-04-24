@@ -29,6 +29,11 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "nacimiento",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": []
         }
     ],
     "changelogDate": "20170223181928",

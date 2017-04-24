@@ -55,13 +55,13 @@
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        console.log($file.type);
                         userExt.imagen = base64Data;
                         userExt.imagenContentType = $file.type;
                     });
                 });
             }
         };
+        vm.datePickerOpenStatus.nacimiento = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

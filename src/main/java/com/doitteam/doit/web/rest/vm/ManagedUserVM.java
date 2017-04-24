@@ -19,8 +19,6 @@ public class ManagedUserVM extends UserDTO {
 
     private ZonedDateTime fechaNacimiento;
 
-
-
     private byte[] imagen;
     private String imagenContentType;
 

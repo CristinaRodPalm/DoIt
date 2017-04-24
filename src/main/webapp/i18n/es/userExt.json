@@ -23,6 +23,7 @@
             "image": "Imagen",
             "phone": "Teléfono",
             "user": "User",
+            "nacimiento": "Fecha de nacimiento",
             "search":{
                 "title":"Buscar personas",
                 "subtitle":"Resultados de búsqueda:"
