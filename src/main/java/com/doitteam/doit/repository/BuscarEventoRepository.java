@@ -2,7 +2,6 @@ package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.User;
-import com.doitteam.doit.domain.UserExt;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

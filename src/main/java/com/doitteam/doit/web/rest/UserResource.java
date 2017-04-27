@@ -1,19 +1,18 @@
 package com.doitteam.doit.web.rest;
 
-import com.doitteam.doit.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.config.Constants;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.service.MailService;
 import com.doitteam.doit.service.UserService;
 import com.doitteam.doit.service.dto.UserDTO;
-import com.doitteam.doit.web.rest.vm.ManagedUserVM;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import com.doitteam.doit.web.rest.util.PaginationUtil;
+import com.doitteam.doit.web.rest.vm.ManagedUserVM;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,7 +25,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing users.

@@ -2,8 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Evento;
-
-import com.doitteam.doit.repository.AmistadRepository;
 import com.doitteam.doit.repository.EventoRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +51,7 @@ public class EventoResource {
         if (evento.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new evento cannot already have an ID")).body(null);
         }
+        evento.setHora(ZonedDateTime.now());
         evento.setAdmin(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         Evento result = eventoRepository.save(evento);
         return ResponseEntity.created(new URI("/api/eventos/" + result.getId()))

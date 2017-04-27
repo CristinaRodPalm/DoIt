@@ -1,7 +1,6 @@
 package com.doitteam.doit.config.audit;
 
 import com.doitteam.doit.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;

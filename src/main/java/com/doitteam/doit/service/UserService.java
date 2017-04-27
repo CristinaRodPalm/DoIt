@@ -1,17 +1,16 @@
 package com.doitteam.doit.service;
 
+import com.doitteam.doit.config.Constants;
 import com.doitteam.doit.domain.Authority;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.AuthorityRepository;
-import com.doitteam.doit.config.Constants;
 import com.doitteam.doit.repository.UserExtRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.AuthoritiesConstants;
 import com.doitteam.doit.security.SecurityUtils;
-import com.doitteam.doit.service.util.RandomUtil;
 import com.doitteam.doit.service.dto.UserDTO;
-
+import com.doitteam.doit.service.util.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service class for managing users.

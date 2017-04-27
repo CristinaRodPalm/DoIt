@@ -2,7 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.LikesReto;
-
 import com.doitteam.doit.repository.LikesRetoRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class LikesRetoResource {
     private final Logger log = LoggerFactory.getLogger(LikesRetoResource.class);
 
     private static final String ENTITY_NAME = "likesReto";
-        
+
     private final LikesRetoRepository likesRetoRepository;
 
     public LikesRetoResource(LikesRetoRepository likesRetoRepository) {

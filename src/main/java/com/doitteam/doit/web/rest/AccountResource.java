@@ -1,17 +1,15 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.service.MailService;
 import com.doitteam.doit.service.UserService;
 import com.doitteam.doit.service.dto.UserDTO;
+import com.doitteam.doit.web.rest.util.HeaderUtil;
 import com.doitteam.doit.web.rest.vm.KeyAndPasswordVM;
 import com.doitteam.doit.web.rest.vm.ManagedUserVM;
-import com.doitteam.doit.web.rest.util.HeaderUtil;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.
@@ -61,6 +59,12 @@ public class AccountResource {
 
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
+
+        /*if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    ("Register", "noexists", "La fecha no puede ser posterior a la actual")).body(null);
+        } */
 
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))

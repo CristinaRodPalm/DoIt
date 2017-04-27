@@ -1,7 +1,6 @@
 package com.doitteam.doit.security;
 
 import com.doitteam.doit.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

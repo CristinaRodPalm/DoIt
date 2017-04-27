@@ -2,7 +2,6 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.ParticipacionReto;
-
 import com.doitteam.doit.repository.ParticipacionRetoRepository;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class ParticipacionRetoResource {
     private final Logger log = LoggerFactory.getLogger(ParticipacionRetoResource.class);
 
     private static final String ENTITY_NAME = "participacionReto";
-        
+
     private final ParticipacionRetoRepository participacionRetoRepository;
 
     public ParticipacionRetoResource(ParticipacionRetoRepository participacionRetoRepository) {
