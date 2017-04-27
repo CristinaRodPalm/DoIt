@@ -41,12 +41,13 @@
             <label class="control-label" data-translate="doitApp.evento.direccion"
                    for="field_direccion">Direccion</label>
             <input type="text" class="form-control" name="direccion"
-                   id="field_direccion" ng-model="vm.evento.direccion"
-                   ng-autocomplete="field_direccion"/>
+                   id="field_direccion" places-auto-complete
+                   ng-model="vm.evento.direccion" on-place-changed="vm.placeChanged()"/>
         </div>
 
+        <ng-map></ng-map>
 
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.latitud" for="field_latitud">Latitud</label>
             <input type="number" class="form-control" name="latitud" id="field_latitud"
                    ng-model="vm.evento.latitud"/>
@@ -55,7 +56,7 @@
             <label class="control-label" data-translate="doitApp.evento.longitud" for="field_longitud">Longitud</label>
             <input type="number" class="form-control" name="longitud" id="field_longitud"
                    ng-model="vm.evento.longitud"/>
-        </div>
+        </div>-->
 
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.fechaEvento" for="field_fechaEvento">Fecha

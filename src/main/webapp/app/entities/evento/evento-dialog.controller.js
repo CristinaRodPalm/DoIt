@@ -3,12 +3,11 @@
 
     angular
         .module('doitApp')
-        .controller('EventoDialogController', EventoDialogController)
+        .controller('EventoDialogController', EventoDialogController);
 
+    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
 
-    EventoDialogController.$inject = ['$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
-
-    function EventoDialogController ($timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
+    function EventoDialogController (NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
         var vm = this;
 
         vm.evento = entity;
@@ -22,6 +21,18 @@
         vm.users = User.query();
         vm.invitacioneventos = InvitacionEvento.query();
         vm.chats = Chat.query();
+
+        vm.placeChanged = function() {
+            vm.place = this.getPlace();
+            console.log('location', vm.place.geometry.location);
+            vm.map.setCenter(vm.place.geometry.location);
+            vm.evento.latitud = vm.place.geometry.location.lat();
+            vm.evento.longitud = vm.place.geometry.location.lng();
+        }
+        NgMap.getMap().then(function(map) {
+            vm.map = map;
+        });
+
 
 
         $timeout(function (){
