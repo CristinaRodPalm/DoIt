@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'allUsers': { method: 'GET', isArray: true, url:'api/all-users-ext'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

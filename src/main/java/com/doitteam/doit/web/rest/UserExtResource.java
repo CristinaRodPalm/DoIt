@@ -1,8 +1,11 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.UserExtRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -29,8 +32,11 @@ public class UserExtResource {
 
     private final UserExtRepository userExtRepository;
 
-    public UserExtResource(UserExtRepository userExtRepository) {
+    private final UserRepository userRepository;
+
+    public UserExtResource(UserExtRepository userExtRepository, UserRepository userRepository) {
         this.userExtRepository = userExtRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -85,6 +91,15 @@ public class UserExtResource {
     public List<UserExt> getAllUserExts() {
         log.debug("REST request to get all UserExts");
         List<UserExt> userExts = userExtRepository.findAll();
+        return userExts;
+    }
+
+    @GetMapping("/all-users-ext")
+    @Timed
+    public List<UserExt> getAllUsers() {
+        log.debug("REST request to get all UserExts except current UserLogin");
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<UserExt> userExts = userExtRepository.findAllUsers(userLogin.getId());
         return userExts;
     }
 

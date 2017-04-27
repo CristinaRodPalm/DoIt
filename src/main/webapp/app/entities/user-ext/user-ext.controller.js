@@ -12,14 +12,22 @@
         var vm = this;
 
         vm.userExts = [];
+        vm.allUsers = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
 
         loadAll();
+        loadAllUsersExceptCurrent();
 
         function loadAll() {
             UserExt.query(function(result) {
                 vm.userExts = result;
+                vm.searchQuery = null;
+            });
+        }
+        function loadAllUsersExceptCurrent() {
+            UserExt.allUsers(function(result) {
+                vm.allUsers = result;
                 vm.searchQuery = null;
             });
         }
