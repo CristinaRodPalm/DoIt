@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Optional;
 
 /**
@@ -66,6 +67,18 @@ public class AccountResource {
                     ("Register", "noexists", "La fecha no puede ser posterior a la actual")).body(null);
         } */
 
+        if(managedUserVM.getNacimiento().isBefore(LocalDate.now())){
+            System.out.println("está bien");
+            if(managedUserVM.getNacimiento().getYear()+16 <= LocalDate.now().getYear()){
+                System.out.println("ENTRA PA DENTRO PAYO");
+            }else{
+                return new ResponseEntity<>("menor de edad", textPlainHeaders, HttpStatus.BAD_REQUEST);
+            }
+        }else{
+            return new ResponseEntity<>("menor", textPlainHeaders, HttpStatus.BAD_REQUEST);
+        }
+
+
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
             .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
@@ -75,7 +88,7 @@ public class AccountResource {
                         .createUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
                             managedUserVM.getFirstName(), managedUserVM.getLastName(),
                             managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(), managedUserVM.getLangKey(),
-                            managedUserVM.getPhone(), managedUserVM.getNacimiento(), managedUserVM.getImagen(), managedUserVM.getImagenContentType());
+                            managedUserVM.getPhone(), managedUserVM.getNacimiento().plusDays(1), managedUserVM.getImagen(), managedUserVM.getImagenContentType());
 
                     mailService.sendActivationEmail(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);

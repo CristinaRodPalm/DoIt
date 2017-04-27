@@ -11,6 +11,10 @@
                 <strong>Registration failed!</strong> Please try again later.
             </div>
 
+            <div class="alert alert-danger" ng-show="vm.menorDeEdad" data-translate="register.messages.error.menorDeEdad">
+                <strong>Registration failed!</strong> Eres menor de 16 años
+            </div>
+
             <div class="alert alert-danger" ng-show="vm.errorUserExists" data-translate="register.messages.error.userexists">
                 <strong>Login name already registered!</strong> Please choose another one.
             </div>
