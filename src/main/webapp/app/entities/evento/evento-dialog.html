@@ -108,6 +108,8 @@
             <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
                    ng-model="vm.evento.imagenContentType"/>
         </div>
+        <div class="form-group" ng-repeat="amistad in vm.friends track by amistad.id">Emisor: {{amistad.emisor}}</div>
+        <div class="form-group" ng-repeat="amistad in vm.friends track by amistad.id">Receptor: {{amistad.receptor}}</div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

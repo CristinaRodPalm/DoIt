@@ -33,7 +33,9 @@
                 method: 'PUT',
                 url: 'api/amistads/:id/deny'
 
-            }
+            },
+            'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'}
+
         });
     }
 })();

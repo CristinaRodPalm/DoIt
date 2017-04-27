@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('EventoDialogController', EventoDialogController);
 
-    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat'];
+    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
 
-    function EventoDialogController (NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat) {
+    function EventoDialogController (NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
         var vm = this;
 
         vm.evento = entity;
@@ -21,6 +21,9 @@
         vm.users = User.query();
         vm.invitacioneventos = InvitacionEvento.query();
         vm.chats = Chat.query();
+        vm.friends = [];
+
+        loadFriends();
 
         vm.placeChanged = function() {
             vm.place = this.getPlace();
@@ -32,8 +35,6 @@
         NgMap.getMap().then(function(map) {
             vm.map = map;
         });
-
-
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -82,6 +83,12 @@
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
+        }
+
+        function loadFriends(){
+            Amistad.getFriends(function (result) {
+                vm.friends = result;
+            })
         }
 
     }

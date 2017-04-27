@@ -189,9 +189,17 @@ public class AmistadResource {
     @GetMapping("/amistades")
     @Timed
     public List<Amistad> getAllAmistadsByCurrentUser() throws URISyntaxException {
-        log.debug("REST Request para obtener amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         return amistadRepository.findByReceptorIsCurrentUser(userLogin.getId());
+    }
+
+    @GetMapping("/amigos")
+    @Timed
+    public List<Amistad> getFriends() throws URISyntaxException {
+        log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return amistadRepository.findAllFriends(userLogin.getId());
     }
 
 }

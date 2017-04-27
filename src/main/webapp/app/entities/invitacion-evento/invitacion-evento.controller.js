@@ -5,13 +5,14 @@
         .module('doitApp')
         .controller('InvitacionEventoController', InvitacionEventoController);
 
-    InvitacionEventoController.$inject = ['InvitacionEvento'];
+    InvitacionEventoController.$inject = ['InvitacionEvento', 'Amistad'];
 
-    function InvitacionEventoController(InvitacionEvento) {
+    function InvitacionEventoController(InvitacionEvento, Amistad) {
 
         var vm = this;
 
         vm.invitacionEventos = [];
+        vm.friends = [];
 
         loadAll();
 
