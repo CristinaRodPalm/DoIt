@@ -15,6 +15,10 @@
                 <strong>Registration failed!</strong> Eres menor de 16 años
             </div>
 
+            <div class="alert alert-danger" ng-show="vm.afternow" data-translate="register.messages.error.afternow">
+                <strong>Registration failed!</strong> Tu fecha de nacimiento no puede ser posterior a la actual
+            </div>
+
             <div class="alert alert-danger" ng-show="vm.errorUserExists" data-translate="register.messages.error.userexists">
                 <strong>Login name already registered!</strong> Please choose another one.
             </div>
