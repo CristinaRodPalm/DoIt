@@ -19,6 +19,7 @@ import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Amistad.
@@ -28,6 +29,7 @@ import java.util.Optional;
 public class AmistadResource {
 
     private final Logger log = LoggerFactory.getLogger(AmistadResource.class);
+
 
     private static final String ENTITY_NAME = "amistad";
 
@@ -196,10 +198,21 @@ public class AmistadResource {
 
     @GetMapping("/amigos")
     @Timed
-    public List<Amistad> getFriends() throws URISyntaxException {
+    public List<User> getFriends() throws URISyntaxException {
         log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        return amistadRepository.findAllFriends(userLogin.getId());
+        List<User> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                if(amistad.getEmisor().equals(userLogin)){
+                    return amistad.getReceptor();
+                }else{
+                    return amistad.getEmisor();
+                }
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
     }
 
 }
