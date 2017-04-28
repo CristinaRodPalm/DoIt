@@ -18,7 +18,7 @@
             },
             "nombre": "Nombre",
             "descripcion": "Descripcion",
-            "horaPublicacion": "Hora Publicacion",
+            "horaPublicacion": "Publicado",
             "imagen": "Imagen",
             "participar":"Participar",
             "participacionReto": "Participaciones",

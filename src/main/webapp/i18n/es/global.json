@@ -126,7 +126,7 @@
             "edit": "Editar",
             "open": "Abrir",
             "save": "Guardar",
-            "view": "Vista"
+            "view": "Ver"
         },
         "detail": {
             "field": "Campo",
@@ -149,7 +149,7 @@
         }
     },
     "error": {
-        "internalServerError": "Internal server error",
+        "internalServerError": "Error interno del servidor",
         "server.not.reachable": "Servidor no accesible",
         "url.not.found": "Not found",
         "NotNull": "¡El campo {{fieldName}} no puede estar vacío!",

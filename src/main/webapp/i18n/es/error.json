@@ -1,6 +1,6 @@
 {
     "error": {
-        "title": "¡Página de error!",
-        "403": "No tiene permisos para acceder a la página."
+        "title": "¡Error!",
+        "403": "No tienes permiso para acceder a la página."
     }
 }

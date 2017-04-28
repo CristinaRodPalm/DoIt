@@ -92,33 +92,27 @@
                 parent: 'reto',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_ADMIN']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
-                    $uibModal.open({
+                views: {
+                    'content@': {
                         templateUrl: 'app/entities/reto/reto-dialog.html',
                         controller: 'RetoDialogController',
-                        controllerAs: 'vm',
-                        backdrop: 'static',
-                        size: 'lg',
-                        resolve: {
-                            entity: function () {
-                                return {
-                                    nombre: null,
-                                    descripcion: null,
-                                    horaPublicacion: null,
-                                    imagen: null,
-                                    imagenContentType: null,
-                                    id: null
-                                };
-                            }
-                        }
-                    }).result.then(function () {
-                        $state.go('reto', null, {reload: 'reto'});
-                    }, function () {
-                        $state.go('reto');
-                    });
-                }]
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    entity: function () {
+                        return {
+                            nombre: null,
+                            descripcion: null,
+                            horaPublicacion: null,
+                            imagen: null,
+                            imagenContentType: null,
+                            id: null
+                        };
+                    }
+                }
             })
             .state('reto.edit', {
                 parent: 'reto',
