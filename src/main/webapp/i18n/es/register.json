@@ -18,7 +18,8 @@
                 "fail": "<strong>¡El registro ha fallado!</strong> Por favor, inténtalo de nuevo más tarde.",
                 "userexists": "<strong>¡El nombre de usuario ya está registrado!</strong> Por favor, escoge otro usuario.",
                 "emailexists": "<strong>¡El correo electrónico ya está en uso!</strong> Por favor, escoge otro email.",
-                "menorDeEdad": "<strong>¡Todavía eres un bebé!</strong> Debes ser mayor de 16 años!."
+                "menorDeEdad": "<strong>¡Lo sentimos!</strong> Debes ser mayor de 16 años!",
+                "afternow": "<strong>¡Uy!</strong> Tu fecha de nacimiento no puede ser posterior a la actual"
             }
         }
     }

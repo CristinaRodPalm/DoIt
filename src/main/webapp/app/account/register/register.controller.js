@@ -40,6 +40,7 @@
                 vm.errorUserExists = null;
                 vm.errorEmailExists = null;
                 vm.menorDeEdad= null;
+                vm.afternow = null;
 
                 Auth.createAccount(vm.registerAccount).then(function () {
                         vm.success = 'OK';
@@ -49,8 +50,10 @@
                         vm.errorUserExists = 'ERROR';
                     } else if (response.status === 400 && response.data === 'e-mail address already in use') {
                         vm.errorEmailExists = 'ERROR';
-                    } else if(response.status === 400 && response.data === 'menor'){
+                    } else if(response.status === 400 && response.data === 'menor') {
                         vm.menorDeEdad = 'ERROR';
+                    }else if(response.status === 400 && response.data === 'afternow'){
+                        vm.afternow = 'ERROR';
                     } else{
                         vm.error = 'ERROR';
                     }

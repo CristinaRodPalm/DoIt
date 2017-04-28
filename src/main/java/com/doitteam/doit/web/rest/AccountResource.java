@@ -61,23 +61,11 @@ public class AccountResource {
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
 
-        /*if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
-            return ResponseEntity.badRequest().
-                headers(HeaderUtil.createFailureAlert
-                    ("Register", "noexists", "La fecha no puede ser posterior a la actual")).body(null);
-        } */
-
-        if(managedUserVM.getNacimiento().isBefore(LocalDate.now())){
-            System.out.println("está bien");
-            if(managedUserVM.getNacimiento().getYear()+16 <= LocalDate.now().getYear()){
-                System.out.println("ENTRA PA DENTRO PAYO");
-            }else{
-                return new ResponseEntity<>("menor de edad", textPlainHeaders, HttpStatus.BAD_REQUEST);
-            }
-        }else{
+        if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
+            return new ResponseEntity<>("afternow", textPlainHeaders, HttpStatus.BAD_REQUEST);
+        } else if(managedUserVM.getNacimiento().getYear()+16 > LocalDate.now().getYear()){
             return new ResponseEntity<>("menor", textPlainHeaders, HttpStatus.BAD_REQUEST);
         }
-
 
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
