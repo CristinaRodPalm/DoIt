@@ -8,8 +8,8 @@
             <h3 data-translate="home.subtitle">Subtitle</h3>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message">
-                    Mensaje login
+                <div class="alert alert-success" ng-switch-when="true">
+                    <span data-translate="home.logged.message"></span>{{vm.account.login}}
                 </div>
 
                 <div class="col-md-8 col-md-offset-2" ng-switch-when="false">

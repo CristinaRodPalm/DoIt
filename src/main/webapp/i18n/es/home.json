@@ -3,7 +3,7 @@
         "title": "¡Bienvenido a Do It!",
         "subtitle": "Un proyecto creado con la herramienta <em>Open Source</em> <a href='https://jhipster.github.io/' target='_blank'>JHipster</a>",
         "logged": {
-            "message": "Estás conectado como \"{{username}}\"."
+            "message": "Estás conectado como "
         },
         "question": "Si tiene preguntas sobre JHipster:",
         "link": {
