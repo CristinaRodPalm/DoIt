@@ -30,6 +30,7 @@
             "miembroEvento": "Miembros del evento",
             "chat": "Chat",
             "participar":"Apuntarse",
+            "editar":"Editar",
             "world-events": {
                 "title": "Eventos en el mundo",
                 "subtitle": "¡Aquí podrás ver todos los eventos que se han creado en el mundo!"

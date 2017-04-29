@@ -5,13 +5,14 @@
         .module('doitApp')
         .controller('EventoController', EventoController);
 
-    EventoController.$inject = ['DataUtils', 'Evento'];
+    EventoController.$inject = ['Principal', 'DataUtils', 'Evento'];
 
-    function EventoController(DataUtils, Evento) {
+    function EventoController(Principal, DataUtils, Evento) {
 
         var vm = this;
 
         vm.eventos = [];
+        vm.currentAccount;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
 
@@ -23,6 +24,10 @@
                 vm.searchQuery = null;
             });
         }
+
+        Principal.identity().then(function(account) {
+            vm.currentAccount = account;
+        });
 
     }
 })();

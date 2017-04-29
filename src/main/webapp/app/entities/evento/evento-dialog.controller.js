@@ -31,9 +31,12 @@
             vm.map.setCenter(vm.place.geometry.location);
             vm.evento.latitud = vm.place.geometry.location.lat();
             vm.evento.longitud = vm.place.geometry.location.lng();
+            vm.map.setZoom(15);
         }
         NgMap.getMap().then(function(map) {
             vm.map = map;
+            vm.map.setZoom(6);
+            vm.map.setCenter(new google.maps.LatLng(40.4378698, -3.8196217));
         });
 
         $timeout(function (){

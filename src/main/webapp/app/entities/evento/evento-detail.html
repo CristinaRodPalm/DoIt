@@ -1,9 +1,10 @@
 <div>
     <h2><span data-translate="doitApp.evento.detail.title">Evento</span></h2>
-    <small>ID: {{vm.evento.id}}</small>
+    <!--<small>ID: {{vm.evento.id}}</small>--->
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="doitApp.evento.imagen">Imagen</span></dt>
         <dd>
             <div ng-if="vm.evento.imagen">
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
@@ -52,12 +53,12 @@
         </dd>
     </dl>
 
-    <div class="form-group">
+    <!--<div class="form-group">
         <label data-translate="userManagement.profiles">Profiles</label>
         <select class="form-control" multiple name="authority" ng-model="vm.user.authorities"
                 ng-options="authority for authority in vm.authorities">
         </select>
-
+        -->
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-default">

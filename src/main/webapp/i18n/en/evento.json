@@ -30,6 +30,7 @@
             "miembroEvento": "Event members",
             "chat": "Chat",
             "participar":"Participate",
+            "editar": "Edit",
             "world-events": {
                 "title": "World events",
                 "subtitle": "Here you can see all the events created by the users around the world!"
