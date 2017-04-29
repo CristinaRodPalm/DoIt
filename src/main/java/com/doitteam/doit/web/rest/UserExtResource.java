@@ -119,6 +119,16 @@ public class UserExtResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userExt));
     }
 
+    //para obtener una lista de todos los usuarios de la app excluyendo al propio usuario logeado
+    /*@GetMapping("/user-exts")
+    @Timed
+    public List<UserExt> getAllUserExtsExceptCurrentUser() {
+        log.debug("REST request to get all UserExts");
+        Long userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId();
+        List<UserExt> userExts = userExtRepository.findAllExceptCurrentUser(userLogin);
+        return userExts;
+    }*/
+
     /**
      * DELETE  /user-exts/:id : delete the "id" userExt.
      *

@@ -66,7 +66,7 @@ public class AmistadResource {
             .body(result);
     }
 
-    // Enviar solicitud amistad desde búscar amigo
+    // Enviar solicitud amistad desde buscar amigo
     @PostMapping("/amistad/{id}/emisor")
     @Timed
     public ResponseEntity<Amistad> sendFriendRequest(@PathVariable Long id) throws URISyntaxException {
