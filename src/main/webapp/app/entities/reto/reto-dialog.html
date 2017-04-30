@@ -43,8 +43,12 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        <button type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+            <span data-translate="entity.action.back">Back</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>

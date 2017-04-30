@@ -193,7 +193,6 @@
                         <img data-ng-src="{{'data:' + vm.registerAccount.imagenContentType + ';base64,' + vm.registerAccount.imagen}}"
                              style="max-height: 100px;" ng-if="vm.registerAccount.imagen" alt="registerAccount image"/>
                         <div ng-if="vm.registerAccount.imagen" class="help-block clearfix">
-                            <span class="pull-left">{{vm.registerAccount.imagenContentType}}, {{vm.byteSize(vm.registerAccount.imagen)}}</span>
                             <button type="button" ng-click="vm.registerAccount.imagen=null;vm.registerAccount.imagenContentType=null;"
                                     class="btn btn-default btn-xs pull-right">
                                 <span class="glyphicon glyphicon-remove"></span>

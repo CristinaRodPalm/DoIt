@@ -25,7 +25,7 @@
         });
 
         function clear () {
-            $state.go('retos', null, {reload: 'retos'});
+            $state.go('lista-retos', null, {reload: 'lista-retos'});
         }
 
         function save () {

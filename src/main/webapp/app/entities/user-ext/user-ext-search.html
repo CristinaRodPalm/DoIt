@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="user in vm.userExts|filter:criteria">
+                <tr ng-repeat="user in vm.userExts|filter:criteria" ng-if="vm.currentAccount.id!=user.user.id">
                     <td>
                         <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
                             <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
