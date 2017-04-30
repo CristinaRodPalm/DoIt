@@ -48,16 +48,14 @@
                                  class="btn btn-info">
                             <span class="glyphicon glyphicon-eye-open"></span>
                             <span class="hidden-sm-down"></span>
-                            <!--<span>Info</span>-->
+                            <span>Info</span>
                         </button>
-                        <button type="submit" class="btn btn-danger" ng-disabled="vm.currentAccount.login!=evento.admin.login">
+                        <button type="submit" class="btn btn-danger"
+                            ng-if="vm.currentAccount.login==evento.admin.login">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>
-                            <!--<span translate="doitApp.evento.editar "></span>-->
-
+                            <span translate="doitApp.evento.editar "></span>
                         </button>
-
-
                     </div>
                 </td>
             </tr>
