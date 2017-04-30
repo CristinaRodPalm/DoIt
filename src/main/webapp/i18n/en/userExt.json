@@ -2,7 +2,7 @@
     "doitApp": {
         "userExt" : {
             "home": {
-                "title": "User Exts",
+                "title": "User",
                 "createLabel": "Create a new User Ext",
                 "createOrEditLabel": "Create or edit a User Ext"
             },
@@ -13,7 +13,7 @@
                 "question": "Are you sure you want to delete User Ext {{ id }}?"
             },
             "detail": {
-                "title": "User Ext"
+                "title": "User"
             },
             "send":"Send friend request",
             "login":"Username",

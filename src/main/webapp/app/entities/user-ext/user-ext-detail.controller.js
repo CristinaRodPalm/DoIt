@@ -17,7 +17,9 @@
 
         var unsubscribe = $rootScope.$on('doitApp:userExtUpdate', function(event, result) {
             vm.userExt = result;
+
         });
+        console.log(vm.userExt);
         $scope.$on('$destroy', unsubscribe);
     }
 })();

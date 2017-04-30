@@ -1,34 +1,29 @@
-
 <div>
-    <h2><span data-translate="doitApp.userExt.detail.title">User Ext</span> {{vm.userExt.id}}</h2>
+    <h2><span>{{vm.userExt.user.firstName}} {{vm.userExt.user.lastName}}</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row jh-entity-details">
-        <dt><span data-translate="doitApp.userExt.fechaNacimiento">Fecha Nacimiento</span></dt>
-        <dd>
-            <span>{{vm.userExt.fechaNacimiento | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.userExt.imagen">Imagen</span></dt>
         <dd>
             <div ng-if="vm.userExt.imagen">
                 <a ng-click="vm.openFile(vm.userExt.imagenContentType, vm.userExt.imagen)">
-                    <img data-ng-src="{{'data:' + vm.userExt.imagenContentType + ';base64,' + vm.userExt.imagen}}" style="max-width: 100%;" alt="userExt image"/>
+                    <img data-ng-src="{{'data:' + vm.userExt.imagenContentType + ';base64,' + vm.userExt.imagen}}"
+                         style="max-width: 100%;" alt="userExt image"/>
                 </a>
-                {{vm.userExt.imagenContentType}}, {{vm.byteSize(vm.userExt.imagen)}}
             </div>
-        </dd>
-        <dt><span data-translate="doitApp.userExt.telefono">Telefono</span></dt>
-        <dd>
-            <span>{{vm.userExt.telefono}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.userExt.nacimiento">Nacimiento</span></dt>
-        <dd>
-            <span>{{vm.userExt.nacimiento | date:'mediumDate'}}</span>
         </dd>
         <dt><span data-translate="doitApp.userExt.user">User</span></dt>
         <dd>
             {{vm.userExt.user.login}}
         </dd>
+        <dt><span data-translate="doitApp.userExt.birthdate">Fecha de nacimiento</span></dt>
+        <dd>
+            <span>{{vm.userExt.nacimiento | date:'dd/MM/yyyy'}}</span>
+        </dd>
+        <dt><span data-translate="doitApp.userExt.phone">Telefono</span></dt>
+        <dd>
+            <span>{{vm.userExt.telefono}}</span>
+        </dd>
+
     </dl>
 
     <button type="submit"
@@ -37,8 +32,10 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
+    <!--
     <button type="button" ui-sref="user-ext-detail.edit({id:vm.userExt.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
+    -->
 </div>

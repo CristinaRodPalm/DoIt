@@ -2,7 +2,7 @@
     "doitApp": {
         "userExt" : {
             "home": {
-                "title": "User Exts",
+                "title": "Usuario",
                 "createLabel": "Crear nuevo User Ext",
                 "createOrEditLabel": "Crear o editar User Ext"
             },
@@ -13,12 +13,12 @@
                 "question": "¿Seguro que quiere eliminar User Ext {{ id }}?"
             },
             "detail": {
-                "title": "User Ext"
+                "title": "Usuario"
             },
             "send":"Enviar petición de amistad",
             "login":"Nombre de usuario",
             "realname":"Nombre real",
-            "birthdate": "Fecha Nacimiento",
+            "birthdate": "Nació el",
             "email":"E-mail",
             "image": "Imagen",
             "phone": "Teléfono",
