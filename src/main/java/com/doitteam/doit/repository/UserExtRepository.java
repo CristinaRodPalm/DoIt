@@ -17,4 +17,7 @@ public interface UserExtRepository extends JpaRepository<UserExt,Long> {
         "where userExt.user.id !=:currentUser")
     List<UserExt> findAllUsers(@Param("currentUser") Long currentUser);
 
+    @Query("select userExt from UserExt userExt where userExt.user.id =:idUser")
+    UserExt findByUserID(@Param("idUser") Long idUser);
+
 }

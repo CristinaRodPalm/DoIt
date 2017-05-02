@@ -24,8 +24,42 @@
                     <th></th>
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr ng-repeat="user in vm.userExts|filter:criteria" ng-if="vm.currentAccount.id!=user.user.id">
+                <!-- LOS AMIGOS -->
+                <tr ng-repeat="friend in vm.friends|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                    <td>
+                        <a ng-if="friend.imagen" ng-click="vm.openFile(user.imagenContentType, friend.imagen)">
+                            <img data-ng-src="{{'data:' + friend.imagenContentType + ';base64,' + friend.imagen}}"
+                                 style="max-height: 30px;" alt="friend image"/>
+                        </a>
+                    </td>
+
+                    <td><span>{{friend.user.login}}</span></td>
+                    <td><span>{{friend.user.firstName}} {{friend.user.lastName}}</span></td>
+                    <td><span>{{friend.telefono}}</span></td>
+                    <td><span>{{friend.user.email}}</span></td>
+                    <td><span>{{friend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                    <td class="text-right">
+                        <div class="btn-group btn-group-sm">
+                            <button type="submit"
+                                    ng-click="vm.sendFriendRequest(user.user.id)" ng-disabled="true"
+                                    class="btn btn-primary">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                <!--<span translate="doitApp.userExt.send">Send friend request</span>-->
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-ext-detail({id:user.id})"
+                                    class="btn btn-info">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <!--<span> Info</span>-->
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- LOS QUE NO SON AMIGOS -->
+                <tr ng-repeat="user in vm.userExts|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
                     <td>
                         <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
                             <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
@@ -44,13 +78,13 @@
                                     ng-click="vm.sendFriendRequest(user.user.id)"
                                     class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                <span translate="doitApp.userExt.send">Send friend request</span>
+                                <!--<span translate="doitApp.userExt.send">Send friend request</span>-->
                             </button>
                             <button type="submit"
                                     ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                <span> Info</span>
+                                <!--<span> Info</span>-->
                             </button>
                         </div>
                     </td>

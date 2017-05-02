@@ -32,4 +32,9 @@ public interface AmistadRepository extends JpaRepository<Amistad,Long> {
         "or amistad.emisor.id =:currentUser")
     List<Amistad> findAllFriends(@Param("currentUser") Long currentUser);
 
+    // los que ya son amigos
+    // los que tienen una solicitud
+    @Query("select amistad from Amistad amistad where amistad.receptor.id=:currentUser or amistad.emisor.id=:currentUser")
+    List<Amistad> findAmigos(@Param("currentUser") Long currentUser);
+
 }

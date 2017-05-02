@@ -3,7 +3,9 @@ package com.doitteam.doit.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.User;
+import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.repository.AmistadRepository;
+import com.doitteam.doit.repository.UserExtRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
@@ -29,16 +31,16 @@ import java.util.stream.Collectors;
 public class AmistadResource {
 
     private final Logger log = LoggerFactory.getLogger(AmistadResource.class);
-
-
     private static final String ENTITY_NAME = "amistad";
 
     private final AmistadRepository amistadRepository;
     private final UserRepository userRepository;
+    private final UserExtRepository userExtRepository;
 
-    public AmistadResource(AmistadRepository amistadRepository, UserRepository userRepository) {
+    public AmistadResource(AmistadRepository amistadRepository, UserRepository userRepository, UserExtRepository userExtRepository) {
         this.amistadRepository = amistadRepository;
         this.userRepository = userRepository;
+        this.userExtRepository = userExtRepository;
     }
 
     @PostMapping("/amistads")
@@ -87,16 +89,15 @@ public class AmistadResource {
             .body(result);
     }
 
+    @GetMapping("/amistad/amigosSolicitudes")
+    public List<Amistad> getAmigosSolicitudes(){
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<Amistad> amigos = amistadRepository.findAmigos(userLogin.getId());
+       /* for (Amistad amigo: amigos) { }
+        return null;*/
+       return amigos;
+    }
 
-    /**
-     * PUT  /amistads : Updates an existing amistad.
-     *
-     * @param amistad the amistad to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated amistad,
-     * or with status 400 (Bad Request) if the amistad is not valid,
-     * or with status 500 (Internal Server Error) if the amistad couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/amistads")
     @Timed
     public ResponseEntity<Amistad> updateAmistad(@Valid @RequestBody Amistad amistad) throws URISyntaxException {
@@ -110,11 +111,6 @@ public class AmistadResource {
             .body(result);
     }
 
-    /**
-     * GET  /amistads : get all the amistads.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of amistads in body
-     */
     @GetMapping("/amistads")
     @Timed
     public List<Amistad> getAllAmistads() {
@@ -123,12 +119,6 @@ public class AmistadResource {
         return amistads;
     }
 
-    /**
-     * GET  /amistads/:id : get the "id" amistad.
-     *
-     * @param id the id of the amistad to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the amistad, or with status 404 (Not Found)
-     */
     @GetMapping("/amistads/{id}")
     @Timed
     public ResponseEntity<Amistad> getAmistad(@PathVariable Long id) {
@@ -137,12 +127,6 @@ public class AmistadResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amistad));
     }
 
-    /**
-     * DELETE  /amistads/:id : delete the "id" amistad.
-     *
-     * @param id the id of the amistad to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/amistads/{id}")
     @Timed
     public ResponseEntity<Void> deleteAmistad(@PathVariable Long id) {
@@ -196,6 +180,7 @@ public class AmistadResource {
         return amistadRepository.findByReceptorIsCurrentUser(userLogin.getId());
     }
 
+    // GET DE AMISTADES
     @GetMapping("/amigos")
     @Timed
     public List<User> getFriends() throws URISyntaxException {
@@ -214,5 +199,29 @@ public class AmistadResource {
 
         return amigos;
     }
+
+    //get solicitudes pendientes
+
+    //get solicitudes aceptadas (amigos)
+    @GetMapping("/amigosUserExt")
+    @Timed
+    public List<UserExt> getFriendsAccepted() throws URISyntaxException {
+        log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<UserExt> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+            parallelStream().
+            map(amistad -> { UserExt user;
+                if(amistad.getEmisor().equals(userLogin)){
+                    user = userExtRepository.findByUserID(amistad.getReceptor().getId());
+                }else{
+                    user = userExtRepository.findByUserID(amistad.getEmisor().getId());
+                }
+                return user;
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
+    }
+    //get de usuarios que no son amigos
 
 }

@@ -30,7 +30,6 @@
             });
         }
 
-
         vm.acceptFriend = function(id){
             Amistad.accept({'id':id}, {});
             alert("AMISTAD ACEPTADA");
