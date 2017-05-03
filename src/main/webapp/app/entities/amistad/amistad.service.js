@@ -12,7 +12,8 @@
         return $resource(resourceUrl, {}, {
             'query': {method: 'GET', isArray: true},
             'getAllByCurrentUser': {method: 'GET', isArray: true, url: 'api/amistades'},
-            'getAmigos': {method:'GET', isArray:true, url:'api/amigosUserExt'},
+            'getSolicitudesAceptadas': {method:'GET', isArray:true, url:'api/usersSolAceptadas'},
+            'getSolicitudesPendientes': {method:'GET', isArray:true, url:'api/usersSolPendientes'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

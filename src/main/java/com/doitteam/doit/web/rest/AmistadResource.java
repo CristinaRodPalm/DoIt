@@ -201,16 +201,14 @@ public class AmistadResource {
     }
 
     //get solicitudes pendientes
-
-    //get solicitudes aceptadas (amigos)
-    @GetMapping("/amigosUserExt")
+    @GetMapping("/usersSolPendientes")
     @Timed
-    public List<UserExt> getFriendsAccepted() throws URISyntaxException {
-        log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+    public List<UserExt> getFriendsPendingRequest() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+        List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
             parallelStream().
-            map(amistad -> { UserExt user;
+            map(amistad -> {
+                UserExt user;
                 if(amistad.getEmisor().equals(userLogin)){
                     user = userExtRepository.findByUserID(amistad.getReceptor().getId());
                 }else{
@@ -222,6 +220,25 @@ public class AmistadResource {
 
         return amigos;
     }
-    //get de usuarios que no son amigos
 
+    //get solicitudes aceptadas (amigos)
+    @GetMapping("/usersSolAceptadas")
+    @Timed
+    public List<UserExt> getFriendsAccepted() throws URISyntaxException {
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<UserExt> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                UserExt user;
+                if(amistad.getEmisor().equals(userLogin)){
+                    user = userExtRepository.findByUserID(amistad.getReceptor().getId());
+                }else{
+                    user = userExtRepository.findByUserID(amistad.getEmisor().getId());
+                }
+                return user;
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
+    }
 }
