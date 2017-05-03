@@ -1,12 +1,14 @@
-
 <div>
-    <h2><span data-translate="doitApp.reto.detail.title">Reto</span> {{vm.reto.id}}</h2>
+    <h2><span>{{vm.reto.nombre}}</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="doitApp.reto.nombre">Nombre</span></dt>
         <dd>
-            <span>{{vm.reto.nombre}}</span>
+            <div ng-if="vm.reto.imagen">
+                <a ng-click="vm.openFile(vm.reto.imagenContentType, vm.reto.imagen)">
+                    <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}" style="max-width: 100%;" alt="reto image"/>
+                </a>
+            </div>
         </dd>
         <dt><span data-translate="doitApp.reto.descripcion">Descripcion</span></dt>
         <dd>
@@ -16,18 +18,10 @@
         <dd>
             <span>{{vm.reto.horaPublicacion | date:'medium'}}</span>
         </dd>
-        <dt><span data-translate="doitApp.reto.imagen">Imagen</span></dt>
-        <dd>
-            <div ng-if="vm.reto.imagen">
-                <a ng-click="vm.openFile(vm.reto.imagenContentType, vm.reto.imagen)">
-                    <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}" style="max-width: 100%;" alt="reto image"/>
-                </a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"
-            ui-sref="{{ vm.previousState }}"
+            ui-sref="lista-retos"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
