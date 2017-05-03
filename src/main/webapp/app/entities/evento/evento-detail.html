@@ -1,10 +1,8 @@
 <div>
-    <h2><span data-translate="doitApp.evento.detail.title">Evento</span></h2>
-    <!--<small>ID: {{vm.evento.id}}</small>--->
+    <h2><span>{{vm.evento.nombre}}</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="doitApp.evento.imagen">Imagen</span></dt>
         <dd>
             <div ng-if="vm.evento.imagen">
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
@@ -15,10 +13,6 @@
         <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
         <dd>
             {{vm.evento.admin.login}}
-        </dd>
-        <dt><span data-translate="doitApp.evento.nombre">Nombre</span></dt>
-        <dd>
-            <span>{{vm.evento.nombre}}</span>
         </dd>
         <dt><span data-translate="doitApp.evento.descripcion">Descripcion</span></dt>
         <dd>
@@ -61,7 +55,7 @@
         -->
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
-            class="btn btn-default">
+            class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
         <span data-translate="entity.action.back"> Back</span>
     </button>

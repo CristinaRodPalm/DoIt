@@ -96,15 +96,6 @@ public class UserExtResource {
         return userExts;
     }
 
-    @GetMapping("/all-users-ext")
-    @Timed
-    public List<UserExt> getAllUsers() {
-        log.debug("REST request to get all UserExts except current UserLogin");
-        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> userExts = userExtRepository.findAllUsers(userLogin.getId());
-        return userExts;
-    }
-
     /**
      * GET  /user-exts/:id : get the "id" userExt.
      *
@@ -118,16 +109,6 @@ public class UserExtResource {
         UserExt userExt = userExtRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userExt));
     }
-
-    //para obtener una lista de todos los usuarios de la app excluyendo al propio usuario logeado
-    /*@GetMapping("/user-exts")
-    @Timed
-    public List<UserExt> getAllUserExtsExceptCurrentUser() {
-        log.debug("REST request to get all UserExts");
-        Long userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId();
-        List<UserExt> userExts = userExtRepository.findAllExceptCurrentUser(userLogin);
-        return userExts;
-    }*/
 
     /**
      * DELETE  /user-exts/:id : delete the "id" userExt.
