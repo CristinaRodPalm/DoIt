@@ -15,9 +15,7 @@
         vm.allUsers = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
-        vm.amigos = null;
         vm.currentId = null;
-        vm.solicitudes = [];
         vm.otherUsers = [];
 
         loadAll();
@@ -37,8 +35,9 @@
             // resto de usuarios que no son amigos ni tienen solicitud
             UserExt.query(function(result) {
                 vm.userExts = result;
+                vm.otherUsers = result;
                 vm.searchQuery = null;
-                test();
+                comprobarNoAmigos();
             });
         }
         function loadAllUsersExceptCurrent() {
@@ -48,8 +47,13 @@
             });
         }
 
-        vm.sendFriendRequest=function(id){
+        vm.sendFriendRequest = function(id){
             Amistad.sendFriendRequest({'id': id}, {});
+            $state.go('user-search', null, {reload:'user-search'});
+        }
+
+        vm.acceptUser = function(id){
+            Amistad.accept({'id':id},{});
             $state.go('user-search', null, {reload:'user-search'});
         }
 
@@ -58,21 +62,20 @@
             vm.currentId = vm.currentAccount.id;
         });
 
-        function test() {
-            vm.otherUsers = vm.userExts;
-            // vm.otherUsers --> array de amigos sin solicitud pendiente ni agregados
-            for(var i = 0; i < vm.userExts.length; i++){
+        function comprobarNoAmigos() {
+            // QUITAMOS LOS QUE TENEMOS AGREGADOS
+            for(var i = 0; i < vm.otherUsers.length; i++){
                 // quitamos los que ya tenemos agregados
                 for(var j = 0; j < vm.accepted.length; j++){
-                    if(vm.userExts[i].user.id == vm.accepted[j].user.id){
+                    if(vm.otherUsers[i].user.id == vm.accepted[j].user.id){
                         vm.otherUsers.splice(i, 1);
                     }
                 }
             }
-            for(var i = 0; i < vm.userExts.length; i++){
-                // quitamos los de solicitud pendiente
+            // QUITAMOS LOS DE SOL PENDIENTE
+            for(var i = 0; i < vm.otherUsers.length; i++){
                 for(var j = 0; j < vm.pending.length; j++){
-                    if(vm.userExts[i].user.id == vm.pending[j].user.id){
+                    if(vm.otherUsers[i].user.id == vm.pending[j].user.id){
                         vm.otherUsers.splice(i, 1);
                     }
                 }

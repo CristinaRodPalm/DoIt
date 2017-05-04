@@ -38,7 +38,10 @@ public interface AmistadRepository extends JpaRepository<Amistad,Long> {
         "and (amistad.receptor.id =:currentUser or amistad.emisor.id =:currentUser)")
     List<Amistad> findFriendsPendingRequest(@Param("currentUser") Long currentUser);
 
-    //select * from Amistad where  hora_respuesta is null and aceptada is null and (receptor_id = 3 or emisor_id = 3)
+    @Query("select amistad from Amistad amistad where " +
+        "amistad.horaRespuesta is not null and amistad.aceptada = true " +
+        "and (amistad.receptor.id =:currentUser or amistad.emisor.id =:currentUser)")
+    List<Amistad> findFriendsAcceptedRequest(@Param("currentUser") Long currentUser);
 
     // los que ya son amigos
     // los que tienen una solicitud
