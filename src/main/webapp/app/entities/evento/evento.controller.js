@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('EventoController', EventoController);
 
-    EventoController.$inject = ['Principal', 'DataUtils', 'Evento'];
+    EventoController.$inject = ['Principal', 'DataUtils', 'Evento', 'InvitacionEvento', '$state'];
 
-    function EventoController(Principal, DataUtils, Evento) {
+    function EventoController(Principal, DataUtils, Evento, InvitacionEvento, $state) {
 
         var vm = this;
 
@@ -28,6 +28,12 @@
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
         });
+
+        vm.apuntarse = function(id){
+            InvitacionEvento.participar({'id': id}, {});
+            console.log(id);
+            $state.go('eventos', null, {reload:'eventos'});
+        }
 
     }
 })();

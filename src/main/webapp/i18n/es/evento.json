@@ -4,6 +4,7 @@
             "home": {
                 "title": "Eventos",
                 "titlePage": "Crear evento",
+                "titleFriends":"Lista de amigos",
                 "subtitle":"¡Aquí puedes ver una lista de eventos que han creado otros usuarios!",
                 "createLabel": "Crear nuevo Evento",
                 "createOrEditLabel": "Crear o editar Evento"
@@ -25,11 +26,13 @@
             "latitud": "Latitud",
             "longitud": "Longitud",
             "fechaEvento": "Fecha del evento",
+            "amigos":"Selecciona los amigos que quieres invitar al evento",
             "reto": "Reto",
             "admin": "Administrador",
             "miembroEvento": "Miembros del evento",
             "chat": "Chat",
             "participar":"Apuntarse",
+            "invitar":"Invitar amigos",
             "editar":"Editar",
             "world-events": {
                 "title": "Eventos en el mundo",

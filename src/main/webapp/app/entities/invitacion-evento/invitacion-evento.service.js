@@ -22,7 +22,8 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'participar': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/:id/apuntarse'}
         });
     }
 })();

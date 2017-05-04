@@ -22,6 +22,7 @@
         vm.invitacioneventos = InvitacionEvento.query();
         vm.chats = Chat.query();
         vm.friends = [];
+        vm.inviteFriends = [];
 
         loadFriends();
 

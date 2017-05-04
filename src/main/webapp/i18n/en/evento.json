@@ -26,10 +26,12 @@
             "longitud": "Longitud",
             "fechaEvento": "Event date",
             "reto": "Challenge",
+            "amigos":"Select the friends you want to invite",
             "admin": "Administrator",
             "miembroEvento": "Event members",
             "chat": "Chat",
             "participar":"Participate",
+            "invitar":"Invite friends",
             "editar": "Edit",
             "world-events": {
                 "title": "World events",

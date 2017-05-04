@@ -37,11 +37,18 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                 class="btn btn-primary">
+                        <button class="btn btn-primary"
+                        ng-click="vm.apuntarse(evento.id)">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
                             <span translate="doitApp.evento.participar">Apuntarse</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="lista-amigos-eventos.html({})"
+                                class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="hidden-sm-down"></span>
+                            <span translate="doitApp.evento.invitar">Invitar amigos</span>
                         </button>
                         <button type="submit"
                                  ui-sref="evento-detail({id:evento.id})"

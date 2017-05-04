@@ -47,12 +47,13 @@
         </dd>
     </dl>
 
-    <!--<div class="form-group">
-        <label data-translate="userManagement.profiles">Profiles</label>
-        <select class="form-control" multiple name="authority" ng-model="vm.user.authorities"
-                ng-options="authority for authority in vm.authorities">
+    <div class="form-group">
+        <label data-translate="doitApp.evento.amigos">Amigos</label>
+        <select class="form-control" multiple name="friends" ng-model="vm.friends"
+                ng-options="friends.id for friends.name in vm.friends">
         </select>
-        -->
+        <br>
+
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">

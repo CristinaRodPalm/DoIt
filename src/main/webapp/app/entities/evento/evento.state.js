@@ -117,36 +117,6 @@
                         };
                     }
                 },
-                //COMENTAMOS EL MODAL PARA QUE PASE A SER UNA VISTA UNICA HTML
-                /*onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
-                    $uibModal.open({
-                        templateUrl: 'app/entities/evento/evento-dialog.html',
-                        controller: 'EventoDialogController',
-                        controllerAs: 'vm',
-                        backdrop: 'static',
-                        size: 'lg',
-                        resolve: {
-                            entity: function () {
-                                return {
-                                    nombre: null,
-                                    descripcion: null,
-                                    hora: null,
-                                    imagen: null,
-                                    imagenContentType: null,
-                                    direccion: null,
-                                    latitud: null,
-                                    longitud: null,
-                                    fechaEvento: null,
-                                    id: null
-                                };
-                            }
-                        }
-                    }).result.then(function () {
-                        $state.go('evento', null, {reload: 'evento'});
-                    }, function () {
-                        $state.go('evento');
-                    });
-                }]*/
             })
             .state('evento.edit', {
                 parent: 'evento',

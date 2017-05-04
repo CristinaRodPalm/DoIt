@@ -83,7 +83,9 @@ public class AmistadResource {
                     body(null);
             }
         }
-        Amistad result = amistadRepository.save(new Amistad(ZonedDateTime.now(), userLogin, userReceptor));
+        Amistad result = amistadRepository.save(
+            new Amistad(ZonedDateTime.now(), userLogin, userReceptor)
+        );
         return ResponseEntity.created(new URI("/api/amistads/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

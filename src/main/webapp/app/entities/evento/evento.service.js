@@ -22,6 +22,10 @@
                     return data;
                 }
             },
+            'accept': {
+                method: 'PUT',
+                url: 'api/eventos/:id/accept'
+            },
             'update': { method:'PUT' }
         });
     }

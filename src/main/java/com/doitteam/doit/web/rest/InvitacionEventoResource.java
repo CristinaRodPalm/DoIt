@@ -1,18 +1,25 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.InvitacionEvento;
+import com.doitteam.doit.domain.User;
+import com.doitteam.doit.repository.EventoRepository;
 import com.doitteam.doit.repository.InvitacionEventoRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +35,13 @@ public class InvitacionEventoResource {
     private static final String ENTITY_NAME = "invitacionEvento";
 
     private final InvitacionEventoRepository invitacionEventoRepository;
+    private final UserRepository userRepository;
+    private final EventoRepository eventoRepository;
 
-    public InvitacionEventoResource(InvitacionEventoRepository invitacionEventoRepository) {
+    public InvitacionEventoResource(InvitacionEventoRepository invitacionEventoRepository, UserRepository userRepository, EventoRepository eventoRepository) {
         this.invitacionEventoRepository = invitacionEventoRepository;
+        this.userRepository = userRepository;
+        this.eventoRepository = eventoRepository;
     }
 
     /**
@@ -114,6 +125,36 @@ public class InvitacionEventoResource {
         log.debug("REST request to delete InvitacionEvento : {}", id);
         invitacionEventoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    //para que el usuario logeado se apunte a un evento de la lista
+    @PostMapping("/invitacion-eventos/{id}/apuntarse")
+    @Timed
+    public ResponseEntity<InvitacionEvento> apuntarse(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to apuntarte : {}");
+        //tenemos el usuario logeado
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        //tenemos el evento clicado por el usuario logeado
+        Evento evento = eventoRepository.findOne(id);
+        //tenemos la hora de ahora (apuntarse) al evento
+        ZonedDateTime ahora = ZonedDateTime.now();
+
+        //control de error
+        //comprobar que la id_evento no sea null
+        //comprobar que la invitacion del evento no sea null
+
+        InvitacionEvento invitacion = new InvitacionEvento();
+        invitacion.setHoraInvitacion(ahora);
+        invitacion.setMiembroEvento(userLogin);
+        invitacion.setEvento(evento);
+        invitacion.setInvitado(userLogin);
+       /* if (invitacion.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
+        */
+        InvitacionEvento result = invitacionEventoRepository.save(invitacion);
+        return ResponseEntity.created(new URI("/api/invitacion-eventos/apuntarse" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
 
 }
