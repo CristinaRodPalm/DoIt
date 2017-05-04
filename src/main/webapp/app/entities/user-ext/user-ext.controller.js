@@ -51,12 +51,12 @@
             Amistad.sendFriendRequest({'id': id}, {});
             $state.go('user-search', null, {reload:'user-search'});
         }
-/*
+
         vm.acceptUser = function(id){
             Amistad.accept({'id':id},{});
             $state.go('user-search', null, {reload:'user-search'});
         }
-*/
+
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
             vm.currentId = vm.currentAccount.id;
