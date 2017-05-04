@@ -228,7 +228,7 @@ public class AmistadResource {
     @Timed
     public List<UserExt> getFriendsAccepted() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+        List<UserExt> amigos = amistadRepository.findFriendsAcceptedRequest(userLogin.getId()).
             parallelStream().
             map(amistad -> {
                 UserExt user;
