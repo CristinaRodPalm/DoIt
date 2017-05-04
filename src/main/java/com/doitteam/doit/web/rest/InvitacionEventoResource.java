@@ -148,6 +148,8 @@ public class InvitacionEventoResource {
         invitacion.setMiembroEvento(userLogin);
         invitacion.setEvento(evento);
         invitacion.setInvitado(userLogin);
+        invitacion.setHoraResolucion(ZonedDateTime.now());
+        invitacion.setResolucion(true);
        /* if (invitacion.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
         */
@@ -155,6 +157,17 @@ public class InvitacionEventoResource {
         return ResponseEntity.created(new URI("/api/invitacion-eventos/apuntarse" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/invitacion-eventos/{id}/eventosUsuarioApuntado")
+    @Timed
+    public ResponseEntity<List<InvitacionEvento>> getEventosUsuario(@PathVariable Long id) {
+        log.debug("REST request to get Eventos usuario login : {}", id);
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<InvitacionEvento> invitacionEvento = invitacionEventoRepository.findEventosSigned(userLogin.getId());
+        System.out.println(invitacionEvento);
+
+       return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEvento));
     }
 
 }
