@@ -20,6 +20,48 @@
             </tr>
             </thead>
             <tbody>
+
+            <tr ng-repeat="evento in vm.eventoApuntado track by evento.id">
+                <td>
+                    <a ng-if="evento.evento.imagen" ng-click="vm.openFile(evento.evento.imagenContentType, evento.evento.imagen)">
+                        <img data-ng-src="{{'data:' + evento.evento.imagenContentType + ';base64,' + evento.evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                </td>
+                <td><span>{{evento.evento.admin.login}}</span></td>
+                <td><span>{{evento.evento.nombre}}</span></td>
+                <td><span>{{evento.evento.descripcion}}</span></td>
+                <td><span>{{evento.evento.hora | date:'medium'}}</span></td>
+                <td><span>{{evento.evento.direccion}}</span></td>
+                <td><span>{{evento.evento.fechaEvento | date:'medium'}}</span></td>
+                <td>
+                    <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.evento.reto.nombre}}</a>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+
+                        <button type="submit"
+                                ui-sref="lista-amigos-eventos.html({})"
+                                class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="hidden-sm-down"></span>
+                            <span translate="doitApp.evento.invitar">Invitar amigos</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="evento-detail({id:evento.id})"
+                                class="btn btn-info">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down"></span>
+                            <span>Info</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger"
+                                ng-if="vm.currentAccount.login==evento.admin.login">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down"></span>
+                            <span translate="doitApp.evento.editar "></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             <tr ng-repeat="evento in vm.eventos track by evento.id">
                 <td>
                     <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
@@ -38,10 +80,10 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                        ng-click="vm.apuntarse(evento.id)">
+                        ng-click="vm.apuntarse(evento.id)" >
+
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
-                            <span translate="doitApp.evento.participar">Apuntarse</span>
                         </button>
                         <button type="submit"
                                 ui-sref="lista-amigos-eventos.html({})"
@@ -66,6 +108,10 @@
                     </div>
                 </td>
             </tr>
+
+
+
+
             </tbody>
         </table>
     </div>

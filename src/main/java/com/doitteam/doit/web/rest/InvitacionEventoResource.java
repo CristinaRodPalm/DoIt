@@ -159,15 +159,14 @@ public class InvitacionEventoResource {
             .body(result);
     }
 
-    @GetMapping("/invitacion-eventos/{id}/eventosUsuarioApuntado")
+    @GetMapping("/invitacion-eventos/eventosUsuarioApuntado")
     @Timed
-    public ResponseEntity<List<InvitacionEvento>> getEventosUsuario(@PathVariable Long id) {
-        log.debug("REST request to get Eventos usuario login : {}", id);
+    public List<InvitacionEvento> getEventosUsuario() {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         List<InvitacionEvento> invitacionEvento = invitacionEventoRepository.findEventosSigned(userLogin.getId());
-        System.out.println(invitacionEvento);
-
-       return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEvento));
+        //System.out.println(invitacionEvento);
+        return invitacionEvento;
+       //return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEvento));
     }
 
 }

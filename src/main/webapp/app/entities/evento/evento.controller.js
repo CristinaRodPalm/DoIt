@@ -12,6 +12,7 @@
         var vm = this;
 
         vm.eventos = [];
+        vm.eventoApuntado = [];
         vm.currentAccount;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
@@ -23,6 +24,12 @@
                 vm.eventos = result;
                 vm.searchQuery = null;
             });
+            InvitacionEvento.eventosApuntados(function (result) {
+                vm.eventoApuntado = result;
+                console.log(vm.eventoApuntado);
+
+            });
+
         }
 
         Principal.identity().then(function(account) {
