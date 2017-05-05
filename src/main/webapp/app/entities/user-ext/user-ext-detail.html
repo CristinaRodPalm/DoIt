@@ -1,5 +1,7 @@
 <div>
-    <h2><span>{{vm.userExt.user.firstName}} {{vm.userExt.user.lastName}}</span></h2>
+    <!--<h2><span>{{vm.userExt.user.firstName}} {{vm.userExt.user.lastName}}</span></h2>-->
+    <h1><span>{{vm.userExt.user.firstName}} {{vm.userExt.user.lastName}}, <small>{{vm.userExt.user.login}}</small></span></h1>
+
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row jh-entity-details">
@@ -11,10 +13,10 @@
                 </a>
             </div>
         </dd>
-        <dt><span data-translate="doitApp.userExt.user">Nombre de usuario</span></dt>
+        <!--<dt><span data-translate="doitApp.userExt.user">Nombre de usuario</span></dt>
         <dd>
             {{vm.userExt.user.login}}
-        </dd>
+        </dd>-->
         <dt><span data-translate="doitApp.userExt.birthdate">Fecha de nacimiento</span></dt>
         <dd>
             <span>{{vm.userExt.nacimiento | date:'dd/MM/yyyy'}}</span>

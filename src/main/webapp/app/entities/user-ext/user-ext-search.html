@@ -35,7 +35,7 @@
                         </a>
                     </td>
 
-                    <td><span>{{friend.user.login}}</span></td>
+                    <td><span><a ui-sref="user-ext-detail({id:friend.id})">{{friend.user.login}}</a></span></td>
                     <td><span>{{friend.user.firstName}} {{friend.user.lastName}}</span></td>
                     <td><span>{{friend.telefono}}</span></td>
                     <td><span>{{friend.user.email}}</span></td>
@@ -48,18 +48,18 @@
                                 <span>Friends</span>
                                 <!--<span translate="doitApp.userExt.send">Send friend request</span>-->
                             </button>
-                            <button type="submit"
+                            <!--<button type="submit"
                                     ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>-->
                                 <!--<span> Info</span>-->
                             </button>
                         </div>
                     </td>
                 </tr>
 
-                <!-- SOLICITUDES PENDIENTES --> <!-- DEBEMOS SEPARAR ENTRE EMISOR Y RECEPTOR!!!!!!!!!!!! -->
-               <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                <!-- SOLICITUDES PENDIENTES -->
+                <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
                     <td>
                         <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
                             <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
@@ -88,6 +88,7 @@
                         </div>
                     </td>
                 </tr>-->
+
                 <!-- PENDING EMISOR -->
                 <tr ng-repeat="pendingFriend in vm.pendingEmisor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
                     <td>
@@ -96,8 +97,7 @@
                                  style="max-height: 30px;" alt="pendingFriend image"/>
                         </a>
                     </td>
-
-                    <td><span>{{pendingFriend.user.login}}</span></td>
+                    <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
                     <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
                     <td><span>{{pendingFriend.telefono}}</span></td>
                     <td><span>{{pendingFriend.user.email}}</span></td>
@@ -109,12 +109,12 @@
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                 <span>Sended request</span>
                             </button>
-
+<!--
                             <button type="submit"
-                                    ui-sref="user-ext-detail({id:user.id})"
+                                    ui-sref="user-ext-detail({id:pendingFriend.id})"
                                     class="btn btn-info">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>
+                            </button>-->
                         </div>
                     </td>
                 </tr>
@@ -128,7 +128,7 @@
                         </a>
                     </td>
 
-                    <td><span>{{pendingFriend.user.login}}</span></td>
+                    <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
                     <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
                     <td><span>{{pendingFriend.telefono}}</span></td>
                     <td><span>{{pendingFriend.user.email}}</span></td>
@@ -140,10 +140,10 @@
                                 <span>Pending request</span>
 
                             </button>
-                            <button type="submit" ui-sref="user-ext-detail({id:user.id})"
+                            <!--<button type="submit" ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>
+                            </button>-->
                         </div>
                     </td>
                 </tr>
@@ -157,7 +157,7 @@
                         </a>
                     </td>
 
-                    <td><span>{{user.user.login}}</span></td>
+                    <td><span><a ui-sref="user-ext-detail({id:user.id})">{{user.user.login}}</a></span></td>
                     <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
                     <td><span>{{user.telefono}}</span></td>
                     <td><span>{{user.user.email}}</span></td>
@@ -169,11 +169,11 @@
                                     class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                             </button>
-                            <button type="submit"
+                            <!--<button type="submit"
                                     ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>
+                            </button>-->
                         </div>
                     </td>
                 </tr>
