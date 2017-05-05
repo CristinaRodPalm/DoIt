@@ -40,6 +40,7 @@
                 url: 'api/amistads/:id/deny'
 
             },
+            'acceptByUser': {method:'PUT', url:'api/amistads/:id/acceptByUser'},
             'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'}
 
         });

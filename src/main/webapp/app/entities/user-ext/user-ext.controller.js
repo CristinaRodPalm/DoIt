@@ -19,6 +19,8 @@
         vm.otherUsers = [];
         vm.pendingEmisor = [];
         vm.pendingReceptor = [];
+        vm.pending = [];
+        vm.accepted = [];
 
         loadAll();
 
@@ -28,10 +30,14 @@
                 vm.accepted = result;
             });
 
-
             // users con solicitud pendiente
             Amistad.getSolicitudesPendientes(function(result){
-               vm.pending = result;
+                vm.resultado = result;
+                for(var i = 0; i < vm.resultado.length; i++){
+                    if(vm.resultado[i].user != null){
+                        vm.pending.push(vm.resultado[i]);
+                    }
+                }
             });
 
             // solicitud pendiente --> eres el emisor
@@ -43,6 +49,7 @@
                     }
                 }
             });
+
             // solicitud pendiente --> eres el receptor
             Amistad.getSolicitudesPendientesReceptor(function(result){
                 vm.resultado = result;
@@ -68,9 +75,8 @@
         }
 
         vm.acceptUser = function(id){
-            Amistad.accept({'id':id}, {});
-            //alert("yehe");
-            //$state.go('user-search', null, {reload:'user-search'});
+            Amistad.acceptByUser({'id':id}, {});
+            $state.go('user-search', null, {reload:'user-search'});
         }
 
         Principal.identity().then(function(account) {
@@ -82,19 +88,25 @@
             // QUITAMOS LOS QUE TENEMOS AGREGADOS
             for(var i = 0; i < vm.otherUsers.length; i++){
                 // quitamos los que ya tenemos agregados
-                for(var j = 0; j < vm.accepted.length; j++){
-                    if(vm.otherUsers[i].user.id == vm.accepted[j].user.id){
-                        vm.otherUsers.splice(i, 1);
+                if(vm.accepted.length > 0){
+                    for(var j = 0; j < vm.accepted.length; j++){
+                        if(vm.otherUsers[i].user.id == vm.accepted[j].user.id){
+                            vm.otherUsers.splice(i, 1);
+                        }
                     }
                 }
+
             }
             // QUITAMOS LOS DE SOL PENDIENTE
             for(var i = 0; i < vm.otherUsers.length; i++){
-                for(var j = 0; j < vm.pending.length; j++){
-                    if(vm.otherUsers[i].user.id == vm.pending[j].user.id){
-                        vm.otherUsers.splice(i, 1);
+                if(vm.pending.length > 0){
+                    for(var j = 0; j < vm.pending.length; j++){
+                        if(vm.otherUsers[i].user.id == vm.pending[j].user.id){
+                            vm.otherUsers.splice(i, 1);
+                        }
                     }
                 }
+
             }
         }
     }

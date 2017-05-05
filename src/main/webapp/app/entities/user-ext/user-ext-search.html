@@ -104,10 +104,12 @@
                     <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
                     <td class="text-right">
                         <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-warning" >
+
+                            <button type="submit" class="btn btn-warning" disabled="true">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Pending requests</span>
+                                <span>Pending request</span>
                             </button>
+
                             <button type="submit"
                                     ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">

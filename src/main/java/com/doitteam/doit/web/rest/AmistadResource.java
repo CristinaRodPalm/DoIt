@@ -155,6 +155,25 @@ public class AmistadResource {
             .body(result);
     }
 
+    @PutMapping("/amistads/{id}/acceptByUser")
+    @Timed
+    public ResponseEntity<Amistad> acceptByUser(@PathVariable Long id) {
+        log.debug("REST request to update Amistad : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
+        }
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        Amistad amistad = amistadRepository.findOneByEmisorReceptor(userLogin.getId(), id);
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(true);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
+    }
+
     @PutMapping("/amistads/{id}/deny")
     @Timed
     public ResponseEntity<Amistad> deny(@PathVariable Long id){
