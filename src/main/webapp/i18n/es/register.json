@@ -11,6 +11,12 @@
                     "minlength": "El nombre de usuario debe tener al menos 1 caracter.",
                     "maxlength": "El nombre de usuario no puede tener más de 50 caracteres.",
                     "pattern": "El nombre de usuario sólo puede contener letras minúsculas y dígitos."
+                },
+                "firstName": {
+                    "pattern": "Tu nombre no puede contener espacios"
+                },
+                "lastName": {
+                    "pattern": "Tu apellido no puede contener espacios"
                 }
             },
             "success": "<strong>¡Registro guardado!</strong> Por favor, revisa tu correo electrónico para activar la cuenta.",

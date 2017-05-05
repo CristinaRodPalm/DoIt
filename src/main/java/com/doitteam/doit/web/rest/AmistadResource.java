@@ -223,6 +223,40 @@ public class AmistadResource {
         return amigos;
     }
 
+    // get solicitudes pendientes el current user es EMISOR --> enviaré los receptores
+    @GetMapping("/usersSolPendientesEmisor")
+    @Timed
+    public List<UserExt> getFriendsPendingRequestEmisor() throws URISyntaxException {
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                if(amistad.getEmisor().equals(userLogin)){
+                    return userExtRepository.findByUserID(amistad.getReceptor().getId());
+                }else return null;
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
+    }
+    // get solicitudes pendientes el current user es RECEPTOR --> enviaré los emisores
+    @GetMapping("/usersSolPendientesReceptor")
+    @Timed
+    public List<UserExt> getFriendsPendingRequestReceptor() throws URISyntaxException {
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                if(amistad.getReceptor().equals(userLogin)){
+                    return userExtRepository.findByUserID(amistad.getEmisor().getId());
+                }else return null;
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
+    }
+
+
     //get solicitudes aceptadas (amigos)
     @GetMapping("/usersSolAceptadas")
     @Timed

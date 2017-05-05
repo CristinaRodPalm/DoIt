@@ -17,9 +17,10 @@
         vm.byteSize = DataUtils.byteSize;
         vm.currentId = null;
         vm.otherUsers = [];
+        vm.pendingEmisor = [];
+        vm.pendingReceptor = [];
 
         loadAll();
-        loadAllUsersExceptCurrent();
 
         function loadAll() {
             // users amigos al actual
@@ -27,9 +28,29 @@
                 vm.accepted = result;
             });
 
+
             // users con solicitud pendiente
             Amistad.getSolicitudesPendientes(function(result){
                vm.pending = result;
+            });
+
+            // solicitud pendiente --> eres el emisor
+            Amistad.getSolicitudesPendientesEmisor(function(result){
+                vm.resultado = result;
+                for(var i = 0; i < vm.resultado.length; i++){
+                    if(vm.resultado[i].user != null){
+                        vm.pendingEmisor.push(vm.resultado[i]);
+                    }
+                }
+            });
+            // solicitud pendiente --> eres el receptor
+            Amistad.getSolicitudesPendientesReceptor(function(result){
+                vm.resultado = result;
+                for(var i = 0; i < vm.resultado.length; i++){
+                    if(vm.resultado[i].user != null){
+                        vm.pendingReceptor.push(vm.resultado[i]);
+                    }
+                }
             });
 
             // resto de usuarios que no son amigos ni tienen solicitud
@@ -40,12 +61,6 @@
                 comprobarNoAmigos();
             });
         }
-        function loadAllUsersExceptCurrent() {
-            UserExt.allUsers(function(result) {
-                vm.allUsers = result;
-                vm.searchQuery = null;
-            });
-        }
 
         vm.sendFriendRequest = function(id){
             Amistad.sendFriendRequest({'id': id}, {});
@@ -53,8 +68,9 @@
         }
 
         vm.acceptUser = function(id){
-            Amistad.accept({'id':id},{});
-            $state.go('user-search', null, {reload:'user-search'});
+            Amistad.accept({'id':id}, {});
+            //alert("yehe");
+            //$state.go('user-search', null, {reload:'user-search'});
         }
 
         Principal.identity().then(function(account) {

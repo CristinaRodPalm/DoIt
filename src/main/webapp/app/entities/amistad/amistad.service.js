@@ -14,6 +14,10 @@
             'getAllByCurrentUser': {method: 'GET', isArray: true, url: 'api/amistades'},
             'getSolicitudesAceptadas': {method:'GET', isArray:true, url:'api/usersSolAceptadas'},
             'getSolicitudesPendientes': {method:'GET', isArray:true, url:'api/usersSolPendientes'},
+
+            'getSolicitudesPendientesEmisor': {method:'GET', isArray:true, url:'api/usersSolPendientesEmisor'},
+            'getSolicitudesPendientesReceptor': {method:'GET', isArray:true, url:'api/usersSolPendientesReceptor'},
+
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
