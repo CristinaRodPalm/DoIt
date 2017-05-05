@@ -1,15 +1,26 @@
 <div>
     <h2 translate="doitApp.evento.world-events.title">World events</h2>
-    <small translate="doitApp.evento.world-events.subtitle">Aquí podrás ver todos los eventos que se han creado en el
+    <!--<small translate="doitApp.evento.world-events.subtitle">Aquí podrás ver todos los eventos que se han creado en el
         mundo
-    </small>
+    </small>-->
     <jhi-alert></jhi-alert>
 
     <div class="row">
+
+        <div class="form-group">
+            <label class="control-label" data-translate="doitApp.evento.buscarDireccion"
+                   for="field_direccion">Introduce una dirección para buscar eventos en la zona</label>
+            <input type="text" class="form-control" name="direccion"
+                   id="field_direccion" places-auto-complete
+                   ng-model="vm.evento.direccion" on-place-changed="vm.placeChanged()"/>
+        </div>
+    </div>
+    <div class="row">
+
         <div class="text-center">
-            <ng-map zoom-to-include-markers="auto" id="mapa" class="map-track"
+            <ng-map id="mapa" class="map-track"
                     disable-default-u-i="true"
-                    styles='{{mapStyle}}'
+                    style="height: 500px; display:block"
                    >
 
                 <marker ng-repeat="evento in vm.eventos" position="[{{evento.latitud}},{{evento.longitud}}]">

@@ -32,6 +32,7 @@
             "chat": "Chat",
             "participar":"Participate",
             "invitar":"Invite friends",
+            "buscarDireccion": "Find events where you want",
             "editar": "Edit",
             "world-events": {
                 "title": "World events",

@@ -56,10 +56,20 @@
                 "stylers": [{"hue": "#d7e4e4"}, {"saturation": -60}, {"lightness": 23}, {"visibility": "on"}]
             }];
 
-        NgMap.getMap(mapa).then(function (map) {
-            console.log(map.getCenter());
-            console.log('markers', map.markers);
-            $scope.map = map;
+
+        vm.placeChanged = function() {
+            vm.place = this.getPlace();
+            console.log('location', vm.place.geometry.location);
+            vm.map.setCenter(vm.place.geometry.location);
+            vm.evento.latitud = vm.place.geometry.location.lat();
+            vm.evento.longitud = vm.place.geometry.location.lng();
+            vm.map.setZoom(8);
+        }
+        NgMap.getMap().then(function(map) {
+            vm.map = map;
+            vm.map.setZoom(2);
+            vm.map.setCenter(new google.maps.LatLng(32, -10));
+            vm.map.setOptions({maxZoom:15, minZoom: 2});
         });
 
         Evento.query(function (result) {

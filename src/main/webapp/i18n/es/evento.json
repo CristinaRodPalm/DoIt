@@ -31,6 +31,7 @@
             "admin": "Administrador",
             "miembroEvento": "Miembros del evento",
             "chat": "Chat",
+            "buscarDireccion": "Introduce una dirección para buscar eventos en la zona",
             "participar":"Apuntarse",
             "invitar":"Invitar amigos",
             "editar":"Editar",
