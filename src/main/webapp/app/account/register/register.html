@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label class="control-label" for="firstName" data-translate="global.form.firstName">First name</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'global.form.firstName.placeholder' | translate}}"
-                           ng-model="vm.registerAccount.firstName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+                           ng-model="vm.registerAccount.firstName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[ _'.@A-Za-z0-9-]*$/" required>
                     <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
                         <p class="help-block"
                            ng-show="form.firstName.$error.required" data-translate="register.messages.validate.firstName.required">
@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label class="control-label" for="lastName" data-translate="global.form.lastName">Last name</label>
                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'global.form.lastName.placeholder' | translate}}"
-                           ng-model="vm.registerAccount.lastName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+                           ng-model="vm.registerAccount.lastName" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[ _'.@A-Za-z0-9-]*$/" required>
                     <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
                         <p class="help-block"
                            ng-show="form.lastName.$error.minlength" data-translate="register.messages.validate.lastName.minlength">
@@ -130,8 +130,7 @@
                 <div class="form-group">
                     <label class="control-label" data-translate="global.form.telefono">Teléfono</label>
                     <input type="text" class="form-control" id="phone" name="phone" placeholder="{{'global.form.telefono.placeholder' | translate}}"
-                           ng-model="vm.registerAccount.phone" ng-minlength=9 ng-maxlength=9
-                           ng-pattern="/^[0-9]/" required>
+                           ng-model="vm.registerAccount.phone" ng-minlength=9 ng-maxlength=9 ng-pattern="/^[0-9]/" >
                 </div>
 <!-- fecha nacimiento -->
                 <div class="form-group">
