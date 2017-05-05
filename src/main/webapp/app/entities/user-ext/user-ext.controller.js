@@ -74,11 +74,6 @@
             $state.go('user-search', null, {reload:'user-search'});
         }
 
-        vm.acceptUser = function(id){
-            Amistad.acceptByUser({'id':id}, {});
-            $state.go('user-search', null, {reload:'user-search'});
-        }
-
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
             vm.currentId = vm.currentAccount.id;
@@ -87,7 +82,6 @@
         function comprobarNoAmigos() {
             // QUITAMOS LOS QUE TENEMOS AGREGADOS
             for(var i = 0; i < vm.otherUsers.length; i++){
-                // quitamos los que ya tenemos agregados
                 if(vm.accepted.length > 0){
                     for(var j = 0; j < vm.accepted.length; j++){
                         if(vm.otherUsers[i].user.id == vm.accepted[j].user.id){
@@ -95,7 +89,6 @@
                         }
                     }
                 }
-
             }
             // QUITAMOS LOS DE SOL PENDIENTE
             for(var i = 0; i < vm.otherUsers.length; i++){

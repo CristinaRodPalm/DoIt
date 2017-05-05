@@ -107,7 +107,7 @@
 
                             <button type="submit" class="btn btn-warning" disabled="true">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Pending request</span>
+                                <span>Sended request</span>
                             </button>
 
                             <button type="submit"
@@ -135,14 +135,12 @@
                     <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
                     <td class="text-right">
                         <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-warning"
-                                    ng-click="vm.acceptUser(pendingFriend.user.id)">
+                            <button type="submit" class="btn btn-warning" disabled="true">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Accept friend request</span>
+                                <span>Pending request</span>
 
                             </button>
-                            <button type="submit"
-                                    ui-sref="user-ext-detail({id:user.id})"
+                            <button type="submit" ui-sref="user-ext-detail({id:user.id})"
                                     class="btn btn-info">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </button>
