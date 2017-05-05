@@ -23,7 +23,8 @@
                 }
             },
             'update': { method:'PUT' },
-            'participar': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/:id/apuntarse'}
+            'participar': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/:id/apuntarse'},
+            'eventosApuntados': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioApuntado'}
         });
     }
 })();
