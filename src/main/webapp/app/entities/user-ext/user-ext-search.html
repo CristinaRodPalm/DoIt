@@ -43,16 +43,10 @@
                     <td class="text-right">
                         <div class="btn-group btn-group-sm">
                             <button type="submit" ng-disabled="true"
-                                    class="btn btn-primary">
+                                    class="btn btn-success">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Friends</span>
-                                <!--<span translate="doitApp.userExt.send">Send friend request</span>-->
+                                <span translate="doitApp.userExt.friend"></span>
                             </button>
-                            <!--<button type="submit"
-                                    ui-sref="user-ext-detail({id:user.id})"
-                                    class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>-->
-                                <!--<span> Info</span>-->
                             </button>
                         </div>
                     </td>
@@ -107,14 +101,8 @@
 
                             <button type="submit" class="btn btn-default" disabled="true">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Sended request</span>
+                                <span translate="doitApp.userExt.sended"></span>
                             </button>
-<!--
-                            <button type="submit"
-                                    ui-sref="user-ext-detail({id:pendingFriend.id})"
-                                    class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>-->
                         </div>
                     </td>
                 </tr>
@@ -137,13 +125,8 @@
                         <div class="btn-group btn-group-sm">
                             <button type="submit" class="btn btn-warning" disabled="true">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Pending request</span>
-
+                                <span translate="doitApp.userExt.pending"></span>
                             </button>
-                            <!--<button type="submit" ui-sref="user-ext-detail({id:user.id})"
-                                    class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>-->
                         </div>
                     </td>
                 </tr>
@@ -164,16 +147,11 @@
                     <td><span>{{user.nacimiento | date:'dd/MM/yyyy'}}</span></td>
                     <td class="text-right">
                         <div class="btn-group btn-group-sm">
-                            <button type="submit"
-                                    ng-click="vm.sendFriendRequest(user.user.id)"
+                            <button type="submit" ng-click="vm.sendFriendRequest(user.user.id)"
                                     class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                <span translate="doitApp.userExt.add"></span>
                             </button>
-                            <!--<button type="submit"
-                                    ui-sref="user-ext-detail({id:user.id})"
-                                    class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>-->
                         </div>
                     </td>
                 </tr>

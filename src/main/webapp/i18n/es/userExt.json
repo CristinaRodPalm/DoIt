@@ -27,7 +27,11 @@
             "search":{
                 "title":"Buscar personas",
                 "subtitle":"Resultados de búsqueda:"
-            }
+            },
+            "friend": "Amigos",
+            "sended": "Solicitud enviada",
+            "pending": "Solicitud pendiente",
+            "add": "Agregar"
         }
     }
 }

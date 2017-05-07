@@ -27,7 +27,11 @@
             "search":{
                 "title":"Search users",
                 "subtitle":"Search results:"
-            }
+            },
+            "friend": "Friends",
+            "sended": "Sended request",
+            "pending": "Pending request",
+            "add": "Add"
         }
     }
 }

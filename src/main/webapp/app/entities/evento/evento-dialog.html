@@ -87,7 +87,8 @@
             </select>
         </div>-->
         <p></p>
-        <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.evento)" ngf-pattern="'image/*'">            <div>
+        <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.evento)" ngf-pattern="'image/*'">
+            <div>
                 <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
                      style="max-height: 100px;" ng-if="vm.evento.imagen" alt="evento image"/>
                 <div ng-if="vm.evento.imagen" class="help-block clearfix">
@@ -103,8 +104,7 @@
                 </button>
             </div>
             <input type="hidden" class="form-control" name="imagen" id="field_imagen"
-                   ng-model="vm.evento.imagen"
-            />
+                   ng-model="vm.evento.imagen" data-max-size="256" />
             <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
                    ng-model="vm.evento.imagenContentType"/>
         </div>
