@@ -1,14 +1,16 @@
 <div>
     <div class="row text-center">
+
         <div class="input-group">
-            <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="{{'global.form.search.placeholder' | translate}}"
-                   aria-describedby="basic-addon1" ng-model="criteria">
+            <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
+            <input type="text" class="form-control" ng-model="criteria"
+                   placeholder="{{'global.form.search.placeholder' | translate}}">
         </div>
 
         <div class="text-center">
             <h3 translate="doitApp.userExt.search.subtitle">Resultados de búsqueda</h3>
         </div>
+
     </div>
     <div class="row">
         <div class="table-responsive">
@@ -26,135 +28,135 @@
                 </thead>
 
                 <tbody>
-                <!-- LOS AMIGOS -->
-                <tr ng-repeat="friend in vm.accepted|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
-                    <td>
-                        <a ng-if="friend.imagen" ng-click="vm.openFile(user.imagenContentType, friend.imagen)">
-                            <img data-ng-src="{{'data:' + friend.imagenContentType + ';base64,' + friend.imagen}}"
-                                 style="max-height: 30px;" alt="friend image"/>
-                        </a>
-                    </td>
+                    <!-- LOS AMIGOS -->
+                    <tr ng-repeat="friend in vm.accepted|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="friend.imagen" ng-click="vm.openFile(user.imagenContentType, friend.imagen)">
+                                <img data-ng-src="{{'data:' + friend.imagenContentType + ';base64,' + friend.imagen}}"
+                                     style="max-height: 30px;" alt="friend image"/>
+                            </a>
+                        </td>
 
-                    <td><span><a ui-sref="user-ext-detail({id:friend.id})">{{friend.user.login}}</a></span></td>
-                    <td><span>{{friend.user.firstName}} {{friend.user.lastName}}</span></td>
-                    <td><span>{{friend.telefono}}</span></td>
-                    <td><span>{{friend.user.email}}</span></td>
-                    <td><span>{{friend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
-                            <button type="submit" ng-disabled="true"
-                                    class="btn btn-success">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span translate="doitApp.userExt.friend"></span>
-                            </button>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        <td><span><a ui-sref="user-ext-detail({id:friend.id})">{{friend.user.login}}</a></span></td>
+                        <td><span>{{friend.user.firstName}} {{friend.user.lastName}}</span></td>
+                        <td><span>{{friend.telefono}}</span></td>
+                        <td><span>{{friend.user.email}}</span></td>
+                        <td><span>{{friend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
+                                <button type="submit" ng-disabled="true"
+                                        class="btn btn-success">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span translate="doitApp.userExt.friend"></span>
+                                </button>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                <!-- SOLICITUDES PENDIENTES -->
-                <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
-                    <td>
-                        <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
-                            <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
-                                 style="max-height: 30px;" alt="pendingFriend image"/>
-                        </a>
-                    </td>
+                    <!-- SOLICITUDES PENDIENTES -->
+                    <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                                <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                                     style="max-height: 30px;" alt="pendingFriend image"/>
+                            </a>
+                        </td>
 
-                    <td><span>{{pendingFriend.user.login}}</span></td>
-                    <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
-                    <td><span>{{pendingFriend.telefono}}</span></td>
-                    <td><span>{{pendingFriend.user.email}}</span></td>
-                    <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-warning" >
-                                ng-click="vm.acceptUser(amistad.id)"
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span>Pending request</span>
+                        <td><span>{{pendingFriend.user.login}}</span></td>
+                        <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                        <td><span>{{pendingFriend.telefono}}</span></td>
+                        <td><span>{{pendingFriend.user.email}}</span></td>
+                        <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
+                                <button type="submit" class="btn btn-warning" >
+                                    ng-click="vm.acceptUser(amistad.id)"
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span>Pending request</span>
 
-                            </button>
-                            <button type="submit"
-                                    ui-sref="user-ext-detail({id:user.id})"
-                                    class="btn btn-info">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>-->
+                                </button>
+                                <button type="submit"
+                                        ui-sref="user-ext-detail({id:user.id})"
+                                        class="btn btn-info">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>-->
 
-                <!-- PENDING EMISOR -->
-                <tr ng-repeat="pendingFriend in vm.pendingEmisor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
-                    <td>
-                        <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
-                            <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
-                                 style="max-height: 30px;" alt="pendingFriend image"/>
-                        </a>
-                    </td>
-                    <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
-                    <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
-                    <td><span>{{pendingFriend.telefono}}</span></td>
-                    <td><span>{{pendingFriend.user.email}}</span></td>
-                    <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
+                    <!-- PENDING EMISOR -->
+                    <tr ng-repeat="pendingFriend in vm.pendingEmisor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                                <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                                     style="max-height: 30px;" alt="pendingFriend image"/>
+                            </a>
+                        </td>
+                        <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
+                        <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                        <td><span>{{pendingFriend.telefono}}</span></td>
+                        <td><span>{{pendingFriend.user.email}}</span></td>
+                        <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
 
-                            <button type="submit" class="btn btn-default" disabled="true">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span translate="doitApp.userExt.sended"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                                <button type="submit" class="btn btn-default" disabled="true">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span translate="doitApp.userExt.sended"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                <!-- PENDING RECEPTOR -->
-                <tr ng-repeat="pendingFriend in vm.pendingReceptor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
-                    <td>
-                        <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
-                            <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
-                                 style="max-height: 30px;" alt="pendingFriend image"/>
-                        </a>
-                    </td>
+                    <!-- PENDING RECEPTOR -->
+                    <tr ng-repeat="pendingFriend in vm.pendingReceptor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                                <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                                     style="max-height: 30px;" alt="pendingFriend image"/>
+                            </a>
+                        </td>
 
-                    <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
-                    <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
-                    <td><span>{{pendingFriend.telefono}}</span></td>
-                    <td><span>{{pendingFriend.user.email}}</span></td>
-                    <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-warning" disabled="true">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <span translate="doitApp.userExt.pending"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span></td>
+                        <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                        <td><span>{{pendingFriend.telefono}}</span></td>
+                        <td><span>{{pendingFriend.user.email}}</span></td>
+                        <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
+                                <button type="submit" class="btn btn-warning" disabled="true">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span translate="doitApp.userExt.pending"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                <!-- LOS QUE NO SON AMIGOS -->
-                <tr ng-repeat="user in vm.otherUsers|filter:criteria track by $index"  ng-if="vm.currentAccount.id!=user.user.id">
-                    <td>
-                        <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
-                            <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
-                                 style="max-height: 30px;" alt="user image"/>
-                        </a>
-                    </td>
+                    <!-- LOS QUE NO SON AMIGOS -->
+                    <tr ng-repeat="user in vm.otherUsers|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
+                                <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
+                                     style="max-height: 30px;" alt="user image"/>
+                            </a>
+                        </td>
 
-                    <td><span><a ui-sref="user-ext-detail({id:user.id})">{{user.user.login}}</a></span></td>
-                    <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
-                    <td><span>{{user.telefono}}</span></td>
-                    <td><span>{{user.user.email}}</span></td>
-                    <td><span>{{user.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
-                            <button type="submit" ng-click="vm.sendFriendRequest(user.user.id)"
-                                    class="btn btn-primary">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                <span translate="doitApp.userExt.add"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        <td><span><a ui-sref="user-ext-detail({id:user.id})">{{user.user.login}}</a></span></td>
+                        <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
+                        <td><span>{{user.telefono}}</span></td>
+                        <td><span>{{user.user.email}}</span></td>
+                        <td><span>{{user.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
+                                <button type="submit" ng-click="vm.sendFriendRequest(user.user.id)"
+                                        class="btn btn-primary">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <span translate="doitApp.userExt.add"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
