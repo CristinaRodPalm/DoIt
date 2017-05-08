@@ -6,6 +6,7 @@
                 "titlePage": "Create event",
                 "subtitle":"Here you can see a list of events created by other users!",
                 "createLabel": "Create a new Evento",
+                "editLabel":"Edit event",
                 "createOrEditLabel": "Create or edit a Evento"
             },
             "created": "A new Evento is created with identifier {{ param }}",

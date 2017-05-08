@@ -88,7 +88,7 @@
                         <button type="submit"
                                 ui-sref="lista-amigos-eventos.html({})"
                                 class="btn btn-success">
-                            <span class="glyphicon glyphicon-plus"></span>
+                            <i class="fa fa-user-plus"></i>
                             <span class="hidden-sm-down"></span>
                             <span translate="doitApp.evento.invitar">Invitar amigos</span>
                         </button>
@@ -100,6 +100,7 @@
                             <span>Info</span>
                         </button>
                         <button type="submit" class="btn btn-danger"
+                                ui-sref="evento.edit({id:evento.id})"
                             ng-if="vm.currentAccount.id==evento.admin.id">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>

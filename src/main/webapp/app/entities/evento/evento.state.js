@@ -71,7 +71,7 @@
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
-                        templateUrl: 'app/entities/evento/evento-dialog.html',
+                        templateUrl: 'app/entities/evento/evento-edit.html',
                         controller: 'EventoDialogController',
                         controllerAs: 'vm',
                         backdrop: 'static',
@@ -126,8 +126,8 @@
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
-                        templateUrl: 'app/entities/evento/evento-dialog.html',
-                        controller: 'EventoDialogController',
+                        templateUrl: 'app/entities/evento/evento-edit.html',
+                        controller: 'EventoEditController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg',
@@ -137,7 +137,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('evento', null, {reload: 'evento'});
+                        $state.go('eventos', null, {reload: 'eventos'});
                     }, function () {
                         $state.go('^');
                     });
@@ -161,7 +161,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('evento', null, {reload: 'evento'});
+                        $state.go('eventos', null, {reload: 'eventos'});
                     }, function () {
                         $state.go('^');
                     });

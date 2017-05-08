@@ -3,11 +3,11 @@
 
     angular
         .module('doitApp')
-        .controller('EventoDialogController', EventoDialogController);
+        .controller('EventoEditController', EventoEditController);
 
-    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
+    EventoEditController.$inject = ['$uibModalInstance', 'NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
 
-    function EventoDialogController (NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
+    function EventoEditController($uibModalInstance, NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
         var vm = this;
 
         vm.evento = entity;
@@ -45,9 +45,7 @@
         });
 
         function clear () {
-
-            //$uibModalInstance.close();
-            $state.go('eventos', null, {reload: 'evento'});
+            $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
@@ -62,7 +60,7 @@
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:eventoUpdate', result);
             $state.go('eventos', null, {reload: 'evento'});
-            //$uibModalInstance.close(result);
+            $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
