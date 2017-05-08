@@ -20,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-
+        <!--Aqui se muestran los eventos que el usuario se ha apuntado -->
             <tr ng-repeat="evento in vm.eventoApuntado track by evento.id">
                 <td>
                     <a ng-if="evento.evento.imagen" ng-click="vm.openFile(evento.evento.imagenContentType, evento.evento.imagen)">
@@ -62,6 +62,8 @@
                     </div>
                 </td>
             </tr>
+
+        <!--Aqui se muestran todos los eventos -->
             <tr ng-repeat="evento in vm.eventos track by evento.id">
                 <td>
                     <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
@@ -86,13 +88,6 @@
                             <span class="hidden-sm-down"></span>
                         </button>
                         <button type="submit"
-                                ui-sref="lista-amigos-eventos.html({})"
-                                class="btn btn-success">
-                            <i class="fa fa-user-plus"></i>
-                            <span class="hidden-sm-down"></span>
-                            <span translate="doitApp.evento.invitar">Invitar amigos</span>
-                        </button>
-                        <button type="submit"
                                  ui-sref="evento-detail({id:evento.id})"
                                  class="btn btn-info">
                             <span class="glyphicon glyphicon-eye-open"></span>
@@ -100,7 +95,6 @@
                             <span>Info</span>
                         </button>
                         <button type="submit" class="btn btn-danger"
-                                ui-sref="evento.edit({id:evento.id})"
                             ng-if="vm.currentAccount.id==evento.admin.id">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>

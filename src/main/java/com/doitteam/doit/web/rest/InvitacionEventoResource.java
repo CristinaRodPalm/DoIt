@@ -10,6 +10,7 @@ import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing InvitacionEvento.
@@ -44,17 +46,10 @@ public class InvitacionEventoResource {
         this.eventoRepository = eventoRepository;
     }
 
-    /**
-     * POST  /invitacion-eventos : Create a new invitacionEvento.
-     *
-     * @param invitacionEvento the invitacionEvento to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new invitacionEvento, or with status 400 (Bad Request) if the invitacionEvento has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/invitacion-eventos")
     @Timed
     public ResponseEntity<InvitacionEvento> createInvitacionEvento(@Valid @RequestBody InvitacionEvento invitacionEvento) throws URISyntaxException {
-        log.debug("REST request to save InvitacionEvento : {}", invitacionEvento);
+       log.debug("REST request to save InvitacionEvento : {}", invitacionEvento);
         if (invitacionEvento.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
         }
@@ -64,15 +59,6 @@ public class InvitacionEventoResource {
             .body(result);
     }
 
-    /**
-     * PUT  /invitacion-eventos : Updates an existing invitacionEvento.
-     *
-     * @param invitacionEvento the invitacionEvento to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated invitacionEvento,
-     * or with status 400 (Bad Request) if the invitacionEvento is not valid,
-     * or with status 500 (Internal Server Error) if the invitacionEvento couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/invitacion-eventos")
     @Timed
     public ResponseEntity<InvitacionEvento> updateInvitacionEvento(@Valid @RequestBody InvitacionEvento invitacionEvento) throws URISyntaxException {
@@ -86,11 +72,6 @@ public class InvitacionEventoResource {
             .body(result);
     }
 
-    /**
-     * GET  /invitacion-eventos : get all the invitacionEventos.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of invitacionEventos in body
-     */
     @GetMapping("/invitacion-eventos")
     @Timed
     public List<InvitacionEvento> getAllInvitacionEventos() {
@@ -99,12 +80,6 @@ public class InvitacionEventoResource {
         return invitacionEventos;
     }
 
-    /**
-     * GET  /invitacion-eventos/:id : get the "id" invitacionEvento.
-     *
-     * @param id the id of the invitacionEvento to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the invitacionEvento, or with status 404 (Not Found)
-     */
     @GetMapping("/invitacion-eventos/{id}")
     @Timed
     public ResponseEntity<InvitacionEvento> getInvitacionEvento(@PathVariable Long id) {
@@ -113,12 +88,6 @@ public class InvitacionEventoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEvento));
     }
 
-    /**
-     * DELETE  /invitacion-eventos/:id : delete the "id" invitacionEvento.
-     *
-     * @param id the id of the invitacionEvento to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/invitacion-eventos/{id}")
     @Timed
     public ResponseEntity<Void> deleteInvitacionEvento(@PathVariable Long id) {
@@ -131,28 +100,40 @@ public class InvitacionEventoResource {
     @PostMapping("/invitacion-eventos/{id}/apuntarse")
     @Timed
     public ResponseEntity<InvitacionEvento> apuntarse(@PathVariable Long id) throws URISyntaxException {
-        log.debug("REST request to apuntarte : {}");
+        // EL ID ES DEL EVENTO
         //tenemos el usuario logeado
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         //tenemos el evento clicado por el usuario logeado
         Evento evento = eventoRepository.findOne(id);
-        //tenemos la hora de ahora (apuntarse) al evento
-        ZonedDateTime ahora = ZonedDateTime.now();
+        List<InvitacionEvento> inviEventoList = invitacionEventoRepository.findEventosSigned(userLogin.getId());
+
+        for(InvitacionEvento inviEvento: inviEventoList){
+            if(id.equals(inviEvento.getInvitado().getId()) || id.equals(inviEvento.getMiembroEvento().getId())){
+                return ResponseEntity.badRequest().headers(HeaderUtil.
+                    createFailureAlert(ENTITY_NAME, "invitationexists", "Ya te has apuntado a este evento!")).
+                    body(null);
+            }
+        }
+
 
         //control de error
         //comprobar que la id_evento no sea null
         //comprobar que la invitacion del evento no sea null
 
         InvitacionEvento invitacion = new InvitacionEvento();
-        invitacion.setHoraInvitacion(ahora);
+        invitacion.setHoraInvitacion(ZonedDateTime.now());
         invitacion.setMiembroEvento(userLogin);
         invitacion.setEvento(evento);
         invitacion.setInvitado(userLogin);
         invitacion.setHoraResolucion(ZonedDateTime.now());
         invitacion.setResolucion(true);
-       /* if (invitacion.getId() != null) {
+
+      /* if (invitacion.getId() != null) {
+           return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
+       }
+        if(invitacion.getInvitado() != userLogin){
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
-        */
+        }*/
         InvitacionEvento result = invitacionEventoRepository.save(invitacion);
         return ResponseEntity.created(new URI("/api/invitacion-eventos/apuntarse" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
