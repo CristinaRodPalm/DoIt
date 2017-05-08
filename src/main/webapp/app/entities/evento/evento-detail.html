@@ -47,13 +47,14 @@
         </dd>
     </dl>
 
+    <!-- ESTO LO COMENTAMOS PORQUE DE MOMENTO NO FUNCIONA.
     <div class="form-group">
         <label data-translate="doitApp.evento.amigos">Amigos</label>
         <select class="form-control" multiple name="friends" ng-model="vm.friends"
                 ng-options="friends.id for friends.name in vm.friends">
         </select>
         <br>
-
+    -->
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
@@ -62,8 +63,10 @@
     </button>
 
     <!--OCULTAR ESTE BOTON SI EL USUARIO LOGEADO NO ES EL ADMINISTRADOR DEL EVENTO-->
-    <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})"
-            class="btn btn-primary">
+    <button type="button"
+            ui-sref="evento-detail.edit({id:vm.evento.id})"
+            class="btn btn-primary"
+            ng-if="vm.currentAccount.id==vm.evento.admin.id">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
