@@ -44,5 +44,21 @@
             </tr>
             </tbody>
         </table>
+
+        <!--<table class="table table-responsive">-->
+        <table>
+            <tbody>
+            <tr>
+                <td ng-repeat="reto in vm.retos track by reto.id">
+                    <div>
+                        <img ng-click="vm.openModal(reto)" data-ng-src="{{'data:' + reto.imagenContentType + ';base64,' + reto.imagen}}"
+                             alt="reto image" style="width:75px; height: 100px"/>
+                         <center>{{reto.nombre}}</center>
+                        <center>{{reto.descripcion}}</center>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
