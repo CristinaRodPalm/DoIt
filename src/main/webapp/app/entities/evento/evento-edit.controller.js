@@ -59,7 +59,7 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:eventoUpdate', result);
-            $state.go('eventos', null, {reload: 'evento'});
+            $state.go('eventos', null, {reload: 'eventos'});
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

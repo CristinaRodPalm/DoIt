@@ -67,12 +67,12 @@
                 parent: 'reto-detail',
                 url: '/detail/edit',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_ADMIN']
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
-                        templateUrl: 'app/entities/reto/reto-dialog.html',
-                        controller: 'RetoDialogController',
+                        templateUrl: 'app/entities/reto/reto-edit.html',
+                        controller: 'RetoEditController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg',
@@ -122,8 +122,8 @@
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
-                        templateUrl: 'app/entities/reto/reto-dialog.html',
-                        controller: 'RetoDialogController',
+                        templateUrl: 'app/entities/reto/reto-edit.html',
+                        controller: 'RetoEditController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg',
@@ -133,7 +133,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('reto', null, {reload: 'reto'});
+                        $state.go('lista-retos', null, {reload: 'lista-retos'});
                     }, function () {
                         $state.go('^');
                     });
@@ -143,7 +143,7 @@
                 parent: 'reto',
                 url: '/{id}/delete',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_ADMIN']
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
