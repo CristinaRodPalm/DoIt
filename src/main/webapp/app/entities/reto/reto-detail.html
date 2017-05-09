@@ -31,4 +31,9 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
+    <button type="button" ui-sref="reto.delete({id:vm.reto.id})" class="btn btn-danger"
+            ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+        <span class="glyphicon glyphicon-ban-circle"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.delete"> Delete</span>
+    </button>
 </div>

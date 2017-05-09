@@ -28,10 +28,16 @@
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 ui-sref="reto.edit({id:reto.id})"
-                                class="btn btn-danger"
+                                class="btn btn-warning"
                                 ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down" data-translate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="reto.delete({id:reto.id})"
+                                class="btn btn-danger"
+                                ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
                     </div>
                 </td>

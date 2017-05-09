@@ -157,7 +157,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('reto', null, {reload: 'reto'});
+                        $state.go('lista-retos', null, {reload: 'reto-detail'});
                     }, function () {
                         $state.go('^');
                     });
