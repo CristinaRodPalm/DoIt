@@ -1,9 +1,16 @@
 body {
-    background: #fafafa;
+    background: #f2f2f2;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
-
+.footer{
+    position:absolute;
+    bottom:10px;
+    width:90%;
+}
+.activeState{
+    background-color: #D8FFD6;
+}
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */

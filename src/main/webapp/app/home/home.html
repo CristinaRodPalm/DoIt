@@ -1,14 +1,11 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
+        <div class="row text-center">
             <h1 data-translate="home.title">Title</h1>
             <h3 data-translate="home.subtitle">Subtitle</h3>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
+                <div ng-switch-when="true">
                     <span data-translate="home.logged.message"></span>{{vm.account.login}}
                 </div>
 
@@ -64,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="footer" ng-cloak>
+    <div class="footer text-center" ng-cloak>
         <!--<p data-translate="home.footer">Footer</p>-->
          Coded with <span style="color: #00cc99">❤</span>
     </div>
