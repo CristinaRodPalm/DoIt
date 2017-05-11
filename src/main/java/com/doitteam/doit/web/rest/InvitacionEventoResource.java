@@ -150,4 +150,13 @@ public class InvitacionEventoResource {
        //return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEvento));
     }
 
+    @GetMapping("/invitacion-eventos/eventosUsuarioNoApuntado")
+    @Timed
+    public List<InvitacionEvento> getEventosNoUsuario(){
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<InvitacionEvento> invitacionEventos = invitacionEventoRepository.findEventosNotSigned(userLogin.getId());
+        return invitacionEventos;
+        //return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEventos));
+    }
+
 }

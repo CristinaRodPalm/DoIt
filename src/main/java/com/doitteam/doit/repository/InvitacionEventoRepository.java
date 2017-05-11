@@ -24,6 +24,10 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
         " and invitacionEvento.invitado.id =:currentUser")
     List<InvitacionEvento> findEventosSigned(@Param("currentUser") Long currentUser);
 
+    @Query("select invitacionEvento from InvitacionEvento invitacionEvento where " +
+        "invitacionEvento.invitado.id !=:currentUser" +
+        " and invitacionEvento.miembroEvento.id !=:currentUser")
+    List<InvitacionEvento> findEventosNotSigned(@Param("currentUser") Long currentUser);
 
 
 }
