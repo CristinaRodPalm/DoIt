@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Reto.
@@ -33,18 +34,15 @@ public class RetoResource {
         this.retoRepository = retoRepository;
     }
 
-    /**
-     * POST  /retos : Create a new reto.
-     *
-     * @param reto the reto to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new reto, or with status 400 (Bad Request) if the reto has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
+
     @PostMapping("/retos")
     @Timed
     public ResponseEntity<Reto> createReto(@RequestBody Reto reto) throws URISyntaxException {
         log.debug("REST request to save Reto : {}", reto);
         if (reto.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reto cannot already have an ID")).body(null);
+        }
+        if(reto.getImagen().length > 254){
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reto cannot already have an ID")).body(null);
         }
         reto.setHoraPublicacion(ZonedDateTime.now());
@@ -54,15 +52,6 @@ public class RetoResource {
             .body(result);
     }
 
-    /**
-     * PUT  /retos : Updates an existing reto.
-     *
-     * @param reto the reto to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated reto,
-     * or with status 400 (Bad Request) if the reto is not valid,
-     * or with status 500 (Internal Server Error) if the reto couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/retos")
     @Timed
     public ResponseEntity<Reto> updateReto(@RequestBody Reto reto) throws URISyntaxException {
@@ -76,11 +65,6 @@ public class RetoResource {
             .body(result);
     }
 
-    /**
-     * GET  /retos : get all the retos.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of retos in body
-     */
     @GetMapping("/retos")
     @Timed
     public List<Reto> getAllRetos() {
@@ -89,12 +73,24 @@ public class RetoResource {
         return retos;
     }
 
-    /**
-     * GET  /retos/:id : get the "id" reto.
-     *
-     * @param id the id of the reto to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the reto, or with status 404 (Not Found)
-     */
+    @GetMapping("/retosOrder")
+    @Timed
+    public List<Reto> getAllRetosOrder() {
+        List<Reto> retos = retoRepository.findAll();
+        // TODO -> ORDENAR EL ARRAY POR FECHA (+antiguo primero)
+        Map<Reto, LocalDate> lista = new HashMap<>();
+
+        for (Reto reto : retos) {
+            lista.put(reto, reto.getHoraPublicacion().toLocalDate());
+        }
+
+        System.out.println("HOLI");
+        lista.values().forEach(tab -> System.out.println(tab));
+
+        retos.clear();
+
+        return retos;
+    }
     @GetMapping("/retos/{id}")
     @Timed
     public ResponseEntity<Reto> getReto(@PathVariable Long id) {
@@ -103,12 +99,6 @@ public class RetoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(reto));
     }
 
-    /**
-     * DELETE  /retos/:id : delete the "id" reto.
-     *
-     * @param id the id of the reto to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/retos/{id}")
     @Timed
     public ResponseEntity<Void> deleteReto(@PathVariable Long id) {

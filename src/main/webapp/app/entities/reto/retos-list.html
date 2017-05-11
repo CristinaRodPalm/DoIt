@@ -4,7 +4,7 @@
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <!--<table class="jh-table table table-striped">
             <thead>
             <tr>
                 <th></th>
@@ -43,20 +43,37 @@
                 </td>
             </tr>
             </tbody>
-        </table>
+        </table>-->
 
-        <!--<table class="table table-responsive">-->
         <table>
             <tbody>
             <tr>
-                <td ng-repeat="reto in vm.retos track by reto.id">
-                    <div>
+                <div class="col-sm-12 col-md-6" ng-repeat="reto in vm.retos track by reto.id">
+                    <center>
                         <img ng-click="vm.openModal(reto)" data-ng-src="{{'data:' + reto.imagenContentType + ';base64,' + reto.imagen}}"
-                             alt="reto image" style="width:75px; height: 100px"/>
-                         <center>{{reto.nombre}}</center>
-                        <center>{{reto.descripcion}}</center>
-                    </div>
-                </td>
+                         alt="reto image" style="max-height: 250px"/>
+                    </center>
+                    <center>
+                        <a ui-sref="reto-detail({id:reto.id})">{{reto.nombre}}</a>  <br/>
+                        <div ng-if="reto.descripcion == null">-</div>{{reto.descripcion}}
+                    </center>
+                    <center>
+                        <button type="submit"
+                                ui-sref="reto.edit({id:reto.id})"
+                                class="btn btn-warning"
+                                ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down" data-translate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="reto.delete({id:reto.id})"
+                                class="btn btn-danger"
+                                ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
+                        </button>
+                    </center>
+                    <br/>
+                </div>
             </tr>
             </tbody>
         </table>
