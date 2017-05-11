@@ -21,17 +21,40 @@
                         <img data-ng-src="{{'data:' + reto.imagenContentType + ';base64,' + reto.imagen}}" style="max-height: 30px;" alt="reto image"/>
                     </a>
                 </td>
-                <td>{{reto.nombre}}</td>
+                <td><a ui-sref="reto-detail({id:reto.id})">{{reto.nombre}}</a></td>
                 <td>{{reto.descripcion}}</td>
                 <td>{{reto.horaPublicacion | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                ui-sref="reto-detail({id:reto.id})"
-                                class="btn btn-info">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-sm-down">Info</span>
+                                ui-sref="reto.edit({id:reto.id})"
+                                class="btn btn-warning"
+                                ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down" data-translate="entity.action.edit">Edit</span>
                         </button>
+                        <button type="submit"
+                                ui-sref="reto.delete({id:reto.id})"
+                                class="btn btn-danger"
+                                ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--<table class="table table-responsive">-->
+        <table>
+            <tbody>
+            <tr>
+                <td ng-repeat="reto in vm.retos track by reto.id">
+                    <div>
+                        <img ng-click="vm.openModal(reto)" data-ng-src="{{'data:' + reto.imagenContentType + ';base64,' + reto.imagen}}"
+                             alt="reto image" style="width:75px; height: 100px"/>
+                         <center>{{reto.nombre}}</center>
+                        <center>{{reto.descripcion}}</center>
                     </div>
                 </td>
             </tr>

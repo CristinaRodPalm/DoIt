@@ -3,11 +3,11 @@
 
     angular
         .module('doitApp')
-        .controller('RetoDialogController', RetoDialogController);
+        .controller('RetoEditController', RetoEditController);
 
-    RetoDialogController.$inject = ['$timeout', '$scope', '$state', '$stateParams', 'DataUtils', 'entity', 'Reto', 'ParticipacionReto', 'Evento'];
+    RetoEditController.$inject = ['$uibModalInstance', '$timeout', '$scope', '$state', '$stateParams', 'DataUtils', 'entity', 'Reto', 'ParticipacionReto', 'Evento'];
 
-    function RetoDialogController ($timeout, $scope, $state, $stateParams, DataUtils, entity, Reto, ParticipacionReto, Evento) {
+    function RetoEditController ($uibModalInstance, $timeout, $scope, $state, $stateParams, DataUtils, entity, Reto, ParticipacionReto, Evento) {
         var vm = this;
 
         vm.reto = entity;
@@ -21,11 +21,11 @@
         vm.eventos = Evento.query();
 
         $timeout(function (){
-            angular.element('.form-group:eq(0)>input').focus();
+            angular.element('.form-group:eq(1)>input').focus();
         });
 
         function clear () {
-            $state.go('lista-retos', null, {reload: 'lista-retos'});
+            $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
@@ -39,8 +39,9 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:retoUpdate', result);
-            vm.isSaving = false;
             $state.go('lista-retos', null, {reload: 'lista-retos'});
+            $uibModalInstance.dismiss('cancel');
+            vm.isSaving = false;
         }
 
         function onSaveError () {

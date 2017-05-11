@@ -72,7 +72,7 @@
                 onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/evento/evento-edit.html',
-                        controller: 'EventoDialogController',
+                        controller: 'EventoEditController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg',
