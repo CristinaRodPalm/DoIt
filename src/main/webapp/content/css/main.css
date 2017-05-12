@@ -9,7 +9,8 @@ body {
     width:90%;
 }
 .activeState{
-    background-color: #D8FFD6;
+    background-color: #004d3d;
+    color: #FFFFFF;
 }
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak

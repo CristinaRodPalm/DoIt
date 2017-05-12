@@ -8,19 +8,19 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
-                <img class="logo-img" src="content/images/logo-jhipster.png" alt="logo"/>
+                <img class="logo-img" src="content/images/logos_proyecto/logo_proyecto_con64.png" alt="logo"/>
                 <span data-translate="global.title">Doit</span>
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active">
+                <li ui-sref-active="activeState">
                     <a ui-sref="home" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-home"></span>
                         <span class="hidden-sm" data-translate="global.menu.home">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="false">
+                <li ui-sref-active="activeState" ng-switch-when="false">
                     <a ui-sref="register" ng-click="vm.collapseNavbar()">
                         <i class="fa fa-user-plus"></i>&nbsp;
                         <span class="hidden-sm" data-translate="global.menu.account.register">Register</span>
@@ -28,7 +28,7 @@
                 </li>
 
                 <!--FUNCTIONALITIES -->
-                <li ng-class="{active: vm.$state.includes('entity')}"
+                <li ng-class="{activeState: vm.$state.includes('entity')}"
                     uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle"
                        uib-dropdown-toggle href=""
@@ -56,7 +56,6 @@
                             </a>
                         </li>
 
-                        <!-- LISTA DE RETOS -->
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-star"></span>
@@ -88,7 +87,7 @@
                 <!--FUNCTIONALITIES -->
 
                 <!--SEARCH-->
-                <li uib-dropdown class="dropdown pointer">
+                <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="search-menu"
                        ng-switch-when="true">
                         <span>
@@ -116,7 +115,7 @@
                 </li>
                 <!--SEARCH-->
 
-                <li ng-class="{active: vm.$state.includes('account')}"
+                <li ng-class="{activeState: vm.$state.includes('account')}"
                     uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle"
                        uib-dropdown-toggle href=""
@@ -158,7 +157,7 @@
                     </ul>
 
                     <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}"
+                <li ng-class="{activeState: vm.$state.includes('entity')}"
                     ng-switch-when="true" uib-dropdown
                     class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
@@ -213,13 +212,13 @@
                                 <span data-translate="global.menu.entities.participacionReto">Participacion Reto</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="activeState">
                             <a ui-sref="reto" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span data-translate="global.menu.entities.reto">Reto</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="activeState">
                             <a ui-sref="user-ext" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span data-translate="global.menu.entities.userExt">User Ext</span>
@@ -229,7 +228,7 @@
                     </ul>
                 </li>
                 </li>
-                <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN"
+                <li ng-class="{activeState: vm.$state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN"
                     uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
@@ -284,14 +283,14 @@
                         <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     </ul>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="activeState">
                     <a ui-sref="about"
                        ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="hidden-sm" data-translate="global.navbar-functions.about">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" uib-dropdown class="dropdown pointer"
+                <li ui-sref-active="activeState" uib-dropdown class="dropdown pointer"
                     ng-controller="JhiLanguageController as languageVm">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" ng-if="languageVm.languages.length > 1">
                         <span>
