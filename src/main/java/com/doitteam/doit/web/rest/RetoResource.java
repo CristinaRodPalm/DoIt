@@ -76,21 +76,10 @@ public class RetoResource {
     @GetMapping("/retosOrder")
     @Timed
     public List<Reto> getAllRetosOrder() {
-        List<Reto> retos = retoRepository.findAll();
-        // TODO -> ORDENAR EL ARRAY POR FECHA (+antiguo primero)
-        Map<Reto, LocalDate> lista = new HashMap<>();
-
-        for (Reto reto : retos) {
-            lista.put(reto, reto.getHoraPublicacion().toLocalDate());
-        }
-
-        System.out.println("HOLI");
-        lista.values().forEach(tab -> System.out.println(tab));
-
-        retos.clear();
-
-        return retos;
+        // para invertir Comparator.comparing(Reto::getHoraPublicacion).reversed()
+        return retoRepository.findAll().parallelStream().sorted(Comparator.comparing(Reto::getHoraPublicacion)).collect(Collectors.toList());
     }
+
     @GetMapping("/retos/{id}")
     @Timed
     public ResponseEntity<Reto> getReto(@PathVariable Long id) {
