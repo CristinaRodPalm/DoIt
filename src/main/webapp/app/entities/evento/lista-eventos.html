@@ -40,7 +40,7 @@
                     <div class="btn-group flex-btn-group-container">
 
                         <button type="submit"
-                                ui-sref="lista-amigos-eventos.html({})"
+                                ui-sref="evento-detail({id:evento.evento.id})"
                                 class="btn btn-success">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
@@ -82,7 +82,7 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                        ng-click="vm.apuntarse(evento.id)" >
+                        ng-click="vm.invitarAmigo(friend.id)" >
 
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>

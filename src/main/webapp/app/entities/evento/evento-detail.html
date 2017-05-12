@@ -47,19 +47,17 @@
         </dd>
     </dl>
 
-   <!-- ESTO LO COMENTAMOS PORQUE DE MOMENTO NO FUNCIONA. -->
-
-    <!--<div class="form-group">
-        <label data-translate="doitApp.evento.amigos">Amigos</label>
-        <select class="form-control" multiple name="friends" ng-model="vm.friends"
-                ng-options="friends.id for friends.name in vm.friends">
-        </select>
-        <br>-->
-
+   <!--Mostrar lista de amigos del usuario logeado, para poder invitarlo a un evento -->
     <div class="form-group">
-             <label data-translate="userManagement.profiles">Profiles</label>
-              <select class="form-control" multiple name="authority" ng-model="vm.user.authorities" ng-options="authority for authority in vm.authorities">
-              </select>
+        <label data-translate="doitApp.evento.amigos">Amigos</label>
+        <!--<select class="form-control" multiple name="friends" ng-model="vm.friends"
+                ng-options="friends.id for friends.name in vm.friends">
+        </select>-->
+       <select class="form-control" multiple name="friend" ng-model="vm.user.friends"
+             ng-options="friend as friend.firstName for friend in vm.friends">
+        </select>
+
+        </div>
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
@@ -67,7 +65,6 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
         <span data-translate="entity.action.back"> Back</span>
     </button>
-
 
     <!--OCULTAR ESTE BOTON SI EL USUARIO LOGEADO NO ES EL ADMINISTRADOR DEL EVENTO-->
     <button type="button"
