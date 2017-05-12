@@ -40,7 +40,7 @@
                     <div class="btn-group flex-btn-group-container">
 
                         <button type="submit"
-                                ui-sref="evento-detail({id:evento.evento.id})"
+                                ui-sref="lista-amigos-eventos.html({})"
                                 class="btn btn-success">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
@@ -71,31 +71,24 @@
                     </a>
                 </td>
                 <td><span>{{evento.admin.login}}</span></td>
-                <td><span>{{evento.nombre}}</span></td>
+                <td><span><a ui-sref="evento-detail({id:evento.id})">{{evento.nombre}}</a></span></td>
                 <td><span>{{evento.descripcion}}</span></td>
                 <td><span>{{evento.hora | date:'medium'}}</span></td>
                 <td><span>{{evento.direccion}}</span></td>
                 <td><span>{{evento.fechaEvento | date:'medium'}}</span></td>
-                <td>
-                    <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a>
-                </td>
+                <td><span><a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a></span></td>
+
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                        ng-click="vm.invitarAmigo(friend.id)" >
-
+                            ng-click="vm.apuntarse(evento.id)" >
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
-                        </button>
-                        <button type="submit"
-                                 ui-sref="evento-detail({id:evento.id})"
-                                 class="btn btn-info">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-sm-down"></span>
-                            <span>Info</span>
+                            <span data-translate="doitApp.evento.participar"></span>
                         </button>
                         <button type="submit" class="btn btn-danger"
-                            ng-if="vm.currentAccount.id==evento.admin.id">
+                            ng-if="vm.currentAccount.id==evento.admin.id"
+                            ui-sref="evento.edit({id:evento.id})">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>
                             <span translate="doitApp.evento.editar "></span>
@@ -103,10 +96,6 @@
                     </div>
                 </td>
             </tr>
-
-
-
-
             </tbody>
         </table>
     </div>
