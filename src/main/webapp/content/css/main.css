@@ -16,12 +16,16 @@ body {
     background-color: #004d3d;
     color: #FFFFFF;
 }
-.custom-btn{
-
+.navbar .nav > li.dropdown.open.active > a:hover,
+.navbar .nav > li.dropdown.open > a
+{
+    color: #fff;
+    background-color: #004d3d;
+    border-color: #fff;
 }
-/* ==========================================================================
-Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
-========================================================================== */
+    /* ==========================================================================
+    Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
+    ========================================================================== */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
