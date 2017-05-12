@@ -62,8 +62,6 @@
                 console.log(id);
                 $state.go('eventos', null, {reload: 'eventos'});
             }
-
-
         }
 
 })();
