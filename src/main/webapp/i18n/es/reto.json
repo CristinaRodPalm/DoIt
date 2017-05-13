@@ -4,7 +4,8 @@
             "home": {
                 "title": "Retos",
                 "subtitle": "¡Aquí puedes ver los retos que hemos creado para vosotros!",
-                "createLabel": "Crear nuevo Reto",
+                "createLabel": "Crear nuevo reto",
+                "editLabel":"Editar reto",
                 "createOrEditLabel": "Crear o editar Reto"
             },
             "created": "Un nuevo Reto ha sido creado con el identificador {{ param }}",

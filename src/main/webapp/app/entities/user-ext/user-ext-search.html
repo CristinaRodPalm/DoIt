@@ -1,17 +1,12 @@
 <div>
     <div class="row text-center">
-
         <div class="input-group">
             <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
             <input type="text" class="form-control" ng-model="criteria"
                    placeholder="{{'global.form.search.placeholder' | translate}}">
         </div>
-
-        <div class="text-center">
-            <h3 translate="doitApp.userExt.search.subtitle">Resultados de búsqueda</h3>
-        </div>
-
     </div>
+    <p></p>
     <div class="row">
         <div class="table-responsive">
             <table class="jh-table table table-striped">
@@ -99,8 +94,7 @@
                         <td><span>{{pendingFriend.user.email}}</span></td>
                         <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
                         <td class="text-right">
-                            <div class="btn-group btn-group-sm">
-
+                            <div class="btn-group flex-btn-group-container">
                                 <button type="submit" class="btn btn-default" disabled="true">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     <span translate="doitApp.userExt.sended"></span>

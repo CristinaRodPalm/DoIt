@@ -4,7 +4,8 @@
             "home": {
                 "title": "Challenges",
                 "subtitle": "Here you can see all the challenges that we created for you!",
-                "createLabel": "Create a new Reto",
+                "createLabel": "Create a new challenge",
+                "editLabel":"Edit challenge",
                 "createOrEditLabel": "Create or edit a Reto"
             },
             "created": "A new Reto is created with identifier {{ param }}",

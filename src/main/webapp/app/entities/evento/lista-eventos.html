@@ -20,6 +20,7 @@
             </tr>
             </thead>
             <tbody>
+
         <!--Aqui se muestran los eventos que el usuario se ha apuntado -->
             <tr ng-repeat="evento in vm.eventoApuntado track by evento.id">
                 <td>
@@ -38,7 +39,6 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-
                         <button type="submit"
                                 ui-sref="evento-detail({id:evento.evento.id})"
                                 class="btn btn-success">
@@ -46,18 +46,12 @@
                             <span class="hidden-sm-down"></span>
                             <span translate="doitApp.evento.invitar">Invitar amigos</span>
                         </button>
-                        <button type="submit"
-                                ui-sref="evento-detail({id:evento.evento.id})"
-                                class="btn btn-info">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-sm-down"></span>
-                            <span>Info</span>
-                        </button>
                         <button type="submit" class="btn btn-danger"
-                                ng-if="vm.currentAccount.id==evento.admin.id">
+                                ng-if="vm.currentAccount.id==evento.evento.admin.id"
+                                ui-sref="evento.edit({id:evento.id})">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>
-                            <span translate="doitApp.evento.editar "></span>
+                            <span translate="doitApp.evento.editar"></span>
                         </button>
                     </div>
                 </td>

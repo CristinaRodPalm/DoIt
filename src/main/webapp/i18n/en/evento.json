@@ -5,7 +5,7 @@
                 "title": "Events",
                 "titlePage": "Create event",
                 "subtitle":"Here you can see a list of events created by other users!",
-                "createLabel": "Create a new Evento",
+                "createLabel": "Create a new event",
                 "editLabel":"Edit event",
                 "createOrEditLabel": "Create or edit a Evento"
             },
