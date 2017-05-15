@@ -18,6 +18,9 @@
             vm.inProduction = response.inProduction;
             vm.swaggerEnabled = response.swaggerEnabled;
         });
+        Principal.identity().then(function (account) {
+            vm.currentAccount = account;
+        });
 
         vm.login = login;
         vm.logout = logout;
@@ -43,9 +46,5 @@
         function collapseNavbar() {
             vm.isNavbarCollapsed = true;
         }
-
-        Principal.identity().then(function (account) {
-            vm.currentAccount = account;
-        });
     }
 })();
