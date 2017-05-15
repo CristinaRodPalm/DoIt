@@ -17,4 +17,5 @@ public interface EventoRepository extends JpaRepository<Evento,Long> {
     List<Evento> findByAdminIsCurrentUser();
 
 
+
 }

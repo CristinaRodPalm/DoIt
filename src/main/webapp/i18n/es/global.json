@@ -126,7 +126,8 @@
             "edit": "Editar",
             "open": "Abrir",
             "save": "Guardar",
-            "view": "Ver"
+            "view": "Ver",
+            "invite": "Invitar"
         },
         "detail": {
             "field": "Campo",

@@ -2,6 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Evento;
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.EventoRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
@@ -121,6 +122,7 @@ public class EventoResource {
         eventoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 
 
 }

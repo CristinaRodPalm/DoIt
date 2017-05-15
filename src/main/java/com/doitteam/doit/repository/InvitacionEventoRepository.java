@@ -1,5 +1,6 @@
 package com.doitteam.doit.repository;
 
+import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.InvitacionEvento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,10 +25,11 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
         " and invitacionEvento.invitado.id =:currentUser")
     List<InvitacionEvento> findEventosSigned(@Param("currentUser") Long currentUser);
 
-    @Query("select invitacionEvento from InvitacionEvento invitacionEvento where " +
-        "invitacionEvento.invitado.id !=:currentUser" +
-        " and invitacionEvento.miembroEvento.id !=:currentUser")
-    List<InvitacionEvento> findEventosNotSigned(@Param("currentUser") Long currentUser);
+    @Query("select evento from Evento evento where " +
+    " evento not in (select invitacionEvento.evento from InvitacionEvento invitacionEvento where " +
+        " invitacionEvento.horaResolucion is not null and invitacionEvento.resolucion = true " +
+        " and invitacionEvento.invitado.id =:currentUser)")
+    List<Evento> findEventosNotSigned(@Param("currentUser") Long currentUser);
 
 
 }
