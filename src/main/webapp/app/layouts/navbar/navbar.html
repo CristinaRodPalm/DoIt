@@ -63,7 +63,8 @@
                             </a>
                         </li>
 
-                        <li ui-sref-active="active" ng-switch-when="true">
+                        <li ui-sref-active="active" ng-switch-when="true"
+                            ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
                             <a ui-sref="reto.new" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>

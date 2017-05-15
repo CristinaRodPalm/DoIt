@@ -12,6 +12,7 @@
 
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;
+        vm.currentAccount;
 
         ProfileService.getProfileInfo().then(function(response) {
             vm.inProduction = response.inProduction;
@@ -42,5 +43,9 @@
         function collapseNavbar() {
             vm.isNavbarCollapsed = true;
         }
+
+        Principal.identity().then(function (account) {
+            vm.currentAccount = account;
+        });
     }
 })();
