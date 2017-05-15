@@ -11,8 +11,8 @@
 
         var vm = this;
         vm.eventos = [];
-        vm.eventoNoApuntado = [];
-        vm.eventoApuntado = [];
+        vm.eventosNoApuntado = [];
+        vm.eventosApuntado = [];
         vm.currentAccount;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
@@ -29,19 +29,18 @@
         }
 
         function loadApuntados() {
-            InvitacionEvento.eventosApuntados(function (result) {
-                vm.eventoApuntado = result;
+            InvitacionEvento.eventosApuntado(function (result) {
+                vm.eventosApuntado = result;
                 vm.searchQuery = null;
-                console.log(vm.eventoApuntado);
-                //eventosNoApuntados();
+                console.log("Apuntado: "+vm.eventosApuntado);
             });
         }
 
         function loadNoApuntados() {
-            InvitacionEvento.eventosNoApuntados(function (result) {
-                vm.eventoNoApuntado = result;
+            InvitacionEvento.eventosNoApuntado(function (result) {
+                vm.eventosNoApuntado = result;
                 vm.searchQuery = null;
-                console.log(vm.eventoNoApuntado);
+                console.log("No apuntado: "+vm.eventosNoApuntado);
             });
         }
 

@@ -24,9 +24,9 @@
             },
             'update': { method:'PUT' },
             'participar': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/:id/apuntarse'},
-            'eventosApuntados': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioApuntado'},
-            'eventosNoApuntados': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioNoApuntado'}
-            
+            'eventosApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioApuntado'},
+            'eventosNoApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioNoApuntado'}
+
         });
     }
 })();
