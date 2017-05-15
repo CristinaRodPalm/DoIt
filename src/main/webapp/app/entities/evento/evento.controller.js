@@ -33,7 +33,7 @@
                 vm.eventoApuntado = result;
                 vm.searchQuery = null;
                 console.log(vm.eventoApuntado);
-                eventosNoApuntados();
+                //eventosNoApuntados();
             });
         }
 
@@ -43,19 +43,6 @@
                 vm.searchQuery = null;
                 console.log(vm.eventoNoApuntado);
             });
-        }
-
-        function eventosNoApuntados() {
-            // QUITAMOS LOS EVENTOS QUE YA ESTA APUNTADO
-            for (var i = 0; i < vm.eventos.length; i++) {
-                if (vm.eventoApuntado.length > 0) {
-                    for (var j = 0; j < vm.eventoApuntado.length; j++) {
-                        if (vm.eventos[i].id == vm.eventoApuntado[j].evento.id) {
-                            vm.eventos.splice(i, 1);
-                        }
-                    }
-                }
-            }
         }
 
         Principal.identity().then(function (account) {
@@ -68,5 +55,4 @@
             $state.go('eventos', null, {reload: 'eventos'});
         }
     }
-
 })();

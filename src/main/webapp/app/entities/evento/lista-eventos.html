@@ -56,30 +56,30 @@
             </tr>
 
         <!--Aqui se muestran todos los eventos -->
-            <tr ng-repeat="evento in vm.eventos track by evento.id">
+            <tr ng-repeat="evento in vm.eventoNoApuntado track by evento.id">
                 <td>
                     <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
                         <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
-                <td><span>{{evento.admin.login}}</span></td>
+                <td><span>{{evento.evento.admin.login}}</span></td>
                 <td><span><a ui-sref="evento-detail({id:evento.id})">{{evento.nombre}}</a></span></td>
-                <td><span>{{evento.descripcion}}</span></td>
-                <td><span>{{evento.hora | date:'medium'}}</span></td>
-                <td><span>{{evento.direccion}}</span></td>
-                <td><span>{{evento.fechaEvento | date:'medium'}}</span></td>
-                <td><span><a ui-sref="reto-detail({id:evento.reto.id})">{{evento.reto.nombre}}</a></span></td>
+                <td><span>{{evento.evento.descripcion}}</span></td>
+                <td><span>{{evento.evento.hora | date:'medium'}}</span></td>
+                <td><span>{{evento.evento.direccion}}</span></td>
+                <td><span>{{evento.evento.fechaEvento | date:'medium'}}</span></td>
+                <td><span><a ui-sref="reto-detail({id:evento.reto.id})">{{evento.evento.reto.nombre}}</a></span></td>
 
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                            ng-click="vm.apuntarse(evento.id)" >
+                            ng-click="vm.apuntarse(evento.evento.id)" >
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
                             <span data-translate="doitApp.evento.participar"></span>
                         </button>
                         <button type="submit" class="btn btn-danger"
-                            ng-if="vm.currentAccount.id==evento.admin.id"
+                            ng-if="vm.currentAccount.id==evento.evento.admin.id"
                             ui-sref="evento.edit({id:evento.id})">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down"></span>
