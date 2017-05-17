@@ -28,10 +28,10 @@
                 "title":"Search users",
                 "subtitle":"Search results:"
             },
-            "friend": "Friends",
+            "friend": "Already Friends",
             "sended": "Sended request",
             "pending": "Pending request",
-            "add": "Add"
+            "add": "Add as friend"
         }
     }
 }

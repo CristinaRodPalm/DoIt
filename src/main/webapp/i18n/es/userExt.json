@@ -28,10 +28,10 @@
                 "title":"Buscar personas",
                 "subtitle":"Resultados de búsqueda:"
             },
-            "friend": "Amigos",
+            "friend": "Ya es tu amigo",
             "sended": "Solicitud enviada",
             "pending": "Solicitud pendiente",
-            "add": "Agregar"
+            "add": "Agregar a amigos"
         }
     }
 }
