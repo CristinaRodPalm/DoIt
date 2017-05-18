@@ -14,10 +14,8 @@
             'getAllByCurrentUser': {method: 'GET', isArray: true, url: 'api/amistades'},
             'getSolicitudesAceptadas': {method:'GET', isArray:true, url:'api/usersSolAceptadas'},
             'getSolicitudesPendientes': {method:'GET', isArray:true, url:'api/usersSolPendientes'},
-
             'getSolicitudesPendientesEmisor': {method:'GET', isArray:true, url:'api/usersSolPendientesEmisor'},
             'getSolicitudesPendientesReceptor': {method:'GET', isArray:true, url:'api/usersSolPendientesReceptor'},
-
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -41,7 +39,8 @@
 
             },
             'acceptByUser': {method:'PUT', url:'api/amistads/:id/acceptByUser'},
-            'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'}
+            'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'},
+            'getOneByUsers':{method: 'GET', isArray:false, url:'api/amistadByUsers/:id'}
 
         });
     }
