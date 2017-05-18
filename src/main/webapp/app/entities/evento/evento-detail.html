@@ -50,21 +50,15 @@
    <!--Mostrar lista de amigos del usuario logeado, para poder invitarlo a un evento -->
     <div class="form-group">
         <label data-translate="doitApp.evento.amigos">Amigos</label>
-        <!--<select class="form-control" multiple name="friends" ng-model="vm.friends"
-                ng-options="friends.id for friends.name in vm.friends">
-        </select>-->
-       <select class="form-control" multiple name="friend" ng-model="vm.user.friends"
+       <select class="form-control" multiple name="friend" ng-model="vm.amigosInvitados"
              ng-options="friend as friend.firstName for friend in vm.friends">
-        </select>
 
+        </select>
+        <div>
+            {{vm.amigosInvitados}}
         </div>
 
-    <button type="submit"
-            ui-sref="{{  }}"
-            class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span>&nbsp;
-        <span data-translate="entity.action.invite">Invitar</span>
-    </button>
+        </div>
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
@@ -80,6 +74,13 @@
             ng-if="vm.currentAccount.id==vm.evento.admin.id">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+
+    <button type="submit"
+            ng-click="inviteFriends(friend.id)"
+            class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;
+        <span data-translate="entity.action.invite">Invitar</span>
     </button>
 </div>
     </div>

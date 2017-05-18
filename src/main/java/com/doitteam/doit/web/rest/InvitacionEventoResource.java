@@ -114,8 +114,6 @@ public class InvitacionEventoResource {
                     body(null);
             }
         }
-
-
         //control de error
         //comprobar que la id_evento no sea null
         //comprobar que la invitacion del evento no sea null
@@ -128,12 +126,6 @@ public class InvitacionEventoResource {
         invitacion.setHoraResolucion(ZonedDateTime.now());
         invitacion.setResolucion(true);
 
-      /* if (invitacion.getId() != null) {
-           return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
-       }
-        if(invitacion.getInvitado() != userLogin){
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new invitacionEvento cannot already have an ID")).body(null);
-        }*/
         InvitacionEvento result = invitacionEventoRepository.save(invitacion);
         return ResponseEntity.created(new URI("/api/invitacion-eventos/apuntarse" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

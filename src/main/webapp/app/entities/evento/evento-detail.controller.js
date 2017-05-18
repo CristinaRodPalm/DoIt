@@ -16,10 +16,10 @@
         vm.openFile = DataUtils.openFile;
         vm.currentAccount;
         vm.friends = [];
-        vm.inviteFriends = [];
+        vm.amigosInvitados = [];
 
         loadFriends();
-        
+
         var unsubscribe = $rootScope.$on('doitApp:eventoUpdate', function(event, result) {
             vm.evento = result;
         });
@@ -34,6 +34,13 @@
             Amistad.getFriends(function (result) {
                 vm.friends = result;
             })
+        }
+
+        vm.inviteFriend = function(friend){
+            // Amistad.sendFriendRequest({'id': id}, {});
+            console.log(vm.amigosInvitados);
+
+
         }
     }
 })();
