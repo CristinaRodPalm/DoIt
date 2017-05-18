@@ -34,28 +34,32 @@
         <dd class="col-lg-4 btn-group">
             <!--No es tu amigo-->
             <button type="submit"
-                    ng-click="vm.sendFriendRequest(user.user.id)"
-                    class="btn btn-primary">
+                    ng-click="vm.sendFriendRequest(vm.userExt.user.id)"
+                    class="btn btn-primary"
+                    ng-if="vm.amistad == undefined">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 <span translate="doitApp.userExt.add"></span>
             </button>
             <!--Le has enviado peticion-->
             <button type="submit"
                     class="btn btn-default"
-                    disabled="true">
+                    disabled="true"
+                    ng-if="vm.amistad.emisor.id == vm.currentAccount.id && vm.amistad.horaRespuesta == null">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <span translate="doitApp.userExt.sended"></span>
             </button>
             <!--Te ha enviado peticion-->
             <button type="submit"
                     class="btn btn-warning"
-                    disabled="true">
+                    disabled="true"
+                    ng-if="vm.amistad.receptor.id == vm.currentAccount.id && vm.amistad.horaRespuesta == null">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <span translate="doitApp.userExt.pending"></span>
             </button>
             <!--Es tu amigo-->
             <button type="submit" ng-disabled="true"
-                    class="btn btn-success">
+                    class="btn btn-success"
+                    ng-if="vm.amistad.aceptada == true && vm.amistad.horaRespuesta != null">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <span translate="doitApp.userExt.friend"></span>
             </button>

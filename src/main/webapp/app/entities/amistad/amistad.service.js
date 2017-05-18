@@ -41,7 +41,6 @@
             'acceptByUser': {method:'PUT', url:'api/amistads/:id/acceptByUser'},
             'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'},
             'getOneByUsers':{method: 'GET', isArray:false, url:'api/amistadByUsers/:id'}
-
         });
     }
 })();
