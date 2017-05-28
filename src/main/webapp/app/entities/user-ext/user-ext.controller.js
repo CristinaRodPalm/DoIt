@@ -30,16 +30,6 @@
                 vm.accepted = result;
             });
 
-            // users con solicitud pendiente
-            Amistad.getSolicitudesPendientes(function(result){
-                vm.resultado = result;
-                for(var i = 0; i < vm.resultado.length; i++){
-                    if(vm.resultado[i].user != null){
-                        vm.pending.push(vm.resultado[i]);
-                    }
-                }
-            });
-
             // solicitud pendiente --> eres el emisor
             Amistad.getSolicitudesPendientesEmisor(function(result){
                 vm.resultado = result;
@@ -60,13 +50,25 @@
                 }
             });
 
-            // resto de usuarios que no son amigos ni tienen solicitud
+            // resto de usuarios
             UserExt.query(function(result) {
                 vm.userExts = result;
                 vm.otherUsers = result;
                 vm.searchQuery = null;
                 comprobarNoAmigos();
             });
+
+
+            // users con solicitud pendiente
+            Amistad.getSolicitudesPendientes(function(result){
+                vm.resultado = result;
+                for(var i = 0; i < vm.resultado.length; i++){
+                    if(vm.resultado[i].user != null){
+                        vm.pending.push(vm.resultado[i]);
+                    }
+                }
+            });
+
         }
 
         vm.sendFriendRequest = function(id){

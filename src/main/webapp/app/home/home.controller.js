@@ -5,11 +5,13 @@
         .module('doitApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state'];
+    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state', 'UserExt'];
 
-    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state) {
+    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt) {
         var vm = this;
 
+        vm.user = null;
+        vm.userExts = null;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = login;
@@ -25,9 +27,23 @@
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
+                console.log(account);
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
+            UserExt.query(function(response){
+               vm.userExts = response;
+               checkUser();
+            });
         }
+
+        function checkUser(){
+            for(var i = 0; i < vm.userExts.length; i++){
+                if(vm.userExts[i].user.id == vm.account.id){
+                    vm.user = vm.userExts[i];
+                }
+            }
+        }
+
         function register () {
             $state.go('register');
         }

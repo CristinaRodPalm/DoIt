@@ -95,8 +95,6 @@ public class AmistadResource {
     public List<Amistad> getAmigosSolicitudes(){
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         List<Amistad> amigos = amistadRepository.findAmigos(userLogin.getId());
-       /* for (Amistad amigo: amigos) { }
-        return null;*/
        return amigos;
     }
 
@@ -142,13 +140,30 @@ public class AmistadResource {
     public ResponseEntity<Amistad> accept(@PathVariable Long id) {
         log.debug("REST request to update Amistad : {}", id);
         if (id == null) {
-            return ResponseEntity.badRequest().
-                headers(HeaderUtil.createFailureAlert
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert
                     (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
         }
         Amistad amistad = amistadRepository.findById(id);
         amistad.setHoraRespuesta(ZonedDateTime.now());
         amistad.setAceptada(true);
+        Amistad result = amistadRepository.save(amistad);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
+            .body(result);
+    }
+
+    @PutMapping("/amistads/{id}/deny")
+    @Timed
+    public ResponseEntity<Amistad> deny(@PathVariable Long id){
+        log.debug("REST request to update Amistad : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert
+                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
+
+        }
+        Amistad amistad = amistadRepository.findById(id);
+        amistad.setHoraRespuesta(ZonedDateTime.now());
+        amistad.setAceptada(false);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
@@ -168,25 +183,6 @@ public class AmistadResource {
         Amistad amistad = amistadRepository.findOneByEmisorReceptor(userLogin.getId(), id);
         amistad.setHoraRespuesta(ZonedDateTime.now());
         amistad.setAceptada(true);
-        Amistad result = amistadRepository.save(amistad);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
-            .body(result);
-    }
-
-    @PutMapping("/amistads/{id}/deny")
-    @Timed
-    public ResponseEntity<Amistad> deny(@PathVariable Long id){
-        log.debug("REST request to update Amistad : {}", id);
-        if (id == null) {
-            return ResponseEntity.badRequest().
-                headers(HeaderUtil.createFailureAlert
-                    (ENTITY_NAME, "noexists", "La amistad no existe")).body(null);
-
-        }
-        Amistad amistad = amistadRepository.findById(id);
-        amistad.setHoraRespuesta(ZonedDateTime.now());
-        amistad.setAceptada(false);
         Amistad result = amistadRepository.save(amistad);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, amistad.getId().toString()))
@@ -258,6 +254,7 @@ public class AmistadResource {
 
         return amigos;
     }
+
     // get solicitudes pendientes el current user es RECEPTOR --> enviaré los emisores
     @GetMapping("/usersSolPendientesReceptor")
     @Timed
@@ -274,7 +271,6 @@ public class AmistadResource {
 
         return amigos;
     }
-
 
     //get solicitudes aceptadas (amigos)
     @GetMapping("/usersSolAceptadas")

@@ -19,7 +19,6 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="doitApp.userExt.fechaNacimiento">Fecha Nacimiento</span></th>
                     <th><span data-translate="doitApp.userExt.imagen">Imagen</span></th>
                     <th><span data-translate="doitApp.userExt.telefono">Telefono</span></th>
                     <th><span data-translate="doitApp.userExt.nacimiento">Nacimiento</span></th>
@@ -30,7 +29,6 @@
             <tbody>
                 <tr ng-repeat="userExt in vm.userExts track by userExt.id">
                     <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
-                    <td>{{userExt.fechaNacimiento | date:'medium'}}</td>
                     <td>
                         <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
                             <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>

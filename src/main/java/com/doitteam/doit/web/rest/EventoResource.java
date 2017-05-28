@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Evento.
@@ -38,13 +43,6 @@ public class EventoResource {
         this.userRepository = userRepository;
     }
 
-    /**
-     * POST  /eventos : Create a new evento.
-     *
-     * @param evento the evento to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new evento, or with status 400 (Bad Request) if the evento has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/eventos")
     @Timed
     public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) throws URISyntaxException {
@@ -60,15 +58,6 @@ public class EventoResource {
             .body(result);
     }
 
-    /**
-     * PUT  /eventos : Updates an existing evento.
-     *
-     * @param evento the evento to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated evento,
-     * or with status 400 (Bad Request) if the evento is not valid,
-     * or with status 500 (Internal Server Error) if the evento couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/eventos")
     @Timed
     public ResponseEntity<Evento> updateEvento(@RequestBody Evento evento) throws URISyntaxException {
@@ -82,11 +71,6 @@ public class EventoResource {
             .body(result);
     }
 
-    /**
-     * GET  /eventos : get all the eventos.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of eventos in body
-     */
     @GetMapping("/eventos")
     @Timed
     public List<Evento> getAllEventos() {
@@ -95,12 +79,6 @@ public class EventoResource {
         return eventos;
     }
 
-    /**
-     * GET  /eventos/:id : get the "id" evento.
-     *
-     * @param id the id of the evento to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the evento, or with status 404 (Not Found)
-     */
     @GetMapping("/eventos/{id}")
     @Timed
     public ResponseEntity<Evento> getEvento(@PathVariable Long id) {
@@ -109,12 +87,6 @@ public class EventoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(evento));
     }
 
-    /**
-     * DELETE  /eventos/:id : delete the "id" evento.
-     *
-     * @param id the id of the evento to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/eventos/{id}")
     @Timed
     public ResponseEntity<Void> deleteEvento(@PathVariable Long id) {
@@ -122,6 +94,36 @@ public class EventoResource {
         eventoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /*@GetMapping("/eventos/next3")
+    @Timed
+    public List<Evento> getAllRetosOrder() {
+        // para invertir Comparator.comparing(Reto::getHoraPublicacion).reversed()
+        //return retoRepository.findAll().parallelStream().sorted(Comparator.comparing(Reto::getHoraPublicacion)).collect(Collectors.toList());
+
+        // todos los eventos ordenados por fecha
+
+    *//*List<Evento> eventos = eventoRepository.findAll().parallelStream().sorted((evento1, evento2) -> {
+        System.out.println("holi");
+        int offset1 = evento1.getFechaEvento().compareTo(ZonedDateTime.now());
+        int offset2 = evento2.getFechaEvento().compareTo(ZonedDateTime.now());
+        if(offset1 < offset2) return -1;
+        else if(offset1 > offset2) return 1;
+        else return 0; //son iguales
+    }).collect(Collectors.toList());*//*
+
+    List<Evento> eventos = eventoRepository.findAll().parallelStream().sorted((o1, o2) -> {
+
+        long diff1 = ChronoUnit.DAYS.between(o1.getFechaEvento(), ZonedDateTime.now());
+        long diff2 = ChronoUnit.DAYS.between(o2.getFechaEvento(), ZonedDateTime.now());
+        if(diff1 > diff2) return 1;
+        else if(diff2 > diff1) return -1;
+        else return 0;
+    }).collect(Collectors.toList());
+
+
+        return null;
+    }*/
 
 
 

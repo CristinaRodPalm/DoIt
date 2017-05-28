@@ -42,9 +42,6 @@ public class RetoResource {
         if (reto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reto cannot already have an ID")).body(null);
         }
-        if(reto.getImagen().length > 254){
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reto cannot already have an ID")).body(null);
-        }
         reto.setHoraPublicacion(ZonedDateTime.now());
         Reto result = retoRepository.save(reto);
         return ResponseEntity.created(new URI("/api/retos/" + result.getId()))

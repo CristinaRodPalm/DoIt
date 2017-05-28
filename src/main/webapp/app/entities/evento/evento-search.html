@@ -14,8 +14,64 @@
     <div class="row"></div>
     <div>
         <h3>Resultados de búsqueda</h3>
-        <div ng-repeat="user in data">
-            {{user.login}}
+        <div class="table-responsive">
+            <table class="jh-table table table-striped">
+
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
+                    <th><span data-translate="doitApp.evento.descripcion">Imagen</span></th>
+                    <th><span data-translate="doitApp.evento.direccion">Direccion</span></th>
+                    <th><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></th>
+                    <th><span data-translate="doitApp.evento.reto">Reto</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="evento in vm.eventos|filter:criteria">
+                <td>
+                    <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
+                        <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                </td>
+                <td><a ui-sref="evento-detail({id:evento.id})">{{evento.nombre}}</a></td>
+                <td>{{evento.descripcion}}</td>
+                <td><a href="https://www.google.es/maps/@{{evento.latitud}},{{evento.longitud}},15z">{{evento.direccion}}</a></td>
+
+                <td>{{evento.fechaEvento | date:'medium'}}</td>
+                <td>
+                    <a ui-sref="reto-detail({id:evento.reto.id})">
+                    <img data-ng-src="{{'data:' + evento.reto.imagenContentType + ';base64,' + evento.reto.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                </td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <!--<button type="submit"
+                                ui-sref="evento-detail({id:evento.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                        </button>-->
+                        <button type="submit"
+                                ui-sref="evento.edit({id:evento.id})"
+                                class="btn btn-primary btn-sm"
+                                ng-if="vm.currentAccount.id == evento.admin.id">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="evento.delete({id:evento.id})"
+                                class="btn btn-danger btn-sm"
+                                ng-if="vm.currentAccount.id == evento.admin.id">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
         </div>
     </div>
 </div>

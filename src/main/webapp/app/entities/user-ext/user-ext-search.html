@@ -49,37 +49,6 @@
                         </td>
                     </tr>
 
-                    <!-- SOLICITUDES PENDIENTES -->
-                    <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
-                        <td>
-                            <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
-                                <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
-                                     style="max-height: 30px;" alt="pendingFriend image"/>
-                            </a>
-                        </td>
-
-                        <td><span>{{pendingFriend.user.login}}</span></td>
-                        <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
-                        <td><span>{{pendingFriend.telefono}}</span></td>
-                        <td><span>{{pendingFriend.user.email}}</span></td>
-                        <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
-                        <td class="text-right">
-                            <div class="btn-group btn-group-sm">
-                                <button type="submit" class="btn btn-warning" >
-                                    ng-click="vm.acceptUser(amistad.id)"
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    <span>Pending request</span>
-
-                                </button>
-                                <button type="submit"
-                                        ui-sref="user-ext-detail({id:user.id})"
-                                        class="btn btn-info">
-                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>-->
-
                     <!-- PENDING EMISOR -->
                     <tr ng-repeat="pendingFriend in vm.pendingEmisor|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
                         <td>
@@ -152,6 +121,37 @@
                             </div>
                         </td>
                     </tr>
+
+                    <!-- SOLICITUDES PENDIENTES -->
+                    <!-- <tr ng-repeat="pendingFriend in vm.pending|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id">
+                        <td>
+                            <a ng-if="pendingFriend.imagen" ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                                <img data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                                     style="max-height: 30px;" alt="pendingFriend image"/>
+                            </a>
+                        </td>
+
+                        <td><span>{{pendingFriend.user.login}}</span></td>
+                        <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                        <td><span>{{pendingFriend.telefono}}</span></td>
+                        <td><span>{{pendingFriend.user.email}}</span></td>
+                        <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right">
+                            <div class="btn-group btn-group-sm">
+                                <button type="submit" class="btn btn-warning" >
+                                    ng-click="vm.acceptUser(amistad.id)"
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span>Pending request</span>
+
+                                </button>
+                                <button type="submit"
+                                        ui-sref="user-ext-detail({id:user.id})"
+                                        class="btn btn-info">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
