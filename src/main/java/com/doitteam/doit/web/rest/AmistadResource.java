@@ -250,6 +250,7 @@ public class AmistadResource {
                     return userExtRepository.findByUserID(amistad.getReceptor().getId());
                 }else return null;
             })
+            .filter(userExt -> userExt!=null)
             .collect(Collectors.toList());
 
         return amigos;
@@ -267,6 +268,7 @@ public class AmistadResource {
                     return userExtRepository.findByUserID(amistad.getEmisor().getId());
                 }else return null;
             })
+            .filter(userExt -> userExt!=null)
             .collect(Collectors.toList());
 
         return amigos;
@@ -291,14 +293,5 @@ public class AmistadResource {
             .collect(Collectors.toList());
 
         return amigos;
-    }
-
-    @GetMapping("/amistadByUsers/{id}")
-    @Timed
-    public Amistad findOneByUsers(@PathVariable Long id) throws URISyntaxException{
-        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        User otherUser = userRepository.findOne(id);
-        Amistad amistad = amistadRepository.findOneByUsers(userLogin.getId(), otherUser.getId());
-        return amistad;
     }
 }

@@ -12,63 +12,52 @@
         var vm = this;
 
         vm.userExts = [];
-        vm.allUsers = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
         vm.currentId = null;
         vm.otherUsers = [];
         vm.pendingEmisor = [];
         vm.pendingReceptor = [];
-        vm.pending = [];
         vm.accepted = [];
 
         loadAll();
+        loadSended();
+        loadRecieved();
+        loadOthers();
+        loadFriends();
 
-        function loadAll() {
-            // users amigos al actual
+        //users amigos al actual
+        function loadFriends(){
             Amistad.getSolicitudesAceptadas(function (result) {
                 vm.accepted = result;
             });
+        }
 
-            // solicitud pendiente --> eres el emisor
+        //solicitud pendiente --> eres el emisor
+        function loadSended(){
             Amistad.getSolicitudesPendientesEmisor(function(result){
-                vm.resultado = result;
-                for(var i = 0; i < vm.resultado.length; i++){
-                    if(vm.resultado[i].user != null){
-                        vm.pendingEmisor.push(vm.resultado[i]);
-                    }
-                }
+                vm.pendingEmisor = result;
             });
+        }
 
-            // solicitud pendiente --> eres el receptor
+        //solicitud pendiente --> eres el receptor
+        function loadRecieved(){
             Amistad.getSolicitudesPendientesReceptor(function(result){
-                vm.resultado = result;
-                for(var i = 0; i < vm.resultado.length; i++){
-                    if(vm.resultado[i].user != null){
-                        vm.pendingReceptor.push(vm.resultado[i]);
-                    }
-                }
+                vm.pendingReceptor = result;
             });
+        }
 
-            // resto de usuarios
+        // resto de usuarios
+        function loadOthers(){
+
+        }
+
+        //generado por jhipster
+        function loadAll() {
             UserExt.query(function(result) {
                 vm.userExts = result;
-                vm.otherUsers = result;
                 vm.searchQuery = null;
-                comprobarNoAmigos();
             });
-
-
-            // users con solicitud pendiente
-            Amistad.getSolicitudesPendientes(function(result){
-                vm.resultado = result;
-                for(var i = 0; i < vm.resultado.length; i++){
-                    if(vm.resultado[i].user != null){
-                        vm.pending.push(vm.resultado[i]);
-                    }
-                }
-            });
-
         }
 
         vm.sendFriendRequest = function(id){
@@ -80,29 +69,5 @@
             vm.currentAccount = account;
             vm.currentId = vm.currentAccount.id;
         });
-
-        function comprobarNoAmigos() {
-            // QUITAMOS LOS QUE TENEMOS AGREGADOS
-            for(var i = 0; i < vm.otherUsers.length; i++){
-                if(vm.accepted.length > 0){
-                    for(var j = 0; j < vm.accepted.length; j++){
-                        if(vm.otherUsers[i].user.id == vm.accepted[j].user.id){
-                            vm.otherUsers.splice(i, 1);
-                        }
-                    }
-                }
-            }
-            // QUITAMOS LOS DE SOL PENDIENTE
-            for(var i = 0; i < vm.otherUsers.length; i++){
-                if(vm.pending.length > 0){
-                    for(var j = 0; j < vm.pending.length; j++){
-                        if(vm.otherUsers[i].user.id == vm.pending[j].user.id){
-                            vm.otherUsers.splice(i, 1);
-                        }
-                    }
-                }
-
-            }
-        }
     }
 })();

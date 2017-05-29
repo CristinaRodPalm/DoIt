@@ -28,12 +28,9 @@
                 }
             },
             'update': {method: 'PUT'},
-
             'sendFriendRequest': {method: 'POST', isArray: false, url: 'api/amistad/:id/emisor'},
-
             'accept': { method: 'PUT', url: 'api/amistads/:id/accept' },
             'deny': { method: 'PUT', url: 'api/amistads/:id/deny' },
-
             'acceptByUser': {method:'PUT', url:'api/amistads/:id/acceptByUser'},
             'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'},
             'getOneByUsers':{method: 'GET', isArray:false, url:'api/amistadByUsers/:id'}
