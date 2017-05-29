@@ -151,4 +151,26 @@ public class InvitacionEventoResource {
         //return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEventos));
     }
 
+    //un usuario invita a sus amigos al evento que este se ha apuntado
+    @PostMapping("/invitacion-eventos/evento/{idEvento}")
+    @Timed
+    public List<InvitacionEvento> crearInvitacionsAmigos(@PathVariable Long idEvento,
+                                                         @RequestBody List<User> amigosEvento){
+        Evento evento = eventoRepository.findOne(idEvento);
+
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+
+        return amigosEvento.stream()
+        .map(invitado -> {
+            InvitacionEvento invitacionEvento = new InvitacionEvento();
+            invitacionEvento.setMiembroEvento(userLogin);
+            invitacionEvento.setInvitado(invitado);
+            invitacionEvento.setEvento(evento);
+            invitacionEvento.setHoraInvitacion(ZonedDateTime.now());
+
+            return invitacionEventoRepository.save(invitacionEvento);
+
+        }).collect(Collectors.toList());
+
+    }
 }
