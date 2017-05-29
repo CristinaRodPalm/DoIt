@@ -60,6 +60,7 @@ public interface AmistadRepository extends JpaRepository<Amistad,Long> {
         "amistad.emisor!= :currentUser or amistad.receptor!= :currentUser)")
     List<User> findOtherUsers(@Param("currentUser") Long currentUser);
 
+    //query de ejemplo para ver como funcionan los subselect
     @Query("select evento from Evento evento where " +
         " evento not in (select invitacionEvento.evento from InvitacionEvento invitacionEvento where " +
         " invitacionEvento.horaResolucion is not null and invitacionEvento.resolucion = true " +
