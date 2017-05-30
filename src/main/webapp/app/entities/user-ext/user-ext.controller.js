@@ -23,7 +23,7 @@
         loadAll();
         loadSended();
         loadRecieved();
-        loadOthers();
+        loadNonRelated();
         loadFriends();
 
         //users amigos al actual
@@ -48,8 +48,10 @@
         }
 
         // resto de usuarios
-        function loadOthers(){
-
+        function loadNonRelated(){
+            Amistad.getNonRelatedUsers(function (result){
+                vm.otherUsers = result;
+            });
         }
 
         //generado por jhipster

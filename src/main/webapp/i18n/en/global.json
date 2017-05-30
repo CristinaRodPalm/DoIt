@@ -4,7 +4,7 @@
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "navbar-functions":{
             "challenges": "Challenges",
-            "functionalities":"Functionalities",
+            "functionalities":"Create",
             "friend-requests":"Friend requests",
             "world-events":"World events",
             "challenges": "Challenges",
@@ -16,7 +16,8 @@
                 "events":"Events"
             },
             "create-event":"Create an event",
-            "about":"About"
+            "about":"About",
+            "searcher":"Find other users"
         },
         "menu": {
             "home": "Home",

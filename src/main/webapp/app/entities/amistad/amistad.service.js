@@ -33,8 +33,8 @@
             'deny': { method: 'PUT', url: 'api/amistads/:id/deny' },
             'acceptByUser': {method:'PUT', url:'api/amistads/:id/acceptByUser'},
             'getFriends':{method: 'GET', isArray: true, url: 'api/amigos'},
-            'getOneByUsers':{method: 'GET', isArray:false, url:'api/amistadByUsers/:id'}
-
+            'getOneByUsers':{method: 'GET', isArray:false, url:'api/amistadByUsers/:id'},
+            'getNonRelatedUsers':{method: 'GET', isArray: true, url:'api/nonRelatedUsers'}
         });
     }
 })();

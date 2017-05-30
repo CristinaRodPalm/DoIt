@@ -4,7 +4,7 @@
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
         "navbar-functions": {
             "challenges": "Retos",
-            "functionalities":"Funcionalidades",
+            "functionalities":"Crea",
             "friend-requests": "Solicitudes de amistad",
             "world-events":"Eventos del mundo",
             "challenges": "Retos",
@@ -16,7 +16,8 @@
                 "events":"Eventos"
             },
             "create-event":"Crear un evento",
-            "about":"Sobre nosotros"
+            "about":"Sobre nosotros",
+            "searcher":"Busca otras personas"
         },
         "menu": {
             "home": "Inicio",

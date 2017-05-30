@@ -1,15 +1,21 @@
 <div ng-cloak>
     <div class="row">
         <div class="row text-center">
-            <h1 data-translate="home.title">Title</h1>
-            <h3 data-translate="home.subtitle">Subtitle</h3>
             <div ng-switch="vm.isAuthenticated()">
+                <div ng-switch-when="false">
+                    <h1 data-translate="home.title">Title</h1>
+                    <h3 data-translate="home.subtitle">Subtitle</h3>
+                </div>
+                <!--LOGEADO-->
                 <div ng-switch-when="true">
+                    <div class="row">
+
+                    </div>
 
                     <table class="table">
-                        <tbody>
+                        <thead>
                         <tr>
-                            <td rowspan="5">
+                            <td ng-if="vm.account.imagen" rowspan="5">
                                 <img data-ng-src="{{'data:' + vm.user.imagenContentType + ';base64,' + vm.user.imagen}}"
                                      style="max-height: 300px;" alt="friend image" class="img-rounded"/>
                             </td>
@@ -22,11 +28,13 @@
                         <tr> <td> {{vm.account.email}} </td> </tr>
                         <tr> <td> {{vm.user.telefono}} </td> </tr>
                         <tr> <td> {{vm.user.nacimiento | date:'dd/MM/yyyy'}} </td> </tr>
-                        </tbody>
+                        </thead>
                     </table>
 
                 </div>
+                <!--LOGEADO-->
 
+                <!--LOGIN-->
                 <div class="col-md-8 col-md-offset-2" ng-switch-when="false">
                     <div class="row">
                         <div class="alert alert-danger" translate="login.messages.error.authentication"
@@ -76,6 +84,7 @@
                         </form>
                     </div>
                 </div>
+                <!--LOGIN-->
             </div>
         </div>
     </div>

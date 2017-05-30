@@ -220,7 +220,7 @@ public class AmistadResource {
     //get solicitudes pendientes
     @GetMapping("/usersSolPendientes")
     @Timed
-    public List<UserExt> getFriendsPendingRequest() throws URISyntaxException {
+    public List<UserExt> getFriendsPendingEmisor() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
             parallelStream().
@@ -243,17 +243,21 @@ public class AmistadResource {
     @Timed
     public List<UserExt> getFriendsPendingRequestEmisor() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
-            parallelStream().
-            map(amistad -> {
-                if(amistad.getEmisor().equals(userLogin)){
-                    return userExtRepository.findByUserID(amistad.getReceptor().getId());
-                }else return null;
-            })
-            .filter(userExt -> userExt!=null)
-            .collect(Collectors.toList());
+        List<UserExt> amigos = getFriendsPendingEmisor(userLogin);
 
         return amigos;
+    }
+
+    private List<UserExt> getFriendsPendingEmisor(User userLogin) {
+        return amistadRepository.findFriendsPendingRequest(userLogin.getId()).
+                parallelStream().
+                map(amistad -> {
+                    if(amistad.getEmisor().equals(userLogin)){
+                        return userExtRepository.findByUserID(amistad.getReceptor().getId());
+                    }else return null;
+                })
+                .filter(userExt -> userExt!=null)
+                .collect(Collectors.toList());
     }
 
     // get solicitudes pendientes el current user es RECEPTOR --> enviaré los emisores
@@ -261,17 +265,21 @@ public class AmistadResource {
     @Timed
     public List<UserExt> getFriendsPendingRequestReceptor() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> amigos = amistadRepository.findFriendsPendingRequest(userLogin.getId()).
-            parallelStream().
-            map(amistad -> {
-                if(amistad.getReceptor().equals(userLogin)){
-                    return userExtRepository.findByUserID(amistad.getEmisor().getId());
-                }else return null;
-            })
-            .filter(userExt -> userExt!=null)
-            .collect(Collectors.toList());
+        List<UserExt> amigos = getFriendsPendingReceptor(userLogin);
 
         return amigos;
+    }
+
+    private List<UserExt> getFriendsPendingReceptor(User userLogin) {
+        return amistadRepository.findFriendsPendingRequest(userLogin.getId()).
+                parallelStream().
+                map(amistad -> {
+                    if(amistad.getReceptor().equals(userLogin)){
+                        return userExtRepository.findByUserID(amistad.getEmisor().getId());
+                    }else return null;
+                })
+                .filter(userExt -> userExt!=null)
+                .collect(Collectors.toList());
     }
 
     //get solicitudes aceptadas (amigos)
@@ -279,19 +287,42 @@ public class AmistadResource {
     @Timed
     public List<UserExt> getFriendsAccepted() throws URISyntaxException {
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<UserExt> amigos = amistadRepository.findFriendsAcceptedRequest(userLogin.getId()).
-            parallelStream().
-            map(amistad -> {
-                UserExt user;
-                if(amistad.getEmisor().equals(userLogin)){
-                    user = userExtRepository.findByUserID(amistad.getReceptor().getId());
-                }else{
-                    user = userExtRepository.findByUserID(amistad.getEmisor().getId());
-                }
-                return user;
-            })
-            .collect(Collectors.toList());
+        List<UserExt> amigos = getFriendsAcceptedRequest(userLogin);
 
         return amigos;
+    }
+
+    private List<UserExt> getFriendsAcceptedRequest(User userLogin) {
+        return amistadRepository.findFriendsAcceptedRequest(userLogin.getId()).
+                parallelStream().
+                map(amistad -> {
+                    UserExt user;
+                    if(amistad.getEmisor().equals(userLogin)){
+                        user = userExtRepository.findByUserID(amistad.getReceptor().getId());
+                    }else{
+                        user = userExtRepository.findByUserID(amistad.getEmisor().getId());
+                    }
+                    return user;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/nonRelatedUsers")
+    @Timed
+    public List<UserExt> getNonRelatedUsers() throws URISyntaxException{
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+
+        List<UserExt> friends = getFriendsAcceptedRequest (userLogin);
+        List<UserExt> pendingEmisor = getFriendsPendingEmisor(userLogin);
+        List<UserExt> pendingReceptor = getFriendsPendingReceptor (userLogin);
+
+        return userExtRepository.findAll()
+            .parallelStream().
+            filter(userExt ->
+                !friends.contains(userExt) &&
+                !pendingEmisor.contains(userExt) &&
+                !pendingReceptor.contains(userExt) &&
+                    !userExt.getUser().equals(userLogin)
+            ).collect(Collectors.toList());
     }
 }

@@ -13,20 +13,16 @@
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;
         vm.currentAccount;
-
-        ProfileService.getProfileInfo().then(function(response) {
-            vm.inProduction = response.inProduction;
-            vm.swaggerEnabled = response.swaggerEnabled;
-        });
-        Principal.identity().then(function (account) {
-            vm.currentAccount = account;
-        });
-
         vm.login = login;
         vm.logout = logout;
         vm.toggleNavbar = toggleNavbar;
         vm.collapseNavbar = collapseNavbar;
         vm.$state = $state;
+
+        ProfileService.getProfileInfo().then(function(response) {
+            vm.inProduction = response.inProduction;
+            vm.swaggerEnabled = response.swaggerEnabled;
+        });
 
         function login() {
             collapseNavbar();
@@ -46,5 +42,10 @@
         function collapseNavbar() {
             vm.isNavbarCollapsed = true;
         }
+
+        Principal.identity().then(function (account) {
+            vm.currentAccount = account;
+            console.log(vm.currentAccount);
+        });
     }
 })();
