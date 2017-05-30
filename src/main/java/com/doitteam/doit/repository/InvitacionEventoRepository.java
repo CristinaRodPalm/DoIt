@@ -31,7 +31,9 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
         " and invitacionEvento.invitado.id =:currentUser)")
     List<Evento> findEventosNotSigned(@Param("currentUser") Long currentUser);
 
-
+    @Query("select invitacionEvento.evento from InvitacionEvento invitacionEvento where " +
+    " invitacionEvento.horaResolucion is null and invitacionEvento.invitado.id =:currentUser")
+    List<InvitacionEvento> findByInvitacionEventoAmigo(@Param("currentUser") Long currentUser);
 
 
 }

@@ -173,4 +173,13 @@ public class InvitacionEventoResource {
         }).collect(Collectors.toList());
 
     }
+
+    //hacer que le llegue al invitado la invitación al evento
+    @GetMapping("/invitacion-eventos/eventosAmigos/{idEvento}")
+    @Timed
+    public List<InvitacionEvento> getEventosAmigos(){
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<InvitacionEvento> invitacionEventos = invitacionEventoRepository.findByInvitacionEventoAmigo(userLogin.getId());
+        return invitacionEventos;
+    }
 }
