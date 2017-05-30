@@ -31,6 +31,28 @@
                     }]
                 }
             })
+            .state('eventos', {
+                parent: 'evento',
+                url: '/lista-eventos',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'doitApp.evento.home.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/evento/lista-eventos.html',
+                        controller: 'EventoController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('evento');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
             .state('evento-detail', {
                 parent: 'evento',
                 url: '/evento/{id}',
@@ -119,7 +141,7 @@
                 },
             })
             .state('evento.edit', {
-                parent: 'evento',
+                parent: 'eventos',
                 url: '/{id}/edit',
                 data: {
                     authorities: ['ROLE_USER']
@@ -167,28 +189,6 @@
                     });
                 }]
             })
-            .state('eventos', {
-                parent: 'entity',
-                url: '/lista-eventos',
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'doitApp.evento.home.title'
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/entities/evento/lista-eventos.html',
-                        controller: 'EventoController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('evento');
-                        $translatePartialLoader.addPart('global');
-                        return $translate.refresh();
-                    }]
-                }
-            })
             .state('evento-search', {
                 parent: 'evento',
                 url: '/buscar-eventos',
@@ -233,28 +233,6 @@
                     }]
                 }
             })
-            .state('crear-evento', {
-                parent: 'evento',
-                url: '/crear-evento',
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'doitApp.evento.home.titlePage'
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/entities/evento/crear-evento.html',
-                        controller: 'mapController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('evento');
-                        $translatePartialLoader.addPart('global');
-                        return $translate.refresh();
-                    }]
-                }
-            });
     }
 
 })();

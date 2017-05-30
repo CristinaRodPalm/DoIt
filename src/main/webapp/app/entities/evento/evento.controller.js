@@ -32,7 +32,6 @@
             InvitacionEvento.eventosApuntado(function (result) {
                 vm.eventosApuntado = result;
                 vm.searchQuery = null;
-                console.log("Apuntado: "+vm.eventosApuntado);
             });
         }
 
@@ -40,7 +39,6 @@
             InvitacionEvento.eventosNoApuntado(function (result) {
                 vm.eventosNoApuntado = result;
                 vm.searchQuery = null;
-                console.log("No apuntado: "+vm.eventosNoApuntado);
             });
         }
 
@@ -50,7 +48,6 @@
 
         vm.apuntarse = function (id) {
             InvitacionEvento.participar({'id': id}, {});
-            console.log(id);
             $state.go('eventos', null, {reload: 'eventos'});
         }
     }

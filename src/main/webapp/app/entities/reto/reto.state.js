@@ -31,6 +31,28 @@
                     }]
                 }
             })
+            .state('lista-retos', {
+                parent: 'reto',
+                url: '/lista-retos',
+                data: {
+                    pageTitle: 'doitApp.reto.home.title',
+                    authorities: ['ROLE_USER']
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/entities/reto/retos-list.html',
+                        controller: 'RetoController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('reto');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
             .state('reto-detail', {
                 parent: 'reto',
                 url: '/reto/{id}',
@@ -114,8 +136,9 @@
                     }
                 }
             })
+
             .state('reto.edit', {
-                parent: 'reto',
+                parent: 'lista-retos',
                 url: '/{id}/edit',
                 data: {
                     authorities: ['ROLE_ADMIN']
@@ -139,6 +162,7 @@
                     });
                 }]
             })
+
             .state('reto.delete', {
                 parent: 'reto',
                 url: '/{id}/delete',
@@ -162,28 +186,6 @@
                         $state.go('^');
                     });
                 }]
-            })
-            .state('lista-retos', {
-                parent: 'reto',
-                url: '/lista-retos',
-                data: {
-                    pageTitle: 'doitApp.reto.home.title',
-                    authorities: ['ROLE_USER']
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/entities/reto/retos-list.html',
-                        controller: 'RetoController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('reto');
-                        $translatePartialLoader.addPart('global');
-                        return $translate.refresh();
-                    }]
-                }
             });
     }
 

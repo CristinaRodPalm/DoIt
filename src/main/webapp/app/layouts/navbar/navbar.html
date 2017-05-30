@@ -50,39 +50,6 @@
                     </ul>
                 </li>
                 <!--SEARCH-->
-
-                <!--FUNCTIONALITIES -->
-                <li ng-class="{activeState: vm.$state.includes('new')}"
-                    uib-dropdown class="dropdown pointer">
-                    <a class="dropdown-toggle"
-                       uib-dropdown-toggle href=""
-                       id="functionalities-menu"
-                       ng-switch-when="true">
-                        <span>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <span class="hidden-sm" data-translate="global.navbar-functions.functionalities">
-                                Functionalities
-                            </span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active" ng-switch-when="true">
-                            <a ui-sref="reto.new" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>
-                            </a>
-                        </li>
-
-                        <li ui-sref-active="active" ng-switch-when="true">
-                            <a ui-sref="evento.new" ng-click="vm.collapseNavbar()">
-                                <i class="fa fa-calendar-plus-o"></i>
-                                <span data-translate="global.navbar-functions.create-event">Create event</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--FUNCTIONALITIES -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--Register-->

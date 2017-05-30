@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('EventoEditController', EventoEditController);
 
-    EventoEditController.$inject = ['$uibModalInstance', 'NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
+    EventoEditController.$inject = ['$uibModalInstance', 'NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad', 'previousState'];
 
-    function EventoEditController($uibModalInstance, NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
+    function EventoEditController($uibModalInstance, NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad, previousState) {
         var vm = this;
 
         vm.evento = entity;
@@ -23,6 +23,7 @@
         vm.chats = Chat.query();
         vm.friends = [];
         vm.inviteFriends = [];
+        vm.previousState = previousState.name;
 
         loadFriends();
 

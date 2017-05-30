@@ -1,4 +1,3 @@
-<h1>FALTA TRADUCIR</h1>
 <div class="row text-center">
     <div class="row col-lg-6 col-md-offset-3">
         <div class="input-group">
@@ -13,7 +12,6 @@
     </div>
     <div class="row"></div>
     <div>
-        <h3>Resultados de búsqueda</h3>
         <div class="table-responsive">
             <table class="jh-table table table-striped">
 
@@ -21,11 +19,10 @@
                 <tr>
                     <th></th>
                     <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
-                    <th><span data-translate="doitApp.evento.descripcion">Imagen</span></th>
+                    <th><span data-translate="doitApp.evento.descripcion">Descripcion</span></th>
                     <th><span data-translate="doitApp.evento.direccion">Direccion</span></th>
                     <th><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></th>
                     <th><span data-translate="doitApp.evento.reto">Reto</span></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -42,28 +39,23 @@
                 <td>{{evento.fechaEvento | date:'medium'}}</td>
                 <td>
                     <a ui-sref="reto-detail({id:evento.reto.id})">
-                    <img data-ng-src="{{'data:' + evento.reto.imagenContentType + ';base64,' + evento.reto.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    <!--<img data-ng-src="{{'data:' + evento.reto.imagenContentType + ';base64,' + evento.reto.imagen}}" style="max-height: 30px;" alt="evento image"/>-->
+                    {{evento.reto.nombre}}
                     </a>
                 </td>
 
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <!--<button type="submit"
-                                ui-sref="evento-detail({id:evento.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                        </button>-->
+                    <div class="btn-group">
                         <button type="submit"
                                 ui-sref="evento.edit({id:evento.id})"
-                                class="btn btn-primary btn-sm"
+                                class="btn btn-primary"
                                 ng-if="vm.currentAccount.id == evento.admin.id">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                         </button>
                         <button type="submit"
                                 ui-sref="evento.delete({id:evento.id})"
-                                class="btn btn-danger btn-sm"
+                                class="btn btn-danger"
                                 ng-if="vm.currentAccount.id == evento.admin.id">
                             <span class="glyphicon glyphicon-remove-circle"></span>
                             <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

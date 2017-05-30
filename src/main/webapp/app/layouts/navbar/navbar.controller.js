@@ -45,7 +45,6 @@
 
         Principal.identity().then(function (account) {
             vm.currentAccount = account;
-            console.log(vm.currentAccount);
         });
     }
 })();

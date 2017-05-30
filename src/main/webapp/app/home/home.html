@@ -6,16 +6,25 @@
                     <h1 data-translate="home.title">Title</h1>
                     <h3 data-translate="home.subtitle">Subtitle</h3>
                 </div>
+
                 <!--LOGEADO-->
-                <div ng-switch-when="true">
-                    <div class="row">
-
+                <div ng-switch-when="true" class="col-lg-2">
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-default" ui-sref="reto.new">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>
+                        </a>
+                        <a class="btn btn-default" ui-sref="evento.new">
+                            <i class="fa fa-calendar-plus-o"></i>
+                            <span data-translate="global.navbar-functions.create-event">Create event</span>
+                        </a>
                     </div>
-
+                </div>
+                <div class="col-lg-10" ng-switch-when="true">
                     <table class="table">
                         <thead>
                         <tr>
-                            <td ng-if="vm.account.imagen" rowspan="5">
+                            <td rowspan="5">
                                 <img data-ng-src="{{'data:' + vm.user.imagenContentType + ';base64,' + vm.user.imagen}}"
                                      style="max-height: 300px;" alt="friend image" class="img-rounded"/>
                             </td>
@@ -24,10 +33,18 @@
                                 <h1><span data-translate="home.logged.message"></span>{{vm.account.login}}</h1>
                             </td>
                         </tr>
-                        <tr> <td> {{vm.account.firstName}} {{vm.account.lastName}}</td> </tr>
-                        <tr> <td> {{vm.account.email}} </td> </tr>
-                        <tr> <td> {{vm.user.telefono}} </td> </tr>
-                        <tr> <td> {{vm.user.nacimiento | date:'dd/MM/yyyy'}} </td> </tr>
+                        <tr>
+                            <td> {{vm.account.firstName}} {{vm.account.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <td> {{vm.account.email}}</td>
+                        </tr>
+                        <tr>
+                            <td> {{vm.user.telefono}}</td>
+                        </tr>
+                        <tr>
+                            <td> {{vm.user.nacimiento | date:'dd/MM/yyyy'}}</td>
+                        </tr>
                         </thead>
                     </table>
 
@@ -77,7 +94,8 @@
                                     ¿Has olvidado tu contraseña?
                                 </a>
                             </div>
-                            <div class="alert alert-info" data-translate="global.messages.info.register" translate-compile>
+                            <div class="alert alert-info" data-translate="global.messages.info.register"
+                                 translate-compile>
                                 ¿Todavía no posees una cuenta?<a class="alert-link" ng-click="vm.register()">
                                 ¡Crea tu cuenta!</a>
                             </div>
@@ -90,6 +108,6 @@
     </div>
     <div class="footer text-center" ng-cloak>
         <!--<p data-translate="home.footer">Footer</p>-->
-         Coded with <span style="color: #00cc99">❤</span>
+        Coded with <span style="color: #00cc99">❤</span>
     </div>
 </div>
