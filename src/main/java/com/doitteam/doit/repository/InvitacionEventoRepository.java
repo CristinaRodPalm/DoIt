@@ -32,4 +32,6 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
     List<Evento> findEventosNotSigned(@Param("currentUser") Long currentUser);
 
 
+
+
 }
