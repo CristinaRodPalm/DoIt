@@ -17,7 +17,7 @@
         vm.currentAccount;
         vm.friends = [];
         vm.amigosInvitados = [];
-        vm.pepe="hola";
+        
         loadFriends();
 
 
