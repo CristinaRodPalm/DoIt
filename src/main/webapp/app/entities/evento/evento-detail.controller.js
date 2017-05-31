@@ -18,8 +18,6 @@
         vm.friends = [];
         vm.amigosInvitados = [];
 
-        console.log(vm.previousState);
-
         loadFriends();
 
         var unsubscribe = $rootScope.$on('doitApp:eventoUpdate', function(event, result) {
@@ -41,6 +39,8 @@
         vm.inviteFriend = function(friend){
             // Amistad.sendFriendRequest({'id': id}, {});
             console.log(vm.amigosInvitados);
+
+
         }
     }
 })();
