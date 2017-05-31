@@ -166,7 +166,15 @@
                     $state.go('^');
                 });
             }]
-        });
+        })
+        /*.state("invitaciones-pendientes",{
+            parent:'entity',
+            url:'/pending-invitations',
+            data:{
+                authorities:['ROLE_USER'],
+                pageTitle:'doitApp.invitacionEvento.detail.title'
+            }
+        });*/
     }
 
 })();

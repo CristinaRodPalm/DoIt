@@ -6,7 +6,8 @@
         <dd>
             <div ng-if="vm.evento.imagen">
                 <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
-                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}" style="max-width: 100%;" alt="evento image"/>
+                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
+                         style="max-width: 100%;" alt="evento image"/>
                 </a>
             </div>
         </dd>
@@ -47,18 +48,15 @@
         </dd>
     </dl>
 
-   <!--Mostrar lista de amigos del usuario logeado, para poder invitarlo a un evento -->
+    <!--Mostrar lista de amigos del usuario logeado, para poder invitarlo a un evento -->
     <div class="form-group">
         <label data-translate="doitApp.evento.amigos">Amigos</label>
-       <select class="form-control" multiple name="friend" ng-model="vm.amigosInvitados"
-             ng-options="friend as friend.firstName for friend in vm.friends">
+        <select class="form-control" multiple name="friend" ng-model="vm.amigosInvitados"
+                ng-options="friend as friend.firstName for friend in vm.friends">
 
         </select>
-        <div>
-            {{vm.amigosInvitados}}
-        </div>
 
-        </div>
+    </div>
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
@@ -83,4 +81,3 @@
         <span data-translate="entity.action.invite">Invitar</span>
     </button>
 </div>
-    </div>

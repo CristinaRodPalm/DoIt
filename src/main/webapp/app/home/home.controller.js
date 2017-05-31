@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state', 'UserExt'];
+    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state', 'UserExt', 'Amistad', 'InvitacionEvento'];
 
-    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt) {
+    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt, Amistad, InvitacionEvento) {
         var vm = this;
 
         vm.user = null;
@@ -66,6 +66,7 @@
                 vm.authenticationError = true;
             });
         }
+
         function requestResetPassword () {
             $state.go('requestReset');
         }

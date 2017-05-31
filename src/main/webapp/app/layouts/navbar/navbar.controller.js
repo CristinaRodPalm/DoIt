@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService', 'Amistad', 'InvitacionEvento'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService) {
+    function NavbarController ($state, Auth, Principal, ProfileService, LoginService, Amistad, InvitacionEvento) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
@@ -18,6 +18,11 @@
         vm.toggleNavbar = toggleNavbar;
         vm.collapseNavbar = collapseNavbar;
         vm.$state = $state;
+        vm.pendingFriendRequests = [];
+        vm.pendingEventInvitations = [];
+
+        getPendingFriendRequests();
+        getPendingEventInvitations();
 
         ProfileService.getProfileInfo().then(function(response) {
             vm.inProduction = response.inProduction;
@@ -46,5 +51,21 @@
         Principal.identity().then(function (account) {
             vm.currentAccount = account;
         });
+
+
+
+        function getPendingFriendRequests(){
+            Amistad.getSolicitudesPendientesReceptor(function (result) {
+                vm.pendingFriendRequests = result;
+
+                if(vm.pendingFriendRequests.length>0){
+                    var badge = $("<span class='badge'>"+vm.pendingFriendRequests.length+"</span>")
+                    $("#friendRequests").append(badge);
+                }
+            })
+        }
+        function getPendingEventInvitations(){
+
+        }
     }
 })();

@@ -61,35 +61,49 @@
                 </li>
                 <!--Register-->
 
+                <!--Event invitations-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="amistades" ng-click="vm.collapseNavbar()">
-                        <i class="fa fa-user-plus"></i>
-                        <!--<span data-translate="global.navbar-functions.friend-requests">Friend requests</span>-->
+                        <span class="glyphicon glyphicon-bell"></span>
                     </a>
                 </li>
+                <!--Event invitations-->
 
+                <!--Friend requests-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a id="friendRequests" ui-sref="amistades"
+                       ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+                <!--Friend requests-->
+
+                <!--Events list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-calendar"></span>
                         <span data-translate="global.navbar-functions.list-events">Events</span>
                     </a>
                 </li>
+                <!--Events list-->
 
+                <!--World events-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-globe"></span>
                         <span data-translate="global.navbar-functions.world-events">World events</span>
                     </a>
                 </li>
+                <!--World events-->
 
+                <!--Challenge list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-star"></span>
                         <span data-translate="global.navbar-functions.challenges">Challenges</span>
                     </a>
                 </li>
-
-
+                <!--Challenge list-->
 
                 <!--Account management-->
                 <li ng-class="{activeState: vm.$state.includes('account')}"
