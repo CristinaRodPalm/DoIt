@@ -167,14 +167,28 @@
                 });
             }]
         })
-        /*.state("invitaciones-pendientes",{
+        .state("invitaciones-pendientes",{
             parent:'entity',
             url:'/pending-invitations',
             data:{
                 authorities:['ROLE_USER'],
                 pageTitle:'doitApp.invitacionEvento.detail.title'
+            },
+            views:{
+                'content@':{
+                    templateUrl:'app/entities/invitacion-evento/invitaciones-evento-pendientes.html',
+                    controller:'InvitacionEventoController',
+                    controllerAs:'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('invitacionEvento');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
-        });*/
+        });
     }
 
 })();
