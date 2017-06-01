@@ -40,6 +40,7 @@
             vm.map.setCenter(new google.maps.LatLng(40.4378698, -3.8196217));
         });
 
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

@@ -52,14 +52,12 @@
             vm.currentAccount = account;
         });
 
-
-
         function getPendingFriendRequests(){
             Amistad.getSolicitudesPendientesReceptor(function (result) {
                 vm.pendingFriendRequests = result;
 
                 if(vm.pendingFriendRequests.length>0){
-                    var badge = $("<span class='badge'>"+vm.pendingFriendRequests.length+"</span>")
+                    var badge = $("<span class='badge' style='background-color:red'>"+vm.pendingFriendRequests.length+"</span>")
                     $("#friendRequests").append(badge);
                 }
             })
