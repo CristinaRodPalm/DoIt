@@ -26,9 +26,8 @@
             'participar': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/:id/apuntarse'},
             'eventosApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioApuntado'},
             'eventosNoApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioNoApuntado'},
-            'invitacionAmigos': {method: 'POST', isArray: false, url: 'api/invitacion-eventos/invitarAmigos/:idEvento'},
-            'eventosAmigos':{method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosAmigos/:idEvento'}
-
+            'eventosAmigos':{method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosAmigos/:idEvento'},
+            'invitacionAmigos': {method: 'POST', isArray: true, url: 'api/invitacion-eventos/invitarAmigos/:idEvento/:invitados'}
         });
     }
 })();

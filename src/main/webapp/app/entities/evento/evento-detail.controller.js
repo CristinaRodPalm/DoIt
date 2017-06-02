@@ -17,6 +17,7 @@
         vm.currentAccount;
         vm.friends = [];
         vm.amigosInvitados = [];
+        vm.idInvitados = [];
 
         loadFriends();
 
@@ -27,7 +28,14 @@
         }
 
         vm.inviteFriends = function(){
-            InvitacionEvento.invitacionAmigos({'id':vm.evento.id},{});
+            vm.idInvitados = [];
+            for(var i = 0; i < vm.amigosInvitados.length; i++){
+                vm.idInvitados.push(vm.amigosInvitados[i].id.toString());
+            }
+            console.log(vm.idInvitados);
+            console.log(vm.evento.id);
+            ///'idEvento':vm.evento.id,
+            InvitacionEvento.invitacionAmigos({'idEvento':vm.evento.id, 'invitados':vm.idInvitados},{});
         }
 
         var unsubscribe = $rootScope.$on('doitApp:eventoUpdate', function(event, result) {

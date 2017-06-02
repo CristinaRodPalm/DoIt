@@ -18,9 +18,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -151,26 +153,28 @@ public class InvitacionEventoResource {
         //return ResponseUtil.wrapOrNotFound(Optional.ofNullable(invitacionEventos));
     }
 
+
     //un usuario invita a sus amigos al evento que este se ha apuntado
-    @PostMapping("/invitacion-eventos/invitarAmigos/{idEvento}")
+    @PostMapping("/invitacion-eventos/invitarAmigos/{idEvento}/{idInvitados}")
     @Timed
-    public List<InvitacionEvento> crearInvitacionsAmigos(@PathVariable Long idEvento,
-                                                         @RequestBody List<User> amigosEvento){
-        Evento evento = eventoRepository.findOne(idEvento);
+    public List<InvitacionEvento> crearInvitacionsAmigos(@PathVariable Long idEvento, @PathVariable(value = "idInvitados", required = false) String idInvitados){
+        String id[] = idInvitados.split(",");
+        List<User> invitados = new ArrayList<>();
 
-        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        for(String idUsuario: id){
+            invitados.add(userRepository.findOne(Long.parseLong(idUsuario)));
+        }
 
-        return amigosEvento.stream()
-        .map(invitado -> {
-            InvitacionEvento invitacionEvento = new InvitacionEvento();
-            invitacionEvento.setMiembroEvento(userLogin);
-            invitacionEvento.setInvitado(invitado);
-            invitacionEvento.setEvento(evento);
-            invitacionEvento.setHoraInvitacion(ZonedDateTime.now());
-
-            return invitacionEventoRepository.save(invitacionEvento);
-
+        List<InvitacionEvento> invitaditos = invitados.stream().map(invitado -> {
+            InvitacionEvento invitacion = new InvitacionEvento();
+            invitacion.setMiembroEvento(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            invitacion.setInvitado(invitado);
+            invitacion.setEvento(eventoRepository.findOne(idEvento));
+            invitacion.setHoraInvitacion(ZonedDateTime.now());
+            return invitacionEventoRepository.save(invitacion);
         }).collect(Collectors.toList());
+
+        return invitaditos;
     }
 
     //hacer que le llegue al invitado la invitación al evento
