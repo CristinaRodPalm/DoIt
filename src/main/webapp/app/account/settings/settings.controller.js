@@ -5,15 +5,16 @@
         .module('doitApp')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate'];
+    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', 'UserExt'];
 
-    function SettingsController (Principal, Auth, JhiLanguageService, $translate) {
+    function SettingsController (Principal, Auth, JhiLanguageService, $translate, UserExt) {
         var vm = this;
 
         vm.error = null;
         vm.save = save;
         vm.settingsAccount = null;
         vm.success = null;
+        vm.currentUserExt;
 
         /**
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
@@ -28,6 +29,8 @@
                 login: account.login
             };
         };
+
+        getUserExtByUserLogin();
 
         Principal.identity().then(function(account) {
             vm.settingsAccount = copyAccount(account);
@@ -49,6 +52,13 @@
                 vm.success = null;
                 vm.error = 'ERROR';
             });
+        }
+
+        function getUserExtByUserLogin(){
+            UserExt.getUserExt(function (result) {
+                vm.currentUserExt = result;
+                console.log(vm.currentUserExt);
+            })
         }
     }
 })();

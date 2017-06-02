@@ -124,4 +124,13 @@ public class UserExtResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @GetMapping("/userExtByUser")
+    @Timed
+    public UserExt getUserExtByUser (){
+        log.debug("REST request to get UserExt by his User : {}");
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        UserExt user = userExtRepository.findByUserID(userLogin.getId());
+        return user;
+    }
+
 }

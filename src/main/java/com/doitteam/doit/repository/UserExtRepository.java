@@ -1,5 +1,6 @@
 package com.doitteam.doit.repository;
 
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.domain.UserExt;
 import com.doitteam.doit.domain.Amistad;
 

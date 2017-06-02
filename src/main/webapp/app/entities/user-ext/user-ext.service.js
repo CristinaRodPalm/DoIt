@@ -37,7 +37,8 @@
                     copy.nacimiento = DateUtils.convertLocalDateToServer(copy.nacimiento);
                     return angular.toJson(copy);
                 }
-            }
+            },
+            'getUserExt':{method:'GET', isArray: true, api:'api/userExtByUser'}
         });
     }
 })();

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,7 +7,7 @@
 
     NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService', 'Amistad', 'InvitacionEvento'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService, Amistad, InvitacionEvento) {
+    function NavbarController($state, Auth, Principal, ProfileService, LoginService, Amistad, InvitacionEvento) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
@@ -21,10 +21,7 @@
         vm.pendingFriendRequests = [];
         vm.pendingEventInvitations = [];
 
-        getPendingFriendRequests();
-        getPendingEventInvitations();
-
-        ProfileService.getProfileInfo().then(function(response) {
+        ProfileService.getProfileInfo().then(function (response) {
             vm.inProduction = response.inProduction;
             vm.swaggerEnabled = response.swaggerEnabled;
         });
@@ -48,21 +45,27 @@
             vm.isNavbarCollapsed = true;
         }
 
-        Principal.identity().then(function (account) {
-            vm.currentAccount = account;
-        });
+        if (vm.isAuthenticated) {
 
-        function getPendingFriendRequests(){
+            Principal.identity().then(function (account) {
+                vm.currentAccount = account;
+            });
+            getPendingFriendRequests();
+            getPendingEventInvitations();
+        }
+
+        function getPendingFriendRequests() {
             Amistad.getSolicitudesPendientesReceptor(function (result) {
                 vm.pendingFriendRequests = result;
 
-                if(vm.pendingFriendRequests.length>0){
-                    var badge = $("<span class='badge' style='background-color:red'>"+vm.pendingFriendRequests.length+"</span>")
+                if (vm.pendingFriendRequests.length > 0) {
+                    var badge = $("<span class='badge' style='background-color:red'>" + vm.pendingFriendRequests.length + "</span>")
                     $("#friendRequests").append(badge);
                 }
             })
         }
-        function getPendingEventInvitations(){
+
+        function getPendingEventInvitations() {
 
         }
     }
