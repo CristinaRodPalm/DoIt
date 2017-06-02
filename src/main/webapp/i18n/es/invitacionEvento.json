@@ -6,8 +6,10 @@
                 "createLabel": "Crear nuevo Invitacion Evento",
                 "createOrEditLabel": "Crear o editar Invitacion Evento"
             },
-            "list":{
-              "pageTitle": "Invitaciones pendientes"
+            "list": {
+                "pageTitle": "Invitaciones pendientes",
+                "invitedBy":"Invitado por",
+                "event":"Evento"
             },
             "created": "Un nuevo Invitacion Evento ha sido creado con el identificador {{ param }}",
             "updated": "Un Invitacion Evento ha sido actualizado con el identificador {{ param }}",

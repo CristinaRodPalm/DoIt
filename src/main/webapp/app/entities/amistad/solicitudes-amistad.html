@@ -1,6 +1,9 @@
 <div class="row">
     <div class="table-responsive">
         <table class="jh-table table table-striped">
+            <thead>
+                <th><span data-translate="doitApp.amistad.sendedBy">Usuario</span></th>
+            </thead>
             <tbody>
                 <tr ng-repeat="amistad in vm.amistadsCurrentUser track by amistad.id">
                     <td>{{amistad.emisor.login}}</td>

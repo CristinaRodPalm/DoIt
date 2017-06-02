@@ -27,7 +27,9 @@
             'eventosApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioApuntado'},
             'eventosNoApuntado': {method: 'GET', isArray: true, url: 'api/invitacion-eventos/eventosUsuarioNoApuntado'},
             'invitacionesPendientes':{method: 'GET', isArray: true, url: 'api/invitacion-eventos/invitacionesPendientes'},
-            'invitacionAmigos': {method: 'POST', isArray: true, url: 'api/invitacion-eventos/invitarAmigos/:idEvento/:invitados'}
+            'invitacionAmigos': {method: 'POST', isArray: true, url: 'api/invitacion-eventos/invitarAmigos/:idEvento/:invitados'},
+            'accept':{method: 'PUT', isArray: false, url: 'api/invitacion-eventos/:id/accept'},
+            'deny':{method: 'PUT', isArray: false, url: 'api/invitacion-eventos/:id/deny'}
         });
     }
 })();

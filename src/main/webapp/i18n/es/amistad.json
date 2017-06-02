@@ -20,7 +20,8 @@
             "aceptada": "Aceptada",
             "horaRespuesta": "Hora Respuesta",
             "emisor": "Emisor",
-            "receptor": "Receptor"
+            "receptor": "Receptor",
+            "sendedBy":"Usuario"
         }
     }
 }

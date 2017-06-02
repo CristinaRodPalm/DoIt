@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('InvitacionEventoController', InvitacionEventoController);
 
-    InvitacionEventoController.$inject = ['InvitacionEvento', 'Amistad'];
+    InvitacionEventoController.$inject = ['InvitacionEvento', '$state'];
 
-    function InvitacionEventoController(InvitacionEvento, Amistad) {
+    function InvitacionEventoController(InvitacionEvento, $state) {
 
         var vm = this;
 
@@ -26,8 +26,17 @@
         function loadPendingInvitations(){
             InvitacionEvento.invitacionesPendientes(function (result) {
                 vm.pendingInvitations = result;
-                console.log(vm.pendingInvitations);
             })
+        }
+
+        vm.acceptInvitation = function(id){
+            InvitacionEvento.accept({'id':id}, {});
+            $state.go('invitaciones-pendientes', null, {reload: 'invitaciones-pendientes'});
+        }
+
+        vm.denyInvitation = function(id){
+            InvitacionEvento.deny({'id':id}, {});
+            $state.go('invitaciones-pendientes', null, {reload: 'invitaciones-pendientes'});
         }
     }
 })();

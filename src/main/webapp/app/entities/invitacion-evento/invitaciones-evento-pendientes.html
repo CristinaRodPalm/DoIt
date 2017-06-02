@@ -1,6 +1,10 @@
 <div class="row">
     <div class="table-responsive">
         <table class="jh-table table table-striped">
+            <thead>
+                <th><span data-translate="doitApp.invitacionEvento.list.invitedBy">Invitado por</span></th>
+                <th><span data-translate="doitApp.invitacionEvento.list.event">Evento</span></th>
+            </thead>
             <tbody>
             <tr ng-repeat="invitation in vm.pendingInvitations track by invitation.id">
                 <td>{{invitation.miembroEvento.login}}</td>
@@ -10,11 +14,11 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                                ng-click="vm.acceptFriend(amistad.id)">
+                                ng-click="vm.acceptInvitation(invitation.id)">
                             <span class="glyphicon glyphicon-ok"></span>
                         </button>
                         <button class="btn btn-danger"
-                                ng-click="vm.denyFriend(amistad.id)">
+                                ng-click="vm.denyInvitation(invitation.id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </div>

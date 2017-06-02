@@ -185,4 +185,40 @@ public class InvitacionEventoResource {
         List<InvitacionEvento> invitacionEventos = invitacionEventoRepository.findPendingInvitations(userLogin.getId());
         return invitacionEventos;
     }
+
+    //aceptar invitacion a evento
+    @PutMapping("invitacion-eventos/{id}/accept")
+    @Timed
+    public ResponseEntity<InvitacionEvento> accept(@PathVariable Long id) {
+        log.debug("REST request to accept Invitation : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert
+                (ENTITY_NAME, "noexists", "La invitacion no existe")).body(null);
+        }
+        InvitacionEvento invitacionEvento = invitacionEventoRepository.findOne(id);
+        invitacionEvento.setHoraResolucion(ZonedDateTime.now());
+        invitacionEvento.setResolucion(true);
+        InvitacionEvento result = invitacionEventoRepository.save(invitacionEvento);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, invitacionEvento.getId().toString()))
+            .body(result);
+    }
+
+    //rechazar invitacion a evento
+    @PutMapping("invitacion-eventos/{id}/deny")
+    @Timed
+    public ResponseEntity<InvitacionEvento> deny(@PathVariable Long id) {
+        log.debug("REST request to deny Invitation : {}", id);
+        if (id == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert
+                (ENTITY_NAME, "noexists", "La invitacion no existe")).body(null);
+        }
+        InvitacionEvento invitacionEvento = invitacionEventoRepository.findOne(id);
+        invitacionEvento.setHoraResolucion(ZonedDateTime.now());
+        invitacionEvento.setResolucion(false);
+        InvitacionEvento result = invitacionEventoRepository.save(invitacionEvento);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, invitacionEvento.getId().toString()))
+            .body(result);
+    }
 }

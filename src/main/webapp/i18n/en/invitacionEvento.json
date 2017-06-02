@@ -7,7 +7,9 @@
                 "createOrEditLabel": "Create or edit a Invitacion Evento"
             },
             "list":{
-                "pageTitle": "Pending invitations"
+                "pageTitle": "Pending invitations",
+                "invitedBy":"Invited by",
+                "event":"Event"
             },
             "created": "A new Invitacion Evento is created with identifier {{ param }}",
             "updated": "A Invitacion Evento is updated with identifier {{ param }}",
