@@ -152,7 +152,7 @@ public class InvitacionEventoResource {
     }
 
     //un usuario invita a sus amigos al evento que este se ha apuntado
-    @PostMapping("/invitacion-eventos/evento/{idEvento}")
+    @PostMapping("/invitacion-eventos/invitarAmigos/{idEvento}")
     @Timed
     public List<InvitacionEvento> crearInvitacionsAmigos(@PathVariable Long idEvento,
                                                          @RequestBody List<User> amigosEvento){
@@ -171,11 +171,10 @@ public class InvitacionEventoResource {
             return invitacionEventoRepository.save(invitacionEvento);
 
         }).collect(Collectors.toList());
-
     }
 
     //hacer que le llegue al invitado la invitación al evento
-    @GetMapping("/invitacion-eventos/eventosAmigos/{idEvento}")
+    @GetMapping("/invitacion-eventos/eventosAmigos")
     @Timed
     public List<InvitacionEvento> getEventosAmigos(){
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();

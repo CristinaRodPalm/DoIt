@@ -17,10 +17,18 @@
         vm.currentAccount;
         vm.friends = [];
         vm.amigosInvitados = [];
-        
+
         loadFriends();
 
+        function loadFriends(){
+            Amistad.getFriends(function (result) {
+                vm.friends = result;
+            })
+        }
 
+        vm.inviteFriends = function(){
+            InvitacionEvento.invitacionAmigos({'id':vm.evento.id},{});
+        }
 
         var unsubscribe = $rootScope.$on('doitApp:eventoUpdate', function(event, result) {
             vm.evento = result;
@@ -31,18 +39,5 @@
         });
 
         $scope.$on('$destroy', unsubscribe);
-
-        function loadFriends(){
-            Amistad.getFriends(function (result) {
-                vm.friends = result;
-            })
-        }
-
-        vm.inviteFriends = function(id){
-            InvitacionEvento.invitacionAmigos({'id':id}, {});
-            console.log(id);
-            console.log(vm.amigosInvitados);
-
-        }
     }
 })();
