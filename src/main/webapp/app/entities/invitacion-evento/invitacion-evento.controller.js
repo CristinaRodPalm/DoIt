@@ -12,15 +12,22 @@
         var vm = this;
 
         vm.invitacionEventos = [];
-        vm.friends = [];
+        vm.pendingInvitations = [];
 
         loadAll();
+        loadPendingInvitations();
 
         function loadAll() {
             InvitacionEvento.query(function(result) {
                 vm.invitacionEventos = result;
                 vm.searchQuery = null;
             });
+        }
+        function loadPendingInvitations(){
+            InvitacionEvento.invitacionesPendientes(function (result) {
+                vm.pendingInvitations = result;
+                console.log(vm.pendingInvitations);
+            })
         }
     }
 })();

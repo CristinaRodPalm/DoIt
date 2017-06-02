@@ -34,7 +34,6 @@
             }
             console.log(vm.idInvitados);
             console.log(vm.evento.id);
-            ///'idEvento':vm.evento.id,
             InvitacionEvento.invitacionAmigos({'idEvento':vm.evento.id, 'invitados':vm.idInvitados},{});
         }
 

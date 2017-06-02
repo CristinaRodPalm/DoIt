@@ -63,7 +63,7 @@
 
                 <!--Event invitations-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="invitaciones-pendientes" ng-click="vm.collapseNavbar()">
+                    <a ui-sref="invitaciones-pendientes " ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-bell"></span>
                     </a>
                 </li>
@@ -82,7 +82,7 @@
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-calendar"></span>
-                        <span data-translate="global.navbar-functions.list-events">Events</span>
+                        <span class="hidden-sm" data-translate="global.navbar-functions.list-events">Events</span>
                     </a>
                 </li>
                 <!--Events list-->
@@ -91,7 +91,7 @@
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-globe"></span>
-                        <span data-translate="global.navbar-functions.world-events">World events</span>
+                        <span class="hidden-sm" data-translate="global.navbar-functions.world-events">World events</span>
                     </a>
                 </li>
                 <!--World events-->
@@ -100,7 +100,7 @@
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-star"></span>
-                        <span data-translate="global.navbar-functions.challenges">Challenges</span>
+                        <span class="hidden-sm" data-translate="global.navbar-functions.challenges">Challenges</span>
                     </a>
                 </li>
                 <!--Challenge list-->

@@ -172,7 +172,7 @@
             url:'/pending-invitations',
             data:{
                 authorities:['ROLE_USER'],
-                pageTitle:'doitApp.invitacionEvento.detail.title'
+                pageTitle:'doitApp.invitacionEvento.list.pageTitle'
             },
             views:{
                 'content@':{

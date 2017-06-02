@@ -1,1 +1,26 @@
-<h1>Invitaciones Evento pendientes</h1>
+<div class="row">
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <tbody>
+            <tr ng-repeat="invitation in vm.pendingInvitations track by invitation.id">
+                <td>{{invitation.miembroEvento.login}}</td>
+                <td>
+                    <a ui-sref="evento-detail({id: invitation.evento.id})">{{invitation.evento.nombre}}</a>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button class="btn btn-primary"
+                                ng-click="vm.acceptFriend(amistad.id)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button class="btn btn-danger"
+                                ng-click="vm.denyFriend(amistad.id)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

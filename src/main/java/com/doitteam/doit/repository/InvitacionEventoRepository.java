@@ -32,8 +32,8 @@ public interface InvitacionEventoRepository extends JpaRepository<InvitacionEven
     List<Evento> findEventosNotSigned(@Param("currentUser") Long currentUser);
 
     //coger el usuario logeado y comprobar si tiene invitaciones a eventos pendientes
-    @Query("select invitacionEvento.evento from InvitacionEvento invitacionEvento where " +
+    @Query("select invitacionEvento from InvitacionEvento invitacionEvento where " +
     " invitacionEvento.horaResolucion is null and invitacionEvento.invitado.id =:currentUser")
-    List<InvitacionEvento> findByInvitacionEventoAmigo(@Param("currentUser") Long currentUser);
+    List<InvitacionEvento> findPendingInvitations(@Param("currentUser") Long currentUser);
 
 }

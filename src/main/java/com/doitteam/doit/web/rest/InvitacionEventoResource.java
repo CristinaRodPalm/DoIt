@@ -177,12 +177,12 @@ public class InvitacionEventoResource {
         return invitaditos;
     }
 
-    //hacer que le llegue al invitado la invitación al evento
-    @GetMapping("/invitacion-eventos/eventosAmigos")
+    //invitaciones pendientes del usuario logeado
+    @GetMapping("/invitacion-eventos/invitacionesPendientes")
     @Timed
-    public List<InvitacionEvento> getEventosAmigos(){
+    public List<InvitacionEvento> getInvitacionesPendientes(){
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        List<InvitacionEvento> invitacionEventos = invitacionEventoRepository.findByInvitacionEventoAmigo(userLogin.getId());
+        List<InvitacionEvento> invitacionEventos = invitacionEventoRepository.findPendingInvitations(userLogin.getId());
         return invitacionEventos;
     }
 }

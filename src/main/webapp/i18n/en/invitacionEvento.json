@@ -6,6 +6,9 @@
                 "createLabel": "Create a new Invitacion Evento",
                 "createOrEditLabel": "Create or edit a Invitacion Evento"
             },
+            "list":{
+                "pageTitle": "Pending invitations"
+            },
             "created": "A new Invitacion Evento is created with identifier {{ param }}",
             "updated": "A Invitacion Evento is updated with identifier {{ param }}",
             "deleted": "A Invitacion Evento is deleted with identifier {{ param }}",
