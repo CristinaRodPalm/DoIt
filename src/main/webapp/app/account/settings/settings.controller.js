@@ -26,7 +26,8 @@
                 firstName: account.firstName,
                 langKey: account.langKey,
                 lastName: account.lastName,
-                login: account.login
+                login: account.login,
+                imagen: account.imagen
             };
         };
 

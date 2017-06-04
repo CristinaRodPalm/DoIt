@@ -77,6 +77,18 @@
                     <select id="langKey" name="langKey" class="form-control" ng-model="vm.settingsAccount.langKey" ng-controller="JhiLanguageController as languageVm" ng-options="code as (code | findLanguageFromKey) for code in languageVm.languages"></select>
                 </div>
 
+                <a ng-if="vm.settingsAccount.imagen" ng-click="vm.openFile(settingsAccount.imagenContentType, settingsAccount.imagen)">
+                    <img data-ng-src="{{'data:' + settingsAccount.imagenContentType + ';base64,' + settingsAccount.imagen}}" style="max-height: 30px;" alt="settings image"/>
+                </a>
+                <span ng-if="vm.settingsAccount.imagen">{{settingsAccount.imagenContentType}}, {{vm.byteSize(settingsAccount.imagen)}}</span>
+
+               <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setImagen($file, vm.settingsAccount)" accept="image/*" data-translate="entity.action.addimage">
+                    Añadir imagen
+                </button>
+
+                    <p></p>
+
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="settings.form.button">Save</button>
             </form>
         </div>
