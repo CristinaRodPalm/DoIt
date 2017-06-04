@@ -26,7 +26,11 @@
                 method: 'PUT',
                 url: 'api/eventos/:id/accept'
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+
+
+
+            'getNotInvited':{method:'GET', isArray:true, url:'api/invitacion-eventos/getFriendsNotInvited'}
         });
     }
 })();

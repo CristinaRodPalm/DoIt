@@ -30,6 +30,9 @@
             'invitacionAmigos': {method: 'POST', isArray: true, url: 'api/invitacion-eventos/invitarAmigos/:idEvento/:invitados'},
             'accept':{method: 'PUT', isArray: false, url: 'api/invitacion-eventos/:id/accept'},
             'deny':{method: 'PUT', isArray: false, url: 'api/invitacion-eventos/:id/deny'}
+
+
+
         });
     }
 })();

@@ -1,6 +1,7 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.InvitacionEvento;
 import com.doitteam.doit.domain.User;
@@ -221,4 +222,46 @@ public class InvitacionEventoResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, invitacionEvento.getId().toString()))
             .body(result);
     }
+
+    @GetMapping("/invitacion-eventos/getFriendsNotInvited")
+    @Timed
+    public List<User> getFriendsNotInvited(){
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        //List<Amistad> amistades = invitacionEventoRepository.findFriendsNotInvited(userLogin.getId());
+        System.out.println("AMISTADEES JODER!!!!!!!!!!!!!!!!!!!!!!!");
+        /*for(Amistad amistad: amistades){
+            System.out.println(amistad);
+        }*/
+        return invitacionEventoRepository.findFriendsNotInvited(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                if(amistad.getEmisor().equals(userLogin)){
+                    return amistad.getReceptor();
+                }else{
+                    return amistad.getEmisor();
+                }
+            })
+            .collect(Collectors.toList());
+    }
+/*
+    // GET DE AMISTADES
+    @GetMapping("/amigos")
+    @Timed
+    public List<User> getFriends() throws URISyntaxException {
+        log.debug("REST Request para obtener solicitudes de amistades por el usuario logeado", SecurityUtils.getCurrentUserLogin());
+        User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        List<User> amigos = amistadRepository.findAllFriends(userLogin.getId()).
+            parallelStream().
+            map(amistad -> {
+                if(amistad.getEmisor().equals(userLogin)){
+                    return amistad.getReceptor();
+                }else{
+                    return amistad.getEmisor();
+                }
+            })
+            .collect(Collectors.toList());
+
+        return amigos;
+    }*/
+
 }
