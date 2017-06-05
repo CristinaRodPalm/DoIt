@@ -18,16 +18,11 @@
         vm.friends = [];
         vm.amigosInvitados = [];
         vm.idInvitados = [];
-        vm.users = [];
 
         loadFriends();
 
         function loadFriends(){
-            Amistad.getFriends(function (result) {
-                //vm.friends = result;
-            });
             Evento.getNotInvited(function(result){
-                // devuelve todos los usuarios
                 vm.friends = result;
             });
         }
@@ -36,6 +31,7 @@
             vm.idInvitados = [];
             for(var i = 0; i < vm.amigosInvitados.length; i++){
                 vm.idInvitados.push(vm.amigosInvitados[i].id.toString());
+
             }
             console.log(vm.idInvitados);
             console.log(vm.evento.id);

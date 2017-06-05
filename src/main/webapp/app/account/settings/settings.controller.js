@@ -5,16 +5,16 @@
         .module('doitApp')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', 'UserExt'];
+    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', 'UserExt', 'DataUtils', '$scope'];
 
-    function SettingsController (Principal, Auth, JhiLanguageService, $translate, UserExt) {
+    function SettingsController (Principal, Auth, JhiLanguageService, $translate, UserExt, DataUtils, $scope) {
         var vm = this;
 
         vm.error = null;
         vm.save = save;
         vm.settingsAccount = null;
         vm.success = null;
-        vm.currentUserExt;
+        vm.currentUserExt = [];
 
         /**
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
@@ -31,14 +31,18 @@
             };
         };
 
-        getUserExtByUserLogin();
-
         Principal.identity().then(function(account) {
             vm.settingsAccount = copyAccount(account);
+            // Cargamos el userExt relacionado con el user
+            UserExt.getUserExt(function(result){
+                vm.currentUserExt = result;
+                console.log(result);
+            });
         });
 
         function save () {
             Auth.updateAccount(vm.settingsAccount).then(function() {
+                console.log(vm.settingsAccount.imagen)
                 vm.error = null;
                 vm.success = 'OK';
                 Principal.identity(true).then(function(account) {
@@ -55,11 +59,19 @@
             });
         }
 
-        function getUserExtByUserLogin(){
-            UserExt.getUserExt(function (result) {
-                vm.currentUserExt = result;
-                console.log(vm.currentUserExt);
-            })
-        }
+        vm.setImagen = function ($file, settingsAccount) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        settingsAccount.imagen = base64Data;
+                        settingsAccount.imagenContentType = $file.type;
+                    });
+                });
+            }
+        };
+
     }
 })();

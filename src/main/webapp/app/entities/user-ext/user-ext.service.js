@@ -38,7 +38,7 @@
                     return angular.toJson(copy);
                 }
             },
-            'getUserExt':{method:'GET', isArray: true, api:'api/userExtByUser'}
+            'getUserExt':{method:'GET', isArray:false, url:'/api/userExtByUser'}
         });
     }
 })();

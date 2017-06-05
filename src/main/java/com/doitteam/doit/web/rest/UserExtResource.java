@@ -127,10 +127,8 @@ public class UserExtResource {
     @GetMapping("/userExtByUser")
     @Timed
     public UserExt getUserExtByUser (){
-        log.debug("REST request to get UserExt by his User : {}");
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        UserExt user = userExtRepository.findByUserID(userLogin.getId());
-        return user;
+        return userExtRepository.findByUserID(userLogin.getId());
     }
 
 }
