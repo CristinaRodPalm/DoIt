@@ -40,6 +40,8 @@
             collapseNavbar();
             Auth.logout();
             $state.go('home');
+            vm.currentAccount = null;
+            vm.currentUserExt = null;
         }
 
         function toggleNavbar() {

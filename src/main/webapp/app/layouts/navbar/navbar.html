@@ -22,6 +22,84 @@
                     </a>
                 </li>
                 <!--HOME-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!--Register-->
+                <li ui-sref-active="activeState" ng-switch-when="false">
+                    <a ui-sref="register" ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus"></i>&nbsp;
+                        <span class="hidden-sm" data-translate="global.menu.account.register">Register</span>
+                    </a>
+                </li>
+                <!--Register-->
+
+                <!--SEARCH-->
+                <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
+                    <a class="dropdown-toggle"
+                       uib-dropdown-toggle
+                       href=""
+                       id="search-menu"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.search.title' | translate}}"
+                       ng-switch-when="true">
+                        <span>
+                            <span class="glyphicon glyphicon-search"></span>
+                            <!--<span class="hidden-sm" translate="global.navbar-functions.search.title">
+                                Search
+                            </span>-->
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ui-sref-active="active">
+                            <a ui-sref="user-search" ng-click="vm.collapseNavbar()">
+                                <i class="fa fa-users"></i>&nbsp;
+                                <span translate="global.navbar-functions.search.users">Buscar personas</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="evento-search" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
+                                <span translate="global.navbar-functions.search.events">Buscar eventos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--SEARCH-->
+
+                <!--Events list-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a ui-sref="eventos" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.list-events' | translate}}">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <!--<span class="hidden-sm" data-translate="global.navbar-functions.list-events">Events</span>-->
+                    </a>
+                </li>
+                <!--Events list-->
+
+                <!--World events-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.world-events' | translate}}">
+                        <span class="glyphicon glyphicon-globe"></span>
+                        <!--<span class="hidden-sm"-->
+                              <!--data-translate="global.navbar-functions.world-events">World events</span>-->
+                    </a>
+                </li>
+                <!--World events-->
+
+                <!--Challenge list-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.challenges' | translate}}">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <!--<span class="hidden-sm" data-translate="global.navbar-functions.challenges">Challenges</span>-->
+                    </a>
+                </li>
+                <!--Challenge list-->
 
                 <!--Event invitations-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
@@ -46,73 +124,6 @@
                     </a>
                 </li>
                 <!--Friend requests-->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!--Register-->
-                <li ui-sref-active="activeState" ng-switch-when="false">
-                    <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                        <i class="fa fa-user-plus"></i>&nbsp;
-                        <span class="hidden-sm" data-translate="global.menu.account.register">Register</span>
-                    </a>
-                </li>
-                <!--Register-->
-
-                <!--SEARCH-->
-                <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="search-menu"
-                       ng-switch-when="true">
-                        <span>
-                            <span class="glyphicon glyphicon-search"></span>
-                            <span class="hidden-sm" translate="global.navbar-functions.search.title">
-                                Search
-                            </span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active">
-                            <a ui-sref="user-search" ng-click="vm.collapseNavbar()">
-                                <i class="fa fa-users"></i>&nbsp;
-                                <span translate="global.navbar-functions.search.users">Buscar personas</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="evento-search" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
-                                <span translate="global.navbar-functions.search.events">Buscar eventos</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--SEARCH-->
-
-                <!--Events list-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.list-events">Events</span>
-                    </a>
-                </li>
-                <!--Events list-->
-
-                <!--World events-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
-                        <span class="glyphicon glyphicon-globe"></span>
-                        <!--<span class="hidden-sm"-->
-                              <!--data-translate="global.navbar-functions.world-events">World events</span>-->
-                    </a>
-                </li>
-                <!--World events-->
-
-                <!--Challenge list-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.challenges">Challenges</span>
-                    </a>
-                </li>
-                <!--Challenge list-->
 
                 <!--Account management-->
                 <li ng-class="{activeState: vm.$state.includes('account')}"
