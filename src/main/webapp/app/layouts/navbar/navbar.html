@@ -22,6 +22,33 @@
                 </li>
                 <!--HOME-->
 
+                <!--Event invitations-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a ui-sref="invitaciones-pendientes " ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                </li>
+                <!--Event invitations-->
+
+                <!--Friend requests-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a id="friendRequests" ui-sref="amistades"
+                       ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+                <!--Friend requests-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!--Register-->
+                <li ui-sref-active="activeState" ng-switch-when="false">
+                    <a ui-sref="register" ng-click="vm.collapseNavbar()">
+                        <i class="fa fa-user-plus"></i>&nbsp;
+                        <span class="hidden-sm" data-translate="global.menu.account.register">Register</span>
+                    </a>
+                </li>
+                <!--Register-->
+
                 <!--SEARCH-->
                 <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="search-menu"
@@ -50,33 +77,6 @@
                     </ul>
                 </li>
                 <!--SEARCH-->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!--Register-->
-                <li ui-sref-active="activeState" ng-switch-when="false">
-                    <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                        <i class="fa fa-user-plus"></i>&nbsp;
-                        <span class="hidden-sm" data-translate="global.menu.account.register">Register</span>
-                    </a>
-                </li>
-                <!--Register-->
-
-                <!--Event invitations-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="invitaciones-pendientes " ng-click="vm.collapseNavbar()">
-                        <span class="glyphicon glyphicon-bell"></span>
-                    </a>
-                </li>
-                <!--Event invitations-->
-
-                <!--Friend requests-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a id="friendRequests" ui-sref="amistades"
-                       ng-click="vm.collapseNavbar()">
-                        <i class="fa fa-user-plus"></i>
-                    </a>
-                </li>
-                <!--Friend requests-->
 
                 <!--Events list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">

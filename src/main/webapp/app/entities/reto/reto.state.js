@@ -164,7 +164,7 @@
             })
 
             .state('reto.delete', {
-                parent: 'reto',
+                parent: 'lista-retos',
                 url: '/{id}/delete',
                 data: {
                     authorities: ['ROLE_ADMIN']

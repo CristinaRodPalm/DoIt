@@ -1,7 +1,5 @@
 <div>
-
     <div class="row">
-        <h2 translate="doitApp.evento.world-events.title">World events</h2>
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.buscarDireccion"
                    for="field_direccion">Introduce una dirección para buscar eventos en la zona</label>
@@ -13,7 +11,7 @@
     <div class="row">
 
         <div class="text-center">
-            <ng-map id="mapa" class="map-track" disable-default-u-i="true" style="height: 500px; display:block" >
+            <ng-map id="mapa" class="map-track" disable-default-u-i="true" style="height: 500px; display:block">
 
                 <marker ng-repeat="evento in vm.eventos" position="[{{evento.latitud}},{{evento.longitud}}]">
                 </marker>

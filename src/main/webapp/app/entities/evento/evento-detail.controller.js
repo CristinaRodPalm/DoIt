@@ -5,7 +5,7 @@
         .module('doitApp')
         .controller('EventoDetailController', EventoDetailController);
 
-    EventoDetailController.$inject = ['Principal', '$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
+    EventoDetailController.$inject = ['Principal', '$scope', '$rootScope', '$stateParams', 'previousState','DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
 
     function EventoDetailController(Principal, $scope, $rootScope, $stateParams, previousState, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
         var vm = this;
