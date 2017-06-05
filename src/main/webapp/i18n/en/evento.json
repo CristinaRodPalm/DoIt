@@ -35,6 +35,7 @@
             "invitar":"Invite friends",
             "buscarDireccion": "Find events where you want",
             "editar": "Edit",
+            "no-results" : "There are no events yet :( Why don't try to create one?",
             "world-events": {
                 "title": "World events",
                 "subtitle": "Here you can see all the events created by the users around the world!"

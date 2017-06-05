@@ -64,7 +64,7 @@
 
         vm.sendFriendRequest = function(id){
             Amistad.sendFriendRequest({'id': id}, {});
-            $state.go('user-search', null, {reload:'user-search'});
+            $state.reload();
         }
 
         Principal.identity().then(function(account) {

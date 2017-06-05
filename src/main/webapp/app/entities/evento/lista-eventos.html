@@ -1,6 +1,9 @@
 <div>
     <br/>
     <div class="table-responsive">
+        <strong ng-if="vm.pendingInvitations.length==0">
+            <span data-translate="doitApp.evento.no-results">Mensaje de pena</span>
+        </strong>
         <table class="jh-table table table-striped">
             <thead>
             <tr>
@@ -15,13 +18,16 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
 
-        <!--Aqui se muestran los eventos que el usuario se ha apuntado -->
-            <tr ng-repeat="evento in vm.eventosApuntado track by evento.id">
+            <tbody>
+            <!--Aqui se muestran los eventos que el usuario se ha apuntado -->
+            <tr ng-repeat="evento in vm.eventosApuntado track by evento.id" ng-if="vm.eventosApuntado.length>0">
                 <td>
-                    <a ng-if="evento.evento.imagen" ng-click="vm.openFile(evento.evento.imagenContentType, evento.evento.imagen)">
-                        <img data-ng-src="{{'data:' + evento.evento.imagenContentType + ';base64,' + evento.evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                    <a ng-if="evento.evento.imagen"
+                       ng-click="vm.openFile(evento.evento.imagenContentType, evento.evento.imagen)">
+                        <img
+                            data-ng-src="{{'data:' + evento.evento.imagenContentType + ';base64,' + evento.evento.imagen}}"
+                            style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
                 <td><span>{{evento.evento.admin.login}}</span></td>
@@ -51,11 +57,12 @@
                 </td>
             </tr>
 
-        <!--Aqui se muestran todos los eventos -->
-            <tr ng-repeat="evento in vm.eventosNoApuntado track by evento.id">
+            <!--Aqui se muestran todos los eventos -->
+            <tr ng-repeat="evento in vm.eventosNoApuntado track by evento.id" ng-if="vm.eventosNoApuntado.length>0">
                 <td>
                     <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
-                        <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}" style="max-height: 30px;" alt="evento image"/>
+                        <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}"
+                             style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
                 <td><span>{{evento.admin.login}}</span></td>
@@ -69,14 +76,14 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button class="btn btn-primary"
-                            ng-click="vm.apuntarse(evento.id)" >
+                                ng-click="vm.apuntarse(evento.id)">
                             <span class="glyphicon glyphicon-plus"></span>
                             <span class="hidden-sm-down"></span>
                             <span data-translate="doitApp.evento.participar"></span>
                         </button>
                         <button type="submit" class="btn btn-danger"
-                            ng-if="vm.currentAccount.id==evento.admin.id"
-                            ui-sref="evento.edit({id:evento.id})">
+                                ng-if="vm.currentAccount.id==evento.admin.id"
+                                ui-sref="evento.edit({id:evento.id})">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </div>

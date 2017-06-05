@@ -2,7 +2,6 @@
     "about": {
         "title": "Sobre de la aplicación",
         "subtitle":"Esta aplicación ha sido creada en STUCOM Centro de Estudios",
-        "description": "This project was created by Cristina Rodriguez, David Solanes, Ivan Graña and Julian Egea at STUCOM.",
-        "description-col": "In colaboration with Alfredo Rueda."
+        "contributors": "Desarrolladores: "
     }
 }

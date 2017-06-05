@@ -32,12 +32,12 @@
 
         vm.acceptFriend = function(id){
             Amistad.accept({'id':id}, {});
-            $state.go('amistades', null, {reload: 'amistades'});
+            $state.reload();
         }
 
         vm.denyFriend = function(id){
             Amistad.deny({'id':id}, {});
-            $state.go('amistades', null, {reload: 'amistades'});
+            $state.reload();
         }
     }
 })();

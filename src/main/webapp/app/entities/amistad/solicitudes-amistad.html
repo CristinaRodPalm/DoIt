@@ -1,9 +1,9 @@
 <div class="row">
     <div class="table-responsive">
-        <strong ng-if="vm.amistadsCurrentUser==0">
+        <strong ng-if="vm.amistadsCurrentUser.length==0">
             <span data-translate="doitApp.amistad.no-results">Mensaje de pena</span>
         </strong>
-        <table class="jh-table table table-striped" ng-if="vm.amistadsCurrentUser > 0">
+        <table class="jh-table table table-striped" ng-if="vm.amistadsCurrentUser.length > 0">
             <thead>
                 <th><span data-translate="doitApp.amistad.sendedBy">Usuario</span></th>
             </thead>

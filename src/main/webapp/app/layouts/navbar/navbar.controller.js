@@ -46,7 +46,6 @@
         }
 
         if (vm.isAuthenticated) {
-
             Principal.identity().then(function (account) {
                 vm.currentAccount = account;
             });

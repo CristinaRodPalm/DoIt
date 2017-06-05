@@ -31,12 +31,12 @@
 
         vm.acceptInvitation = function(id){
             InvitacionEvento.accept({'id':id}, {});
-            $state.go('invitaciones-pendientes', null, {reload: 'invitaciones-pendientes'});
+            $state.reload();
         }
 
         vm.denyInvitation = function(id){
             InvitacionEvento.deny({'id':id}, {});
-            $state.go('invitaciones-pendientes', null, {reload: 'invitaciones-pendientes'});
+            $state.reload();
         }
     }
 })();

@@ -36,6 +36,7 @@
             "participar":"Apuntarse",
             "invitar":"Invitar amigos",
             "editar":"Editar",
+            "no-results": "Todavía no se ha creado ningún evento :( ¿Por qué no creas uno tú mismo?",
             "world-events": {
                 "title": "Eventos en el mundo",
                 "subtitle": "¡Aquí podrás ver todos los eventos que se han creado en el mundo!"

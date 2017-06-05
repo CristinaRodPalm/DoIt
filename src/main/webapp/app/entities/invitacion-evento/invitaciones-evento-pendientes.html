@@ -1,9 +1,9 @@
 <div class="row">
     <div class="table-responsive">
-        <strong ng-if="vm.pendingInvitations==0">
+        <strong ng-if="vm.pendingInvitations.length==0">
             <span data-translate="doitApp.invitacionEvento.no-results">Mensaje de pena</span>
         </strong>
-        <table class="jh-table table table-striped" ng-if="vm.pendingInvitations > 0">
+        <table class="jh-table table table-striped" ng-if="vm.pendingInvitations.length > 0">
             <thead>
             <th><span data-translate="doitApp.invitacionEvento.list.invitedBy">Invitado por</span></th>
             <th><span data-translate="doitApp.invitacionEvento.list.event">Evento</span></th>
