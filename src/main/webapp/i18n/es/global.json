@@ -80,6 +80,7 @@
             "email": "Correo electrónico",
             "email.placeholder": "Tu correo electrónico",
             "search.placeholder":"Busca personas por nombre, teléfono, fecha de nacimiento...",
+            "eventSearch.placeholder":"Busca eventos por nombre, dirección...",
             "nacimiento": "Fecha de nacimiento"
         },
         "messages": {

@@ -79,6 +79,7 @@
             "email": "E-mail",
             "email.placeholder": "Your e-mail",
             "search.placeholder":"Search other users by name, phone, birthdate...",
+            "eventSearch.placeholder":"Search events by name, direction...",
             "imagen": "Image",
             "nacimiento": "Birthdate"
         },
