@@ -20,7 +20,8 @@
             "tooltips":{
                 "friend-requests":"Friend requests",
                 "pending-invitations":"Pending invitations"
-            }
+            },
+            "loggedAs" : "Signed in as "
         },
         "menu": {
             "home": "Home",

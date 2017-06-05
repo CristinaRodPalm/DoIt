@@ -25,10 +25,11 @@
 
                 <!--Event invitations-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a  id="pendingInvitations"
-                        ui-sref="invitaciones-pendientes"
-                        ng-click="vm.collapseNavbar()"
-                        data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.pending-invitations' | translate}}">
+                    <a id="pendingInvitations"
+                       ui-sref="invitaciones-pendientes"
+                       ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.tooltips.pending-invitations' | translate}}">
                         <span class="glyphicon glyphicon-bell"></span>
                     </a>
                 </li>
@@ -39,7 +40,8 @@
                     <a id="friendRequests"
                        ui-sref="amistades"
                        ng-click="vm.collapseNavbar()"
-                       data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.friend-requests' | translate}}">
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.tooltips.friend-requests' | translate}}">
                         <i class="fa fa-user-plus"></i>
                     </a>
                 </li>
@@ -97,7 +99,8 @@
                 <li ui-sref-active="activeState" ng-switch-when="true">
                     <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-globe"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.world-events">World events</span>
+                        <!--<span class="hidden-sm"-->
+                              <!--data-translate="global.navbar-functions.world-events">World events</span>-->
                     </a>
                 </li>
                 <!--World events-->
@@ -118,15 +121,28 @@
                        uib-dropdown-toggle href=""
                        id="account-menu"
                        ng-switch-when="true">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
+                        <span ng-if="vm.currentUserExt.imagen">
+                            <!--<span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm" data-translate="global.menu.account.main">
                                 Account
-                            </span>
-                            <b class="caret"></b>
+                            </span>-->
+                            <img data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
+                                style="max-height: 15px;" alt="user image"/>
+
                         </span>
+                        <span ng-if="!vm.currentUserExt.imagen">{{vm.currentAccount.login}}</span>
+                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li class="dropdown-header" ng-switch-when="true">
+                                <span data-translate="global.navbar-functions.loggedAs">Iniciada sesion como</span>
+                                <span>
+                                    <strong>
+                                        {{vm.currentAccount.login}}
+                                    </strong>
+                                </span>
+                        </li>
+                        <li class="divider"></li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
@@ -161,7 +177,7 @@
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" ng-if="languageVm.languages.length > 1">
                         <span>
                             <span class="glyphicon glyphicon-flag"></span>
-                            <span class="hidden-sm" data-translate="global.menu.language">Language</span>
+                            <!--<span class="hidden-sm" data-translate="global.menu.language">Language</span>-->
                             <b class="caret"></b>
                         </span>
                     </a>

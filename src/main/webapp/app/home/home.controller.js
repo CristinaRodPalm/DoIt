@@ -10,9 +10,9 @@
     function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt, Amistad, InvitacionEvento) {
         var vm = this;
 
-        vm.user = null;
         vm.userExts = null;
-        vm.account = null;
+        vm.currentAccount;
+        vm.currentUserExt;
         vm.isAuthenticated = null;
         vm.login = login;
         vm.register = register;
@@ -26,21 +26,12 @@
 
         function getAccount() {
             Principal.identity().then(function(account) {
-                vm.account = account;
+                vm.currentAccount = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
-            UserExt.query(function(response){
-               vm.userExts = response;
-               checkUser();
-            });
-        }
-
-        function checkUser(){
-            for(var i = 0; i < vm.userExts.length; i++){
-                if(vm.userExts[i].user.id == vm.account.id){
-                    vm.user = vm.userExts[i];
-                }
-            }
+            UserExt.getUserExt(function (result) {
+                vm.currentUserExt = result;
+            })
         }
 
         function register () {
