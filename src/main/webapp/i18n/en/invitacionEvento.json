@@ -25,7 +25,8 @@
             "resolucion": "Resolucion",
             "evento": "Evento",
             "miembroEvento": "Miembro Evento",
-            "invitado": "Invitado"
+            "invitado": "Invitado",
+            "no-results": "Oops! It seems that nobody invited you yet :("
         }
     }
 }

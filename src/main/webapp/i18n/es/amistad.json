@@ -21,7 +21,8 @@
             "horaRespuesta": "Hora Respuesta",
             "emisor": "Emisor",
             "receptor": "Receptor",
-            "sendedBy":"Usuario"
+            "sendedBy":"Usuario",
+            "no-results":"¡No tienes solicitudes de amistad que gestionar!"
         }
     }
 }

@@ -15,16 +15,20 @@
             <ul class="nav navbar-nav navbar-left">
                 <!--HOME-->
                 <li ui-sref-active="activeState">
-                    <a ui-sref="home" ng-click="vm.collapseNavbar()">
+                    <a ui-sref="home"
+                       ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom" title="Home">
                         <span class="glyphicon glyphicon-home"></span>
-                        <!--<span class="hidden-sm" data-translate="global.menu.home">Home</span>-->
                     </a>
                 </li>
                 <!--HOME-->
 
                 <!--Event invitations-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="invitaciones-pendientes " ng-click="vm.collapseNavbar()">
+                    <a  id="pendingInvitations"
+                        ui-sref="invitaciones-pendientes"
+                        ng-click="vm.collapseNavbar()"
+                        data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.pending-invitations' | translate}}">
                         <span class="glyphicon glyphicon-bell"></span>
                     </a>
                 </li>
@@ -32,8 +36,10 @@
 
                 <!--Friend requests-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a id="friendRequests" ui-sref="amistades"
-                       ng-click="vm.collapseNavbar()">
+                    <a id="friendRequests"
+                       ui-sref="amistades"
+                       ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.friend-requests' | translate}}">
                         <i class="fa fa-user-plus"></i>
                     </a>
                 </li>

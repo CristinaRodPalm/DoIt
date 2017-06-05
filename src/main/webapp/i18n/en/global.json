@@ -5,7 +5,6 @@
         "navbar-functions":{
             "challenges": "Challenges",
             "functionalities":"Create",
-            "friend-requests":"Friend requests",
             "world-events":"World events",
             "challenges": "Challenges",
             "create-challenge":"Create a challenge",
@@ -17,7 +16,11 @@
             },
             "create-event":"Create an event",
             "about":"About",
-            "searcher":"Find other users"
+            "searcher":"Find other users",
+            "tooltips":{
+                "friend-requests":"Friend requests",
+                "pending-invitations":"Pending invitations"
+            }
         },
         "menu": {
             "home": "Home",

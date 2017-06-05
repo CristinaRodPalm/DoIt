@@ -25,7 +25,8 @@
             "resolucion": "Resolucion",
             "evento": "Evento",
             "miembroEvento": "Miembro Evento",
-            "invitado": "Invitado"
+            "invitado": "Invitado",
+            "no-results": "¡Ups! Parece que no has recibido ninguna invitación para unirte a un evento :("
         }
     }
 }

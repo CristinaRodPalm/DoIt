@@ -21,7 +21,8 @@
             "horaRespuesta": "Hora Respuesta",
             "emisor": "Emisor",
             "receptor": "Receptor",
-            "sendedBy":"User"
+            "sendedBy":"User",
+            "no-results":"You don't have any friend request!"
         }
     }
 }

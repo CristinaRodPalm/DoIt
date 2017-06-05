@@ -17,7 +17,11 @@
             },
             "create-event":"Crear un evento",
             "about":"Sobre nosotros",
-            "searcher":"Busca otras personas"
+            "searcher":"Busca otras personas",
+            "tooltips":{
+                "friend-requests":"Solicitudes de amistad",
+                "pending-invitations":"Invitaciones pendientes"
+            }
         },
         "menu": {
             "home": "Inicio",
