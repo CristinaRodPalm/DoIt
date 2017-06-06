@@ -1,11 +1,12 @@
 {
     "global": {
+        "no-results":"Nothing to show yet :(",
         "title": "Do It!",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "navbar-functions":{
             "challenges": "Challenges",
             "functionalities":"Create",
-            "world-events":"World events",
+            "world-events":"See all events in a map",
             "challenges": "Challenges",
             "create-challenge":"Create a challenge",
             "list-events":"Events list",

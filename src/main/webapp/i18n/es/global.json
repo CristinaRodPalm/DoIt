@@ -1,12 +1,13 @@
 {
     "global": {
+        "no-results": "No hay nada que podamos mostrar aún :(",
         "title": "Do It!",
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
         "navbar-functions": {
             "challenges": "Retos",
             "functionalities":"Crea",
             "friend-requests": "Solicitudes de amistad",
-            "world-events":"Eventos del mundo",
+            "world-events":"Ver todos los eventos en el mapa",
             "challenges": "Retos",
             "create-challenge":"Crear un reto",
             "list-events":"Lista de eventos",
