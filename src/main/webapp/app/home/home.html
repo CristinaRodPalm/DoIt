@@ -42,7 +42,9 @@
 
                     <!--EVENTOS-->
                     <div ng-switch-when="true" class="col-md-8">
-                        <h3>Eventos</h3>
+                        <h3>
+                            <span data-translate="global.navbar-functions.search.events">Eventos</span>
+                        </h3>
                         <strong ng-if="vm.eventos.length == 0" data-translate="global.no-results"></strong>
                         <p></p>
                         <div class="row" ng-if="vm.eventos.length>0">
@@ -50,7 +52,7 @@
                                 <span class="glyphicon glyphicon-globe"></span>
                                 <span data-translate="global.navbar-functions.world-events">World events</span>
                             </a>
-                            <div ng-repeat="evento in vm.eventos track by evento.id">
+                            <div ng-repeat="evento in vm.eventos track by evento.id | limitTo: 2">
                                 <div ng-if="evento.imagen">
                                     <img
                                         data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}"
@@ -66,7 +68,9 @@
 
                     <!--RETOS-->
                     <div ng-switch-when="true" class="col-md-2">
-                        <h3>Retos</h3>
+                        <h3>
+                            <span data-translate="global.navbar-functions.challenges">Retos</span>
+                        </h3>
                         <strong ng-if="vm.retos.length == 0" data-translate="global.no-results"></strong>
                         <div class="list-group" ng-if="vm.retos.length >0">
                             <div class="list-group-item" ng-repeat="reto in vm.retos track by reto.id">

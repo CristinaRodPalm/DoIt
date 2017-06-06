@@ -1,6 +1,7 @@
 {
     "doitApp": {
         "reto" : {
+            "no-results" : "There aren't challenges yet :(",
             "home": {
                 "title": "Challenges",
                 "subtitle": "Here you can see all the challenges that we created for you!",

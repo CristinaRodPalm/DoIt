@@ -1,6 +1,7 @@
 {
     "doitApp": {
         "reto" : {
+            "no-results" : "No se han creado retos todavía :(",
             "home": {
                 "title": "Retos",
                 "subtitle": "¡Aquí puedes ver los retos que hemos creado para vosotros!",
