@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('EventoDialogController', EventoDialogController);
 
-    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state','$stateParams', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'InvitacionEvento', 'Chat', 'Amistad'];
+    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'Chat', 'Amistad'];
 
-    function EventoDialogController (NgMap, $timeout, $scope, $state, $stateParams, DataUtils, entity, Evento, Reto, User, InvitacionEvento, Chat, Amistad) {
+    function EventoDialogController (NgMap, $timeout, $scope, $state, DataUtils, entity, Evento, Reto, User, Chat, Amistad) {
         var vm = this;
 
         vm.evento = entity;
@@ -20,7 +20,6 @@
         vm.retos = Reto.query();
         vm.users = User.query();
         vm.invitacioneventos = InvitacionEvento.query();
-        vm.chats = Chat.query();
         vm.friends = [];
         vm.inviteFriends = [];
 
@@ -28,7 +27,6 @@
 
         vm.placeChanged = function() {
             vm.place = this.getPlace();
-            console.log('location', vm.place.geometry.location);
             vm.map.setCenter(vm.place.geometry.location);
             vm.evento.latitud = vm.place.geometry.location.lat();
             vm.evento.longitud = vm.place.geometry.location.lng();
@@ -39,7 +37,6 @@
             vm.map.setZoom(6);
             vm.map.setCenter(new google.maps.LatLng(40.4378698, -3.8196217));
         });
-
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
