@@ -14,7 +14,7 @@
                         <div class="row" ng-if="vm.currentUserExt.imagen">
                             <img
                                 data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
-                                style="max-height: 175px;" alt="user login image" class="img-rounded"/>
+                                style="max-height: 125px;" alt="user login image" class="img-rounded"/>
                         </div>
                         <p></p>
                         <div class="row">
@@ -39,25 +39,43 @@
                         </div>
                     </div>
                     <!--USER-->
+
                     <!--EVENTOS-->
-                    <div ng-switch-when="true" class="col-md-8 text-center">
+                    <div ng-switch-when="true" class="col-md-8">
                         <h3>Eventos</h3>
-                        <a ui-sref="eventos-mundo">
-                            <span class="glyphicon glyphicon-globe"></span>
-                            <span data-translate="global.navbar-functions.world-events">World events</span>
-                        </a>
+                        <strong ng-if="vm.eventos.length == 0" data-translate="global.no-results"></strong>
+                        <p></p>
+                        <div class="row" ng-if="vm.eventos.length>0">
+                            <a ui-sref="eventos-mundo">
+                                <span class="glyphicon glyphicon-globe"></span>
+                                <span data-translate="global.navbar-functions.world-events">World events</span>
+                            </a>
+                            <div ng-repeat="evento in vm.eventos track by evento.id">
+                                <div ng-if="evento.imagen">
+                                    <img
+                                        data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}"
+                                        style="max-width: 300px;" alt="evento image"/>
+                                </div>
+                                <a ui-sref="evento-detail({id: evento.id})">
+                                    {{evento.nombre}}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <!--EVENTOS-->
+
                     <!--RETOS-->
                     <div ng-switch-when="true" class="col-md-2">
                         <h3>Retos</h3>
-                        <div class="list-group">
+                        <strong ng-if="vm.retos.length == 0" data-translate="global.no-results"></strong>
+                        <div class="list-group" ng-if="vm.retos.length >0">
                             <div class="list-group-item" ng-repeat="reto in vm.retos track by reto.id">
                                 <a ui-sref="reto-detail({id: reto.id})">{{reto.nombre}}</a>
                             </div>
                         </div>
                     </div>
                     <!--RETOS-->
+
                 </div>
                 <!--LOGEADO-->
 

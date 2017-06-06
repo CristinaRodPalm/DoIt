@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state', 'UserExt', 'Reto'];
+    HomeController.$inject = ['$rootScope', '$scope', 'Principal', 'Auth','LoginService', '$state', 'UserExt', 'Reto', 'Evento'];
 
-    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt, Reto) {
+    function HomeController ($rootScope, $scope, Principal, Auth, LoginService, $state, UserExt, Reto, Evento) {
         var vm = this;
 
         vm.userExts = null;
@@ -16,6 +16,7 @@
         vm.isAuthenticated = null;
         vm.login = login;
         vm.retos = [];
+        vm.eventos = [];
         vm.register = register;
         vm.requestResetPassword = requestResetPassword;
 
@@ -25,6 +26,7 @@
 
         getAccount();
         getRetos();
+        getEventos();
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -67,6 +69,11 @@
         function getRetos(){
             Reto.query(function (result) {
                 vm.retos = result;
+            })
+        }
+        function getEventos(){
+            Evento.query(function (result) {
+                vm.eventos = result;
             })
         }
     }
