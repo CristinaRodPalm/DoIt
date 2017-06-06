@@ -22,28 +22,6 @@
                     </a>
                 </li>
                 <!--HOME-->
-
-                <!--Event invitations-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a  id="pendingInvitations"
-                        ui-sref="invitaciones-pendientes"
-                        ng-click="vm.collapseNavbar()"
-                        data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.pending-invitations' | translate}}">
-                        <span class="glyphicon glyphicon-bell"></span>
-                    </a>
-                </li>
-                <!--Event invitations-->
-
-                <!--Friend requests-->
-                <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a id="friendRequests"
-                       ui-sref="amistades"
-                       ng-click="vm.collapseNavbar()"
-                       data-toggle="tooltip" data-placement="bottom" title="{{'global.navbar-functions.tooltips.friend-requests' | translate}}">
-                        <i class="fa fa-user-plus"></i>
-                    </a>
-                </li>
-                <!--Friend requests-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--Register-->
@@ -57,13 +35,18 @@
 
                 <!--SEARCH-->
                 <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="search-menu"
+                    <a class="dropdown-toggle"
+                       uib-dropdown-toggle
+                       href=""
+                       id="search-menu"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.search.title' | translate}}"
                        ng-switch-when="true">
                         <span>
                             <span class="glyphicon glyphicon-search"></span>
-                            <span class="hidden-sm" translate="global.navbar-functions.search.title">
+                            <!--<span class="hidden-sm" translate="global.navbar-functions.search.title">
                                 Search
-                            </span>
+                            </span>-->
                             <b class="caret"></b>
                         </span>
                     </a>
@@ -86,30 +69,61 @@
 
                 <!--Events list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="eventos" ng-click="vm.collapseNavbar()">
+                    <a ui-sref="eventos" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.list-events' | translate}}">
                         <span class="glyphicon glyphicon-calendar"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.list-events">Events</span>
+                        <!--<span class="hidden-sm" data-translate="global.navbar-functions.list-events">Events</span>-->
                     </a>
                 </li>
                 <!--Events list-->
 
                 <!--World events-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()">
+                    <a ui-sref="eventos-mundo" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.world-events' | translate}}">
                         <span class="glyphicon glyphicon-globe"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.world-events">World events</span>
+                        <!--<span class="hidden-sm"-->
+                              <!--data-translate="global.navbar-functions.world-events">World events</span>-->
                     </a>
                 </li>
                 <!--World events-->
 
                 <!--Challenge list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
-                    <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()">
+                    <a ui-sref="lista-retos" ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.challenges' | translate}}">
                         <span class="glyphicon glyphicon-star"></span>
-                        <span class="hidden-sm" data-translate="global.navbar-functions.challenges">Challenges</span>
+                        <!--<span class="hidden-sm" data-translate="global.navbar-functions.challenges">Challenges</span>-->
                     </a>
                 </li>
                 <!--Challenge list-->
+
+                <!--Event invitations-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a id="pendingInvitations"
+                       ui-sref="invitaciones-pendientes"
+                       ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.tooltips.pending-invitations' | translate}}">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                </li>
+                <!--Event invitations-->
+
+                <!--Friend requests-->
+                <li ui-sref-active="activeState" ng-switch-when="true">
+                    <a id="friendRequests"
+                       ui-sref="amistades"
+                       ng-click="vm.collapseNavbar()"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{'global.navbar-functions.tooltips.friend-requests' | translate}}">
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+                <!--Friend requests-->
 
                 <!--Account management-->
                 <li ng-class="{activeState: vm.$state.includes('account')}"
@@ -118,15 +132,28 @@
                        uib-dropdown-toggle href=""
                        id="account-menu"
                        ng-switch-when="true">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
+                        <span ng-if="vm.currentUserExt.imagen">
+                            <!--<span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm" data-translate="global.menu.account.main">
                                 Account
-                            </span>
-                            <b class="caret"></b>
+                            </span>-->
+                            <img data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
+                                style="max-height: 15px;" alt="user image"/>
+
                         </span>
+                        <span ng-if="!vm.currentUserExt.imagen">{{vm.currentAccount.login}}</span>
+                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li class="dropdown-header" ng-switch-when="true">
+                                <span data-translate="global.navbar-functions.loggedAs">Iniciada sesion como</span>
+                                <span>
+                                    <strong>
+                                        {{vm.currentAccount.login}}
+                                    </strong>
+                                </span>
+                        </li>
+                        <li class="divider"></li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
@@ -161,7 +188,7 @@
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" ng-if="languageVm.languages.length > 1">
                         <span>
                             <span class="glyphicon glyphicon-flag"></span>
-                            <span class="hidden-sm" data-translate="global.menu.language">Language</span>
+                            <!--<span class="hidden-sm" data-translate="global.menu.language">Language</span>-->
                             <b class="caret"></b>
                         </span>
                     </a>

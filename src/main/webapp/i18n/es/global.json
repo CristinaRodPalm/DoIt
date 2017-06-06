@@ -21,7 +21,8 @@
             "tooltips":{
                 "friend-requests":"Solicitudes de amistad",
                 "pending-invitations":"Invitaciones pendientes"
-            }
+            },
+            "loggedAs" : "Has iniciado sesión como "
         },
         "menu": {
             "home": "Inicio",

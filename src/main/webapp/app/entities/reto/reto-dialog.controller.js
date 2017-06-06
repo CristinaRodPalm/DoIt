@@ -25,7 +25,7 @@
         });
 
         function clear () {
-            $state.go('lista-retos', null, {reload: 'lista-retos'});
+            $state.go('home');
         }
 
         function save () {
@@ -40,7 +40,7 @@
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:retoUpdate', result);
             vm.isSaving = false;
-            $state.go('lista-retos', null, {reload: 'lista-retos'});
+            $state.go('home');
         }
 
         function onSaveError () {

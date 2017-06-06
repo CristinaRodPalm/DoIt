@@ -8,47 +8,32 @@
                 </div>
 
                 <!--LOGEADO-->
-                <div ng-switch-when="true" class="col-lg-2">
-                    <div class="btn-group-vertical">
-                        <a class="btn btn-default" ui-sref="reto.new">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>
-                        </a>
-                        <a class="btn btn-default" ui-sref="evento.new">
-                            <i class="fa fa-calendar-plus-o"></i>
-                            <span data-translate="global.navbar-functions.create-event">Create event</span>
-                        </a>
+                <div class="col-lg-2" ng-switch-when="true">
+                    <div class="row" ng-if="vm.currentUserExt.imagen">
+                        <img
+                            data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
+                            style="max-height: 175px;" alt="user login image" class="img-rounded"/>
                     </div>
                     <p></p>
+                    <div class="row">
+                        <div class="list-group">
+                            <div class="list-group-item">{{vm.currentAccount.login}}</div>
+                            <div class="list-group-item">{{vm.currentAccount.firstName}} {{vm.currentAccount.lastName}}</div>
+                            <div class="list-group-item">
+                                <a ui-sref="evento.new">
+                                    <span data-translate="global.navbar-functions.create-event">Create event</span>
+                                </a>
+                            </div>
+                            <div class="list-group-item" ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                                <a ui-sref="reto.new">
+                                    <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-10" ng-switch-when="true">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <td rowspan="5">
-                                <img data-ng-src="{{'data:' + vm.user.imagenContentType + ';base64,' + vm.user.imagen}}"
-                                     style="max-height: 300px;" alt="friend image" class="img-rounded"/>
-                            </td>
-
-                            <td>
-                                <h1><span data-translate="home.logged.message"></span>{{vm.account.login}}</h1>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> {{vm.account.firstName}} {{vm.account.lastName}}</td>
-                        </tr>
-                        <tr>
-                            <td> {{vm.account.email}}</td>
-                        </tr>
-                        <tr>
-                            <td> {{vm.user.telefono}}</td>
-                        </tr>
-                        <tr>
-                            <td> {{vm.user.nacimiento | date:'dd/MM/yyyy'}}</td>
-                        </tr>
-                        </thead>
-                    </table>
-
+                <div ng-switch-when="true" class="col-lg-6 text-center">
+                    HOLA
                 </div>
                 <!--LOGEADO-->
 

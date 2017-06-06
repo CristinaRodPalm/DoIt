@@ -46,9 +46,7 @@
         });
 
         function clear () {
-
-            //$uibModalInstance.close();
-            $state.go('eventos', null, {reload: 'evento'});
+            $state.go('home');
         }
 
         function save () {
@@ -62,9 +60,8 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('doitApp:eventoUpdate', result);
-            $state.go('eventos', null, {reload: 'evento'});
-            //$uibModalInstance.close(result);
             vm.isSaving = false;
+            $state.go('home');
         }
 
         function onSaveError () {
