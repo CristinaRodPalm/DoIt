@@ -39,9 +39,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/about/about.html',
-                    controller: 'HomeController',
-                    controllerAs: 'vm'
+                    templateUrl: 'app/about/about.html'
                 }
             },
             resolve: {

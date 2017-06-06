@@ -8,32 +8,56 @@
                 </div>
 
                 <!--LOGEADO-->
-                <div class="col-lg-2" ng-switch-when="true">
-                    <div class="row" ng-if="vm.currentUserExt.imagen">
-                        <img
-                            data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
-                            style="max-height: 175px;" alt="user login image" class="img-rounded"/>
-                    </div>
-                    <p></p>
-                    <div class="row">
-                        <div class="list-group">
-                            <div class="list-group-item">{{vm.currentAccount.login}}</div>
-                            <div class="list-group-item">{{vm.currentAccount.firstName}} {{vm.currentAccount.lastName}}</div>
-                            <div class="list-group-item">
-                                <a ui-sref="evento.new">
-                                    <span data-translate="global.navbar-functions.create-event">Create event</span>
-                                </a>
-                            </div>
-                            <div class="list-group-item" ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
-                                <a ui-sref="reto.new">
-                                    <span data-translate="global.navbar-functions.create-challenge">Create challenge</span>
-                                </a>
+                <div class="row">
+                    <!--USER-->
+                    <div class="col-md-2" ng-switch-when="true">
+                        <div class="row" ng-if="vm.currentUserExt.imagen">
+                            <img
+                                data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
+                                style="max-height: 175px;" alt="user login image" class="img-rounded"/>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                            <div class="list-group">
+                                <div class="list-group-item">{{vm.currentAccount.login}}</div>
+                                <div class="list-group-item">{{vm.currentAccount.firstName}}
+                                    {{vm.currentAccount.lastName}}
+                                </div>
+                                <div class="list-group-item">
+                                    <a ui-sref="evento.new">
+                                        <span data-translate="global.navbar-functions.create-event">Create event</span>
+                                    </a>
+                                </div>
+                                <div class="list-group-item"
+                                     ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                                    <a ui-sref="reto.new">
+                                    <span
+                                        data-translate="global.navbar-functions.create-challenge">Create challenge</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div ng-switch-when="true" class="col-lg-6 text-center">
-                    HOLA
+                    <!--USER-->
+                    <!--EVENTOS-->
+                    <div ng-switch-when="true" class="col-md-8 text-center">
+                        <h3>Eventos</h3>
+                        <a ui-sref="eventos-mundo">
+                            <span class="glyphicon glyphicon-globe"></span>
+                            <span data-translate="global.navbar-functions.world-events">World events</span>
+                        </a>
+                    </div>
+                    <!--EVENTOS-->
+                    <!--RETOS-->
+                    <div ng-switch-when="true" class="col-md-2">
+                        <h3>Retos</h3>
+                        <div class="list-group">
+                            <div class="list-group-item" ng-repeat="reto in vm.retos track by reto.id">
+                                <a ui-sref="reto-detail({id: reto.id})">{{reto.nombre}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--RETOS-->
                 </div>
                 <!--LOGEADO-->
 

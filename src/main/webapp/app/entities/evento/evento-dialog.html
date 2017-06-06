@@ -5,18 +5,12 @@
             a Evento</h4>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.evento.id">
-            <label for="id" data-translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   ng-model="vm.evento.id" readonly/>
-        </div>
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.nombre" for="field_nombre">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="field_nombre"
-                   ng-model="vm.evento.nombre"
-            />
+                   ng-model="vm.evento.nombre"/>
         </div>
+
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.descripcion"
                    for="field_descripcion">Descripcion</label>
@@ -24,18 +18,6 @@
                    ng-model="vm.evento.descripcion"
             />
         </div>
-       <!-- <div class="form-group">
-            <label class="control-label" data-translate="doitApp.evento.hora" for="field_hora">Hora</label>
-            <div class="input-group">
-                <input id="field_hora" type="text" class="form-control" name="hora" datetime-picker="{{dateformat}}"
-                       ng-model="vm.evento.hora" is-open="vm.datePickerOpenStatus.hora"
-                />
-                <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('hora')"><i
-                            class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-            </div>
-        </div>-->
 
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.direccion"
@@ -46,17 +28,6 @@
         </div>
 
         <ng-map></ng-map>
-
-       <!-- <div class="form-group">
-            <label class="control-label" data-translate="doitApp.evento.latitud" for="field_latitud">Latitud</label>
-            <input type="number" class="form-control" name="latitud" id="field_latitud"
-                   ng-model="vm.evento.latitud"/>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="doitApp.evento.longitud" for="field_longitud">Longitud</label>
-            <input type="number" class="form-control" name="longitud" id="field_longitud"
-                   ng-model="vm.evento.longitud"/>
-        </div>-->
 
         <div class="form-group">
             <label class="control-label" data-translate="doitApp.evento.fechaEvento" for="field_fechaEvento">Fecha
@@ -79,13 +50,6 @@
                 <option value=""></option>
             </select>
         </div>
-        <!--<div class="form-group">
-            <label data-translate="doitApp.evento.admin" for="field_admin">Admin</label>
-            <select class="form-control" id="field_admin" name="admin" ng-model="vm.evento.admin"
-                    ng-options="user as user.login for user in vm.users track by user.id">
-                <option value=""></option>
-            </select>
-        </div>-->
         <p></p>
         <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.evento)" ngf-pattern="'image/*'">
             <div>
