@@ -1,6 +1,7 @@
 package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.ParticipacionReto;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.ParticipacionRetoRepository;
@@ -114,6 +115,14 @@ public class ParticipacionRetoResource {
         log.debug("REST request to get ParticipacionReto : {}", id);
         ParticipacionReto participacionReto = participacionRetoRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(participacionReto));
+    }
+
+    // GET DE LAS PARTICIPACIONES RETO DE TUS AMIGOS MENOS LAS TUYAS
+    @GetMapping("/participacionesFriends")
+    @Timed
+    public List<ParticipacionReto> getParticipacionesFriends(){
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return participacionRetoRepository.getParticipacionesFriends(user.getId());
     }
 
     /**
