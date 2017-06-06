@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,6 +16,11 @@ import java.util.stream.Collectors;
  * A DTO representing a user, with his authorities.
  */
 public class UserDTO {
+
+    private String phone;
+    private LocalDate nacimiento;
+    private byte[] imagen;
+    private String imagenContentType;
 
     private Long id;
 
@@ -54,6 +60,29 @@ public class UserDTO {
         // Empty constructor needed for MapStruct.
     }
 
+
+    public UserDTO(String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType, Long id, String login,
+                   String firstName, String lastName, String email, String imageUrl, boolean activated, String langKey,
+                   String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate, Set<String> authorities) {
+        this.phone = phone;
+        this.nacimiento = nacimiento;
+        this.imagen = imagen;
+        this.imagenContentType = imagenContentType;
+        this.id = id;
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.activated = activated;
+        this.langKey = langKey;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedDate = lastModifiedDate;
+        this.authorities = authorities;
+    }
+
     public UserDTO(User user) {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
@@ -79,6 +108,78 @@ public class UserDTO {
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
+        this.authorities = authorities;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getNacimiento() {
+        return nacimiento;
+    }
+
+    public void setNacimiento(LocalDate nacimiento) {
+        this.nacimiento = nacimiento;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getImagenContentType() {
+        return imagenContentType;
+    }
+
+    public void setImagenContentType(String imagenContentType) {
+        this.imagenContentType = imagenContentType;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
     }
 

@@ -8,7 +8,11 @@
             "lastname.placeholder": "Your last name",
             "language": "Language",
             "image":"Image",
-            "button": "Save"
+            "button": "Save",
+            "phone": "Phone",
+            "phone.placeholder": "Your phone",
+            "nacimiento.placeholder": "Your birthdate",
+            "nacimiento": "Birthdate"
         },
         "messages": {
             "error": {

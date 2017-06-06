@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', 'UserExt', 'DataUtils', '$scope'];
+    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', 'UserExt', 'DataUtils', '$scope', '$state'];
 
-    function SettingsController (Principal, Auth, JhiLanguageService, $translate, UserExt, DataUtils, $scope) {
+    function SettingsController (Principal, Auth, JhiLanguageService, $translate, UserExt, DataUtils, $scope, $state) {
         var vm = this;
 
         vm.error = null;
@@ -15,6 +15,8 @@
         vm.settingsAccount = null;
         vm.success = null;
         vm.currentUserExt = [];
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
 
         /**
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
@@ -29,6 +31,7 @@
                 login: account.login,
                 imagen: account.imagen
             };
+
         };
 
         Principal.identity().then(function(account) {
@@ -37,17 +40,30 @@
             UserExt.getUserExt(function(result){
                 vm.currentUserExt = result;
                 console.log(result);
+                vm.settingsAccount.imagen = vm.currentUserExt.imagen;
+                vm.settingsAccount.phone = vm.currentUserExt.telefono;
+                vm.settingsAccount.nacimiento = vm.currentUserExt.nacimiento;
+                vm.settingsAccount.imagenContentType  = vm.currentUserExt.imagenContentType;
             });
         });
 
         function save () {
+            console.log(vm.settingsAccount);
             Auth.updateAccount(vm.settingsAccount).then(function() {
-                console.log(vm.settingsAccount.imagen)
                 vm.error = null;
                 vm.success = 'OK';
                 Principal.identity(true).then(function(account) {
                     vm.settingsAccount = copyAccount(account);
+                    UserExt.getUserExt(function(result){
+                        vm.currentUserExt = result;
+                        console.log(result);
+                        vm.settingsAccount.imagen = vm.currentUserExt.imagen;
+                        vm.settingsAccount.phone = vm.currentUserExt.telefono;
+                        vm.settingsAccount.nacimiento = vm.currentUserExt.nacimiento;
+                        vm.settingsAccount.imagenContentType  = vm.currentUserExt.imagenContentType;
+                    });
                 });
+                $state.go('settings', null, {reload: 'settings'});
                 JhiLanguageService.getCurrent().then(function(current) {
                     if (vm.settingsAccount.langKey !== current) {
                         $translate.use(vm.settingsAccount.langKey);
@@ -72,6 +88,13 @@
                 });
             }
         };
+
+        vm.datePickerOpenStatus.nacimiento = false;
+
+        function openCalendar (date) {
+            console.log("open");
+            vm.datePickerOpenStatus[date] = true;
+        }
 
     }
 })();

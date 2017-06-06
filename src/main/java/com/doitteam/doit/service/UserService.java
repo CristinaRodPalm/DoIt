@@ -170,6 +170,7 @@ public class UserService {
      * @param email email id of user
      * @param langKey language key
      */
+    /*
     public void updateUser(String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
@@ -177,6 +178,20 @@ public class UserService {
             user.setEmail(email);
             user.setLangKey(langKey);
             log.debug("Changed Information for User: {}", user);
+        });
+    }*/
+    public void updateUser (String firstName, String lastName, String email, String langKey, String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType) {
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setLangKey(langKey);
+            log.debug("Changed Information for User: {}", user);
+            UserExt userExt = userExtRepository.findByUserID(user.getId());
+            userExt.setImagenContentType(imagenContentType);
+            userExt.setImagen(imagen);
+            userExt.setNacimiento(nacimiento);
+            userExt.setTelefono(phone);
         });
     }
 

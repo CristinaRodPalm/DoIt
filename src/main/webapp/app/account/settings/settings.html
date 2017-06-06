@@ -77,42 +77,44 @@
                     <select id="langKey" name="langKey" class="form-control" ng-model="vm.settingsAccount.langKey" ng-controller="JhiLanguageController as languageVm" ng-options="code as (code | findLanguageFromKey) for code in languageVm.languages"></select>
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label" for="phone" data-translate="settings.form.phone"></label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="{{'settings.form.phone.placeholder' | translate}}"
+                           ng-model="vm.settingsAccount.phone" ng-minlength=9 ng-maxlength=9 ng-pattern="/^[0-9]/" >
+                </div>
 
-                <!-- ESTA ES MI IMAGEN DE SIEMPRE!! -->
-
+                <div class="form-group">
+                    <label class="control-label" data-translate="settings.form.nacimiento" for="field_nacimiento"></label>
+                    <div class="input-group">
+                        <input id="field_nacimiento" type="text" class="form-control" name="nacimiento"
+                               uib-datepicker-popup="{{dateformat}}"
+                               ng-model="vm.settingsAccount.nacimiento"
+                               ng-value="vm.settingsAccount.nacimiento"
+                               is-open="vm.datePickerOpenStatus.nacimiento" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('nacimiento')">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
 
                 <center>
                     <a ngf-select ngf-change="vm.setImagen($file, vm.settingsAccount)" accept="image/*">
-                        <img data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
-                                          style="max-height: 300px;" alt="my image" class="img-rounded"/>
-                    </a>
-                </center>
-
-                    <p></p>
-
-
-                <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.settingsAccount)" ngf-pattern="'image/*'">
-                    <div>
                         <img data-ng-src="{{'data:' + vm.settingsAccount.imagenContentType + ';base64,' + vm.settingsAccount.imagen}}"
-                             style="max-height: 100px;" ng-if="vm.settingsAccount.imagen" alt="settingsAccount image"/>
+                                          style="max-height: 300px;" alt="my image" class="img-rounded"/>
                         <div ng-if="vm.settingsAccount.imagen" class="help-block clearfix">
                             <button type="button" ng-click="vm.settingsAccount.imagen=null;vm.settingsAccount.imagenContentType=null;"
                                     class="btn btn-default btn-xs pull-right">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
-                        <button type="button" ngf-select class="btn btn-default btn-block"
-                                ngf-change="vm.setImagen($file, vm.settingsAccount)" accept="image/*" data-translate="entity.action.addimage">
-                            Add image
-                        </button>
-                    </div>
-                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
-                           ng-model="vm.settingsAccount.imagen"/>
-                </div>
+                    </a>
+                </center>
 
                 <p></p>
 
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="settings.form.button">Save</button>
+                <button type="submit" class="btn btn-primary" data-translate="settings.form.button">Save</button>
             </form>
         </div>
     </div>
