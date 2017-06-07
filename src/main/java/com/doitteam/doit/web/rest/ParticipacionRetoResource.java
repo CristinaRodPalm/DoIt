@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.ParticipacionReto;
 import com.doitteam.doit.domain.User;
+import com.doitteam.doit.repository.LikesRetoRepository;
 import com.doitteam.doit.repository.ParticipacionRetoRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
@@ -11,9 +12,13 @@ import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
@@ -54,19 +59,22 @@ public class ParticipacionRetoResource {
         if (participacionReto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new participacionReto cannot already have an ID")).body(null);
         }
-
         ZonedDateTime horaSistema = ZonedDateTime.now();
         participacionReto.setHoraPublicacion(horaSistema);
 
         User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         participacionReto.setUsuario(usuario);
 
+        Integer existing = participacionRetoRepository.getExistingParticipacion(participacionReto.getUsuario().getId(), participacionReto.getReto().getId());
+        if(existing > 1){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "Ya has participado", "A new participacionReto cannot already have an ID")).body(null);
+        }
+
         ParticipacionReto result = participacionRetoRepository.save(participacionReto);
         return ResponseEntity.created(new URI("/api/participacion-retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
-
 
     /**
      * PUT  /participacion-retos : Updates an existing participacionReto.
@@ -140,7 +148,6 @@ public class ParticipacionRetoResource {
         return participacionRetoRepository.getLikesParticipacion(idParticipacion);
     }
 
-
     /**
      * DELETE  /participacion-retos/:id : delete the "id" participacionReto.
      *
@@ -149,8 +156,10 @@ public class ParticipacionRetoResource {
      */
     @DeleteMapping("/participacion-retos/{id}")
     @Timed
+    @Transactional
     public ResponseEntity<Void> deleteParticipacionReto(@PathVariable Long id) {
         log.debug("REST request to delete ParticipacionReto : {}", id);
+        participacionRetoRepository.deleteLikesParticipacion(id);
         participacionRetoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }

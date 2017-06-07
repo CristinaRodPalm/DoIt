@@ -7,25 +7,26 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.reto)" ngf-pattern="'image/*'">
-            <label class="control-label" data-translate="doitApp.reto.imagen" for="field_imagen">Imagen</label>
+        <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.participacionReto)" ngf-pattern="'image/*'">
+            <label class="control-label" for="field_imagen">Imagen</label>
             <div>
-                <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}" style="max-height: 100px;" ng-if="vm.reto.imagen" alt="reto image"/>
-                <div ng-if="vm.reto.imagen" class="help-block clearfix">
-                    <button type="button" ng-click="vm.reto.imagen=null;vm.reto.imagenContentType=null;"
+                <img data-ng-src="{{'data:' + vm.participacionReto.imagenContentType + ';base64,' + vm.participacionReto.imagen}}" style="max-height: 100px;" ng-if="vm.participacionReto.imagen" alt="participacionReto image"/>
+                <div ng-if="vm.participacionReto.imagen" class="help-block clearfix">
+                    <button type="button" ng-click="vm.participacionReto.imagen=null;vm.participacionReto.imagenContentType=null;"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
                 <button type="button" ngf-select class="btn btn-default btn-block"
-                        ngf-change="vm.setImagen($file, vm.reto)" accept="image/*" data-translate="entity.action.addimage">
-                    Add image
+                        ngf-change="vm.setImagen($file, vm.participacionReto)" accept="image/*">
+                    <span data-translate="entity.action.participate"></span>
                 </button>
             </div>
             <input type="hidden" class="form-control" name="imagen" id="field_imagen"
-                   ng-model="vm.reto.imagen"/>
+                   ng-model="vm.participacionReto.imagen"
+            />
             <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
-                   ng-model="vm.reto.imagenContentType" />
+                   ng-model="vm.participacionReto.imagenContentType" />
         </div>
 
     </div>

@@ -1,6 +1,7 @@
 {
     "error": {
         "title": "¡Error!",
-        "403": "No tienes permiso para acceder a la página."
+        "403": "No tienes permiso para acceder a la página.",
+        "participationexists": "Ya has participado en el reto"
     }
 }

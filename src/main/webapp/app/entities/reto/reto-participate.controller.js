@@ -5,23 +5,25 @@
         .module('doitApp')
         .controller('RetoParticipateController', RetoParticipateController);
 
-    RetoParticipateController.$inject = ['$uibModalInstance', '$timeout', '$scope', '$state', '$stateParams', 'DataUtils', 'entity', 'Reto', 'ParticipacionReto', 'Evento'];
+    RetoParticipateController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'ParticipacionReto', 'User', 'Reto', 'LikesReto'];
 
-    function RetoParticipateController ($uibModalInstance, $timeout, $scope, $state, $stateParams, DataUtils, entity, Reto, ParticipacionReto, Evento) {
+    function RetoParticipateController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, ParticipacionReto, User, Reto, LikesReto) {
         var vm = this;
 
-        vm.reto = entity;
+        vm.participacionReto= {};
         vm.clear = clear;
-        vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.participacionretos = ParticipacionReto.query();
-        vm.eventos = Evento.query();
+        vm.users = User.query();
+        vm.retos = Reto.query();
+        vm.likesretos = LikesReto.query();
+        vm.reto = entity;
+
+        vm.participacionReto.reto = vm.reto;
 
         $timeout(function (){
-            angular.element('.form-group:eq(0)>input').focus();
+            angular.element('.form-group:eq(1)>input').focus();
         });
 
         function clear () {
@@ -30,17 +32,17 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.reto.id !== null) {
-                Reto.update(vm.reto, onSaveSuccess, onSaveError);
+            if (vm.participacionReto.id !== null) {
+                ParticipacionReto.create(vm.participacionReto, onSaveSuccess, onSaveError);
             } else {
-                Reto.save(vm.reto, onSaveSuccess, onSaveError);
+                ParticipacionReto.save(vm.participacionReto, onSaveSuccess, onSaveError);
             }
+
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('doitApp:retoUpdate', result);
-            $state.go('lista-retos', null, {reload: 'lista-retos'});
-            $uibModalInstance.dismiss('cancel');
+            $scope.$emit('doitApp:participacionRetoUpdate', result);
+            $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
@@ -48,24 +50,18 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.horaPublicacion = false;
-
-        vm.setImagen = function ($file, reto) {
+        vm.setImagen = function ($file, participacionReto) {
             if ($file && $file.$error === 'pattern') {
                 return;
             }
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        reto.imagen = base64Data;
-                        reto.imagenContentType = $file.type;
+                        participacionReto.imagen = base64Data;
+                        participacionReto.imagenContentType = $file.type;
                     });
                 });
             }
         };
-
-        function openCalendar (date) {
-            vm.datePickerOpenStatus[date] = true;
-        }
     }
 })();

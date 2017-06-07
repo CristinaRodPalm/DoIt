@@ -2,11 +2,13 @@ package com.doitteam.doit.repository;
 
 import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.ParticipacionReto;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Spring Data JPA repository for the ParticipacionReto entity.
@@ -29,4 +31,12 @@ public interface ParticipacionRetoRepository extends JpaRepository<Participacion
 
     @Query("select count(likesReto) from LikesReto likesReto where likesReto.participacionReto.id=:participacionId")
     Integer getLikesParticipacion(@Param("participacionId") Long participacionId);
+
+    @Modifying
+    @Query("DELETE from LikesReto likesReto where likesReto.participacionReto.id=:idParticipacion")
+    void deleteLikesParticipacion(@Param("idParticipacion") Long idParticipacion);
+
+    @Query("select count(participacionReto) from ParticipacionReto participacionReto " +
+        "where participacionReto.usuario.id=:idUser and participacionReto.reto.id=:idReto")
+    Integer getExistingParticipacion(@Param("idUser") Long idUser, @Param("idReto") Long idReto);
 }

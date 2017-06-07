@@ -134,7 +134,8 @@
             "open": "Open",
             "save": "Save",
             "view": "View",
-            "invite": "Invite"
+            "invite": "Invite",
+            "participate": "Participate"
         },
         "detail": {
             "field": "Field",

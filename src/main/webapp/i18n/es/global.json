@@ -134,7 +134,8 @@
             "open": "Abrir",
             "save": "Guardar",
             "view": "Ver",
-            "invite": "Invitar"
+            "invite": "Invitar",
+            "participate": "Participar en el reto"
         },
         "detail": {
             "field": "Campo",

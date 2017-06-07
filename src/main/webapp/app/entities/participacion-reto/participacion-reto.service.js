@@ -21,7 +21,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'create': { method:'POST' , url:'api/participacion-retos'}
         });
     }
 })();

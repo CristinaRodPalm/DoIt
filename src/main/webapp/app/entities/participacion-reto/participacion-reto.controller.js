@@ -20,6 +20,7 @@
         function loadAll() {
             ParticipacionReto.query(function(result) {
                 vm.participacionRetos = result;
+                console.log(result);
                 vm.searchQuery = null;
             });
         }
