@@ -1,14 +1,12 @@
 package com.doitteam.doit.repository;
 
-import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.ParticipacionReto;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Spring Data JPA repository for the ParticipacionReto entity.
