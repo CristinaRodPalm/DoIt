@@ -22,6 +22,11 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -124,10 +129,10 @@ public class UserService {
         newUserExtra.setUser(newUser);
         newUserExtra.setTelefono(phone);
         newUserExtra.setNacimiento(nacimiento);
+
         newUserExtra.setImagen(imagen);
         newUserExtra.setImagenContentType(imagenContentType);
         userExtRepository.save(newUserExtra);
-        log.debug("Created Information for Extra User: {}", newUserExtra);
 
         return newUser;
     }

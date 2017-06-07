@@ -5,7 +5,6 @@
         .module('doitApp')
         .controller('RegisterController', RegisterController);
 
-
     RegisterController.$inject = ['$scope', '$translate', '$timeout', 'Auth', 'LoginService', 'DataUtils'];
 
     function RegisterController ($scope, $translate, $timeout, Auth, LoginService, DataUtils) {

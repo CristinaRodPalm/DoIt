@@ -100,16 +100,22 @@
                 </div>
 
                 <center>
-                    <a ngf-select ngf-change="vm.setImagen($file, vm.settingsAccount)" accept="image/*">
-                        <img data-ng-src="{{'data:' + vm.settingsAccount.imagenContentType + ';base64,' + vm.settingsAccount.imagen}}"
-                                          style="max-height: 300px;" alt="my image" class="img-rounded"/>
-                        <div ng-if="vm.settingsAccount.imagen" class="help-block clearfix">
-                            <button type="button" ng-click="vm.settingsAccount.imagen=null;vm.settingsAccount.imagenContentType=null;"
-                                    class="btn btn-default btn-xs pull-right">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </div>
-                    </a>
+                    <div ng-if="vm.settingsAccount.image">
+                        <a ngf-select ngf-change="vm.setImagen($file, vm.settingsAccount)" accept="image/*">
+                            <img data-ng-src="{{'data:' + vm.settingsAccount.imagenContentType + ';base64,' + vm.settingsAccount.imagen}}"
+                                              style="max-height: 300px;" alt="my image" class="img-rounded"/>
+                            <div ng-if="vm.settingsAccount.imagen" class="help-block clearfix">
+                                <button type="button" ng-click="vm.settingsAccount.imagen=null;vm.settingsAccount.imagenContentType=null;"
+                                        class="btn btn-default btn-xs pull-right">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row" ng-if="!vm.settingsAccount.imagen">
+                        <img src="content/images/user.png"
+                             style="max-height: 125px;" alt="user login image" class="img-rounded"/>
+                    </div>
                 </center>
 
                 <p></p>

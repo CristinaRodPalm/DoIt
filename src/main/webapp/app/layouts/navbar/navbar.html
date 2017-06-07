@@ -129,7 +129,9 @@
                                 style="max-height: 15px;" alt="user image"/>
 
                         </span>
-                        <span ng-if="!vm.currentUserExt.imagen">{{vm.currentAccount.login}}</span>
+                        <span ng-if="!vm.currentUserExt.imagen">
+                            <img src="/content/images/user.png" style="max-height: 15px;" alt="user image"/>
+                        </span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
@@ -168,7 +170,6 @@
                         </li>
                     </ul>
                 </li>
-                <!--Account management-->
 
                 <!--Language-->
                 <li ui-sref-active="activeState" uib-dropdown class="dropdown pointer"

@@ -16,6 +16,10 @@
                                 data-ng-src="{{'data:' + vm.currentUserExt.imagenContentType + ';base64,' + vm.currentUserExt.imagen}}"
                                 style="max-height: 125px;" alt="user login image" class="img-rounded"/>
                         </div>
+                        <div class="row" ng-if="!vm.currentUserExt.imagen">
+                            <img src="content/images/user.png"
+                                style="max-height: 125px;" alt="user login image" class="img-rounded"/>
+                        </div>
                         <p></p>
                         <div class="row">
                             <div class="list-group">
