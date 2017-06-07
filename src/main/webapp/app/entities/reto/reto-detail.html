@@ -1,42 +1,46 @@
 <div>
-    <h2><span>{{vm.reto.nombre}}</span></h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2><span>{{vm.reto.nombre}}</span></h2>
+        </div>
+        <div class="col-lg-6 btn-group text-right">
+            <button type="button"
+                    ui-sref="reto-detail.participate({id: vm.reto.id})"
+                    class="btn btn-success">
+                <i class="fa fa-user-plus"></i>
+                <span data-translate="doitApp.reto.participar"></span>
+            </button>
+            <button type="button"
+                    ui-sref="reto-detail.edit({id:vm.reto.id})"
+                    class="btn btn-primary"
+                    ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+            </button>
+            <button type="button" ui-sref="reto.delete({id:vm.reto.id})" class="btn btn-danger"
+                    ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
+                <span class="glyphicon glyphicon-ban-circle"></span>
+                <span class="hidden-sm-down" data-translate="entity.action.delete"> Delete</span>
+            </button>
+        </div>
+    </div>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dd>
-            <div ng-if="vm.reto.imagen">
-                <!--<a ng-click="vm.openFile(vm.reto.imagenContentType, vm.reto.imagen)">-->
-                    <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}" style="max-width: 100%;" alt="reto image"/>
-                <!--</a>-->
-            </div>
-        </dd>
-        <dt><span data-translate="doitApp.reto.descripcion">Descripcion</span></dt>
-        <dd>
-            <span>{{vm.reto.descripcion}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.reto.horaPublicacion">Hora Publicacion</span></dt>
-        <dd>
-            <span>{{vm.reto.horaPublicacion | date:'medium'}}</span>
-        </dd>
+        <div class="col-lg-6">
+                <div ng-if="vm.reto.imagen">
+                    <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}"
+                         style="max-width: 30%;" alt="reto image"/>
+                </div>
+        </div>
+        <div class="col-lg-6">
+            <dt><span data-translate="doitApp.reto.descripcion">Descripcion</span></dt>
+            <dd>
+                <span>{{vm.reto.descripcion}}</span>
+            </dd>
+            <dt><span data-translate="doitApp.reto.horaPublicacion">Hora Publicacion</span></dt>
+            <dd>
+                <span>{{vm.reto.horaPublicacion | date:'medium'}}</span>
+            </dd>
+        </div>
     </dl>
-
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            ui-sref="reto-detail.edit({id:vm.reto.id})"
-            class="btn btn-primary"
-            ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-    </button>
-
-    <button type="button" ui-sref="reto.delete({id:vm.reto.id})" class="btn btn-danger"
-            ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
-        <span class="glyphicon glyphicon-ban-circle"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.delete"> Delete</span>
-    </button>
 </div>

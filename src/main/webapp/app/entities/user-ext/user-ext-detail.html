@@ -29,45 +29,5 @@
             <span>{{vm.userExt.telefono}}</span>
         </dd>
         </dd>
-        <p></p>
-        <!-- SE OCULTA O SE MUESTRA SI ESTE USUARIO ES TU AMIGO -->
-        <dd class="col-lg-4 btn-group">
-            <!--No es tu amigo-->
-            <button type="submit"
-                    ng-click="vm.sendFriendRequest(vm.userExt.user.id)"
-                    class="btn btn-primary"
-                    ng-if="vm.amistad == undefined">
-                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                <span translate="doitApp.userExt.add"></span>
-            </button>
-            <!--Le has enviado peticion-->
-            <button type="submit"
-                    class="btn btn-default"
-                    disabled="true"
-                    ng-if="vm.amistad.emisor.id == vm.currentAccount.id && vm.amistad.horaRespuesta == null">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <span translate="doitApp.userExt.sended"></span>
-            </button>
-            <!--Te ha enviado peticion-->
-            <button type="submit"
-                    class="btn btn-warning"
-                    disabled="true"
-                    ng-if="vm.amistad.receptor.id == vm.currentAccount.id && vm.amistad.horaRespuesta == null">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <span translate="doitApp.userExt.pending"></span>
-            </button>
-            <!--Es tu amigo-->
-            <button type="submit" ng-disabled="true"
-                    class="btn btn-success"
-                    ng-if="vm.amistad.aceptada == true && vm.amistad.horaRespuesta != null">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <span translate="doitApp.userExt.friend"></span>
-            </button>
-        </dd>
     </dl>
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
 </div>

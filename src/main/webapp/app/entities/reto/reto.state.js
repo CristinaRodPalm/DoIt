@@ -110,6 +110,30 @@
                     });
                 }]
             })
+            .state('reto-detail.participate', {
+                parent: 'reto-detail',
+                url:'/{id}/participate',
+                data:{
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/reto/reto-participate.html',
+                        controller: 'RetoParticipateController',
+                        controllerAs: 'vm',
+                        size: 'md',
+                        resolve: {
+                            entity: ['Reto', function (Reto) {
+                                return Reto.get({id: $stateParams.id}).$promise;
+                            }]
+                        }
+                    }).result.then(function () {
+                        $state.go('^', null, {reload: false});
+                    }, function () {
+                        $state.go('^');
+                    });
+                }]
+            })
             .state('reto.new', {
                 parent: 'reto',
                 url: '/new',
@@ -188,5 +212,4 @@
                 }]
             });
     }
-
 })();

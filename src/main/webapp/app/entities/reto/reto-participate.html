@@ -1,0 +1,44 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRetoLabel" data-translate="doitApp.reto.home.editLabel">Create or edit a Reto</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ngf-drop ngf-change="vm.setImagen($file, vm.reto)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="doitApp.reto.imagen" for="field_imagen">Imagen</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.reto.imagenContentType + ';base64,' + vm.reto.imagen}}" style="max-height: 100px;" ng-if="vm.reto.imagen" alt="reto image"/>
+                <div ng-if="vm.reto.imagen" class="help-block clearfix">
+                    <button type="button" ng-click="vm.reto.imagen=null;vm.reto.imagenContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setImagen($file, vm.reto)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                   ng-model="vm.reto.imagen"/>
+            <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                   ng-model="vm.reto.imagenContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,51 +1,69 @@
 <div>
-    <h2><span>{{vm.evento.nombre}}</span></h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2><span>{{vm.evento.nombre}}</span></h2>
+        </div>
+        <div class="col-lg-6 text-right">
+            <button type="button"
+                    ui-sref="evento-detail.edit({id:vm.evento.id})"
+                    class="btn btn-primary"
+                    ng-if="vm.currentAccount.id==vm.evento.admin.id">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dd>
-            <div ng-if="vm.evento.imagen">
-                <a ng-click="vm.openFile(vm.evento.imagenContentType, vm.evento.imagen)">
-                    <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
-                         style="max-width: 100%;" alt="evento image"/>
-                </a>
+        <div class="row">
+            <div class="col-lg-6 text-left">
+                <dd>
+                    <div ng-if="vm.evento.imagen">
+                        <img data-ng-src="{{'data:' + vm.evento.imagenContentType + ';base64,' + vm.evento.imagen}}"
+                             style="max-width: 100%;" alt="evento image"/>
+                    </div>
+                </dd>
             </div>
-        </dd>
-        <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
-        <dd>
-            {{vm.evento.admin.login}}
-        </dd>
-        <dt><span data-translate="doitApp.evento.descripcion">Descripcion</span></dt>
-        <dd>
-            <span>{{vm.evento.descripcion}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.evento.hora">Hora</span></dt>
-        <dd>
-            <span>{{vm.evento.hora | date:'medium'}}</span>
-        </dd>
-
-        <dt><span data-translate="doitApp.evento.direccion">Lugar del evento</span></dt>
-        <dd>
-            <span>{{vm.evento.direccion}}</span>
-        </dd>
-        <dd>
-            <ngmap>
-                <ng-map id="mapa" class="map-track"
-                        zoom-to-include-markers="20"
-                        disable-default-u-i="true">
-                    <marker position="[{{vm.evento.latitud}},{{vm.evento.longitud}}]">
-                    </marker>
-                </ng-map>
-            </ngmap>
-        </dd>
-        <dt><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></dt>
-        <dd>
-            <span>{{vm.evento.fechaEvento | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="doitApp.evento.reto">Reto</span></dt>
-        <dd>
-            <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
-        </dd>
+            <div class="col-lg-6">
+                <dt><span data-translate="doitApp.evento.admin">Admin</span></dt>
+                <dd>
+                    {{vm.evento.admin.login}}
+                </dd>
+                <dt><span data-translate="doitApp.evento.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{vm.evento.descripcion}}</span>
+                </dd>
+                <dt><span data-translate="doitApp.evento.hora">Hora</span></dt>
+                <dd>
+                    <span>{{vm.evento.hora | date:'medium'}}</span>
+                </dd>
+                <dt><span data-translate="doitApp.evento.fechaEvento">Fecha Evento</span></dt>
+                <dd>
+                    <span>{{vm.evento.fechaEvento | date:'medium'}}</span>
+                </dd>
+                <dt><span data-translate="doitApp.evento.reto">Reto</span></dt>
+                <dd>
+                    <a ui-sref="reto-detail({id:vm.evento.reto.id})">{{vm.evento.reto.nombre}}</a>
+                </dd>
+                <dt><span data-translate="doitApp.evento.direccion">Lugar del evento</span></dt>
+                <dd>
+                    <span>{{vm.evento.direccion}}</span>
+                </dd>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <dd>
+                <ngmap>
+                    <ng-map id="mapa" class="map-track"
+                            zoom-to-include-markers="20"
+                            disable-default-u-i="true">
+                        <marker position="[{{vm.evento.latitud}},{{vm.evento.longitud}}]">
+                        </marker>
+                    </ng-map>
+                </ngmap>
+            </dd>
+        </div>
     </dl>
 
     <!--Mostrar lista de amigos del usuario logeado, para poder invitarlo a un evento -->
@@ -55,22 +73,6 @@
                 ng-options="friend as friend.login for friend in vm.friends">
         </select>
     </div>
-
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
-        <span data-translate="entity.action.back"> Back</span>
-    </button>
-
-    <!--OCULTAR ESTE BOTON SI EL USUARIO LOGEADO NO ES EL ADMINISTRADOR DEL EVENTO-->
-    <button type="button"
-            ui-sref="evento-detail.edit({id:vm.evento.id})"
-            class="btn btn-primary"
-            ng-if="vm.currentAccount.id==vm.evento.admin.id">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-    </button>
 
     <button type="submit"
             ng-click="vm.inviteFriends()"
