@@ -11,6 +11,12 @@
                 <span data-translate="doitApp.reto.participar"></span>
             </button>
             <button type="button"
+                    ui-sref="reto-participations({id: vm.reto.id})"
+                    class="btn btn-info">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span data-translate="doitApp.reto.participacionReto"></span>
+            </button>
+            <button type="button"
                     ui-sref="reto-detail.edit({id:vm.reto.id})"
                     class="btn btn-primary"
                     ng-if="vm.currentAccount.authorities[0] == 'ROLE_ADMIN' || vm.currentAccount.authorities[1] == 'ROLE_ADMIN'">
