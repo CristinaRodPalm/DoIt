@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('ParticipacionRetoController', ParticipacionRetoController);
 
-    ParticipacionRetoController.$inject = ['DataUtils', 'ParticipacionReto'];
+    ParticipacionRetoController.$inject = ['$state', 'DataUtils', 'ParticipacionReto', 'LikesReto'];
 
-    function ParticipacionRetoController(DataUtils, ParticipacionReto) {
+    function ParticipacionRetoController($state, DataUtils, ParticipacionReto, LikesReto) {
 
         var vm = this;
 
@@ -37,6 +37,11 @@
             ParticipacionReto.challengeParticipations(function (result) {
                 vm.challengeParticipations = result;
             })
+        }
+
+        vm.like = function(id){
+            LikesReto.fav({'id':id},{});
+            $state.reload();
         }
     }
 })();

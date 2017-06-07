@@ -12,6 +12,7 @@
                 <tr ng-repeat="participacion in vm.challengeParticipations track by participacion.id">
                     <td>
                         <span>{{participacion.usuario.login}}</span>
+                        <!--<a ng-click="vm.like(participacion.id)"><span class="glyphicon glyphicon-star-empty"></span></a>-->
                     </td>
                     <td class="text-right">
                         <img data-ng-src="{{'data:' + participacion.imagenContentType + ';base64,' + participacion.imagen}}"
