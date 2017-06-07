@@ -125,6 +125,22 @@ public class ParticipacionRetoResource {
         return participacionRetoRepository.getParticipacionesFriends(user.getId());
     }
 
+    // GET TUS PARTICIPACIONES
+    @GetMapping("/misParticipaciones")
+    @Timed
+    public List<ParticipacionReto> getMisParticipaciones(){
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return participacionRetoRepository.getMisParticipaciones(user.getId());
+    }
+
+    // GET LIKES POR PARTICIPACION
+    /*@GetMapping("/likesParticipacion")
+    @Timed
+    public Integer likesParticipacion(@PathVariable Long idParticipacion){
+        return participacionRetoRepository.getLikesParticipacion(idParticipacion);
+    }
+*/
+
     /**
      * DELETE  /participacion-retos/:id : delete the "id" participacionReto.
      *

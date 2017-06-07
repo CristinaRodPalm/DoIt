@@ -24,11 +24,9 @@ public interface ParticipacionRetoRepository extends JpaRepository<Participacion
             "(select amistad.emisor.id from Amistad amistad where amistad.aceptada = true and (amistad.receptor.id=:currentUser or amistad.emisor.id=:currentUser)))")
     List<ParticipacionReto> getParticipacionesFriends(@Param("currentUser") Long currentUser);
 
+    @Query("select participacionReto from ParticipacionReto participacionReto where participacionReto.usuario.id=:currentUser")
+    List<ParticipacionReto> getMisParticipaciones(@Param("currentUser") Long currentUser);
 
-    /*SELECT * FROM participacion_reto where usuario_id!=5
-        and(usuario_id in
-                (select receptor_id from amistad where aceptada = true and (receptor_id = 5 or emisor_id = 5))
-        or participacion_reto.usuario_id in
-                (select receptor_id from amistad where aceptada = true and (receptor_id = 5 or emisor_id = 5)));*/
-
+   /* @Query("select count(likesReto) from LikesReto likesReto where likesReto.participacionReto.id=:participacionId")
+    Integer getLikesParticipacion(@Param("participacionId") Long participacionId);*/
 }
