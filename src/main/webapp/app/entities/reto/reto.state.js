@@ -128,7 +128,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('^', null, {reload: false});
+                        $state.go('lista-retos', null, {reload: false});
                     }, function () {
                         $state.go('^');
                     });
