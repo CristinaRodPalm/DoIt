@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.LikesReto;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.LikesRetoRepository;
+import com.doitteam.doit.repository.ParticipacionRetoRepository;
 import com.doitteam.doit.repository.UserRepository;
 import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
@@ -32,10 +33,12 @@ public class LikesRetoResource {
 
     private final LikesRetoRepository likesRetoRepository;
     private final UserRepository userRepository;
+    private final ParticipacionRetoRepository participacionRetoRepository;
 
-    public LikesRetoResource(LikesRetoRepository likesRetoRepository, UserRepository userRepository) {
+    public LikesRetoResource(LikesRetoRepository likesRetoRepository, UserRepository userRepository, ParticipacionRetoRepository participacionRetoRepository) {
         this.likesRetoRepository = likesRetoRepository;
         this.userRepository = userRepository;
+        this.participacionRetoRepository = participacionRetoRepository;
     }
 
     /**
@@ -49,17 +52,9 @@ public class LikesRetoResource {
     @Timed
     public ResponseEntity<LikesReto> createLikesReto(@RequestBody LikesReto likesReto) throws URISyntaxException {
         log.debug("REST request to save LikesReto : {}", likesReto);
-        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         if (likesReto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new likesReto cannot already have an ID")).body(null);
         }
-        LikesReto comprobar = likesRetoRepository.findLikeReto(usuario.getId(), likesReto.getParticipacionReto().getId());
-        if(comprobar != null){
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "likeexists", "Ya le has dado like a esta participacion")).body(null);
-        }
-        likesReto.setUsuario(usuario);
-        likesReto.setHoraLike(ZonedDateTime.now());
-        likesReto.setPuntuacion(1);
         LikesReto result = likesRetoRepository.save(likesReto);
         return ResponseEntity.created(new URI("/api/likes-retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -127,6 +122,31 @@ public class LikesRetoResource {
         log.debug("REST request to delete LikesReto : {}", id);
         likesRetoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @PostMapping("/{id}/like")
+    @Timed
+    public ResponseEntity<LikesReto> createLike(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to save LikesReto : {}", id);
+        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        LikesReto likesReto = new LikesReto();
+
+        likesReto.setUsuario(usuario);
+        likesReto.setParticipacionReto(participacionRetoRepository.findOne(id));
+        likesReto.setHoraLike(ZonedDateTime.now());
+        likesReto.setPuntuacion(1);
+        LikesReto result = likesRetoRepository.save(likesReto);
+        return ResponseEntity.created(new URI("/api/likes-retos/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+
+        /*if (likesReto.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new likesReto cannot already have an ID")).body(null);
+        }
+        LikesReto comprobar = likesRetoRepository.findLikeReto(usuario.getId(), likesReto.getParticipacionReto().getId());
+        if(comprobar != null){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "likeexists", "Ya le has dado like a esta participacion")).body(null);
+        }*/
     }
 
 }

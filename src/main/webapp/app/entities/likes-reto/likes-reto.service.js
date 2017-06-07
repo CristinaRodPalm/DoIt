@@ -21,7 +21,8 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'fav':{method:'POST', isArray:false, url: 'api/:id/like'}
         });
     }
 })();
