@@ -12,7 +12,6 @@
 
         vm.likesReto = entity;
         vm.clear = clear;
-        vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.users = User.query();
@@ -43,12 +42,6 @@
 
         function onSaveError () {
             vm.isSaving = false;
-        }
-
-        vm.datePickerOpenStatus.horaLike = false;
-
-        function openCalendar (date) {
-            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();

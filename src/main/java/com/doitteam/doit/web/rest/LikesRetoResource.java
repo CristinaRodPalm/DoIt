@@ -2,7 +2,10 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.LikesReto;
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.LikesRetoRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +31,11 @@ public class LikesRetoResource {
     private static final String ENTITY_NAME = "likesReto";
 
     private final LikesRetoRepository likesRetoRepository;
+    private final UserRepository userRepository;
 
-    public LikesRetoResource(LikesRetoRepository likesRetoRepository) {
+    public LikesRetoResource(LikesRetoRepository likesRetoRepository, UserRepository userRepository) {
         this.likesRetoRepository = likesRetoRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -43,9 +49,17 @@ public class LikesRetoResource {
     @Timed
     public ResponseEntity<LikesReto> createLikesReto(@RequestBody LikesReto likesReto) throws URISyntaxException {
         log.debug("REST request to save LikesReto : {}", likesReto);
+        User usuario = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         if (likesReto.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new likesReto cannot already have an ID")).body(null);
         }
+        LikesReto comprobar = likesRetoRepository.findLikeReto(usuario.getId(), likesReto.getParticipacionReto().getId());
+        if(comprobar != null){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "likeexists", "Ya le has dado like a esta participacion")).body(null);
+        }
+        likesReto.setUsuario(usuario);
+        likesReto.setHoraLike(ZonedDateTime.now());
+        likesReto.setPuntuacion(1);
         LikesReto result = likesRetoRepository.save(likesReto);
         return ResponseEntity.created(new URI("/api/likes-retos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
