@@ -134,12 +134,12 @@ public class ParticipacionRetoResource {
     }
 
     // GET LIKES POR PARTICIPACION
-    /*@GetMapping("/likesParticipacion")
+    @GetMapping("/likesParticipacion/{idParticipacion}")
     @Timed
     public Integer likesParticipacion(@PathVariable Long idParticipacion){
         return participacionRetoRepository.getLikesParticipacion(idParticipacion);
     }
-*/
+
 
     /**
      * DELETE  /participacion-retos/:id : delete the "id" participacionReto.

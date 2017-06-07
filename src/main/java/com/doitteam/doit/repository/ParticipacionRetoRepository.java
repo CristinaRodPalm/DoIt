@@ -27,6 +27,6 @@ public interface ParticipacionRetoRepository extends JpaRepository<Participacion
     @Query("select participacionReto from ParticipacionReto participacionReto where participacionReto.usuario.id=:currentUser")
     List<ParticipacionReto> getMisParticipaciones(@Param("currentUser") Long currentUser);
 
-   /* @Query("select count(likesReto) from LikesReto likesReto where likesReto.participacionReto.id=:participacionId")
-    Integer getLikesParticipacion(@Param("participacionId") Long participacionId);*/
+    @Query("select count(likesReto) from LikesReto likesReto where likesReto.participacionReto.id=:participacionId")
+    Integer getLikesParticipacion(@Param("participacionId") Long participacionId);
 }
