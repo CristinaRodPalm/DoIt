@@ -74,18 +74,6 @@ public class UserResource {
         this.userService = userService;
     }
 
-    /**
-     * POST  /users  : Creates a new user.
-     * <p>
-     * Creates a new user if the login and email are not already used, and sends an
-     * mail with an activation link.
-     * The user needs to be activated on creation.
-     * </p>
-     *
-     * @param managedUserVM the user to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new user, or with status 400 (Bad Request) if the login or email is already in use
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/users")
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)

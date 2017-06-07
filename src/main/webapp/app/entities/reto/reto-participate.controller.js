@@ -32,6 +32,7 @@
 
         function save () {
             vm.isSaving = true;
+            console.log(vm.participacionReto);
             if (vm.participacionReto.id !== null) {
                 ParticipacionReto.create(vm.participacionReto, onSaveSuccess, onSaveError);
             } else {

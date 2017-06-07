@@ -58,14 +58,15 @@ public class AccountResource {
     @Timed
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
 
+        System.out.println(managedUserVM);
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
 
-        if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
+        /*if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
             return new ResponseEntity<>("afternow", textPlainHeaders, HttpStatus.BAD_REQUEST);
         } else if(managedUserVM.getNacimiento().getYear()+16 > LocalDate.now().getYear()){
             return new ResponseEntity<>("menor", textPlainHeaders, HttpStatus.BAD_REQUEST);
-        }
+        }*/
 
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
@@ -141,8 +142,8 @@ public class AccountResource {
             .findOneByLogin(SecurityUtils.getCurrentUserLogin())
             .map(u -> {
                     userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                    userDTO.getLangKey(), userDTO.getPhone(), userDTO.getNacimiento(), userDTO.getImagen(), userDTO.getImagenContentType());
-
+                    userDTO.getLangKey());
+//, userDTO.getPhone(), userDTO.getNacimiento(), userDTO.getImagen(), userDTO.getImagenContentType()
                 return new ResponseEntity(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

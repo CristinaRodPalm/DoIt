@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
  */
 public class UserDTO {
 
-    private String phone;
+    /*private String phone;
     private LocalDate nacimiento;
     private byte[] imagen;
     private String imagenContentType;
-
+*/
     private Long id;
 
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -61,13 +61,13 @@ public class UserDTO {
     }
 
 
-    public UserDTO(String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType, Long id, String login,
+    public UserDTO(Long id, String login,
                    String firstName, String lastName, String email, String imageUrl, boolean activated, String langKey,
                    String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate, Set<String> authorities) {
-        this.phone = phone;
+        /*this.phone = phone;
         this.nacimiento = nacimiento;
         this.imagen = imagen;
-        this.imagenContentType = imagenContentType;
+        this.imagenContentType = imagenContentType;*/
         this.id = id;
         this.login = login;
         this.firstName = firstName;
@@ -111,7 +111,7 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
-    public String getPhone() {
+   /* public String getPhone() {
         return phone;
     }
 
@@ -141,7 +141,7 @@ public class UserDTO {
 
     public void setImagenContentType(String imagenContentType) {
         this.imagenContentType = imagenContentType;
-    }
+    }*/
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
