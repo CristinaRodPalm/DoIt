@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('EventoDialogController', EventoDialogController);
 
-    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'Chat', 'Amistad'];
+    EventoDialogController.$inject = ['NgMap', '$timeout', '$scope', '$state', 'DataUtils', 'entity', 'Evento', 'Reto', 'User', 'Chat', 'InvitacionEvento', 'Amistad'];
 
-    function EventoDialogController (NgMap, $timeout, $scope, $state, DataUtils, entity, Evento, Reto, User, Chat, Amistad) {
+    function EventoDialogController (NgMap, $timeout, $scope, $state, DataUtils, entity, Evento, Reto, User, Chat, InvitacionEvento, Amistad) {
         var vm = this;
 
         vm.evento = entity;
