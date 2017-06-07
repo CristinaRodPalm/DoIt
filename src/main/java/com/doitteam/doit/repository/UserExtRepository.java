@@ -1,13 +1,9 @@
 package com.doitteam.doit.repository;
 
-import com.doitteam.doit.domain.User;
 import com.doitteam.doit.domain.UserExt;
-import com.doitteam.doit.domain.Amistad;
-
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 /**
  * Spring Data JPA repository for the UserExt entity.

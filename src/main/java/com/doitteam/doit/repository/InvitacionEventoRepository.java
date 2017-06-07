@@ -3,7 +3,6 @@ package com.doitteam.doit.repository;
 import com.doitteam.doit.domain.Amistad;
 import com.doitteam.doit.domain.Evento;
 import com.doitteam.doit.domain.InvitacionEvento;
-import com.doitteam.doit.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
