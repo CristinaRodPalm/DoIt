@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="table-responsive">
+        <strong ng-if="vm.challengeParticipations.length==0">
+            <span data-translate="doitApp.participacionReto.no-results-challenge">Mensaje de pena</span>
+        </strong>
+        <table class="jh-table table table-striped" ng-if="vm.challengeParticipations.length>0">
+            <thead>
+                <th><span data-translate="doitApp.participacionReto.usuario"></span></th>
+                <th class="text-right"><span data-translate="doitApp.participacionReto.imagen"></span></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="participacion in vm.challengeParticipations track by participacion.id">
+                    <td>
+                        <span>{{participacion.usuario.login}}</span>
+                    </td>
+                    <td class="text-right">
+                        <img data-ng-src="{{'data:' + participacion.imagenContentType + ';base64,' + participacion.imagen}}"
+                             style="max-height: 125px;" alt="participacionReto image"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

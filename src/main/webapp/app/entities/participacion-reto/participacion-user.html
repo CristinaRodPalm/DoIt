@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="table-responsive">
+        <strong ng-if="vm.userParticipations.length==0">
+            <span data-translate="doitApp.participacionReto.no-results-user">Mensaje de pena</span>
+        </strong>
+        <table class="jh-table table table-striped" ng-if="vm.userParticipations.length>0">
+            <tbody>
+                <tr ng-repeat="participacion in vm.userParticipations track by participacion.id">
+                    <td>
+                        <span><a ui-sref="reto-detail({id: participacion.reto.id})">{{participacion.reto.nombre}}</a></span>
+                    </td>
+                    <td class="text-right">
+                        <img data-ng-src="{{'data:' + participacion.imagenContentType + ';base64,' + participacion.imagen}}"
+                             style="max-height: 125px;" alt="participacion image"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

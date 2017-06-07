@@ -21,7 +21,9 @@
                     return data;
                 }
             },
-            'create': { method:'POST' , url:'api/participacion-retos'}
+            'create': { method:'POST' , url:'api/participacion-retos'},
+            'userParticipations':{method: 'GET', isArray: true, url:'api/misParticipaciones'},
+            'challengeParticipations':{method:'GET', isArray: true, url:'api/participacionesFriends'}
         });
     }
 })();
