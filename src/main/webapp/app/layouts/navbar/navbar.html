@@ -1,3 +1,30 @@
+<style>
+    .resultados{
+        padding:10px;
+        max-width: 100%;
+        height: 30px;
+        display: block;
+        background: #F2F2F2;
+    }
+    .resultados *{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        height: 100%;
+        line-height: 18px;
+        background: none;
+    }
+    .resultados:hover{
+        background: #b9b9b9;
+    }
+    .resultados:last-child{
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+</style>
+
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -21,8 +48,23 @@
                         <span class="glyphicon glyphicon-home"></span>
                     </a>
                 </li>
+
                 <!--HOME-->
             </ul>
+
+            <div ng-switch-when="true" style="width:500px;">
+                <input type="text" class="form-control" ng-model="criteria" id="input"
+                       placeholder="{{'global.form.eventSearch.placeholder' | translate}}"
+                       style="width: 100%; height: 40px; left:20px; display: inline-block">
+
+                <div class="resultadosBusqueda" ng-if="criteria.length>0">
+                    <div ng-repeat="friend in vm.accepted|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id"
+                            class="resultados" style="cursor: pointer;" ui-sref="user-ext-detail({id:friend.id})">
+                        {{friend.user.login}}
+                    </div>
+                </div>
+            </div>
+
             <ul class="nav navbar-nav navbar-right">
                 <!--Register-->
                 <li ui-sref-active="activeState" ng-switch-when="false">

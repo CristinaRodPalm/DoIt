@@ -21,6 +21,7 @@
         vm.$state = $state;
         vm.pendingFriendRequests = [];
         vm.pendingEventInvitations = [];
+        loadFriends();
 
         ProfileService.getProfileInfo().then(function (response) {
             vm.inProduction = response.inProduction;
@@ -34,6 +35,13 @@
         function login() {
             collapseNavbar();
             LoginService.open();
+        }
+
+        function loadFriends(){
+            Amistad.getSolicitudesAceptadas(function (result) {
+                vm.accepted = result;
+                vm.length = vm.accepted.length;
+            });
         }
 
         function logout() {
