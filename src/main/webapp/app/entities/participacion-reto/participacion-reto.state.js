@@ -170,9 +170,9 @@
             })
             .state('user-participations', {
                 parent: 'participacion-reto',
-                url: '/{id}/user-participations',
+                url: '/user-participations',
                 data: {
-                    pageTitle: 'doitApp.reto.user-part-title',
+                    pageTitle: 'doitApp.participacionReto.user-part-title',
                     authorities: ['ROLE_USER']
                 },
                 views: {
@@ -184,7 +184,7 @@
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('reto');
+                        $translatePartialLoader.addPart('participacionReto');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -194,7 +194,7 @@
                 parent: 'participacion-reto',
                 url: '/{id}/reto-participations',
                 data: {
-                    pageTitle: 'doitApp.reto.participacionReto',
+                    pageTitle: 'doitApp.participacionReto.challenge-part-title',
                     authorities: ['ROLE_USER']
                 },
                 views: {
@@ -206,7 +206,7 @@
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('reto');
+                        $translatePartialLoader.addPart('participacionReto');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]

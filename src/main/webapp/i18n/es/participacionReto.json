@@ -20,7 +20,11 @@
             "descripcion": "Descripcion",
             "usuario": "Usuario",
             "reto": "Reto",
-            "likesReto": "Likes Reto"
+            "likesReto": "Likes Reto",
+            "user-part-title": "Tus participaciones",
+            "challenge-part-title": "Participaciones reto",
+            "no-results-challenge": "¡Ningún usuario ha participado todavía!",
+            "no-results-user": "No has participado en ningun reto todavía :("
         }
     }
 }

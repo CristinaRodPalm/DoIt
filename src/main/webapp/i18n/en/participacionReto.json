@@ -15,12 +15,16 @@
             "detail": {
                 "title": "Participacion Reto"
             },
-            "imagen": "Imagen",
+            "imagen": "Image",
             "horaPublicacion": "Hora Publicacion",
             "descripcion": "Descripcion",
-            "usuario": "Usuario",
+            "usuario": "User",
             "reto": "Reto",
-            "likesReto": "Likes Reto"
+            "likesReto": "Likes Reto",
+            "user-part-title": "Your participations",
+            "challenge-part-title": "Challenge participations",
+            "no-results-challenge": "Anyone participated yet!",
+            "no-results-user": "You don't have participate in any challenge yet :("
         }
     }
 }
