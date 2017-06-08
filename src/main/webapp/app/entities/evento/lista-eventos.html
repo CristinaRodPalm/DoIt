@@ -9,10 +9,10 @@
     </div>
     <br/><br/>
     <div class="table-responsive">
-        <strong ng-if="vm.pendingInvitations.length==0">
+        <strong ng-if="vm.eventosApuntado.length==0 || vm.eventosNoApuntado.length>0">
             <span data-translate="doitApp.evento.no-results">Mensaje de pena</span>
         </strong>
-        <table class="jh-table table table-striped">
+        <table class="jh-table table table-striped" ng-if="vm.eventosApuntado.length>0 || vm.eventosNoApuntado.length>0">
             <thead>
             <tr>
                 <th></th>
