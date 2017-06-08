@@ -24,6 +24,7 @@
         function loadFriends(){
             Evento.getNotInvited(function(result){
                 vm.friends = result;
+                console.log(vm.friends);
             });
         }
 
