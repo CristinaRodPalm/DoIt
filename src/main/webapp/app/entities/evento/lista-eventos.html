@@ -17,7 +17,6 @@
             <tr>
                 <th></th>
                 <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
-                <th><span data-translate="doitApp.evento.descripcion">Descripción</span></th>
                 <th><span data-translate="doitApp.evento.direccion">Ubicación</span></th>
                 <th><span data-translate="doitApp.evento.fechaEvento">Fecha</span></th>
                 <th><span data-translate="doitApp.evento.reto">Reto</span></th>
@@ -37,14 +36,12 @@
                     </a>
                 </td>
                 <td><span><a ui-sref="evento-detail({id:evento.evento.id})">{{evento.evento.nombre}}</a></span></td>
-                <td><span>{{evento.evento.descripcion}}</span></td>
                 <td><span>{{evento.evento.direccion}}</span></td>
                 <td><span>{{evento.evento.fechaEvento | date:'medium'}}</span></td>
                 <td>
-                    <a ng-if="evento.evento.imagen" ui-sref="reto-detail({id:evento.evento.reto.id})">
-                        <img data-ng-src="{{'data:' + evento.evento.reto.imagenContentType + ';base64,' + evento.evento.reto.imagen}}"
-                             style="max-height: 30px;" alt="reto image"/>
-                    </a>
+                    <span>
+                        <a ui-sref="reto-detail({id:evento.evento.reto.id})">{{evento.evento.reto.nombre}}</a>
+                    </span>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
@@ -73,14 +70,12 @@
                     </a>
                 </td>
                 <td><span><a ui-sref="evento-detail({id:evento.id})">{{evento.nombre}}</a></span></td>
-                <td><span>{{evento.descripcion}}</span></td>
                 <td><span>{{evento.direccion}}</span></td>
                 <td><span>{{evento.fechaEvento | date:'medium'}}</span></td>
                 <td>
-                    <a ng-if="evento.imagen" ui-sref="reto-detail({id:evento.reto.id})">
-                        <img data-ng-src="{{'data:' + evento.reto.imagenContentType + ';base64,' + evento.reto.imagen}}"
-                             style="max-height: 30px;" alt="reto image"/>
-                    </a>
+                    <span>
+                        <a ui-sref="reto-detail({id:evento.evento.reto.id})">{{evento.reto.nombre}}</a>
+                    </span>
                 </td>
 
                 <td class="text-right">

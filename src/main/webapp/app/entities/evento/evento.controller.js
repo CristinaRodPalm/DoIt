@@ -32,6 +32,7 @@
             InvitacionEvento.eventosApuntado(function (result) {
                 vm.eventosApuntado = result;
                 vm.searchQuery = null;
+                console.log(vm.eventosApuntado)
             });
         }
 
@@ -39,6 +40,7 @@
             InvitacionEvento.eventosNoApuntado(function (result) {
                 vm.eventosNoApuntado = result;
                 vm.searchQuery = null;
+                console.log(vm.eventosNoApuntado)
             });
         }
 
