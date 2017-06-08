@@ -55,8 +55,8 @@
                     <form class="navbar-form">
                         <div class="input-group">
                             <input type="text" class="form-control" ng-model="criteria"
-                                   placeholder="{{'global.form.search.placeholder' | translate}}"
-                            style="width: 450px">
+                                   placeholder="{{'global.navbar-functions.searcher' | translate}}"
+                            style="width: 200px">
                             <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
 
                         </div>
@@ -79,40 +79,6 @@
                     </a>
                 </li>
                 <!--Register-->
-
-                <!--SEARCH-->
-                <!--<li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
-                    <a class="dropdown-toggle"
-                       uib-dropdown-toggle
-                       href=""
-                       id="search-menu"
-                       data-toggle="tooltip" data-placement="bottom"
-                       title="{{'global.navbar-functions.search.title' | translate}}"
-                       ng-switch-when="true">
-                        <span>
-                            <span class="glyphicon glyphicon-search"></span>
-                            &lt;!&ndash;<span class="hidden-sm" translate="global.navbar-functions.search.title">
-                                Search
-                            </span>&ndash;&gt;
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active">
-                            <a ui-sref="user-search" ng-click="vm.collapseNavbar()">
-                                <i class="fa fa-users"></i>&nbsp;
-                                <span translate="global.navbar-functions.search.users">Buscar personas</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="evento-search" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
-                                <span translate="global.navbar-functions.search.events">Buscar eventos</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>-->
-                <!--SEARCH-->
 
                 <!--Events list-->
                 <li ui-sref-active="activeState" ng-switch-when="true">
