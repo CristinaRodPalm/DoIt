@@ -50,6 +50,7 @@
 
         vm.apuntarse = function (id) {
             InvitacionEvento.participar({'id': id}, {});
+            console.log(id);
             $state.go('eventos', null, {reload: 'eventos'});
         }
     }
