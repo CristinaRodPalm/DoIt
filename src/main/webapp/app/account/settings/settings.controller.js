@@ -84,6 +84,8 @@
                     $scope.$apply(function() {
                         settingsAccount.imagen = base64Data;
                         settingsAccount.imagenContentType = $file.type;
+                        console.log(settingsAccount.imagen = base64Data);
+                        console.log(settingsAccount.imagenContentType = $file.type);
                     });
                 });
             }
@@ -94,6 +96,7 @@
         function openCalendar (date) {
             console.log("open");
             vm.datePickerOpenStatus[date] = true;
+            console.log(vm.datePickerOpenStatus);
         }
 
     }
