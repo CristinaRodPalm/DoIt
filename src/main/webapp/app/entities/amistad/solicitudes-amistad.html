@@ -1,29 +1,173 @@
 <div class="row">
     <div class="table-responsive">
+        <br/>
         <strong ng-if="vm.amistadsCurrentUser.length==0">
             <span data-translate="doitApp.amistad.no-results">Mensaje de pena</span>
         </strong>
         <table class="jh-table table table-striped" ng-if="vm.amistadsCurrentUser.length > 0">
             <thead>
-                <th><span data-translate="doitApp.amistad.sendedBy">Usuario</span></th>
+            <th><span data-translate="doitApp.amistad.sendedBy">Usuario</span></th>
             </thead>
             <tbody>
-                <tr ng-repeat="amistad in vm.amistadsCurrentUser track by amistad.id">
-                    <td>{{amistad.emisor.login}}</td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button class="btn btn-primary"
-                                    ng-click="vm.acceptFriend(amistad.id)">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </button>
-                            <button class="btn btn-danger"
-                                    ng-click="vm.denyFriend(amistad.id)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="amistad in vm.amistadsCurrentUser track by amistad.id">
+                <td>{{amistad.emisor.login}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button class="btn btn-primary"
+                                ng-click="vm.acceptFriend(amistad.id)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button class="btn btn-danger"
+                                ng-click="vm.denyFriend(amistad.id)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
+</div>
+
+
+<br/><br/>
+
+<!-- BUSCADOR -->
+<strong ng-if="vm.amistadsCurrentUser.length==0">
+    <span data-translate="doitApp.amistad.buscador">Buscador de contactos</span>
+</strong>
+<div class="row">
+    <div class="row text-center">
+        <div class="input-group">
+            <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
+            <input type="text" class="form-control" ng-model="criteria"
+                   placeholder="{{'global.form.search.placeholder' | translate}}">
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th><span translate="doitApp.userExt.login">Username</span></th>
+                <th><span translate="doitApp.userExt.realname">Real Name</span></th>
+                <th><span translate="doitApp.userExt.phone">Phone</span></th>
+                <th><span translate="doitApp.userExt.email">E-mail</span></th>
+                <th><span translate="doitApp.userExt.birthdate">Birthdate</span></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!-- LOS AMIGOS -->
+            <tr ng-repeat="friend in vm.accepted|filter:criteria" ng-if="vm.currentAccount.id!=user.user.id">
+                <td>
+                    <a ng-if="friend.imagen" ng-click="vm.openFile(user.imagenContentType, friend.imagen)">
+                        <img data-ng-src="{{'data:' + friend.imagenContentType + ';base64,' + friend.imagen}}"
+                             style="max-height: 30px;" alt="friend image"/>
+                    </a>
+                </td>
+
+                <td><span><a ui-sref="user-ext-detail({id:friend.id})">{{friend.user.login}}</a></span></td>
+                <td><span>{{friend.user.firstName}} {{friend.user.lastName}}</span></td>
+                <td><span>{{friend.telefono}}</span></td>
+                <td><span>{{friend.user.email}}</span></td>
+                <td><span>{{friend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit" ng-disabled="true"
+                                class="btn btn-success">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span translate="doitApp.userExt.friend"></span>
+                        </button>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- PENDING EMISOR -->
+            <tr ng-repeat="pendingFriend in vm.pendingEmisor|filter:criteria"
+                ng-if="vm.currentAccount.id!=user.user.id">
+                <td>
+                    <a ng-if="pendingFriend.imagen"
+                       ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                        <img
+                            data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                            style="max-height: 30px;" alt="pendingFriend image"/>
+                    </a>
+                </td>
+                <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span>
+                </td>
+                <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                <td><span>{{pendingFriend.telefono}}</span></td>
+                <td><span>{{pendingFriend.user.email}}</span></td>
+                <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-default" disabled="true">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span translate="doitApp.userExt.sended"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- PENDING RECEPTOR -->
+            <tr ng-repeat="pendingFriend in vm.pendingReceptor|filter:criteria"
+                ng-if="vm.currentAccount.id!=user.user.id">
+                <td>
+                    <a ng-if="pendingFriend.imagen"
+                       ng-click="vm.openFile(user.imagenContentType, pendingFriend.imagen)">
+                        <img
+                            data-ng-src="{{'data:' + pendingFriend.imagenContentType + ';base64,' + pendingFriend.imagen}}"
+                            style="max-height: 30px;" alt="pendingFriend image"/>
+                    </a>
+                </td>
+
+                <td><span><a ui-sref="user-ext-detail({id:pendingFriend.id})">{{pendingFriend.user.login}}</a></span>
+                </td>
+                <td><span>{{pendingFriend.user.firstName}} {{pendingFriend.user.lastName}}</span></td>
+                <td><span>{{pendingFriend.telefono}}</span></td>
+                <td><span>{{pendingFriend.user.email}}</span></td>
+                <td><span>{{pendingFriend.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-warning" disabled="true">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span translate="doitApp.userExt.pending"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- LOS QUE NO SON AMIGOS -->
+            <tr ng-repeat="user in vm.otherUsers|filter:criteria" ng-if="vm.currentAccount.id!=user.user.id">
+                <td>
+                    <a ng-if="user.imagen" ng-click="vm.openFile(user.imagenContentType, user.imagen)">
+                        <img data-ng-src="{{'data:' + user.imagenContentType + ';base64,' + user.imagen}}"
+                             style="max-height: 30px;" alt="user image"/>
+                    </a>
+                </td>
+
+                <td><span><a ui-sref="user-ext-detail({id:user.id})">{{user.user.login}}</a></span></td>
+                <td><span>{{user.user.firstName}} {{user.user.lastName}}</span></td>
+                <td><span>{{user.telefono}}</span></td>
+                <td><span>{{user.user.email}}</span></td>
+                <td><span>{{user.nacimiento | date:'dd/MM/yyyy'}}</span></td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                ng-click="vm.sendFriendRequest(user.user.id)"
+                                class="btn btn-primary">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            <span translate="doitApp.userExt.add"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>

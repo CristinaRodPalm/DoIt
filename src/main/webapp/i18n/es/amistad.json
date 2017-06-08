@@ -22,7 +22,8 @@
             "emisor": "Emisor",
             "receptor": "Receptor",
             "sendedBy":"Usuario",
-            "no-results":"¡No tienes solicitudes de amistad que gestionar!"
+            "no-results":"¡No tienes solicitudes de amistad que gestionar!",
+            "buscador":"Busca y añade nuevos contactos"
         }
     }
 }

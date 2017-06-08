@@ -55,7 +55,8 @@
                     <form class="navbar-form">
                         <div class="input-group">
                             <input type="text" class="form-control" ng-model="criteria"
-                                   placeholder="{{'global.form.search.placeholder' | translate}}">
+                                   placeholder="{{'global.form.search.placeholder' | translate}}"
+                            style="width: 450px">
                         </div>
                         <div class="resultadosBusqueda" ng-if="criteria.length>0">
                             <div ng-repeat="friend in vm.accepted|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id"
@@ -78,7 +79,7 @@
                 <!--Register-->
 
                 <!--SEARCH-->
-                <li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
+                <!--<li uib-dropdown class="dropdown pointer" ui-sref-active="activeState">
                     <a class="dropdown-toggle"
                        uib-dropdown-toggle
                        href=""
@@ -88,9 +89,9 @@
                        ng-switch-when="true">
                         <span>
                             <span class="glyphicon glyphicon-search"></span>
-                            <!--<span class="hidden-sm" translate="global.navbar-functions.search.title">
+                            &lt;!&ndash;<span class="hidden-sm" translate="global.navbar-functions.search.title">
                                 Search
-                            </span>-->
+                            </span>&ndash;&gt;
                             <b class="caret"></b>
                         </span>
                     </a>
@@ -108,7 +109,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li>-->
                 <!--SEARCH-->
 
                 <!--Events list-->

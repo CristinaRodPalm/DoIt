@@ -1,5 +1,13 @@
 <div>
     <br/>
+    <div class="row text-center">
+        <div class="input-group">
+            <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
+            <input type="text" class="form-control" ng-model="criteria"
+                   placeholder="{{'global.form.eventSearch.placeholder' | translate}}">
+        </div>
+    </div>
+    <br/><br/>
     <div class="table-responsive">
         <strong ng-if="vm.pendingInvitations.length==0">
             <span data-translate="doitApp.evento.no-results">Mensaje de pena</span>
@@ -8,10 +16,8 @@
             <thead>
             <tr>
                 <th></th>
-                <th><span data-translate="doitApp.evento.admin">Administrador</span></th>
                 <th><span data-translate="doitApp.evento.nombre">Nombre</span></th>
                 <th><span data-translate="doitApp.evento.descripcion">Descripción</span></th>
-                <th><span data-translate="doitApp.evento.hora">Hora de creación</span></th>
                 <th><span data-translate="doitApp.evento.direccion">Ubicación</span></th>
                 <th><span data-translate="doitApp.evento.fechaEvento">Fecha</span></th>
                 <th><span data-translate="doitApp.evento.reto">Reto</span></th>
@@ -21,7 +27,7 @@
 
             <tbody>
             <!--Aqui se muestran los eventos que el usuario se ha apuntado -->
-            <tr ng-repeat="evento in vm.eventosApuntado track by evento.id" ng-if="vm.eventosApuntado.length>0">
+            <tr ng-repeat="evento in vm.eventosApuntado|filter:criteria" ng-if="vm.eventosApuntado.length>0">
                 <td>
                     <a ng-if="evento.evento.imagen"
                        ng-click="vm.openFile(evento.evento.imagenContentType, evento.evento.imagen)">
@@ -30,14 +36,15 @@
                             style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
-                <td><span>{{evento.evento.admin.login}}</span></td>
                 <td><span><a ui-sref="evento-detail({id:evento.evento.id})">{{evento.evento.nombre}}</a></span></td>
                 <td><span>{{evento.evento.descripcion}}</span></td>
-                <td><span>{{evento.evento.hora | date:'medium'}}</span></td>
                 <td><span>{{evento.evento.direccion}}</span></td>
                 <td><span>{{evento.evento.fechaEvento | date:'medium'}}</span></td>
                 <td>
-                    <a ui-sref="reto-detail({id:evento.reto.id})">{{evento.evento.reto.nombre}}</a>
+                    <a ng-if="evento.evento.imagen" ui-sref="reto-detail({id:evento.evento.reto.id})">
+                        <img data-ng-src="{{'data:' + evento.evento.reto.imagenContentType + ';base64,' + evento.evento.reto.imagen}}"
+                             style="max-height: 30px;" alt="reto image"/>
+                    </a>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
@@ -58,20 +65,23 @@
             </tr>
 
             <!--Aqui se muestran todos los eventos -->
-            <tr ng-repeat="evento in vm.eventosNoApuntado track by evento.id" ng-if="vm.eventosNoApuntado.length>0">
+            <tr ng-repeat="evento in vm.eventosNoApuntado|filter:criteria" ng-if="vm.eventosNoApuntado.length>0">
                 <td>
                     <a ng-if="evento.imagen" ng-click="vm.openFile(evento.imagenContentType, evento.imagen)">
                         <img data-ng-src="{{'data:' + evento.imagenContentType + ';base64,' + evento.imagen}}"
                              style="max-height: 30px;" alt="evento image"/>
                     </a>
                 </td>
-                <td><span>{{evento.admin.login}}</span></td>
                 <td><span><a ui-sref="evento-detail({id:evento.id})">{{evento.nombre}}</a></span></td>
                 <td><span>{{evento.descripcion}}</span></td>
-                <td><span>{{evento.hora | date:'medium'}}</span></td>
                 <td><span>{{evento.direccion}}</span></td>
                 <td><span>{{evento.fechaEvento | date:'medium'}}</span></td>
-                <td><span><a ui-sref="reto-detail({id:evento.reto.id})">{{evento.evento.reto.nombre}}</a></span></td>
+                <td>
+                    <a ng-if="evento.imagen" ui-sref="reto-detail({id:evento.reto.id})">
+                        <img data-ng-src="{{'data:' + evento.reto.imagenContentType + ';base64,' + evento.reto.imagen}}"
+                             style="max-height: 30px;" alt="reto image"/>
+                    </a>
+                </td>
 
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

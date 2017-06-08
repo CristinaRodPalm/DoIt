@@ -22,7 +22,8 @@
             "emisor": "Emisor",
             "receptor": "Receptor",
             "sendedBy":"User",
-            "no-results":"You don't have any friend request!"
+            "no-results":"You don't have any friend request!",
+            "buscador":"Search and add new friends!"
         }
     }
 }
