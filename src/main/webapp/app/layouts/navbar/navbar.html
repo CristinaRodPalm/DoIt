@@ -57,11 +57,13 @@
                             <input type="text" class="form-control" ng-model="criteria"
                                    placeholder="{{'global.form.search.placeholder' | translate}}"
                             style="width: 450px">
+                            <span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
+
                         </div>
                         <div class="resultadosBusqueda" ng-if="criteria.length>0">
                             <div ng-repeat="friend in vm.accepted|filter:criteria"  ng-if="vm.currentAccount.id!=user.user.id"
                                  class="resultados" style="cursor: pointer;" ui-sref="user-ext-detail({id:friend.id})">
-                                {{friend.user.login}}
+                                <strong>{{friend.user.login}}</strong>, {{friend.user.firstName}} {{friend.user.lastName}}
                             </div>
                         </div>
                     </form>

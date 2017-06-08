@@ -137,7 +137,7 @@ public class UserService {
         return newUser;
     }
 
-/*
+
     public User createUser(UserDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getLogin());
@@ -166,7 +166,7 @@ public class UserService {
         log.debug("Created Information for User: {}", user);
         return user;
     }
-*/
+
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.
