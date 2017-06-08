@@ -28,6 +28,8 @@
         function loadAmistadsCurrentUser() {
             Amistad.getAllByCurrentUser(function (result) {
                 vm.amistadsCurrentUser = result;
+                console.log(vm.amistadsCurrentUser);
+                console.log(result);
             });
         }
 
@@ -45,6 +47,7 @@
         function loadFriends(){
             Amistad.getSolicitudesAceptadas(function (result) {
                 vm.accepted = result;
+                console.log(vm.accepted);
                 console.log(result);
             });
         }
@@ -53,6 +56,8 @@
         function loadSended(){
             Amistad.getSolicitudesPendientesEmisor(function(result){
                 vm.pendingEmisor = result;
+                console.log(result);
+                console.log(vm.pendingEmisor);
             });
         }
 
@@ -60,6 +65,8 @@
         function loadRecieved(){
             Amistad.getSolicitudesPendientesReceptor(function(result){
                 vm.pendingReceptor = result;
+                console.log(result);
+                console.log(vm.pendingReceptor);
             });
         }
 
