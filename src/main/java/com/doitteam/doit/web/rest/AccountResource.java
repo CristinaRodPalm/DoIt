@@ -133,7 +133,22 @@ public class AccountResource {
      */
     @PostMapping("/account")
     @Timed
-    public ResponseEntity saveAccount(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity saveAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+        Optional<User> existingUser = userRepository.findOneByEmail(managedUserVM.getEmail());
+        if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(managedUserVM.getLogin()))) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("user-management", "emailexists", "Email already in use")).body(null);
+        }
+        return userRepository
+            .findOneByLogin(SecurityUtils.getCurrentUserLogin())
+            .map(u -> {
+                userService.updateUser(managedUserVM.getFirstName(), managedUserVM.getLastName(), managedUserVM.getEmail(),
+                    managedUserVM.getLangKey(), managedUserVM.getPhone(), managedUserVM.getNacimiento(), managedUserVM.getImagen(), managedUserVM.getImagenContentType());
+//, userDTO.getPhone(), userDTO.getNacimiento(), userDTO.getImagen(), userDTO.getImagenContentType()
+                return new ResponseEntity(HttpStatus.OK);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+    /*public ResponseEntity saveAccount(@Valid @RequestBody UserDTO userDTO) {
         Optional<User> existingUser = userRepository.findOneByEmail(userDTO.getEmail());
         if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userDTO.getLogin()))) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("user-management", "emailexists", "Email already in use")).body(null);
@@ -147,7 +162,7 @@ public class AccountResource {
                 return new ResponseEntity(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
-    }
+    }*/
 
     /**
      * POST  /account/change_password : changes the current user's password

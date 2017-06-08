@@ -137,6 +137,7 @@ public class UserService {
         return newUser;
     }
 
+/*
     public User createUser(UserDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getLogin());
@@ -165,6 +166,7 @@ public class UserService {
         log.debug("Created Information for User: {}", user);
         return user;
     }
+*/
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.
@@ -174,7 +176,8 @@ public class UserService {
      * @param email email id of user
      * @param langKey language key
      */
-    /*public void updateUser (String firstName, String lastName, String email, String langKey, String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType) {
+    public void updateUser (String firstName, String lastName, String email, String langKey,
+                            String phone, LocalDate nacimiento, byte[] imagen, String imagenContentType) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -187,8 +190,9 @@ public class UserService {
             userExt.setNacimiento(nacimiento);
             userExt.setTelefono(phone);
         });
-    }*/
-    public void updateUser (String firstName, String lastName, String email, String langKey) {
+    }
+
+    /*public void updateUser (String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -197,7 +201,7 @@ public class UserService {
             log.debug("Changed Information for User: {}", user);
             UserExt userExt = userExtRepository.findByUserID(user.getId());
         });
-    }
+    }*/
 
     /**
      * Update all information for a specific user, and return the modified user.
