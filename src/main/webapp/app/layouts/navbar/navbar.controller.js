@@ -40,6 +40,7 @@
         function loadFriends(){
             Amistad.getSolicitudesAceptadas(function (result) {
                 vm.accepted = result;
+                console.log(result);
                 vm.length = vm.accepted.length;
             });
         }
@@ -65,12 +66,16 @@
             getPendingEventInvitations();
             UserExt.getUserExt(function (result) {
                 vm.currentUserExt = result;
+                console.log(result);
+                console.log(vm.currentUserExt);
             })
         }
 
         function getPendingFriendRequests() {
             Amistad.getSolicitudesPendientesReceptor(function (result) {
                 vm.pendingFriendRequests = result;
+                console.log(result);
+                console.log(vm.pendingFriendRequests);
 
                 if (vm.pendingFriendRequests.length > 0) {
                     var badge = $("<span class='badge' style='background-color:red'>" + vm.pendingFriendRequests.length + "</span>")
@@ -82,6 +87,8 @@
         function getPendingEventInvitations() {
             InvitacionEvento.invitacionesPendientes(function (result) {
                 vm.pendingEventInvitations = result;
+                console.log(result);
+                console.log(vm.pendingEventInvitations);
 
                 if (vm.pendingEventInvitations.length > 0) {
                     var badge = $("<span class='badge' style='background-color:red'>" + vm.pendingEventInvitations.length + "</span>")
