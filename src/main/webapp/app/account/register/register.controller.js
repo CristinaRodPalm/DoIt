@@ -47,12 +47,16 @@
                     vm.success = null;
                     if (response.status === 400 && response.data === 'login already in use') {
                         vm.errorUserExists = 'ERROR';
+                        console.log(vm.errorUserExists);
                     } else if (response.status === 400 && response.data === 'e-mail address already in use') {
                         vm.errorEmailExists = 'ERROR';
+                        console.log(vm.errorEmailExists);
                     } else if(response.status === 400 && response.data === 'menor') {
                         vm.menorDeEdad = 'ERROR';
+                        console.log(vm.menorDeEdad);
                     }else if(response.status === 400 && response.data === 'afternow'){
                         vm.afternow = 'ERROR';
+                        console.log(vm.afternow);
                     } else{
                         vm.error = 'ERROR';
                     }
