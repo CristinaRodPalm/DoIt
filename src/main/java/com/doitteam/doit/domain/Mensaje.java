@@ -41,6 +41,25 @@ public class Mensaje implements Serializable {
     @ManyToOne
     private Chat chat;
 
+
+    public Mensaje() {
+    }
+
+    public Mensaje(String mensaje, ZonedDateTime horaEnvio, byte[] foto, String fotoContentType, User emisor, User receptor, Chat chat) {
+        this.mensaje = mensaje;
+        this.horaEnvio = horaEnvio;
+        this.foto = foto;
+        this.fotoContentType = fotoContentType;
+        this.emisor = emisor;
+        this.receptor = receptor;
+        this.chat = chat;
+    }
+
+    public Mensaje(String mensaje, ZonedDateTime horaEnvio) {
+        this.mensaje = mensaje;
+        this.horaEnvio = horaEnvio;
+    }
+
     public Long getId() {
         return id;
     }

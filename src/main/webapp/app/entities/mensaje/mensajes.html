@@ -1,77 +1,82 @@
-<div>
-    <h2 data-translate="doitApp.mensaje.home.title">Mensajes</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="mensaje.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="doitApp.mensaje.home.createLabel">
-                        Create new Mensaje
-                    </span>
-                </button>
-            </div>
+
+<!--
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">DoIt Chat Connection:</label>
+                    <button id="connect" class="btn btn-default" type="submit">Conectar</button>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Desconectar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="name">Nombre de usuario:</label>
+                    <input type="text" id="name" class="form-control" placeholder="Escribe tu nombre...">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <input type="text" id="message" class="form-control" placeholder="Escribe algo por aqui mismo :">
+                </div>
+
+                <button id="send" class="btn btn-default" type="submit">Enviar</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>DoIt Chat</th>
+                </tr>
+                </thead>
+                <tbody id="greetings">
+                </tbody>
+            </table>
         </div>
     </div>
-    <br/>
+    </form>
+</div>
+</body>
+</html>
+
+-->
+
+<div class="row">
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="doitApp.mensaje.mensaje">Mensaje</span></th>
-                    <th><span data-translate="doitApp.mensaje.horaEnvio">Hora Envio</span></th>
-                    <th><span data-translate="doitApp.mensaje.foto">Foto</span></th>
-                    <th><span data-translate="doitApp.mensaje.emisor">Emisor</span></th>
-                    <th><span data-translate="doitApp.mensaje.receptor">Receptor</span></th>
-                    <th><span data-translate="doitApp.mensaje.chat">Chat</span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="mensaje in vm.mensajes track by mensaje.id">
-                    <td><a ui-sref="mensaje-detail({id:mensaje.id})">{{mensaje.id}}</a></td>
-                    <td>{{mensaje.mensaje}}</td>
-                    <td>{{mensaje.horaEnvio | date:'medium'}}</td>
-                    <td>
-                        <a ng-if="mensaje.foto" ng-click="vm.openFile(mensaje.fotoContentType, mensaje.foto)">
-                            <img data-ng-src="{{'data:' + mensaje.fotoContentType + ';base64,' + mensaje.foto}}" style="max-height: 30px;" alt="mensaje image"/>
-                        </a>
-                        <span ng-if="mensaje.foto">{{mensaje.fotoContentType}}, {{vm.byteSize(mensaje.foto)}}</span>
-                    </td>
-                    <td>
-                        {{mensaje.emisor.login}}
-                    </td>
-                    <td>
-                        {{mensaje.receptor.login}}
-                    </td>
-                    <td>
-                        <a ui-sref="chat-detail({id:mensaje.chat.id})">{{mensaje.chat.id}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="mensaje-detail({id:mensaje.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="mensaje.edit({id:mensaje.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="mensaje.delete({id:mensaje.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <button class="btn btn-primary btn-block" ng-click="vm.connect()" ng-if="!vm.conectado">
+            Conectar al chat
+        </button>
+        <button class="btn btn-danger btn-block" ng-click="vm.disconnect()" ng-if="vm.conectado">
+            Desconectar del chat
+        </button>
+
+        <br/>
+
+        <div class="col-md-6" ng-if="vm.conectado">
+            <form class="form-inline">
+
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea type="text" class="form-control" id="message" ng-model="vm.mensaje" placeholder="Escribe tu mensaje">
+                    </textarea>
+                </div>
+
+                <button class="btn btn-default" ng-click="vm.sendMessage()">Enviar</button>
+            </form>
+        </div>
+
+        <div id="greetings" ng-if="vm.conectado">asjdlaskjdñkasdj</div>
+
     </div>
 </div>
