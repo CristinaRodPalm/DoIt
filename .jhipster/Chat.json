@@ -22,11 +22,19 @@
         {
             "fieldName": "horaCreacion",
             "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "emisor",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "receptor",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20170213194702",
-    "entityTableName": "chat",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "chat",
+    "pagination": "no"
 }

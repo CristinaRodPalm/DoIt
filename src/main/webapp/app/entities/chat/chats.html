@@ -29,14 +29,14 @@
             <tbody>
             <tr ng-repeat="userExt in vm.users track by userExt.id">
                 <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
-               <!-- <td>
-                    <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
-                        <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>
-                    </a>
-                    <span ng-if="!userExt.imagen">
-                            <img src="/content/images/user.png" style="max-height: 30px;" alt="user image"/>
-                        </span>
-                </td>-->
+                <!-- <td>
+                     <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
+                         <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>
+                     </a>
+                     <span ng-if="!userExt.imagen">
+                             <img src="/content/images/user.png" style="max-height: 30px;" alt="user image"/>
+                         </span>
+                 </td>-->
                 <td>{{userExt.telefono}}</td>
                 <td>{{userExt.nacimiento | date:'mediumDate'}}</td>
                 <td>

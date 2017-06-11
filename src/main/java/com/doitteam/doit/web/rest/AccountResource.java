@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Optional;
 
 /**
@@ -56,16 +57,14 @@ public class AccountResource {
                     produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
-
-        System.out.println(managedUserVM);
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
 
-        /*if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
+        if(managedUserVM.getNacimiento().isAfter(LocalDate.now())){
             return new ResponseEntity<>("afternow", textPlainHeaders, HttpStatus.BAD_REQUEST);
         } else if(managedUserVM.getNacimiento().getYear()+16 > LocalDate.now().getYear()){
             return new ResponseEntity<>("menor", textPlainHeaders, HttpStatus.BAD_REQUEST);
-        }*/
+        }
 
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))

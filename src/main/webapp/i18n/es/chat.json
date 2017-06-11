@@ -4,7 +4,8 @@
             "home": {
                 "title": "Chats",
                 "createLabel": "Crear nuevo Chat",
-                "createOrEditLabel": "Crear o editar Chat"
+                "createOrEditLabel": "Crear o editar Chat",
+                "search": "Search for Chat"
             },
             "created": "Un nuevo Chat ha sido creado con el identificador {{ param }}",
             "updated": "Un Chat ha sido actualizado con el identificador {{ param }}",
@@ -17,6 +18,8 @@
             },
             "nombre": "Nombre",
             "horaCreacion": "Hora Creacion",
+            "emisor": "Emisor",
+            "receptor": "Receptor",
             "evento": "Evento",
             "mensaje": "Mensaje"
         }

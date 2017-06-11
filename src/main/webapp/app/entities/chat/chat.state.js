@@ -107,6 +107,8 @@
                             return {
                                 nombre: null,
                                 horaCreacion: null,
+                                emisor: null,
+                                receptor: null,
                                 id: null
                             };
                         }

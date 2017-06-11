@@ -2,7 +2,10 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Chat;
+import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.ChatRepository;
+import com.doitteam.doit.repository.UserRepository;
+import com.doitteam.doit.security.SecurityUtils;
 import com.doitteam.doit.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -27,9 +30,11 @@ public class ChatResource {
     private static final String ENTITY_NAME = "chat";
 
     private final ChatRepository chatRepository;
+    private final UserRepository userRepository;
 
-    public ChatResource(ChatRepository chatRepository) {
+    public ChatResource(ChatRepository chatRepository, UserRepository userRepository) {
         this.chatRepository = chatRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -38,12 +43,13 @@ public class ChatResource {
     @Timed
     public ResponseEntity<Chat> createChatByID(@PathVariable Long idReceptor) throws URISyntaxException{
         Chat chat = new Chat();
+        chat.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
+        chat.setReceptor(idReceptor);
 
-
-        System.out.println("RECEPTOR!! : "+idReceptor);
-
-        return null;
-    }
+Chat result = chatRepository.save(chat);
+        return ResponseEntity.created(new URI("/api/chats/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);    }
 
     /**
      * POST  /chats : Create a new chat.

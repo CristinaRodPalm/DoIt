@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Chat.
@@ -28,15 +28,18 @@ public class Chat implements Serializable {
     @Column(name = "hora_creacion")
     private ZonedDateTime horaCreacion;
 
+    @Column(name = "emisor")
+    private Long emisor;
+
+    @Column(name = "receptor")
+    private Long receptor;
+
     @ManyToOne
     private Evento evento;
 
     @OneToMany(mappedBy = "chat")
     @JsonIgnore
     private Set<Mensaje> mensajes = new HashSet<>();
-
-    public Chat() {    }
-
 
     public Long getId() {
         return id;
@@ -70,6 +73,32 @@ public class Chat implements Serializable {
 
     public void setHoraCreacion(ZonedDateTime horaCreacion) {
         this.horaCreacion = horaCreacion;
+    }
+
+    public Long getEmisor() {
+        return emisor;
+    }
+
+    public Chat emisor(Long emisor) {
+        this.emisor = emisor;
+        return this;
+    }
+
+    public void setEmisor(Long emisor) {
+        this.emisor = emisor;
+    }
+
+    public Long getReceptor() {
+        return receptor;
+    }
+
+    public Chat receptor(Long receptor) {
+        this.receptor = receptor;
+        return this;
+    }
+
+    public void setReceptor(Long receptor) {
+        this.receptor = receptor;
     }
 
     public Evento getEvento() {
@@ -136,6 +165,8 @@ public class Chat implements Serializable {
             "id=" + id +
             ", nombre='" + nombre + "'" +
             ", horaCreacion='" + horaCreacion + "'" +
+            ", emisor='" + emisor + "'" +
+            ", receptor='" + receptor + "'" +
             '}';
     }
 }
