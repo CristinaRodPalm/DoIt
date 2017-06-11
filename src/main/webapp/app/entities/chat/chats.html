@@ -1,13 +1,13 @@
 <div>
-    <h2 data-translate="doitApp.chat.home.title">Chats</h2>
+    <h2 data-translate="doitApp.userExt.home.title">User Exts</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="chat.new" >
+                <button class="btn btn-primary" ui-sref="user-ext.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="doitApp.chat.home.createLabel">
-                        Create new Chat
+                    <span  data-translate="doitApp.userExt.home.createLabel">
+                        Create new User Ext
                     </span>
                 </button>
             </div>
@@ -17,45 +17,45 @@
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
-                <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="doitApp.chat.nombre">Nombre</span></th>
-                    <th><span data-translate="doitApp.chat.horaCreacion">Hora Creacion</span></th>
-                    <th><span data-translate="doitApp.chat.evento">Evento</span></th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th><span data-translate="global.field.id">ID</span></th>
+                <th><span data-translate="doitApp.userExt.image">Imagen</span></th>
+                <th><span data-translate="doitApp.userExt.phone">Telefono</span></th>
+                <th><span data-translate="doitApp.userExt.nacimiento">Nacimiento</span></th>
+                <th><span data-translate="doitApp.userExt.user">User</span></th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="chat in vm.chats track by chat.id">
-                    <td><a ui-sref="chat-detail({id:chat.id})">{{chat.id}}</a></td>
-                    <td>{{chat.nombre}}</td>
-                    <td>{{chat.horaCreacion | date:'medium'}}</td>
-                    <td>
-                        <a ui-sref="evento-detail({id:chat.evento.id})">{{chat.evento.nombre}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="chat-detail({id:chat.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="chat.edit({id:chat.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="chat.delete({id:chat.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="userExt in vm.users track by userExt.id">
+                <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
+               <!-- <td>
+                    <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
+                        <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>
+                    </a>
+                    <span ng-if="!userExt.imagen">
+                            <img src="/content/images/user.png" style="max-height: 30px;" alt="user image"/>
+                        </span>
+                </td>-->
+                <td>{{userExt.telefono}}</td>
+                <td>{{userExt.nacimiento | date:'mediumDate'}}</td>
+                <td>
+                    {{userExt.user.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+
+                                ng-click="vm.crearChat(userExt.user.id)"
+
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down">Crear chat</span>
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

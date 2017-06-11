@@ -32,6 +32,19 @@ public class ChatResource {
         this.chatRepository = chatRepository;
     }
 
+
+    // Create chat
+    @PostMapping("/chatByID/{idReceptor}")
+    @Timed
+    public ResponseEntity<Chat> createChatByID(@PathVariable Long idReceptor) throws URISyntaxException{
+        Chat chat = new Chat();
+
+
+        System.out.println("RECEPTOR!! : "+idReceptor);
+
+        return null;
+    }
+
     /**
      * POST  /chats : Create a new chat.
      *

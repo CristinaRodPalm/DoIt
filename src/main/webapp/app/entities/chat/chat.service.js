@@ -21,7 +21,8 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'create': {method:'POST', url:'/api/chatByID/:idReceptor'}
         });
     }
 })();

@@ -27,6 +27,7 @@
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('chat');
                     $translatePartialLoader.addPart('global');
+                    $translatePartialLoader.addPart('userExt');
                     return $translate.refresh();
                 }]
             }

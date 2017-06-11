@@ -35,6 +35,9 @@ public class Chat implements Serializable {
     @JsonIgnore
     private Set<Mensaje> mensajes = new HashSet<>();
 
+    public Chat() {    }
+
+
     public Long getId() {
         return id;
     }
