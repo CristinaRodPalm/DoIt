@@ -22,7 +22,8 @@
                 }
             },
             'update': { method:'PUT' },
-            'create': {method:'POST', url:'/api/chatByID/:idReceptor'}
+            'create': { method:'POST', url:'/api/chatByID/:idReceptor'},
+            'getOne': { method:'GET', isArray: false, url:'/api/userExtByUserID/:id'}
         });
     }
 })();

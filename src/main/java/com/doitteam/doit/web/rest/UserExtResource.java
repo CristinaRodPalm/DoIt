@@ -94,12 +94,6 @@ public class UserExtResource {
         return userExts;
     }
 
-    /**
-     * GET  /user-exts/:id : get the "id" userExt.
-     *
-     * @param id the id of the userExt to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the userExt, or with status 404 (Not Found)
-     */
     @GetMapping("/user-exts/{id}")
     @Timed
     public ResponseEntity<UserExt> getUserExt(@PathVariable Long id) {
@@ -108,12 +102,6 @@ public class UserExtResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userExt));
     }
 
-    /**
-     * DELETE  /user-exts/:id : delete the "id" userExt.
-     *
-     * @param id the id of the userExt to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/user-exts/{id}")
     @Timed
     public ResponseEntity<Void> deleteUserExt(@PathVariable Long id) {
@@ -127,6 +115,14 @@ public class UserExtResource {
     public UserExt getUserExtByUser (){
         User userLogin = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
         return userExtRepository.findByUserID(userLogin.getId());
+    }
+
+    @GetMapping("/userExtByUserID/{id}")
+    @Timed
+    public UserExt getUserExtByUserID (@PathVariable Long id){
+        UserExt userExt = userExtRepository.findByUserID(userRepository.findOne(id).getId());
+        return userExtRepository.findByUserID(userExt.getId());
+
     }
 
 }

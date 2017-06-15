@@ -36,13 +36,13 @@ public class MensajeResource {
     }
 
 
-    @MessageMapping("/sendMsg")
+   /* @MessageMapping("/sendMsg")
     @SendTo("/topic/greetings")
     public Mensaje msg(String message) throws Exception {
         Thread.sleep(1000); // simulated delay
         return new Mensaje(message, ZonedDateTime.now());
     }
-
+*/
     /**
      * POST  /mensajes : Create a new mensaje.
      *

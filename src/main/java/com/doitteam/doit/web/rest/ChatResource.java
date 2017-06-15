@@ -46,6 +46,12 @@ public class ChatResource {
     @PostMapping("/chatByID/{idReceptor}")
     @Timed
     public ResponseEntity<Chat> createChatByID(@PathVariable Long idReceptor) throws URISyntaxException{
+
+        Chat aux = chatRepository.findOneByEmisorReceptor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId(), idReceptor);
+        if(aux != null){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new chat cannot already have an ID")).body(null);
+        }
+
         Chat chat = new Chat();
         chat.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
         chat.setReceptor(idReceptor);
@@ -54,7 +60,8 @@ public class ChatResource {
         Chat result = chatRepository.save(chat);
         return ResponseEntity.created(new URI("/api/chats/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);    }
+            .body(result);
+    }
 
     @PostMapping("/chats")
     @Timed
@@ -105,5 +112,4 @@ public class ChatResource {
         chatRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

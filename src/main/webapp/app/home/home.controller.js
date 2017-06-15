@@ -35,6 +35,7 @@
             });
             UserExt.getUserExt(function (result) {
                 vm.currentUserExt = result;
+                console.log(vm.currentUserExt);
             })
         }
 

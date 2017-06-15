@@ -10,6 +10,7 @@
     function ChatController(Chat, UserExt, Principal, $state) {
 
         var vm = this;
+        vm.idReceptor = null;
 
         vm.chats = [];
 
@@ -21,15 +22,12 @@
                 vm.searchQuery = null;
             });
             vm.users = UserExt.query();
-            console.log(vm.users);
         }
 
         vm.crearChat = function(idReceptor){
-            //console.log(idReceptor);
-            vm.chat = Chat.create({'idReceptor':idReceptor}, {});
-            console.log(vm.chat);
-            $state.go('chat-list', {'chat': vm.chat});
-
+            Chat.create({'idReceptor':idReceptor}, {}).$promise.then(function (response) {
+                $state.go('chat-list', {'chat': response});
+            });
         }
 
         Principal.identity().then(function(account) {
