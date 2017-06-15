@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="table-responsive">
+
+        <button class="btn btn-primary btn-block" ng-click="vm.connect()" ng-if="!vm.conectado">
+            Conectar al chat
+        </button>
+        <button class="btn btn-danger btn-block" ng-click="vm.disconnect()" ng-if="vm.conectado">
+            Desconectar del chat
+        </button>
+
+        <br/>
+        {{vm.chat.emisor}}
+        {{vm.chat.receptor}}
+        <br/>
+
+        <div class="col-md-6" ng-if="vm.conectado">
+            <form class="form-inline">
+
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea type="text" class="form-control" id="message" ng-model="vm.mensaje" placeholder="Escribe tu mensaje">
+                    </textarea>
+                </div>
+
+                <button class="btn btn-default" ng-click="vm.sendMessage()">Enviar</button>
+            </form>
+        </div>
+
+        <div id="greetings" ng-if="vm.conectado"></div>
+
+    </div>
+</div>

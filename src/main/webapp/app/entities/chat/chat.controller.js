@@ -5,9 +5,9 @@
         .module('doitApp')
         .controller('ChatController', ChatController);
 
-    ChatController.$inject = ['Chat', 'UserExt', 'Principal'];
+    ChatController.$inject = ['Chat', 'UserExt', 'Principal', '$state'];
 
-    function ChatController(Chat, UserExt, Principal) {
+    function ChatController(Chat, UserExt, Principal, $state) {
 
         var vm = this;
 
@@ -25,8 +25,11 @@
         }
 
         vm.crearChat = function(idReceptor){
-            console.log(idReceptor);
-            Chat.create({'idReceptor':idReceptor}, {});
+            //console.log(idReceptor);
+            vm.chat = Chat.create({'idReceptor':idReceptor}, {});
+            console.log(vm.chat);
+            $state.go('chat-list', {'chat': vm.chat});
+
         }
 
         Principal.identity().then(function(account) {

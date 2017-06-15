@@ -1,18 +1,6 @@
 <div>
-    <h2 data-translate="doitApp.userExt.home.title">User Exts</h2>
+    <h2>Chats!!</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="user-ext.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="doitApp.userExt.home.createLabel">
-                        Create new User Ext
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
@@ -29,14 +17,7 @@
             <tbody>
             <tr ng-repeat="userExt in vm.users track by userExt.id">
                 <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
-                <!-- <td>
-                     <a ng-if="userExt.imagen" ng-click="vm.openFile(userExt.imagenContentType, userExt.imagen)">
-                         <img data-ng-src="{{'data:' + userExt.imagenContentType + ';base64,' + userExt.imagen}}" style="max-height: 30px;" alt="userExt image"/>
-                     </a>
-                     <span ng-if="!userExt.imagen">
-                             <img src="/content/images/user.png" style="max-height: 30px;" alt="user image"/>
-                         </span>
-                 </td>-->
+
                 <td>{{userExt.telefono}}</td>
                 <td>{{userExt.nacimiento | date:'mediumDate'}}</td>
                 <td>

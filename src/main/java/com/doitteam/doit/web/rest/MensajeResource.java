@@ -8,10 +8,13 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +33,14 @@ public class MensajeResource {
 
     public MensajeResource(MensajeRepository mensajeRepository) {
         this.mensajeRepository = mensajeRepository;
+    }
+
+
+    @MessageMapping("/sendMsg")
+    @SendTo("/topic/greetings")
+    public Mensaje msg(String message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return new Mensaje(message, ZonedDateTime.now());
     }
 
     /**

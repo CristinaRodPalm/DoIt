@@ -2,6 +2,7 @@ package com.doitteam.doit.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.doitteam.doit.domain.Chat;
+import com.doitteam.doit.domain.Mensaje;
 import com.doitteam.doit.domain.User;
 import com.doitteam.doit.repository.ChatRepository;
 import com.doitteam.doit.repository.UserRepository;
@@ -11,10 +12,13 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,19 +49,13 @@ public class ChatResource {
         Chat chat = new Chat();
         chat.setEmisor(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
         chat.setReceptor(idReceptor);
+        chat.setHoraCreacion(ZonedDateTime.now());
 
-Chat result = chatRepository.save(chat);
+        Chat result = chatRepository.save(chat);
         return ResponseEntity.created(new URI("/api/chats/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);    }
 
-    /**
-     * POST  /chats : Create a new chat.
-     *
-     * @param chat the chat to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new chat, or with status 400 (Bad Request) if the chat has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/chats")
     @Timed
     public ResponseEntity<Chat> createChat(@RequestBody Chat chat) throws URISyntaxException {
@@ -71,15 +69,6 @@ Chat result = chatRepository.save(chat);
             .body(result);
     }
 
-    /**
-     * PUT  /chats : Updates an existing chat.
-     *
-     * @param chat the chat to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated chat,
-     * or with status 400 (Bad Request) if the chat is not valid,
-     * or with status 500 (Internal Server Error) if the chat couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/chats")
     @Timed
     public ResponseEntity<Chat> updateChat(@RequestBody Chat chat) throws URISyntaxException {
@@ -93,11 +82,6 @@ Chat result = chatRepository.save(chat);
             .body(result);
     }
 
-    /**
-     * GET  /chats : get all the chats.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of chats in body
-     */
     @GetMapping("/chats")
     @Timed
     public List<Chat> getAllChats() {
@@ -106,12 +90,6 @@ Chat result = chatRepository.save(chat);
         return chats;
     }
 
-    /**
-     * GET  /chats/:id : get the "id" chat.
-     *
-     * @param id the id of the chat to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the chat, or with status 404 (Not Found)
-     */
     @GetMapping("/chats/{id}")
     @Timed
     public ResponseEntity<Chat> getChat(@PathVariable Long id) {
@@ -120,12 +98,6 @@ Chat result = chatRepository.save(chat);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(chat));
     }
 
-    /**
-     * DELETE  /chats/:id : delete the "id" chat.
-     *
-     * @param id the id of the chat to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/chats/{id}")
     @Timed
     public ResponseEntity<Void> deleteChat(@PathVariable Long id) {

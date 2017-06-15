@@ -10,7 +10,6 @@ import java.time.ZonedDateTime;
 @Controller
 public class GreetingController {
 
-
     @MessageMapping("/sendMsg")
     @SendTo("/topic/greetings")
     public Mensaje msg(String message) throws Exception {
